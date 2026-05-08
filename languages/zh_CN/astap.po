@@ -14,31 +14,31 @@ msgid "Astrometric Stacking Program and fits viewer (ASTAP)"
 msgstr "天文叠加与 FITS 查看器 (ASTAP)"
 
 msgid "Declination"
-msgstr "Declination"
+msgstr "赤纬"
 
 msgid "Right ascension"
-msgstr "Right ascension"
+msgstr "赤经"
 
 msgid "Browse & preview fits files"
-msgstr "Browse & preview fits files"
+msgstr "浏览并预览 FITS 文件"
 
 msgid "Right ascension of reference pixel. Normally in the middle of the image. Format 23 30 00.0 or 23.500. Double click to retrieve position from database"
-msgstr "Right ascension of reference pixel. Normally in the middle of the image. Format 23 30 00.0 or 23.500. Double click to retrieve position from database"
+msgstr "参考像素的赤经，通常位于图像中心。格式为 23 30 00.0 或 23.500。双击可从数据库获取位置。"
 
 msgid "Show stack menu. CTRL-A"
-msgstr "Show stack menu. CTRL-A"
+msgstr "显示叠加菜单。CTRL-A"
 
 msgid "Find an astrometric solution for the image in the viewer.\n\nChecklist for successful solving:\n\n- At least 30 stars are visible.\n- Reasonable round stars.\n- Image dimensions at least 1280x960 pixels.\n- An approximate position is available for a spiral search\n- Correct image height in degrees specified. See stack menu tab alignment.\n- Image is not stretched or heavily photo-shopped."
-msgstr "Find an astrometric solution for the image in the viewer.\n\nChecklist for successful solving:\n\n- At least 30 stars are visible.\n- Reasonable round stars.\n- Image dimensions at least 1280x960 pixels.\n- An approximate position is available for a spiral search\n- Correct image height in degrees specified. See stack menu tab alignment.\n- Image is not stretched or heavily photo-shopped."
+msgstr "为查看器中的图像进行天文定位求解。\n\n成功求解检查清单：\n\n- 至少能看到 30 颗恒星。\n- 星点形状应基本圆整。\n- 图像尺寸至少为 1280x960 像素。\n- 已提供近似位置，可用于螺旋搜索。\n- 已正确设置图像高度（度）。见叠加菜单的“对齐”标签页。\n- 图像未被拉伸或过度后期处理。"
 
 msgid "Solve"
 msgstr "求解"
 
 msgid "Save FITS file with plate solution"
-msgstr "Save FITS file with plate solution"
+msgstr "保存带天文定位解的 FITS 文件"
 
 msgid "Use WCS, SIP or DSS polynomial for indicating the position. SIP is available for Astrometry.net solutions and DSS polynomial for images from the DSS survey. A red background is indicating \"no valid\" solution for this option."
-msgstr "Use WCS, SIP or DSS polynomial for indicating the position. SIP is available for Astrometry.net solutions and DSS polynomial for images from the DSS survey. A red background is indicating \"no valid\" solution for this option."
+msgstr "使用 WCS、SIP 或 DSS 多项式表示位置。SIP 可用于 Astrometry.net 求解结果，DSS 多项式可用于 DSS 巡天图像。红色背景表示该选项没有有效解。"
 
 msgid "Data range"
 msgstr "数据范围"
@@ -47,40 +47,40 @@ msgid "Histogram:"
 msgstr "直方图:"
 
 msgid "Adjust the black level"
-msgstr "Adjust the black level"
+msgstr "调整黑场电平"
 
 msgid "Adjust the white level."
-msgstr "Adjust the white level."
+msgstr "调整白场电平。"
 
 msgid "At this level the pixels are displayed as black."
-msgstr "At this level the pixels are displayed as black."
+msgstr "低于此电平的像素显示为黑色。"
 
 msgid "At this level the pixels are displayed as fully white."
-msgstr "At this level the pixels are displayed as fully white."
+msgstr "高于此电平的像素显示为纯白。"
 
 msgid "Preset of the automatic data range adjustments."
-msgstr "Preset of the automatic data range adjustments."
+msgstr "自动数据范围调整的预设。"
 
 msgid "Stretch factor applied on displayed image. This is a  colour preserving stretch based on an asinh function."
-msgstr "Stretch factor applied on displayed image. This is a  colour preserving stretch based on an asinh function."
+msgstr "拉伸因子应用于显示的图像。这是基于 asinh 函数的保色拉伸。"
 
 msgid "Saturation adjust factor. The midde position is neutral.  Above is increase, below is decrease."
-msgstr "Saturation adjust factor. The midde position is neutral.  Above is increase, below is decrease."
+msgstr "饱和度调整系数。中间位置为中性；向上增加，向下减少。"
 
 msgid "Selective colour saturation (Luminance-based Saturation Enhancement). This will enhance the colour of faint objects relative to bright objects"
-msgstr "Selective colour saturation (Luminance-based Saturation Enhancement). This will enhance the colour of faint objects relative to bright objects"
+msgstr "选择性颜色饱和度（基于亮度的饱和度增强）。这将增强暗淡物体相对于明亮物体的颜色"
 
 msgid "Declination of reference pixel. Normally in the middle of the image. Format +89 30 00 or 89.500. Double click to retrieve position from database."
-msgstr "Declination of reference pixel. Normally in the middle of the image. Format +89 30 00 or 89.500. Double click to retrieve position from database."
+msgstr "参考像素的赤纬，通常位于图像中心。格式为 +89 30 00 或 89.500。双击可从数据库获取位置。"
 
 msgid "Inverse zoom action of the mouse wheel."
-msgstr "Inverse zoom action of the mouse wheel."
+msgstr "鼠标滚轮的反向缩放操作。"
 
 msgid "Inverse 🖱️ wheel"
 msgstr "反向鼠标滚轮"
 
 msgid "Long axis is north, small axis is east,  F indicates flipped image."
-msgstr "Long axis is north, small axis is east,  F indicates flipped image."
+msgstr "长轴表示北，小轴表示东，F 表示图像已翻转。"
 
 msgid "Header"
 msgstr "头信息"
@@ -89,85 +89,85 @@ msgid "Table"
 msgstr "表格"
 
 msgid "Scroll through the images and tables in the FITS extension."
-msgstr "Scroll through the images and tables in the FITS extension."
+msgstr "滚动浏览 FITS 扩展中的图像和表格。"
 
 msgid "Orientation of the image north axis, independent of  flip settings."
-msgstr "Orientation of the image north axis, independent of  flip settings."
+msgstr "图像北轴的方向，与翻转设置无关。"
 
 msgid "The image is flipped. Either the east is swapped with west or north is swapped with south."
-msgstr "The image is flipped. Either the east is swapped with west or north is swapped with south."
+msgstr "图像已翻转，可能是东/西互换，也可能是北/南互换。"
 
 msgid "F"
 msgstr "F"
 
 msgid "hint"
-msgstr "hint"
+msgstr "提示"
 
 msgid "reference 1"
-msgstr "reference 1"
+msgstr "参考 1"
 
 msgid "Error accessing file!"
 msgstr "访问文件出错!"
 
 msgid "reference 2"
-msgstr "reference 2"
+msgstr "参考 2"
 
 msgid "Mount"
-msgstr "Mount"
+msgstr "架台"
 
 msgid "Lock unreliable, check position"
-msgstr "Lock unreliable, check position"
+msgstr "锁定不可靠，检查位置"
 
 msgid "Select rectangle"
-msgstr "Select rectangle"
+msgstr "选择矩形"
 
 msgid "&File"
 msgstr "文件"
 
 msgid "Load a FITS, PNG, JPG or BPM file."
-msgstr "Load a FITS, PNG, JPG or BPM file."
+msgstr "加载 FITS、PNG、JPG 或 BPM 文件。"
 
 msgid "Load FITS or other format"
 msgstr "载入 FITS 或其他格式"
 
 msgid "Load an image file in the viewer "
-msgstr "Load an image file in the viewer "
+msgstr "在查看器中加载图像文件"
 
 msgid "Thumbnail viewer"
 msgstr "缩略图查看器"
 
 msgid "Show FITS files as thumnails"
-msgstr "Show FITS files as thumnails"
+msgstr "将 FITS 文件显示为缩略图"
 
 msgid "Open recent"
 msgstr "最近打开"
 
 msgid "Open recent files"
-msgstr "Open recent files"
+msgstr "打开最近的文件"
 
 msgid "Save as FITS file"
 msgstr "另存为 FITS 文件"
 
 msgid "Save image as  32 bit, 16 bit or 8 bits FITS file. "
-msgstr "Save image as  32 bit, 16 bit or 8 bits FITS file. "
+msgstr "将图像保存为 32 位、16 位或 8 位 FITS 文件。"
 
 msgid "Export to PNG, TIFF, PPM/PGM"
 msgstr "导出为 PNG、TIFF、PPM/PGM"
 
 msgid "Save current image as 16 bit PNG, 16 or 32 bit TIFF or 16 bit PPM/PGM. Note that 32 bit files can be re-imported."
-msgstr "Save current image as 16 bit PNG, 16 or 32 bit TIFF or 16 bit PPM/PGM. Note that 32 bit files can be re-imported."
+msgstr "将当前图像保存为 16 位 PNG、16/32 位 TIFF 或 16 位 PPM/PGM。注意：32 位文件可以重新导入。"
 
 msgid "Save as JPEG, PNG or BMP"
 msgstr "另存为 JPEG、PNG 或 BMP"
 
 msgid "Save image as JPEG, PNG or BMP. These files are 8 bit and include annotations."
-msgstr "Save image as JPEG, PNG or BMP. These files are 8 bit and include annotations."
+msgstr "将图像保存为 JPEG、PNG 或 BMP。这些文件为 8 位，并包含标注。"
 
 msgid "Update FITS header"
 msgstr "更新 FITS 头"
 
 msgid "Update FITS header as in the memo. "
-msgstr "Update FITS header as in the memo. "
+msgstr "按文本框中的内容更新 FITS 头。"
 
 msgid "Settings"
 msgstr "设置"
@@ -176,37 +176,37 @@ msgid "Save settings"
 msgstr "保存设置"
 
 msgid "Save current settings"
-msgstr "Save current settings"
+msgstr "保存当前设置"
 
 msgid "Save settings as"
 msgstr "设置另存为"
 
 msgid "Settings will be saved as. Note that after restart the default.cfg is loaded automatically. "
-msgstr "Settings will be saved as. Note that after restart the default.cfg is loaded automatically. "
+msgstr "设置将另存为。请注意，重新启动后，default.cfg 会自动加载。"
 
 msgid "Return to default settings and exit"
 msgstr "恢复默认设置并退出"
 
 msgid "Prgram will return to default settings"
-msgstr "Prgram will return to default settings"
+msgstr "程序将返回默认设置"
 
 msgid "Load settings"
 msgstr "载入设置"
 
 msgid "Load a configuration file"
-msgstr "Load a configuration file"
+msgstr "加载配置文件"
 
 msgid "&Exit        ( and save settings)"
 msgstr "退出        (并保存设置)"
 
 msgid "Save settings and leave the program"
-msgstr "Save settings and leave the program"
+msgstr "保存设置并退出程序"
 
 msgid "Stack"
 msgstr "叠加"
 
 msgid "Stack images. Short cut CTRL+A"
-msgstr "Stack images. Short cut CTRL+A"
+msgstr "叠加图像。短路CTRL+A"
 
 msgid "Tools"
 msgstr "工具"
@@ -215,61 +215,61 @@ msgid "Solve image astrometric (plate solve)"
 msgstr "天文定位求解 (Plate Solve)"
 
 msgid "Find astrometric solution using either the internal solver or astrometry.net if selected. PNG of JPEG files will be first converted to a 8 bit FITS file with the same name."
-msgstr "Find astrometric solution using either the internal solver or astrometry.net if selected. PNG of JPEG files will be first converted to a 8 bit FITS file with the same name."
+msgstr "使用内部求解器，或在选中时使用 Astrometry.net，进行天文定位求解。PNG 或 JPEG 文件会先转换为同名的 8 位 FITS 文件。"
 
 msgid "Batch processing"
 msgstr "批处理"
 
 msgid "Batch processes"
-msgstr "Batch processes"
+msgstr "批处理"
 
 msgid "Batch solve images FITS && TIFF"
 msgstr "批量解析 FITS 与 TIFF 图像"
 
 msgid "Find an astrometric (plate) solution for selected files and add to the FITS file header."
-msgstr "Find an astrometric (plate) solution for selected files and add to the FITS file header."
+msgstr "为所选文件进行天文定位（plate solving）求解，并将解写入 FITS 文件头。"
 
 msgid "          ☑ option \"overwrite existing solutions"
 msgstr "☑ 选项“覆盖现有解析结果”"
 
 msgid "Overwrite existing astrometric solutions"
-msgstr "Overwrite existing astrometric solutions"
+msgstr "覆盖现有的天文定位解"
 
 msgid "          ☑ option \"Calibrate\""
 msgstr "☑ 选项“校准”"
 
 msgid "Calibrate image prior to solving"
-msgstr "Calibrate image prior to solving"
+msgstr "求解前校准图像"
 
 msgid "          ☑ option \"Add LIM_MAGN, SQM, CENTALT, AIRMASS\""
 msgstr "☑ 选项“添加 LIM_MAGN、SQM、CENTALT、AIRMASS”"
 
 msgid "Add estimated LIM-MAGN, SQM, CENTALT, AIRMASS to the file header. The display of these keywords can be configured in tab lights popup menu. For SQM enter a fixed pedestal value in viewer menu SQM report."
-msgstr "Add estimated LIM-MAGN, SQM, CENTALT, AIRMASS to the file header. The display of these keywords can be configured in tab lights popup menu. For SQM enter a fixed pedestal value in viewer menu SQM report."
+msgstr "将估计的 LIM-MAGN、SQM、CENTALT、AIRMASS 添加到文件头。这些关键字的显示可以在“亮场”标签页弹出菜单中配置。对于SQM，在查看器菜单SQM报告中输入固定基准值。"
 
 msgid "          ☑ option \"maintain date modified\"       "
 msgstr "☑ 选项“保留修改日期”"
 
 msgid "Maintains the last date modified"
-msgstr "Maintains the last date modified"
+msgstr "保留最后修改日期"
 
 msgid "Batch solve images using local astrometry.net"
 msgstr "使用本地 astrometry.net 批量求解图像"
 
 msgid "Solve the image using a local version of astrometry.net"
-msgstr "Solve the image using a local version of astrometry.net"
+msgstr "使用 astrometry.net 的本地版本求解图像"
 
 msgid "Batch convert to FITS"
 msgstr "批量转换为 FITS"
 
 msgid "Convert the selected images to the FITS format."
-msgstr "Convert the selected images to the FITS format."
+msgstr "将选定的图像转换为 FITS 格式。"
 
 msgid "Batch convert to TIFF"
 msgstr "批量转换为 TIFF"
 
 msgid "Convert the selected images to the 16 bit or 32 bit TIFF format."
-msgstr "Convert the selected images to the 16 bit or 32 bit TIFF format."
+msgstr "将所选图像转换为 16 位或 32 位 TIFF 格式。"
 
 msgid "Batch convert to TIFF, preserve file date"
 msgstr "批量转换为 TIFF，并保留文件日期"
@@ -278,31 +278,31 @@ msgid "Batch convert to PBM/PFM"
 msgstr "批量转换为 PBM/PFM"
 
 msgid "Convert the selected images to the 16 bit PBM (Portable Bit Map) or 32 bit PFM (Portable Float Map) format."
-msgstr "Convert the selected images to the 16 bit PBM (Portable Bit Map) or 32 bit PFM (Portable Float Map) format."
+msgstr "将所选图像转换为 16 位 PBM（Portable Bit Map）或 32 位 PFM（Portable Float Map）格式。"
 
 msgid "Set files date modified to DATE-OBS"
 msgstr "将文件修改日期设为 DATE-OBS"
 
 msgid "Set for all files the \"date modified\" to the value in keyword DATE-OBS. This is the start time of the exposure."
-msgstr "Set for all files the \"date modified\" to the value in keyword DATE-OBS. This is the start time of the exposure."
+msgstr "将所有文件的“修改日期”设置为 DATE-OBS 关键字的值，即曝光开始时间。"
 
 msgid "Move images to path \"object, date, filter\""
 msgstr "按“目标、日期、滤镜”移动图像"
 
 msgid "Move selected images to a new directory based in the header info object name, exposure date and filter."
-msgstr "Move selected images to a new directory based in the header info object name, exposure date and filter."
+msgstr "根据 FITS 头中的目标名称、曝光日期和滤镜，将所选图像移动到新目录。"
 
 msgid "Batch convert bin2x2"
 msgstr "批量转换 bin2x2"
 
 msgid "Bin 2x2 all selected images"
-msgstr "Bin 2x2 all selected images"
+msgstr "Bin 2x2 所有选定图像"
 
 msgid "Batch convert bin3x3"
 msgstr "批量转换 bin3x3"
 
 msgid "Bin 3x3 all selected images"
-msgstr "Bin 3x3 all selected images"
+msgstr "Bin 3x3 所有选定图像"
 
 msgid "Batch Crop"
 msgstr "批量裁剪"
@@ -311,13 +311,13 @@ msgid "Crop by coordinates"
 msgstr "按坐标裁剪"
 
 msgid "As set by pop-up menu \"set area\" of viewer or enter manually coordinates."
-msgstr "As set by pop-up menu \"set area\" of viewer or enter manually coordinates."
+msgstr "使用查看器弹出菜单“设置区域”的设置，或手动输入坐标。"
 
 msgid "Crop as the sample image in the viewer"
 msgstr "按查看器中的样例图像裁剪"
 
 msgid "Images could be cropped in ASTAP or by CCDCIEL selected sensor section "
-msgstr "Images could be cropped in ASTAP or by CCDCIEL selected sensor section "
+msgstr "图像可以在ASTAP或CCDCIEL选择的传感器部分进行裁剪"
 
 msgid "Rotate"
 msgstr "旋转"
@@ -326,37 +326,37 @@ msgid "Rotate 90 degrees left"
 msgstr "向左旋转 90 度"
 
 msgid "Rotate the selected FITS images 90 degrees left"
-msgstr "Rotate the selected FITS images 90 degrees left"
+msgstr "将所选 FITS 图像向左旋转 90 度"
 
 msgid "Rotate 90 degrees right"
 msgstr "向右旋转 90 度"
 
 msgid "Rotate the selected FITS images 90 degrees right"
-msgstr "Rotate the selected FITS images 90 degrees right"
+msgstr "将所选 FITS 图像向右旋转 90 度"
 
 msgid "Rotate 180 degrees"
 msgstr "旋转 180 度"
 
 msgid "Rotate the selected FITS images 180 degrees."
-msgstr "Rotate the selected FITS images 180 degrees."
+msgstr "将所选 FITS 图像旋转 180 度。"
 
 msgid "Raw colour separation"
 msgstr "RAW 颜色分离"
 
 msgid "This will extract the colours from a raw DSLR/OCS image write them to separate files."
-msgstr "This will extract the colours from a raw DSLR/OCS image write them to separate files."
+msgstr "从 RAW DSLR/OSC 图像中提取颜色通道，并写入单独文件。"
 
 msgid "Extract raw GREEN pixels and combine"
 msgstr "提取并合并 RAW 绿色像素"
 
 msgid "Will combine for each bayer submosaic the two green pixels. Check in advance the de-mosaic pattern in stack menu, tab stack method"
-msgstr "Will combine for each bayer submosaic the two green pixels. Check in advance the de-mosaic pattern in stack menu, tab stack method"
+msgstr "将为每个拜耳亚马赛克组合两个绿色像素。预先检查叠加菜单中的去拜耳图案，选项卡叠加方法"
 
 msgid "Extract raw RED pixels"
 msgstr "提取 RAW 红色像素"
 
 msgid "Check in advance the de-mosaic pattern in stack menu, tab stack method"
-msgstr "Check in advance the de-mosaic pattern in stack menu, tab stack method"
+msgstr "预先检查叠加菜单中的去拜耳图案，选项卡叠加方法"
 
 msgid "Extract raw BLUE pixels"
 msgstr "提取 RAW 蓝色像素"
@@ -365,25 +365,25 @@ msgid "Bayer matrix pixel 11"
 msgstr "拜耳阵列像素 11"
 
 msgid "Pixels with position 11 in the Bayer matrix are extracted from the selected files."
-msgstr "Pixels with position 11 in the Bayer matrix are extracted from the selected files."
+msgstr "从所选文件中提取Bayer矩阵中位置为11的像素。"
 
 msgid "Bayer matrix pixel 12"
 msgstr "拜耳阵列像素 12"
 
 msgid "Pixels with position 12 in the Bayer matrix are extracted from the selected files."
-msgstr "Pixels with position 12 in the Bayer matrix are extracted from the selected files."
+msgstr "从所选文件中提取Bayer矩阵中位置为12的像素。"
 
 msgid "Bayer matrix pixel 21"
 msgstr "拜耳阵列像素 21"
 
 msgid "Pixels with position 21 in the Bayer matrix are extracted from the selected files."
-msgstr "Pixels with position 21 in the Bayer matrix are extracted from the selected files."
+msgstr "从所选文件中提取Bayer矩阵中位置为21的像素。"
 
 msgid "Bayer matrix pixel 22"
 msgstr "拜耳阵列像素 22"
 
 msgid "Pixels with position 22 in the Bayer matrix are extracted from the selected files."
-msgstr "Pixels with position 22 in the Bayer matrix are extracted from the selected files."
+msgstr "从所选文件中提取Bayer矩阵中位置为22的像素。"
 
 msgid "Remove longitude && latitude info from files"
 msgstr "移除文件中的经纬度信息"
@@ -392,19 +392,19 @@ msgid "Batch compress FITS"
 msgstr "批量压缩 FITS"
 
 msgid "Compress all files using the CFITSIO utility program fpack. Works best for 32 bit floating point fits files. Original files will be kept."
-msgstr "Compress all files using the CFITSIO utility program fpack. Works best for 32 bit floating point fits files. Original files will be kept."
+msgstr "使用 CFITSIO 工具 fpack 压缩所有文件。最适合 32 位浮点 FITS 文件。原始文件会保留。"
 
 msgid "Batch annotate asteroids && comets"
 msgstr "批量标注小行星与彗星"
 
 msgid "This will add asteroid or comet annotations to the fits header. Intended for the blinking routine or manual stacking. Batch solve the images first."
-msgstr "This will add asteroid or comet annotations to the fits header. Intended for the blinking routine or manual stacking. Batch solve the images first."
+msgstr "将小行星或彗星标注写入 FITS 头，供闪烁比对流程或手动叠加使用。请先批量求解图像。"
 
 msgid "Batch measure tilt and store to header keyword TILT"
 msgstr "批量测量倾斜并写入头关键字 TILT"
 
 msgid "A keyword TILT is added to the image headers. This keyword can be read by the configurable last column of tab lights"
-msgstr "A keyword TILT is added to the image headers. This keyword can be read by the configurable last column of tab lights"
+msgstr "向图像头写入 TILT 关键字。该关键字可由“亮场”标签页中可配置的最后一列读取。"
 
 msgid "Image Inspection "
 msgstr "图像检查"
@@ -422,157 +422,157 @@ msgid "Activate/deactivate auto de-mosaic"
 msgstr "启用/停用自动去拜耳"
 
 msgid "If checked, any new image in viewer will be demosaiced using bilinear interpolation."
-msgstr "If checked, any new image in viewer will be demosaiced using bilinear interpolation."
+msgstr "如果选中，查看器中的任何新图像都将使用双线性插值进行去拜耳。"
 
 msgid "De-mosaic Bayer matrix "
 msgstr "拜耳阵列去拜耳"
 
 msgid "Convert RAW to colour using interpolation.  Set first correct Bayer pattern in the stack menu."
-msgstr "Convert RAW to colour using interpolation.  Set first correct Bayer pattern in the stack menu."
+msgstr "使用插值将 RAW 转换为颜色。 在叠加菜单中设置第一个正确的Bayer模式。"
 
 msgid "Auto correct colours."
 msgstr "自动校正颜色。"
 
 msgid "Will adjust color settings to get gray background and average white stars. This is the same function as in tab pixel math"
-msgstr "Will adjust color settings to get gray background and average white stars. This is the same function as in tab pixel math"
+msgstr "将调整颜色设置以获得灰色背景和平均白色恒星。这与选项卡像素数学中的函数相同"
 
 msgid "Remove green and purple filter"
 msgstr "移除绿色和紫色偏色"
 
 msgid "Balances RGB to remove green and purple."
-msgstr "Balances RGB to remove green and purple."
+msgstr "B平衡RGB去除绿色和紫色。"
 
 msgid "Inverse image"
 msgstr "反相图像"
 
 msgid "Inverse image. Saving will apply the changes the original image."
-msgstr "Inverse image. Saving will apply the changes the original image."
+msgstr "反转图像。保存会将更改应用到原始图像。"
 
 msgid "Convert to mono"
 msgstr "转换为单色"
 
 msgid "Convert colour image to gray scale image"
-msgstr "Convert colour image to gray scale image"
+msgstr "将彩色图像转换为灰度图像"
 
 msgid "Bin or stretch"
 msgstr "合并像素或拉伸"
 
 msgid "Bin or stretch the image"
-msgstr "Bin or stretch the image"
+msgstr "Bin 或拉伸图像"
 
 msgid "Bin 2x2"
 msgstr "2x2 合并像素"
 
 msgid "Bin the image 2x2"
-msgstr "Bin the image 2x2"
+msgstr "B在图像 2x2 中"
 
 msgid "Bin 3x3"
 msgstr "3x3 合并像素"
 
 msgid "Bin the image 3x3"
-msgstr "Bin the image 3x3"
+msgstr "图像 3x3 中的 B"
 
 msgid "Stretch draw"
 msgstr "拉伸绘制"
 
 msgid "Like binning reduce the displayed resolution temporary using current zoom factor. To be used to create images of reduced resolution and to save to file or copy to clipboard."
-msgstr "Like binning reduce the displayed resolution temporary using current zoom factor. To be used to create images of reduced resolution and to save to file or copy to clipboard."
+msgstr "类似 binning，，使用当前缩放系数临时降低显示分辨率。用于创建降低分辨率的图像并保存到文件或复制到剪贴板。"
 
 msgid "Stretch draw to FITS"
 msgstr "拉伸绘制到 FITS"
 
 msgid "Convert current view to a FITS image. This will use the current contrast setting and reduce resolution. "
-msgstr "Convert current view to a FITS image. This will use the current contrast setting and reduce resolution. "
+msgstr "将当前视图转换为FITS 图像。这将使用当前的对比度设置并降低分辨率。"
 
 msgid "Undo"
 msgstr "撤销"
 
 msgid "Undo last Bayer or binning action"
-msgstr "Undo last Bayer or binning action"
+msgstr "撤消最后的Bayer或分箱操作"
 
 msgid "Rotate image"
 msgstr "旋转图像"
 
 msgid "Rotate the image."
-msgstr "Rotate the image."
+msgstr "旋转图像。"
 
 msgid "Flip horizontal"
 msgstr "水平翻转"
 
 msgid "Flip the image horizontal. Saving will apply the change to the original image."
-msgstr "Flip the image horizontal. Saving will apply the change to the original image."
+msgstr "水平翻转图像。保存会将更改应用到原始图像。"
 
 msgid "Flip vertical"
 msgstr "垂直翻转"
 
 msgid "Flip the image vertical. Saving will apply the change to the original image."
-msgstr "Flip the image vertical. Saving will apply the change to the original image."
+msgstr "垂直翻转图像。保存会将更改应用到原始图像。"
 
 msgid "Rotate arbitrary"
 msgstr "任意角度旋转"
 
 msgid "Rotate the image with the angle specified. Accurate algorithm but image quality will be reduced unless 90,180 or 270 degrees rotation."
-msgstr "Rotate the image with the angle specified. Accurate algorithm but image quality will be reduced unless 90,180 or 270 degrees rotation."
+msgstr "按指定角度旋转图像。算法精确，但除 90、180 或 270 度旋转外，图像质量会有所降低。"
 
 msgid "Clean-up"
 msgstr "清理"
 
 msgid "Redraw image. Remove any markers except annotations. For removal annotations reload or remove annotations from FITS header."
-msgstr "Redraw image. Remove any markers except annotations. For removal annotations reload or remove annotations from FITS header."
+msgstr "重绘图像。移除除标注之外的所有标记。要删除标注，请重新加载或删除 FITS 头中的标注。"
 
 msgid "Calibrate photometry"
 msgstr "校准测光"
 
 msgid "Calibrate photometry using available star database (Gaia BP or V magnitude), Aperture setings are in tab photometry. Works best for raw/mono images. For colour images red channel will be used but accuracy will be less."
-msgstr "Calibrate photometry using available star database (Gaia BP or V magnitude), Aperture setings are in tab photometry. Works best for raw/mono images. For colour images red channel will be used but accuracy will be less."
+msgstr "使用可用星表（Gaia BP 或 V 星等）校准测光。孔径设置位于“测光”标签页。对 RAW/单色图像效果最好；彩色图像会使用红色通道，精度会降低。"
 
 msgid "SQM report based on an image"
 msgstr "基于图像生成 SQM 报告"
 
 msgid "Will report the SQM value of the observation site. Use longer exposures. Avoid deepsky objects in the image"
-msgstr "Will report the SQM value of the observation site. Use longer exposures. Avoid deepsky objects in the image"
+msgstr "将报告观测地点的 SQM 值。使用更长的曝光时间。避免图像中的深空天体"
 
 msgid "Magnitude (measured) annotation"
 msgstr "星等 (测量值) 标注"
 
 msgid "Annotate stars with measured star magnitude"
-msgstr "Annotate stars with measured star magnitude"
+msgstr "用测得的星等标注恒星"
 
 msgid "Star (database) annotation"
 msgstr "恒星 (数据库) 标注"
 
 msgid "Annotate all stars in the image. Plate solve the image first. For a G-database the indicated magnitude is Gaia blue. For a V-database the indicated magnitude is Johnson-V  and the following the difference between Gaia blue and red, positive for reddish objects. All in 1/10 of a magnitude."
-msgstr "Annotate all stars in the image. Plate solve the image first. For a G-database the indicated magnitude is Gaia blue. For a V-database the indicated magnitude is Johnson-V  and the following the difference between Gaia blue and red, positive for reddish objects. All in 1/10 of a magnitude."
+msgstr "标注图像中的所有恒星。请先进行天文定位求解。使用 G 星表时显示 Gaia 蓝色星等；使用 V 星表时显示 Johnson-V，随后显示 Gaia 蓝色与红色星等差，偏红天体为正值。数值单位均为 0.1 星等。"
 
 msgid "Unknown star annotation"
 msgstr "未知恒星标注"
 
 msgid "Annotate nova and minor planets using the online Gaia database up to about magnitude 20."
-msgstr "Annotate nova and minor planets using the online Gaia database up to about magnitude 20."
+msgstr "使用在线 Gaia 数据库标注新星和小行星，最高可达 20 等。"
 
 msgid "Variable star annotation"
 msgstr "变星标注"
 
 msgid "Annotate all variable stars and comparison stars from the local database or AAVSO online database. Database setting is in tab Photometry."
-msgstr "Annotate all variable stars and comparison stars from the local database or AAVSO online database. Database setting is in tab Photometry."
+msgstr "从本地星表或AAVSO在线星表标注所有变星和比较星。数据库设置位于“测光”选项卡中。"
 
 msgid "Asteroid && comet annotation"
 msgstr "小行星与彗星标注"
 
 msgid "Annotate asteroids"
-msgstr "Annotate asteroids"
+msgstr "标注小行星"
 
 msgid "Deepsky (HyperLeda) annotation"
 msgstr "深空 (HyperLeda) 标注"
 
 msgid "Use the huge HyperLeda database for annotation.  Prior to this the image needs to be astrometric solved. Zoom in to get small font."
-msgstr "Use the huge HyperLeda database for annotation.  Prior to this the image needs to be astrometric solved. Zoom in to get small font."
+msgstr "使用庞大的HyperLeda数据库进行标注。 在此之前，需要对图像进行天文定位求解。放大以获得小字体。"
 
 msgid "Deepsky annotation"
 msgstr "深空标注"
 
 msgid "This will place deep sky annotations on the image. Prior to this the image needs to be astrometric solved. Zoom in to get smaller font"
-msgstr "This will place deep sky annotations on the image. Prior to this the image needs to be astrometric solved. Zoom in to get smaller font"
+msgstr "这将在图像上放置深空标注。在此之前，需要对图像进行天文定位求解。放大以获得更小的字体"
 
 msgid "View"
 msgstr "视图"
@@ -581,88 +581,88 @@ msgid "Image cleanup"
 msgstr "清理图像"
 
 msgid "Clear the image of annotations"
-msgstr "Clear the image of annotations"
+msgstr "清除标注图像"
 
 msgid "Centre lost windows"
 msgstr "找回偏离屏幕的窗口"
 
 msgid "Flip the image horizontal."
-msgstr "Flip the image horizontal."
+msgstr "水平翻转图像。"
 
 msgid "Flip image vertical."
-msgstr "Flip image vertical."
+msgstr "垂直翻转图像。"
 
 msgid "Flip horizontal and vertical"
 msgstr "水平和垂直翻转"
 
 msgid "This is equivalent to 180° rotation."
-msgstr "This is equivalent to 180° rotation."
+msgstr "这等同于旋转 180°。"
 
 msgid "Fit to window"
-msgstr "适合窗口"
+msgstr "适配窗口"
 
 msgid "Fit to window."
-msgstr "Fit to window."
+msgstr "适配窗口。"
 
 msgid "Zoom 100%"
 msgstr "缩放 100%"
 
 msgid "Zoom to 100%. Image pixels will match with screen pixels."
-msgstr "Zoom to 100%. Image pixels will match with screen pixels."
+msgstr "缩放至 100%。图像像素将与屏幕像素匹配。"
 
 msgid "Annotations header visible"
 msgstr "显示头部标注"
 
 msgid "Switches the annotations on/off. The annotations are stored in the FITS files header with keyword ANNOTATE"
-msgstr "Switches the annotations on/off. The annotations are stored in the FITS files header with keyword ANNOTATE"
+msgstr "打开/关闭标注。标注存储在带有关键字 ANNOTATE 的 FITS 文件头中"
 
 msgid "North-East indicator image"
 msgstr "显示东北方向指示"
 
 msgid "Show a north-east indicator on the image."
-msgstr "Show a north-east indicator on the image."
+msgstr "在图像上显示东北指示符。"
 
 msgid "Star profile"
 msgstr "恒星轮廓"
 
 msgid "Show the star profile for the star at the mouse cursor."
-msgstr "Show the star profile for the star at the mouse cursor."
+msgstr "显示鼠标光标处恒星的恒星轮廓。"
 
 msgid "Mount position"
 msgstr "赤道仪位置"
 
 msgid "Shows the mount position as a star and a large orientation indicator in the solved image. The center of the image is indicated as  tiny lime coloured square. "
-msgstr "Shows the mount position as a star and a large orientation indicator in the solved image. The center of the image is indicated as  tiny lime coloured square. "
+msgstr "在解算图像中将安装位置显示为星形和大方向指示器。图像的中心显示为石灰色的小方块。"
 
 msgid "Constellations"
 msgstr "星座"
 
 msgid "Add the constellations to the image."
-msgstr "Add the constellations to the image."
+msgstr "将星座添加到图像中。"
 
 msgid "A, h grid"
 msgstr "方位/高度网格"
 
 msgid "Adds an azimuth & altitude grid to image"
-msgstr "Adds an azimuth & altitude grid to image"
+msgstr "向图像添加方位角和高度角网格"
 
 msgid "α, δ grid"
 msgstr "赤经/赤纬网格"
 
 msgid "Adds a right ascension & declination grid to image"
-msgstr "Adds a right ascension & declination grid to image"
+msgstr "向图像添加赤经和赤纬网格"
 
 msgid "Centre position && date at bottom"
 msgstr "底部显示中心位置与日期"
 
 msgid "Add the centre position and date and time at the left bottom of the image. Font colour and font size can be set in the asteroid annotation menu."
-msgstr "Add the centre position and date and time at the left bottom of the image. Font colour and font size can be set in the asteroid annotation menu."
+msgstr "在图像的左下角添加中心位置以及日期和时间。字体颜色和字体大小可以在小行星标注菜单中设置。"
 
 msgid "Free text at bottom"
 msgstr "底部自由文本"
 
 msgid "Add free text to bottom of the image. Font colour and font size can be set in the asteroid annotation menu."
-msgstr "Add free text to bottom of the image. Font colour and font size can be set in the asteroid annotation menu."
+msgstr "将自由文本添加到图像底部。字体颜色和字体大小可以在小行星标注菜单中设置。"
 
 msgid "Zoom out"
 msgstr "缩小"
@@ -680,79 +680,79 @@ msgid "Online help and webpage"
 msgstr "在线帮助和网页"
 
 msgid "Open the ASTAP webpage"
-msgstr "Open the ASTAP webpage"
+msgstr "打开ASTAP网页"
 
 msgid "&About ASTAP"
 msgstr "关于 ASTAP"
 
 msgid "About this program"
-msgstr "About this program"
+msgstr "关于这个计划"
 
 msgid "Add annotation (▭)"
 msgstr "添加标注 (▭)"
 
 msgid "Add annotation text to current mouse position. Hold left mouse button down and pull a rectangle with mouse to extend connecting line. Add @ to the text for persistent annotations."
-msgstr "Add annotation text to current mouse position. Hold left mouse button down and pull a rectangle with mouse to extend connecting line. Add @ to the text for persistent annotations."
+msgstr "将标注文本添加到当前鼠标位置。按住鼠标左键并用鼠标拉出一个矩形以延长连接线。将 @ 添加到文本以进行持久标注。"
 
 msgid "Add rectangle with annotation (▭)"
 msgstr "添加带标注的矩形 (▭)"
 
 msgid "Add rectangle. Hold left mouse button down and pull a rectangle with mouse."
-msgstr "Add rectangle. Hold left mouse button down and pull a rectangle with mouse."
+msgstr "添加矩形。按住鼠标左键并用鼠标拉出一个矩形。"
 
 msgid "Add marker"
 msgstr "添加标记"
 
 msgid "Add marker on image"
-msgstr "Add marker on image"
+msgstr "在图像上添加标记"
 
 msgid "Add object position"
 msgstr "添加目标位置"
 
 msgid "Add astronomical position of the object near the mouse position. Position is auto centered."
-msgstr "Add astronomical position of the object near the mouse position. Position is auto centered."
+msgstr "在鼠标位置附近添加物体的天文位置。位置自动居中。"
 
 msgid "Add object position short"
 msgstr "添加目标位置简写"
 
 msgid "Add object position in short IAU designation style. If there is no lock, no position wll be given. Use then the previouse menu option."
-msgstr "Add object position in short IAU designation style. If there is no lock, no position wll be given. Use then the previouse menu option."
+msgstr "以短IAU指定样式添加天体位置。如果没有锁，则不会给出位置。然后使用上一个菜单选项。"
 
 msgid "Add marker at α, δ position"
 msgstr "在 α、δ 位置添加标记"
 
 msgid "Place marker at specified α, δ position. "
-msgstr "Place marker at specified α, δ position. "
+msgstr "将标记放置在指定的 α、δ 位置。"
 
 msgid "Angular distance (▭)"
 msgstr "角距离 (▭)"
 
 msgid "Angular distance rigorous method."
-msgstr "Angular distance rigorous method."
+msgstr "角距离严格方法。"
 
 msgid "Measure total magnitude (▭, ⬭)"
 msgstr "测量总星等 (▭, ⬭)"
 
 msgid "This will report the total magnitude within the pulled shape. Press ctrl or shift for ellipse shape. Flux is measured relative to median background up to five pixels outside the shape. Best accuracy is  achieved by using monochrome images."
-msgstr "This will report the total magnitude within the pulled shape. Press ctrl or shift for ellipse shape. Flux is measured relative to median background up to five pixels outside the shape. Best accuracy is  achieved by using monochrome images."
+msgstr "这将报告拉动形状内的总大小。按 ctrl 或 shift 以获得椭圆形状。通量是相对于形状外部最多五个像素的中值背景来测量的。 B最高的准确性是通过使用单色图像来实现的。"
 
 msgid "Show statistics (▭, ⬭)"
 msgstr "显示统计信息 (▭, ⬭)"
 
 msgid "Within selection shape. Calculate mean, median standard deviation, minimum and maximum values within the shape. Press ctrl or shift for ellipse shape."
-msgstr "Within selection shape. Calculate mean, median standard deviation, minimum and maximum values within the shape. Press ctrl or shift for ellipse shape."
+msgstr "在选择形状内。计算形状内的平均值、中值标准差、最小值和最大值。按 ctrl 或 shift 以获得椭圆形状。"
 
 msgid "MPC1992 report line  (.)"
 msgstr "MPC1992 报告行 (.)"
 
 msgid "Write a MPC1992 report line to the clipboard for the object at the cursor.. This report line can be tested at:  https://minorplanetcenter.net/cgi-bin/checkmp.cgi"
-msgstr "Write a MPC1992 report line to the clipboard for the object at the cursor.. This report line can be tested at:  https://minorplanetcenter.net/cgi-bin/checkmp.cgi"
+msgstr "将 MPC1992 报告行写入光标处天体的剪贴板。可以在以下位置测试此报告行：https://minorplanetcenter.net/cgi-bin/checkmp.cgi"
 
 msgid "Star info to clipboard (▭)"
 msgstr "恒星信息复制到剪贴板 (▭)"
 
 msgid "Within selection shape. To clipboard the x,y positions, HFD, and if available α, δ and measured magnitude"
-msgstr "Within selection shape. To clipboard the x,y positions, HFD, and if available α, δ and measured magnitude"
+msgstr "在选择形状内。剪贴板 x、y 位置、HFD、α、δ 和测量幅度（如果可用）"
 
 msgid "Clean-up "
 msgstr "清理"
@@ -761,7 +761,7 @@ msgid "Solve manually by providing two positions"
 msgstr "通过提供两个位置手动解析"
 
 msgid "Add a solution to image by providing two positions "
-msgstr "Add a solution to image by providing two positions "
+msgstr "通过提供两个位置向图像添加定位解"
 
 msgid "Enter position 1"
 msgstr "输入位置 1"
@@ -773,25 +773,25 @@ msgid "Flipped"
 msgstr "已翻转"
 
 msgid "Specifiy if the image is flipped, east<->west or north<->south"
-msgstr "Specifiy if the image is flipped, east<->west or north<->south"
+msgstr "指定图像是否翻转（东/西互换或北/南互换）。"
 
 msgid "Copy image (selection) to clipboard (▭)"
 msgstr "复制图像或选区到剪贴板 (▭)"
 
 msgid "Copies the image or a image selection to the clipboard. Selection orientation is dependent on the selection direction used."
-msgstr "Copies the image or a image selection to the clipboard. Selection orientation is dependent on the selection direction used."
+msgstr "将图像或图像选择复制到剪贴板。选择方向取决于所使用的选择方向。"
 
 msgid "Copy position to clipboard"
 msgstr "复制位置到剪贴板"
 
 msgid "The astronomical mouse position is copied to the clipboard."
-msgstr "The astronomical mouse position is copied to the clipboard."
+msgstr "天文鼠标位置将复制到剪贴板。"
 
 msgid "Copy position to clipboard in °"
 msgstr "以度为单位复制位置到剪贴板"
 
 msgid "The astronomical mouse position in degrees is copied to the clipboard."
-msgstr "The astronomical mouse position in degrees is copied to the clipboard."
+msgstr "天文鼠标位置（以度为单位）将复制到剪贴板。"
 
 msgid "Online query"
 msgstr "在线查询"
@@ -800,37 +800,37 @@ msgid "Deepsky annotation (▭) (Simbad)"
 msgstr "深空标注 (▭) (Simbad)"
 
 msgid "Annotate the selected area with deepsky object info from Simbad"
-msgstr "Annotate the selected area with deepsky object info from Simbad"
+msgstr "使用Simbad中的深空天体信息标注所选区域"
 
 msgid "Deepsky annotion filtered (▭) (Simbad)"
 msgstr "筛选后的深空标注 (▭) (Simbad)"
 
 msgid "Annotate the selected area with deepsky object info from Simbad. A input will be shown to filter on object type."
-msgstr "Annotate the selected area with deepsky object info from Simbad. A input will be shown to filter on object type."
+msgstr "使用Simbad中的深空天体信息标注所选区域。将显示一个输入以过滤天体类型。"
 
 msgid "Star annotation (▭) (Simbad)"
 msgstr "恒星标注 (▭) (Simbad)"
 
 msgid "Annotate the selected area with star info from Simbad"
-msgstr "Annotate the selected area with star info from Simbad"
+msgstr "使用 Simbad 中的恒星信息标注所选区域"
 
 msgid "Magnitude annotation (▭) (Gaia, transformed)"
 msgstr "星等标注 (▭) (Gaia，已转换)"
 
 msgid "Annotate the selected area with transformed Gaia magnitudes from Vizier"
-msgstr "Annotate the selected area with transformed Gaia magnitudes from Vizier"
+msgstr "使用从 Vizier 转换后的 Gaia 幅值标注所选区域"
 
 msgid "Browser query (▭) (Simbad)"
 msgstr "浏览器查询 (▭) (Simbad)"
 
 msgid "Retrieve online info of the select area in the default browser.  To select an area, first hold the right mouse down and pull a rectangle."
-msgstr "Retrieve online info of the select area in the default browser.  To select an area, first hold the right mouse down and pull a rectangle."
+msgstr "R在默认浏览器中获取所选区域的在线信息。 要选择一个区域，首先按住鼠标右键并拉出一个矩形。"
 
 msgid "Browser query (▭) (HyperLeda)"
 msgstr "浏览器查询 (▭) (HyperLeda)"
 
 msgid "Retrieve online info of the select area in the default browser. To select an area, first hold the right mouse down and pull a rectangle."
-msgstr "Retrieve online info of the select area in the default browser. To select an area, first hold the right mouse down and pull a rectangle."
+msgstr "R在默认浏览器中获取所选区域的在线信息。要选择一个区域，首先按住鼠标右键并拉出一个矩形。"
 
 msgid "Browser query (▭) (Ned)"
 msgstr "浏览器查询 (▭) (Ned)"
@@ -839,13 +839,13 @@ msgid "Browser query (▭) (Gaia)"
 msgstr "浏览器查询 (▭) (Gaia)"
 
 msgid "Will display the online information for any star within 5 arc seconds of the centroid. The Gaia BP (blue) magnitude matches the best with visual."
-msgstr "Will display the online information for any star within 5 arc seconds of the centroid. The Gaia BP (blue) magnitude matches the best with visual."
+msgstr "显示质心 5 角秒范围内任意恒星的在线信息。Gaia BP（蓝色）星等与目视亮度最接近。"
 
 msgid "AAVSO, browser chart request (▭)"
 msgstr "AAVSO 浏览器星图请求 (▭)"
 
 msgid "Retrieve an AAVSO chart"
-msgstr "Retrieve an AAVSO chart"
+msgstr "R获取AAVSO图表"
 
 msgid "Local adjustments"
 msgstr "局部调整"
@@ -857,43 +857,43 @@ msgid "Local remove colour (⬭)"
 msgstr "局部去除色彩 (⬭)"
 
 msgid "Intended for some ugly coloured stars in OSC images"
-msgstr "Intended for some ugly coloured stars in OSC images"
+msgstr "适用于 OSC 图像中一些丑陋的彩色恒星"
 
 msgid "Local Gaussian blur (▭, ⬭)"
 msgstr "局部高斯模糊 (▭, ⬭)"
 
 msgid "Local Gaussian blur with factor as set in pixel math"
-msgstr "Local Gaussian blur with factor as set in pixel math"
+msgstr "局部高斯模糊，因子在像素数学中设置"
 
 msgid "Gradient removal tool (▭)"
 msgstr "渐变去除工具 (▭)"
 
 msgid "Remove the light pollution gradient in whole image based on two positions. The greater the distance the better it works."
-msgstr "Remove the light pollution gradient in whole image based on two positions. The greater the distance the better it works."
+msgstr "R基于两个位置去除整个图像的光污染梯度。距离越远，效果越好。"
 
 msgid "Dark dust spot removal (▭)"
 msgstr "暗尘斑去除 (▭)"
 
 msgid "To remove a dark spot caused by a dust particle. Select an ellipse shaped area by holding the CTRL key."
-msgstr "To remove a dark spot caused by a dust particle. Select an ellipse shaped area by holding the CTRL key."
+msgstr "去除灰尘颗粒造成的黑点。按住 CTRL 键选择椭圆形区域。"
 
 msgid "Copy paste tool (▭, ⬭)"
 msgstr "复制粘贴工具 (▭, ⬭)"
 
 msgid "Copy the selected area to the next mouse click. Use this for small corrections in the background. Press ctrl of shift for ellipse shape. Hold alt, ctrl, shift key for multi paste"
-msgstr "Copy the selected area to the next mouse click. Use this for small corrections in the background. Press ctrl of shift for ellipse shape. Hold alt, ctrl, shift key for multi paste"
+msgstr "将选定区域复制到下一次鼠标单击。使用它在后台进行小的修正。按 Ctrl 或 Shift 即可形成椭圆形。按住 alt、ctrl、shift 键进行多重粘贴"
 
 msgid "Set area (▭)"
 msgstr "设置区域 (▭)"
 
 msgid "Set area for colour replace in tab pixel math 1."
-msgstr "Set area for colour replace in tab pixel math 1."
+msgstr "在选项卡像素数学 1 中设置颜色替换区域。"
 
 msgid "Remove deep sky object ( ⬭)"
 msgstr "移除深空目标 ( ⬭)"
 
 msgid "Remove the deep sky object within the pulled rectangle"
-msgstr "Remove the deep sky object within the pulled rectangle"
+msgstr "移除拉选矩形内的深空天体"
 
 msgid "Remove borders"
 msgstr "移除边框"
@@ -902,7 +902,7 @@ msgid "At mouse cursor"
 msgstr "在鼠标光标处"
 
 msgid "Remove border where mouse is positioned"
-msgstr "Remove border where mouse is positioned"
+msgstr "移除鼠标所在位置的边框"
 
 msgid "LEFT of mouse cursor"
 msgstr "鼠标光标左侧"
@@ -920,13 +920,13 @@ msgid "Crop FITS image (▭)"
 msgstr "裁剪 FITS 图像 (▭)"
 
 msgid "Pull first rectangle with mouse while holding right mouse button down."
-msgstr "Pull first rectangle with mouse while holding right mouse button down."
+msgstr "按住鼠标右键，用鼠标拉动第一个矩形。"
 
 msgid "Search database"
 msgstr "搜索数据库"
 
 msgid "Search for a deepsky object position."
-msgstr "Search for a deepsky object position."
+msgstr "搜索深空天体位置。"
 
 msgid "Copy"
 msgstr "复制"
@@ -947,13 +947,13 @@ msgid "Select font"
 msgstr "选择字体"
 
 msgid "Select another monospace font"
-msgstr "Select another monospace font"
+msgstr "选择另一种等宽字体"
 
 msgid "Copy the histogram values to the clipboard"
 msgstr "将直方图数值复制到剪贴板"
 
 msgid "Copies the histogram to the clipboard. They can be pasted to a spreadsheet."
-msgstr "Copies the histogram to the clipboard. They can be pasted to a spreadsheet."
+msgstr "将直方图复制到剪贴板。它们可以粘贴到电子表格中。"
 
 msgid "j2000 °"
 msgstr "j2000 °"
@@ -965,49 +965,49 @@ msgid "A, h"
 msgstr "A, h"
 
 msgid "Azimuth and altitude at the mouse pointer. Geographic longitude, latitude and time of observation should be specified in header."
-msgstr "Azimuth and altitude at the mouse pointer. Geographic longitude, latitude and time of observation should be specified in header."
+msgstr "鼠标指针处的方位角和高度角。文件头中应注明地理经度、纬度和观测时间。"
 
 msgid "HFD in arc seconds"
 msgstr "HFD (角秒)"
 
 msgid "Display the HFD and FWHM in arc seconds rather then pixels."
-msgstr "Display the HFD and FWHM in arc seconds rather then pixels."
+msgstr "以角秒而不是像素显示 HFD 和 FWHM。"
 
 msgid "Noise and SNR based on e-"
 msgstr "基于 e- 的噪声和 SNR"
 
 msgid "Noise and SNR values are calculated from electrons not from ADU's. Noise in electrons uneffected by binning. For raw OSC images apply first binning 2x2."
-msgstr "Noise and SNR values are calculated from electrons not from ADU's. Noise in electrons uneffected by binning. For raw OSC images apply first binning 2x2."
+msgstr "噪声和SNR值是根据电子而不是ADU计算的。电子中的噪声不受分级的影响。对于原始 OSC 图像，首先应用 2x2 合并。"
 
 msgid "Set ADU=>e- factors"
 msgstr "设置 ADU=>e- 系数"
 
 msgid "Set the conversion factors"
-msgstr "Set the conversion factors"
+msgstr "设置转换系数"
 
 msgid "Enter your geographic location manually for airmass calculation."
-msgstr "Enter your geographic location manually for airmass calculation."
+msgstr "手动输入您的地理位置以进行气量计算。"
 
 msgid "AAVSO report"
 msgstr "AAVSO 报告"
 
 msgid "The official AAVSO Observer Code for the observer which was previously assigned by the AAVSO."
-msgstr "The official AAVSO Observer Code for the observer which was previously assigned by the AAVSO."
+msgstr "先前由 AAVSO 指定的观察员的官方 AAVSO 观察员代码。"
 
 msgid "The transformation factors should be available. See transformation button in tab photometry. Only for B,V,R filters"
-msgstr "The transformation factors should be available. See transformation button in tab photometry. Only for B,V,R filters"
+msgstr "变换因子应该是可用的。请参阅选项卡测光中的变换按钮。仅适用于B、V、R滤镜"
 
 msgid "Apply transformation"
 msgstr "应用转换"
 
 msgid "OBSTYPE, So the camera type used for the observation,  It can be CCD, DSLR, PEP (for Photoelectric Photometry). If absent, it is assumed to be CCD.  If you use a CMOS camera please report it as CCD"
-msgstr "OBSTYPE, So the camera type used for the observation,  It can be CCD, DSLR, PEP (for Photoelectric Photometry). If absent, it is assumed to be CCD.  If you use a CMOS camera please report it as CCD"
+msgstr "OBSTYPE，因此用于观察的相机类型，可以是CCD、DSLR、PEP（用于光电测光）。如果不存在，则假定为CCD。 如果您使用 CMOS 相机，请将其报告为 CCD"
 
 msgid "Report the date as Heliocentric Julian Day"
-msgstr "Report the date as Heliocentric Julian Day"
+msgstr "将日期输出为日心儒略日"
 
 msgid "Extras report lines will added conform BAA. Info is taken from FITS header."
-msgstr "Extras report lines will added conform BAA. Info is taken from FITS header."
+msgstr "附加报告行将添加符合BAA。信息取自FITS标头。"
 
 msgid "BAA style"
 msgstr "BAA 格式"
@@ -1016,22 +1016,22 @@ msgid "Delimiter"
 msgstr "分隔符"
 
 msgid "The delimiter used to separate fields in the report. Any will do. "
-msgstr "The delimiter used to separate fields in the report. Any will do. "
+msgstr "用于分隔报表中字段的分隔符。任何都可以。"
 
 msgid "Copies the report to the clipboard. Paste it into a text editor, save it and upload it to the AAVSO WebObs."
-msgstr "Copies the report to the clipboard. Paste it into a text editor, save it and upload it to the AAVSO WebObs."
+msgstr "将报告复制到剪贴板。将其粘贴到文本编辑器中，保存并上传到AAVSO WebObs。"
 
 msgid "Report to clipboard"
 msgstr "报告复制到剪贴板"
 
 msgid "Writes report to file in the same directory as the input files."
-msgstr "Writes report to file in the same directory as the input files."
+msgstr "将报告写入与输入文件位于同一目录中的文件。"
 
 msgid "Report to file"
 msgstr "报告保存到文件"
 
 msgid "See popup  menu to save. Any check/uncheck in the list view wil result in an update of the graph"
-msgstr "See popup  menu to save. Any check/uncheck in the list view wil result in an update of the graph"
+msgstr "请参阅弹出菜单进行保存。列表视图中的任何选中/取消选中都会导致图表更新"
 
 msgid "Invalid report! (No stars detected or online standard field selected for normal image or vice versa.)\n\n- View the first image in the list and click both on the variable && check star to mark them for measurement. Then press the ▶| button to measure the stars.\n\n- Or select option \"Measure all\" for measuring all AAVSO stars and  press the ▶| button to measure the stars."
 msgstr "报告无效！未检测到恒星，或在线标准场/普通图像选择不匹配。/ / - 在列表中查看第一张图像，分别点击变星和校验星进行标记，然后按 ▶| 测量。/ / - 或选择“测量全部”来测量所有 AAVSO 恒星，再按 ▶| 测量。"
@@ -1040,10 +1040,10 @@ msgid "Check star"
 msgstr "校验星"
 
 msgid " Check star  AUID  (much preferred) or designation. Alternatively you could select the IAU designation using the position. The dropdown will be filtered if a part of the designation is typed. Standard deviation is based on Gaia as a reference"
-msgstr " Check star  AUID  (much preferred) or designation. Alternatively you could select the IAU designation using the position. The dropdown will be filtered if a part of the designation is typed. Standard deviation is based on Gaia as a reference"
+msgstr "检查星号AUID（最优先）或名称。或者，您可以使用位置选择 IAU 名称。如果输入了部分名称，则下拉列表将被过滤。标准差以Gaia为参考"
 
 msgid "Measured raw and transformed b magnitude error of the check star."
-msgstr "Measured raw and transformed b magnitude error of the check star."
+msgstr "测量检查星的原始和转换b星等误差。"
 
 msgid "sigma_check1"
 msgstr "sigma_check1"
@@ -1052,10 +1052,10 @@ msgid "Comparison star(s)"
 msgstr "比较星"
 
 msgid "Comparison star(s)  Standard deviation is based on Gaia as a reference"
-msgstr "Comparison star(s)  Standard deviation is based on Gaia as a reference"
+msgstr "比较星 标准偏差以Gaia为参考"
 
 msgid "Colour of the comparison ensemble and standard deviation between comparison stars"
-msgstr "Colour of the comparison ensemble and standard deviation between comparison stars"
+msgstr "比较系的颜色和比较恒星之间的标准差"
 
 msgid "sigma_mzero1"
 msgstr "sigma_mzero1"
@@ -1064,25 +1064,25 @@ msgid "Variable(s)"
 msgstr "变星"
 
 msgid "The star's identifier. It can be the AAVSO Designation, the AAVSO Name or the AAVSO Unique Identifier (AUID).\nThe standard deviation is based on Gaia database as a reference\nVariables in the list ending with # have no AUID and will not be accepted unless a new AUID is requested."
-msgstr "The star's identifier. It can be the AAVSO Designation, the AAVSO Name or the AAVSO Unique Identifier (AUID).\nThe standard deviation is based on Gaia database as a reference\nVariables in the list ending with # have no AUID and will not be accepted unless a new AUID is requested."
+msgstr "恒星的标识符。它可以是 AAVSO 名称、AAVSO 名称或 AAVSO 唯一标识符 (AUID)。 标准差以Gaia数据库为参考 列表中以# 结尾的V变量没有AUID，除非请求新的AUID，否则不会被接受。"
 
 msgid "Var colour"
 msgstr "变星颜色"
 
 msgid "This will place comparison stars in variable position for testing."
-msgstr "This will place comparison stars in variable position for testing."
+msgstr "这会将比较星放置在可变位置以进行测试。"
 
 msgid "Test"
 msgstr "测试"
 
 msgid "Sort the drop-down list alphabetically. Else the drop-down list is sorted on standard deviation."
-msgstr "Sort the drop-down list alphabetically. Else the drop-down list is sorted on standard deviation."
+msgstr "按字母顺序对下拉列表进行排序。否则，下拉列表将按标准差排序。"
 
 msgid "Sort alphabetically"
 msgstr "按字母排序"
 
 msgid "If enabled then Gaia  ensemble is used for calibration"
-msgstr "If enabled then Gaia  ensemble is used for calibration"
+msgstr "启用后使用 Gaia 星组进行校准。"
 
 msgid "Gaia ensemble"
 msgstr "Gaia 组合"
@@ -1091,7 +1091,7 @@ msgid "Copy to clipboard"
 msgstr "复制到剪贴板"
 
 msgid "Copy graph to clipboard"
-msgstr "Copy graph to clipboard"
+msgstr "复制图表到剪贴板"
 
 msgid "Select in the listview the image for this measuring point"
 msgstr "在列表视图中选择此测量点的图像"
@@ -1106,10 +1106,10 @@ msgid "Annotate asteroids && comets"
 msgstr "标注小行星与彗星"
 
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "取消"
 
 msgid "Help asteroid annotation"
-msgstr "Help asteroid annotation"
+msgstr "帮助小行星标注"
 
 msgid "Database"
 msgstr "数据库"
@@ -1118,25 +1118,25 @@ msgid "Use up to number:"
 msgstr "最多使用数量:"
 
 msgid "Specify here the number of asteroids to extract."
-msgstr "Specify here the number of asteroids to extract."
+msgstr "在此指定要提取的小行星的数量。"
 
 msgid "Down to magnitude:"
 msgstr "暗至星等:"
 
 msgid "Specify here the limiting magnitude for extracting asteroids."
-msgstr "Specify here the limiting magnitude for extracting asteroids."
+msgstr "在此指定提取小行星时使用的极限星等。"
 
 msgid "Show full names"
 msgstr "显示全名"
 
 msgid "Add to the bottom of the image date and position."
-msgstr "Add to the bottom of the image date and position."
+msgstr "添加到图像底部的日期和位置。"
 
 msgid "Add image subtitle"
 msgstr "添加图像副标题"
 
 msgid "The asteroids will be marked by annotions in the header and preserved if saved. The annotations can be used later to manual stack the images later to visualise very faint asteroids."
-msgstr "The asteroids will be marked by annotions in the header and preserved if saved. The annotations can be used later to manual stack the images later to visualise very faint asteroids."
+msgstr "小行星将在标题中用标注标记，并在保存时保留。稍后可以使用标注来手动叠加图像，以可视化非常微弱的小行星。"
 
 msgid "Add as annotations to the FITS header"
 msgstr "作为标注添加到 FITS 头"
@@ -1145,13 +1145,13 @@ msgid "Show magnitude"
 msgstr "显示星等"
 
 msgid "Clear and disable"
-msgstr "Clear and disable"
+msgstr "清除并禁用"
 
 msgid "Annotation diameter. For diameter 5 or smaller, two lines will be used for annotation.  Comets annotations are five times larger."
-msgstr "Annotation diameter. For diameter 5 or smaller, two lines will be used for annotation.  Comets annotations are five times larger."
+msgstr "标注直径。对于直径 5 或更小，将使用两条线进行标注。 彗星标注大五倍。"
 
 msgid "Font and line thickness follow annotation diameter."
-msgstr "Font and line thickness follow annotation diameter."
+msgstr "字体和线条粗细遵循标注直径。"
 
 msgid "Font follows annotation diameter"
 msgstr "字体跟随标注直径"
@@ -1160,13 +1160,13 @@ msgid "Image data"
 msgstr "图像数据"
 
 msgid "Format YYYY-MM-DDTHH:MM:SS.SSS. Timezone 0, universal time"
-msgstr "Format YYYY-MM-DDTHH:MM:SS.SSS. Timezone 0, universal time"
+msgstr "格式 YYYY-MM-DDTHH:MM:SS.SSS。时区 0，通用时间"
 
 msgid "Date:"
 msgstr "日期:"
 
 msgid "The latitude of the observatory in degrees."
-msgstr "The latitude of the observatory in degrees."
+msgstr "天文台的纬度（以度为单位）。"
 
 msgid "Latitude:"
 msgstr "纬度:"
@@ -1175,7 +1175,7 @@ msgid "Longitude:"
 msgstr "经度:"
 
 msgid "The longitude of the observatory in degrees. For east enter positive, for west enter negative values."
-msgstr "The longitude of the observatory in degrees. For east enter positive, for west enter negative values."
+msgstr "天文台的经度（以度为单位）。对于东输入正值，对于西输入负值。"
 
 msgid "Start of the observation"
 msgstr "观测开始时间"
@@ -1184,25 +1184,25 @@ msgid "Solving using local astrometry.net. "
 msgstr "使用本地 astrometry.net 解析。"
 
 msgid "Path to Astrometry.net. Change user_name to your real user name."
-msgstr "Path to Astrometry.net. Change user_name to your real user name."
+msgstr "Astrometry.net 的路径。将 user_name 更改为您的真实用户名。"
 
 msgid "Extra options:"
 msgstr "额外选项:"
 
 msgid "Here you could add additional conditions for Astrometery.net"
-msgstr "Here you could add additional conditions for Astrometery.net"
+msgstr "您可以在此处添加 Astrometery.net 的附加条件"
 
 msgid "--downsample 2"
 msgstr "--downsample 2"
 
 msgid "Keep solver window open"
-msgstr "Keep solver window open"
+msgstr "保持求解器窗口打开"
 
 msgid "Keep console open"
 msgstr "保持控制台打开"
 
 msgid "If grayed show only minimised."
-msgstr "If grayed show only minimised."
+msgstr "如果变灰则仅显示最小化。"
 
 msgid "Show console"
 msgstr "显示控制台"
@@ -1220,7 +1220,7 @@ msgid "Command line:"
 msgstr "命令行:"
 
 msgid "Stop after finishing current image"
-msgstr "Stop after finishing current image"
+msgstr "完成当前图像后停止"
 
 msgid "Stop"
 msgstr "停止"
@@ -1229,85 +1229,85 @@ msgid "Image inspection"
 msgstr "图像检查"
 
 msgid "Restore image"
-msgstr "Restore image"
+msgstr "还原图像"
 
 msgid "Online help about inspector"
-msgstr "Online help about inspector"
+msgstr "有关检查员的在线帮助"
 
 msgid "Show image distortion using the star positions and solution. Lines a 50x larger then distortion."
-msgstr "Show image distortion using the star positions and solution. Lines a 50x larger then distortion."
+msgstr "使用恒星位置和定位解显示图像失真。线条比扭曲大 50 倍。"
 
 msgid "Show distortion"
 msgstr "显示畸变"
 
 msgid "Makes a compilation of the image corners and the center for a closer inspection."
-msgstr "Makes a compilation of the image corners and the center for a closer inspection."
+msgstr "编辑图像的角点和中心，以便仔细检查。"
 
 msgid "Aberration inspector  F6"
 msgstr "像差检查器  F6"
 
 msgid "Annotate the image with the median background values relative to the center."
-msgstr "Annotate the image with the median background values relative to the center."
+msgstr "使用相对于中心的中值背景值标注图像。"
 
 msgid "Background values"
 msgstr "背景值"
 
 msgid "Calculate tilt and curvature. The absolute font size will be smaller if you zoom in."
-msgstr "Calculate tilt and curvature. The absolute font size will be smaller if you zoom in."
+msgstr "计算倾斜和曲率。如果放大，绝对字体大小会更小。"
 
 msgid "Tilt    F4"
 msgstr "倾斜    F4"
 
 msgid " Uses all stars with SNR >10 else use star with SNR >30 (more accurate)"
-msgstr " Uses all stars with SNR >10 else use star with SNR >30 (more accurate)"
+msgstr "使用 SNR >10 的所有恒星，否则使用 SNR >30 的恒星（更准确）"
 
 msgid "Extra stars"
 msgstr "额外恒星"
 
 msgid "Octagon shape. For perfect optic the octagon will form a square"
-msgstr "Octagon shape. For perfect optic the octagon will form a square"
+msgstr "八角形。为了获得完美的光学效果，八边形将形成一个正方形"
 
 msgid "Octagon"
 msgstr "八边形"
 
 msgid "A round area is taken from the image and divided in three slices."
-msgstr "A round area is taken from the image and divided in three slices."
+msgstr "从图像中取出一个圆形区域并将其分为三片。"
 
 msgid "Triangle"
 msgstr "三角形"
 
 msgid "Rotation angle. Use first the tools menu to flip the image vertical or horizontal to get the north up en east left. Then set rotation such that it matches with the three screws of the tilt adapter."
-msgstr "Rotation angle. Use first the tools menu to flip the image vertical or horizontal to get the north up en east left. Then set rotation such that it matches with the three screws of the tilt adapter."
+msgstr "旋转角度。先用“工具”菜单垂直或水平翻转图像，使北朝上、东在左。然后设置旋转角度，使其与倾斜调节环的三颗螺钉方向匹配。"
 
 msgid "Show the orientation of the star unroundness."
-msgstr "Show the orientation of the star unroundness."
+msgstr "显示星形不圆度的方向。"
 
 msgid "Add unroundness vectors"
 msgstr "添加非圆度向量"
 
 msgid "Add the star HFD value persistent to the fits file. No HFD filtering."
-msgstr "Add the star HFD value persistent to the fits file. No HFD filtering."
+msgstr "将星号HFD值添加到FITS 文件中。无HFD过滤。"
 
 msgid "Add values"
 msgstr "添加数值"
 
 msgid "Creates a diagram based on the values. The gray values represent the values *100. The values are local median filtered for each three stars"
-msgstr "Creates a diagram based on the values. The gray values represent the values *100. The values are local median filtered for each three stars"
+msgstr "根据这些数值生成图。灰度值表示数值 *100，并对每三颗恒星做局部中值滤波。"
 
 msgid "Voronoi diagram"
 msgstr "Voronoi 图"
 
 msgid "Creates a 2D contour diagram based on the values. The gray values represent the values *100. The values are local median filtered for each three stars."
-msgstr "Creates a 2D contour diagram based on the values. The gray values represent the values *100. The values are local median filtered for each three stars."
+msgstr "根据这些值创建 2D 等高线图。灰色值代表值*100。这些值是针对每三颗星进行局部中值过滤的。"
 
 msgid "2D contour diagram"
 msgstr "二维等值线图"
 
 msgid "Creates a diagram based on the HFD values. The gray values represent the HFD *100. The HFD values are local median filtered for each three stars."
-msgstr "Creates a diagram based on the HFD values. The gray values represent the HFD *100. The HFD values are local median filtered for each three stars."
+msgstr "根据 HFD 值创建图表。灰色值代表HFD *100。 HFD 值是针对每三颗星进行局部中值过滤。"
 
 msgid "Measure the unroundness of the stars."
-msgstr "Measure the unroundness of the stars."
+msgstr "测量恒星的不圆度。"
 
 msgid "Roundness   F3"
 msgstr "圆度   F3"
@@ -1316,22 +1316,22 @@ msgid "Bayer matrix image"
 msgstr "拜耳矩阵图像"
 
 msgid "Data to clipboard"
-msgstr "Data to clipboard"
+msgstr "复制数据到剪贴板"
 
 msgid "Show the background values as a contour"
-msgstr "Show the background values as a contour"
+msgstr "将背景值显示为等高线"
 
 msgid "Background contour"
 msgstr "背景等值线"
 
 msgid "Grid used for median values."
-msgstr "Grid used for median values."
+msgstr "用于中值的网格。"
 
 msgid "Grid size[px]:"
 msgstr "网格大小[px]:"
 
 msgid "How many background shall be detected"
-msgstr "How many background shall be detected"
+msgstr "应检测多少背景"
 
 msgid "Gradations:"
 msgstr "渐变级数:"
@@ -1340,28 +1340,28 @@ msgid "Binning"
 msgstr "像素合并"
 
 msgid "Bin current image in the viewer. Noise will be reduced."
-msgstr "Bin current image in the viewer. Noise will be reduced."
+msgstr "B在查看器中的当前图像中。噪音将会减少。"
 
 msgid "Enter designation to retrieve position. Use wildcard to find designations. E.g. ngc1* or boo*"
-msgstr "Enter designation to retrieve position. Use wildcard to find designations. E.g. ngc1* or boo*"
+msgstr "输入编号以获取位置。可用通配符查找编号，例如 ngc1* 或 boo*。"
 
 msgid "Accept the α, δ of the object as an initial start for solving."
-msgstr "Accept the α, δ of the object as an initial start for solving."
+msgstr "接受天体的α、δ作为求解的初始起点。"
 
 msgid "Enter object designation or position:"
 msgstr "输入目标名称或位置:"
 
 msgid "This listbox will be filled if you enter an object designation with a wildcard. E.g. ngc10*"
-msgstr "This listbox will be filled if you enter an object designation with a wildcard. E.g. ngc10*"
+msgstr "This listbox will be filled if you enter an object designation with a wildcard.例如。 NGC10*"
 
 msgid "Cancel search"
-msgstr "Cancel search"
+msgstr "取消搜索"
 
 msgid "SQM measurement"
 msgstr "SQM 测量"
 
 msgid "Ok"
-msgstr "Ok"
+msgstr "确定"
 
 msgid "Altitude calculated [°]:"
 msgstr "计算高度 [°]:"
@@ -1379,58 +1379,58 @@ msgid "Pedestal (manual):"
 msgstr "基座值 (手动):"
 
 msgid "Enter camera pedestal correction to zero the background. Measure for the median or mean value of a dark frame and use that as pedestal value."
-msgstr "Enter camera pedestal correction to zero the background. Measure for the median or mean value of a dark frame and use that as pedestal value."
+msgstr "输入相机基座校正以将背景归零。测量暗帧的中值或平均值并将其用作基准值。"
 
 msgid "Automatically measured from the light frame"
-msgstr "Automatically measured from the light frame"
+msgstr "从亮场帧自动测量"
 
 msgid "Calculated from light frame time, geographic location and celestial position"
-msgstr "Calculated from light frame time, geographic location and celestial position"
+msgstr "根据光帧时间、地理位置和天体位置计算"
 
 msgid "The measured sky background expressed in magnitudes per square arcseconds."
-msgstr "The measured sky background expressed in magnitudes per square arcseconds."
+msgstr "测量的天空背景以每平方角秒的星等表示。"
 
 msgid "Message: none"
 msgstr "消息: 无"
 
 msgid "Use the darks & flats in the stack menu"
-msgstr "Use the darks & flats in the stack menu"
+msgstr "使用叠加菜单中的深色和平底色"
 
 msgid "Apply dark && flat "
 msgstr "应用暗场和平场"
 
 msgid "The Bortle scale is a nine-level numeric scale of the night sky's brightness."
-msgstr "The Bortle scale is a nine-level numeric scale of the night sky's brightness."
+msgstr "Bortle 等级是夜空亮度的九级数字等级。"
 
 msgid "stack menu"
 msgstr "叠加菜单"
 
 msgid "Stack menu"
-msgstr "Stack menu"
+msgstr "叠加菜单"
 
 msgid "Select here the light frames."
-msgstr "Select here the light frames."
+msgstr "在此选择亮场帧。"
 
 msgid "Lights"
 msgstr "光帧"
 
 msgid "Total number of images in the list"
-msgstr "Total number of images in the list"
+msgstr "列表中的图像总数"
 
 msgid "Analyse and move dark, flat or bias images to the corresponding tabs. To analyse planetary image on sharpness set in tab alignment max stars on 0."
-msgstr "Analyse and move dark, flat or bias images to the corresponding tabs. To analyse planetary image on sharpness set in tab alignment max stars on 0."
+msgstr "分析并将暗场、平场或偏置图像移动到对应标签页。若要按锐度分析行星图像，请在“对齐”标签页将最大恒星数设为 0。"
 
 msgid "Analyse and organise images"
 msgstr "分析并整理图像"
 
 msgid "Clear the frame list"
-msgstr "Clear the frame list"
+msgstr "清空帧列表"
 
 msgid "Clear list"
 msgstr "清空列表"
 
 msgid "Double click to view image"
-msgstr "Double click to view image"
+msgstr "双击查看图像"
 
 msgid "File"
 msgstr "文件"
@@ -1505,58 +1505,58 @@ msgid "CentAz"
 msgstr "中心方位"
 
 msgid "After analysing uncheck files with abnormal HFD or abnormal amount number of stars detected."
-msgstr "After analysing uncheck files with abnormal HFD or abnormal amount number of stars detected."
+msgstr "分析后取消选中具有异常HFD或检测到的恒星数量异常的文件。"
 
 msgid "Untick worst images"
 msgstr "取消勾选最差图像"
 
 msgid "Sigma factor (or percentage to keep) to identify statistically low quality images."
-msgstr "Sigma factor (or percentage to keep) to identify statistically low quality images."
+msgstr "西格玛因子（或保留的百分比）用于识别统计上低质量的图像。"
 
 msgid "Online help about analyse"
-msgstr "Online help about analyse"
+msgstr "关于分析的在线帮助"
 
 msgid "Un-aligned blink. Note: For single step blink use CTRL+UP/DOWN arrows."
-msgstr "Un-aligned blink. Note: For single step blink use CTRL+UP/DOWN arrows."
+msgstr "未对齐的闪烁。注意：对于单步闪烁，请使用 CTRL+UP/DOWN 箭头。"
 
 msgid "Pause blinking"
-msgstr "Pause blinking"
+msgstr "暂停闪烁比对"
 
 msgid "Un-aligned blink. Note: For single step blink use the keyboard left and right arrows."
-msgstr "Un-aligned blink. Note: For single step blink use the keyboard left and right arrows."
+msgstr "未对齐的闪烁。注意：对于单步闪烁，请使用键盘向左和向右箭头。"
 
 msgid "Checkmark this option for analysing planetary images on sharpness. Note the stack routine is not suitable for stacking of planetary images."
-msgstr "Checkmark this option for analysing planetary images on sharpness. Note the stack routine is not suitable for stacking of planetary images."
+msgstr "选中此选项以分析行星图像的清晰度。请注意，叠加例程不适合叠加行星图像。"
 
 msgid "Planetary"
 msgstr "行星"
 
 msgid "Browse and select lights to stack"
-msgstr "Browse and select lights to stack"
+msgstr "浏览并选择要叠加的亮场帧"
 
 msgid "Browse"
 msgstr "浏览"
 
 msgid "Report satellite streaks. For streak detection settings see tab \"pixel math 2\""
-msgstr "Report satellite streaks. For streak detection settings see tab \"pixel math 2\""
+msgstr "报告卫星轨迹。轨迹检测设置见“像素运算 2”标签页。"
 
 msgid "Streaks"
 msgstr "条痕"
 
 msgid "Analyse the images binned 2x2 to speed up."
-msgstr "Analyse the images binned 2x2 to speed up."
+msgstr "分析 2x2 合并的图像以加快速度。"
 
 msgid "quick"
 msgstr "快速"
 
 msgid "Select here the dark frames."
-msgstr "Select here the dark frames."
+msgstr "在此选择暗场帧。"
 
 msgid "Darks"
 msgstr "暗场"
 
 msgid "Combine to check-marked files to master dark. The other files are not affected."
-msgstr "Combine to check-marked files to master dark. The other files are not affected."
+msgstr "结合复选标记的文件来掌握黑暗。其他文件不受影响。"
 
 msgid "Replace check-marked by one or more master dark"
 msgstr "用一个或多个主暗场替换已勾选项"
@@ -1574,58 +1574,58 @@ msgid "Compatibility"
 msgstr "兼容性"
 
 msgid "Analyse image files"
-msgstr "Analyse image files"
+msgstr "分析图像文件"
 
 msgid "Analyse"
 msgstr "分析"
 
 msgid "Number of images in the list"
-msgstr "Number of images in the list"
+msgstr "列表中的图像数量"
 
 msgid "Combine darks within 12 hour time range to master"
-msgstr "Combine darks within 12 hour time range to master"
+msgstr "结合 12 小时时间范围内的黑暗来掌握"
 
 msgid "Classify by date for master creation"
 msgstr "按日期分类以创建主文件"
 
 msgid "Browse and select darks"
-msgstr "Browse and select darks"
+msgstr "浏览并选择暗场帧"
 
 msgid "Select here the flat frames"
-msgstr "Select here the flat frames"
+msgstr "在此选择平场帧"
 
 msgid "Flats"
 msgstr "平场"
 
 msgid "Combine the check-marked flats and flat darks to one master flat. The other files are not affected."
-msgstr "Combine the check-marked flats and flat darks to one master flat. The other files are not affected."
+msgstr "将复选标记的平底鞋和深色平底鞋组合成一套主平场底鞋。其他文件不受影响。"
 
 msgid "Replace check-marked by master flat, flat darks included."
 msgstr "用主平场替换已勾选项，包含暗平场。"
 
 msgid "Browse and select flats"
-msgstr "Browse and select flats"
+msgstr "浏览并选择平场帧"
 
 msgid "Combine flats within 12 hour time range to master flat. Date flat-darks is ignored."
-msgstr "Combine flats within 12 hour time range to master flat. Date flat-darks is ignored."
+msgstr "将 12 小时内的公寓合并为主公寓。日期平淡将被忽略。"
 
 msgid "Match the flat and flat-dark by exposure duration"
-msgstr "Match the flat and flat-dark by exposure duration"
+msgstr "根据曝光时间匹配平淡和平暗"
 
 msgid "Classify by exposure duration for master creation"
 msgstr "按曝光时长分类以创建主文件"
 
 msgid "Select here the flat-dark/bias frames."
-msgstr "Select here the flat-dark/bias frames."
+msgstr "在此选择平场暗帧/偏置帧。"
 
 msgid "Flat darks"
 msgstr "暗平场"
 
 msgid "Browse and select flat-darks (bias)"
-msgstr "Browse and select flat-darks (bias)"
+msgstr "浏览并选择平场暗帧（偏置帧）"
 
 msgid "This page contains the result of stacking. See pop-up menu for more options."
-msgstr "This page contains the result of stacking. See pop-up menu for more options."
+msgstr "该页面包含叠加的结果。请参阅弹出菜单了解更多选项。"
 
 msgid "Results"
 msgstr "结果"
@@ -1637,34 +1637,34 @@ msgid "Stacked images are displayed here. Double click to view in viewer."
 msgstr "叠加图像显示在这里。双击可在查看器中打开。"
 
 msgid "Help"
-msgstr "Help"
+msgstr "帮助"
 
 msgid "Add time to stack file name. This allow comparison of different settings."
-msgstr "Add time to stack file name. This allow comparison of different settings."
+msgstr "添加时间到叠加文件名。这允许比较不同的设置。"
 
 msgid "Add time to stack file name"
 msgstr "在叠加文件名中加入时间"
 
 msgid "Save a copy of the settings at image location. Can be retrieved with viewer file menu."
-msgstr "Save a copy of the settings at image location. Can be retrieved with viewer file menu."
+msgstr "在图像位置保存设置的副本。可以使用查看器文件菜单进行检索。"
 
 msgid "Include configuration copy"
 msgstr "包含配置副本"
 
 msgid "Clear result list"
-msgstr "Clear result list"
+msgstr "清空结果列表"
 
 msgid "Clear"
 msgstr "清除"
 
 msgid "Set here the stack method"
-msgstr "Set here the stack method"
+msgstr "在此设置叠加方法"
 
 msgid "Stack method"
 msgstr "叠加方法"
 
 msgid "Select stack method."
-msgstr "Select stack method."
+msgstr "选择叠加方法。"
 
 msgid "Image stitching mode   🧩"
 msgstr "图像拼接模式   🧩"
@@ -1688,7 +1688,7 @@ msgid "Comet and stars sharp"
 msgstr "彗星和恒星锐化"
 
 msgid "Sigma factor to identify outlier pixels. A factor of around 2.0 will remove satellite tracks and hot pixels. Sigma stands for standard deviation."
-msgstr "Sigma factor to identify outlier pixels. A factor of around 2.0 will remove satellite tracks and hot pixels. Sigma stands for standard deviation."
+msgstr "用于识别异常像素的西格玛因子。大约 2.0 的系数将消除卫星轨道和热像素。西格玛代表标准差。"
 
 msgid "Master flat :=  (1/n ∑ [flats] - 1/n ∑ [flat darks] )"
 msgstr "Master flat :=  (1/n ∑ [flats] - 1/n ∑ [flat darks] )"
@@ -1703,55 +1703,55 @@ msgid "Stack method "
 msgstr "叠加方法"
 
 msgid "Settings for LRGB stacking, LRGB  stacking is activated if \"Classify by light filter\" is check marked."
-msgstr "Settings for LRGB stacking, LRGB  stacking is activated if \"Classify by light filter\" is check marked."
+msgstr "LRGB 叠加设置。勾选“按亮场滤镜分类”后会启用 LRGB 叠加。"
 
 msgid "LRGB stacking"
 msgstr "LRGB 叠加"
 
 msgid "Enter here a filter name for red"
-msgstr "Enter here a filter name for red"
+msgstr "在此处输入红色的滤镜名称"
 
 msgid "Enter here a filter name for green"
-msgstr "Enter here a filter name for green"
+msgstr "在此输入绿色滤镜名称"
 
 msgid "Enter here a filter name for blue"
-msgstr "Enter here a filter name for blue"
+msgstr "在此输入蓝色的滤镜名称"
 
 msgid "Enter here a second filter name for red"
-msgstr "Enter here a second filter name for red"
+msgstr "在此处输入红色的第二个滤镜名称"
 
 msgid "Enter here a second filter name for green"
-msgstr "Enter here a second filter name for green"
+msgstr "在此输入绿色的第二个滤镜名称"
 
 msgid "Enter here a second filter name for blue"
-msgstr "Enter here a second filter name for blue"
+msgstr "在此输入蓝色的第二个滤镜名称"
 
 msgid "Colour matrix"
-msgstr "Colour matrix"
+msgstr "颜色矩阵"
 
 msgid "x"
 msgstr "x"
 
 msgid "Enter here a filter name for Luminance"
-msgstr "Enter here a filter name for Luminance"
+msgstr "在此输入 Luminance 滤镜名称"
 
 msgid "Enter here a second filter name for Luminance"
-msgstr "Enter here a second filter name for Luminance"
+msgstr "在此输入亮度的第二个滤镜名称"
 
 msgid "Red signal"
-msgstr "Red signal"
+msgstr "Red信号"
 
 msgid "R_out"
 msgstr "R_out"
 
 msgid "Green signal"
-msgstr "Green signal"
+msgstr "绿色信号"
 
 msgid "G_out"
 msgstr "G_out"
 
 msgid "Blue signal"
-msgstr "Blue signal"
+msgstr "B蓝色信号"
 
 msgid "B_out"
 msgstr "B_out"
@@ -1760,40 +1760,40 @@ msgid "Filter names"
 msgstr "滤镜名称"
 
 msgid "Auto adjust the colour levels after stacking."
-msgstr "Auto adjust the colour levels after stacking."
+msgstr "叠加后自动调整颜色级别。"
 
 msgid "Auto levels"
 msgstr "自动色阶"
 
 msgid "Apply smart global colour smooth after stacking."
-msgstr "Apply smart global colour smooth after stacking."
+msgstr "叠加后平滑应用智能全局颜色。"
 
 msgid "Global colour smooth"
 msgstr "全局色彩平滑"
 
 msgid "Colour smoothing range in pixels. This will keep luminance but smooth the colours. Default is 10, Set this as high as eight times the HFD value."
-msgstr "Colour smoothing range in pixels. This will keep luminance but smooth the colours. Default is 10, Set this as high as eight times the HFD value."
+msgstr "颜色平滑范围（以像素为单位）。这将保持亮度但使颜色平滑。默认值为 10，将其设置为 HFD 值的八倍。"
 
 msgid "Remove green && purple"
 msgstr "移除绿色和紫色偏色"
 
 msgid "Colour smooth the detected stars after stacking"
-msgstr "Colour smooth the detected stars after stacking"
+msgstr "叠加后对检测到的恒星进行颜色平滑"
 
 msgid "Star colour smooth"
 msgstr "恒星色彩平滑"
 
 msgid "Diameter times HFD to smooth"
-msgstr "Diameter times HFD to smooth"
+msgstr "直径乘以HFD以平滑"
 
 msgid "Number of stars to smooth"
-msgstr "Number of stars to smooth"
+msgstr "要平滑的恒星数量"
 
 msgid "Signal level above background noise to detect objects to be colour blurred. Default 3"
-msgstr "Signal level above background noise to detect objects to be colour blurred. Default 3"
+msgstr "信号电平高于背景噪声，可检测颜色模糊的物体。默认3"
 
 msgid "This will fix the colour of saturated stars center using the outer regios of the star"
-msgstr "This will fix the colour of saturated stars center using the outer regios of the star"
+msgstr "这将使用恒星的外部区域来修复饱和恒星中心的颜色"
 
 msgid "Fix colour saturated stars"
 msgstr "修复恒星饱和色彩"
@@ -1802,13 +1802,13 @@ msgid "- LRGB stacking is activated by check-mark Classify by \"Light filter\". 
 msgstr "勾选按“光帧滤镜”分类后启用 LRGB 叠加；否则将根据 FITS 头中的 BAYERPAT 以灰度或彩色方式叠加。"
 
 msgid "Tools for equalizing the tiles of the mosaic."
-msgstr "Tools for equalizing the tiles of the mosaic."
+msgstr "用于均衡马赛克瓷砖的工具。"
 
 msgid "Image stitching (mosaic) settings"
 msgstr "图像拼接 (马赛克) 设置"
 
 msgid "This is for setting the background level of each tile equal based on the histogram. Use this option only if most of the image doesn't contain nebula."
-msgstr "This is for setting the background level of each tile equal based on the histogram. Use this option only if most of the image doesn't contain nebula."
+msgstr "这是为了根据直方图将每个图块的背景级别设置为相等。仅当大部分图像不包含星云时才使用此选项。"
 
 msgid "Equalise background"
 msgstr "均衡背景"
@@ -1817,16 +1817,16 @@ msgid "Crop each image [%] "
 msgstr "裁剪每张图像 [%]"
 
 msgid "Use to remove poor areas near borders"
-msgstr "Use to remove poor areas near borders"
+msgstr "用于消除边境附近的贫困地区"
 
 msgid "The overlapping areas  are combined except for stars. This could result in better or worse result. If your image shows distortion uncheck this option."
-msgstr "The overlapping areas  are combined except for stars. This could result in better or worse result. If your image shows distortion uncheck this option."
+msgstr "除恒星外，重叠区域将被合并。这可能会导致更好或更差的结果。如果您的图像显示失真，请取消选中此选项。"
 
 msgid "Merge overlapping backgrounds"
 msgstr "合并重叠背景"
 
 msgid "If equalizing background is not working then switch this off."
-msgstr "If equalizing background is not working then switch this off."
+msgstr "如果均衡背景不起作用，请将其关闭。"
 
 msgid "Limit background correction"
 msgstr "限制背景校正"
@@ -1835,13 +1835,13 @@ msgid "For an LRGB mosaic combine the colours after creating a mosaic for each c
 msgstr "对于 LRGB 马赛克，请先为每个颜色创建马赛克，再合成颜色。"
 
 msgid "Settings for OSC images.. If disabled uncheck \"Classify by light filter\"."
-msgstr "Settings for OSC images.. If disabled uncheck \"Classify by light filter\"."
+msgstr "OSC 图像设置。如果禁用，请取消勾选“按亮场滤镜分类”。"
 
 msgid "RAW one shot colour images"
 msgstr "RAW 单次彩色相机图像 (OSC)"
 
 msgid "Force converting OSC images to colour.  This setting is only required if BAYERPAT keyword is missing in the header."
-msgstr "Force converting OSC images to colour.  This setting is only required if BAYERPAT keyword is missing in the header."
+msgstr "强制将 OSC 图像转换为彩色。 仅当标头中缺少 BAYERPAT 关键字时才需要此设置。"
 
 msgid "Force processing as OSC images. "
 msgstr "强制按 OSC 图像处理。"
@@ -1850,10 +1850,10 @@ msgid "Bayer pattern "
 msgstr "拜耳阵列"
 
 msgid "Demosaic method of colour filter array.  Best methods are AstroC and Simple.  For pure white stars you could AstroM. "
-msgstr "Demosaic method of colour filter array.  Best methods are AstroC and Simple.  For pure white stars you could AstroM. "
+msgstr "彩色滤镜阵列的去拜耳方法。推荐 AstroC 和 Simple；若需要纯白恒星，可尝试 AstroM。"
 
 msgid "Test Bayer demosaic pattern on the image in the viewer. Hit ctrl-Z to restore"
-msgstr "Test Bayer demosaic pattern on the image in the viewer. Hit ctrl-Z to restore"
+msgstr "在查看器中的图像上测试Bayer去拜耳图案。点击ctrl-Z恢复"
 
 msgid "Test pattern"
 msgstr "测试排列"
@@ -1862,7 +1862,7 @@ msgid "De-mosaic method:"
 msgstr "去拜耳方法:"
 
 msgid "Undo last action"
-msgstr "Undo last action"
+msgstr "撤销上一次操作"
 
 msgid "Best demosaic methods are AstroC and AstroSimple."
 msgstr "推荐使用 AstroC 或 AstroSimple 进行去拜耳。"
@@ -1871,7 +1871,7 @@ msgid "Raw conversion:"
 msgstr "RAW 转换:"
 
 msgid "Conversion program for raw files."
-msgstr "Conversion program for raw files."
+msgstr "原始文件的转换程序。"
 
 msgid "LibRaw (full active area)"
 msgstr "LibRaw (完整有效区域)"
@@ -1880,28 +1880,28 @@ msgid "LibRaw (cropped active area)"
 msgstr "LibRaw (裁剪后的有效区域)"
 
 msgid "Apply colour smooth after stacking."
-msgstr "Apply colour smooth after stacking."
+msgstr "叠加后涂抹均匀的颜色。"
 
 msgid "Colour smooth"
 msgstr "色彩平滑"
 
 msgid "Colour smoothing range in pixels. This will keep luminance but smooth the colours. Default is 10"
-msgstr "Colour smoothing range in pixels. This will keep luminance but smooth the colours. Default is 10"
+msgstr "颜色平滑范围（以像素为单位）。这将保持亮度但使颜色平滑。默认值为 10"
 
 msgid "Set here the frame alignment and solver options."
-msgstr "Set here the frame alignment and solver options."
+msgstr "在此设置帧对齐和解算器选项。"
 
 msgid "Alignment"
 msgstr "对齐"
 
 msgid "Star alignment is the best option for stacking"
-msgstr "Star alignment is the best option for stacking"
+msgstr "星对齐是叠加的最佳选择"
 
 msgid "Star alignment"
 msgstr "恒星对齐"
 
 msgid "Manual alignment:  Double click on each image in the list to display it in the viewer. In the viewer click on the object the be used for alignment. Position is auto centered. "
-msgstr "Manual alignment:  Double click on each image in the list to display it in the viewer. In the viewer click on the object the be used for alignment. Position is auto centered. "
+msgstr "手动对齐：双击列表中的每个图像以将其显示在查看器中。在查看器中单击要用于对齐的天体。位置自动居中。"
 
 msgid "Manual alignment"
 msgstr "手动对齐"
@@ -1910,16 +1910,16 @@ msgid "Solve current image"
 msgstr "求解当前图像"
 
 msgid "Use this for mosaic building."
-msgstr "Use this for mosaic building."
+msgstr "用于拼接马赛克。"
 
 msgid "Astrometric alignment"
 msgstr "天球坐标对齐"
 
 msgid "Solver"
-msgstr "解析器"
+msgstr "求解器"
 
 msgid "Star database in use.  Selection will be automatic. Enter manually a database to force use. Type blank to reactivate automatic selection."
-msgstr "Star database in use.  Selection will be automatic. Enter manually a database to force use. Type blank to reactivate automatic selection."
+msgstr "当前使用的恒星星表。默认自动选择；也可手动输入星表名称以强制使用。留空可重新启用自动选择。"
 
 msgid "Star database used:"
 msgstr "使用的恒星数据库:"
@@ -1928,19 +1928,19 @@ msgid "Radius search area  [°]:"
 msgstr "搜索半径 [°]:"
 
 msgid "Enter the search field in degrees. The program will search in a square spiral around the start position as indicated in the viewer."
-msgstr "Enter the search field in degrees. The program will search in a square spiral around the start position as indicated in the viewer."
+msgstr "输入搜索范围（度）。程序会围绕查看器中指定的起始位置按方形螺旋搜索。"
 
 msgid "Field of view (height)[°]:"
 msgstr "视场高度 [°]:"
 
 msgid "Field height of the image. In most cases this will be calculated automatically. If not enter the field height manually or select auto mode."
-msgstr "Field height of the image. In most cases this will be calculated automatically. If not enter the field height manually or select auto mode."
+msgstr "图像视场高度。多数情况下会自动计算；如果没有，请手动输入视场高度或选择自动模式。"
 
 msgid "Quad detection"
 msgstr "四星组检测"
 
 msgid "Number of stars takens from the image for alignment. Typical value 200 to 500. For crowded star fields reduce to 100 to 200 or use auto mode."
-msgstr "Number of stars takens from the image for alignment. Typical value 200 to 500. For crowded star fields reduce to 100 to 200 or use auto mode."
+msgstr "从图像中获取的用于对齐的恒星数量。典型值 200 到 500。对于拥挤的星域，减少到 100 到 200 或使用自动模式。"
 
 msgid "Maximum number of stars to use:"
 msgstr "使用的最大恒星数:"
@@ -1949,43 +1949,43 @@ msgid "Hash code tolerance:"
 msgstr "哈希容差:"
 
 msgid "If detections fails increase tolerance. Typical value 0.003 up to 0.008"
-msgstr "If detections fails increase tolerance. Typical value 0.003 up to 0.008"
+msgstr "如果检测失败，请增加容忍度。典型值 0.003 至 0.008"
 
 msgid "Show extra information in log for debugging."
-msgstr "Show extra information in log for debugging."
+msgstr "在日志中显示额外信息以进行调试。"
 
 msgid "Show extended solver log"
 msgstr "显示详细解析日志"
 
 msgid "Binning of the image will be applied prior to plate solving. 0 is automatic selection. Use binning if image is large or very noisy."
-msgstr "Binning of the image will be applied prior to plate solving. 0 is automatic selection. Use binning if image is large or very noisy."
+msgstr "天文定位求解前会先对图像做 binning。0 表示自动选择。图像很大或噪声很高时可使用 binning。"
 
 msgid "Downsample:"
 msgstr "降采样:"
 
 msgid "Default value is 0.8. Use this to ignore hotpixels.  For stacking only."
-msgstr "Default value is 0.8. Use this to ignore hotpixels.  For stacking only."
+msgstr "默认值为 0.8。使用它来忽略热像素。 仅用于叠加。"
 
 msgid "Crop images above this height [degrees]."
-msgstr "Crop images above this height [degrees]."
+msgstr "裁剪高于此高度 [度] 的图像。"
 
 msgid "Ignore stars less than [HFD]:"
 msgstr "忽略小于 [HFD] 的恒星:"
 
 msgid "Check-mark  this to improve solving reliability in some cases. Search window will be always large with overlap but it will slow down solving.  Default this is off.  If off  the search window size will be automatically reduced if sufficient stars are found. This option is equivalent to command line option -speed"
-msgstr "Check-mark  this to improve solving reliability in some cases. Search window will be always large with overlap but it will slow down solving.  Default this is off.  If off  the search window size will be automatically reduced if sufficient stars are found. This option is equivalent to command line option -speed"
+msgstr "选中此项可提高某些情况下求解的可靠性。搜索窗口总是很大并且有重叠，但这会减慢求解速度。 默认关闭。 如果关闭，如果找到足够的恒星，搜索窗口大小将自动减小。该选项相当于命令行选项 -speed"
 
 msgid "Slow"
 msgstr "慢速"
 
 msgid "Will filter out hot pixels"
-msgstr "Will filter out hot pixels"
+msgstr "会过滤掉热像素"
 
 msgid "Ignore stars less than [\"]:"
 msgstr "忽略小于 [\"] 的恒星:"
 
 msgid "Apply this if the FITS header contains already a solution which is not accurate. "
-msgstr "Apply this if the FITS header contains already a solution which is not accurate. "
+msgstr "如果 FITS 头中已有但不准确的定位解，请启用此选项。"
 
 msgid "Ignore existing FITS header solution for astrometric stacking"
 msgstr "天球叠加时忽略现有 FITS 头解析"
@@ -1994,43 +1994,43 @@ msgid "Save"
 msgstr "保存"
 
 msgid "Use triples (three star) for pattern detection for images with less then 30 stars. In all other case use quads (four star)."
-msgstr "Use triples (three star) for pattern detection for images with less then 30 stars. In all other case use quads (four star)."
+msgstr "使用三元组（三颗星）对星数少于 30 颗的图像进行模式检测。在所有其他情况下，请使用四星（四星）。"
 
 msgid "Use triples"
 msgstr "使用三星组"
 
 msgid "Use SIP coeficients for accurate positional information of celestial objects and  image stitching."
-msgstr "Use SIP coeficients for accurate positional information of celestial objects and  image stitching."
+msgstr "使用SIP系数获得天体的准确位置信息和图像拼接。"
 
 msgid "Add SIP coefficients"
 msgstr "添加 SIP 系数"
 
 msgid "Use this to stack alligned on moving solar objects. Solar movement can be calculated by JPL Horizons with option \"Rates; RA & DEC\""
-msgstr "Use this to stack alligned on moving solar objects. Solar movement can be calculated by JPL Horizons with option \"Rates; RA & DEC\""
+msgstr "用于按移动的太阳系天体对齐并叠加。太阳系天体运动量可在 JPL Horizons 中通过“Rates; RA & DEC”选项计算。"
 
 msgid "Solar drift compensation"
 msgstr "太阳系目标漂移补偿"
 
 msgid "Drift RA*cos(DEC)  in arcsec/hours. Get this \"dRA*cosD\" value from JPL Horizons"
-msgstr "Drift RA*cos(DEC)  in arcsec/hours. Get this \"dRA*cosD\" value from JPL Horizons"
+msgstr "RA*cos(DEC) 漂移量，单位为角秒/小时。该 “dRA*cosD” 值可从 JPL Horizons 获取。"
 
 msgid "Δα[\"/hr]"
 msgstr "Δα[\"/hr]"
 
 msgid "Drift DEC in arcsec/hours. Get this \"d(DEC)/dt\" value from JPL Horizons"
-msgstr "Drift DEC in arcsec/hours. Get this \"d(DEC)/dt\" value from JPL Horizons"
+msgstr "DEC 漂移量，单位为角秒/小时。该 “d(DEC)/dt” 值可从 JPL Horizons 获取。"
 
 msgid "Δδ[\"/hr]"
 msgstr "Δδ[\"/hr]"
 
 msgid "Show quads connections  as irregular tetrahedrons in the current image."
-msgstr "Show quads connections  as irregular tetrahedrons in the current image."
+msgstr "在当前图像中将四边形连接显示为不规则四面体。"
 
 msgid "Test button to show quads"
 msgstr "测试按钮显示四星组"
 
 msgid "Manual alignment: Select an object center routine. After clicking on a star or comet the program will autocenter.\n\n\nEphemeris alignment: \n\nPreperation:\n- Batch solve the images in the viewer.\n- Batch annotate the images in the viewer.\n\nStacking:\n- Select manual/ephemeris alignment\n- Browse for all the images in the image tab and add if available the dark, flats.\n- Double click on one of the image files to open in the viewer. This will fill in tab alignment the option combobox with all annotations.\n- Select from the option combobox the asteroid to align on.\n- Hit the analyse button in the image tab. This fill all the x,y positions in the image list based on the object annotation selected.\n- If all okay, hit the stack button. "
-msgstr "Manual alignment: Select an object center routine. After clicking on a star or comet the program will autocenter.\n\n\nEphemeris alignment: \n\nPreperation:\n- Batch solve the images in the viewer.\n- Batch annotate the images in the viewer.\n\nStacking:\n- Select manual/ephemeris alignment\n- Browse for all the images in the image tab and add if available the dark, flats.\n- Double click on one of the image files to open in the viewer. This will fill in tab alignment the option combobox with all annotations.\n- Select from the option combobox the asteroid to align on.\n- Hit the analyse button in the image tab. This fill all the x,y positions in the image list based on the object annotation selected.\n- If all okay, hit the stack button. "
+msgstr "手动对齐：选择天体居中方式。点击恒星或彗星后，程序会自动居中。\n\n\n星历对齐：\n\n准备：\n- 在查看器中批量求解图像。\n- 在查看器中批量标注图像。\n\n叠加：\n- 选择手动/星历对齐。\n- 在“图像”标签页浏览并加入全部图像；如有暗场、平场也一并加入。\n- 双击其中一个图像文件在查看器中打开；这会把所有标注填入“对齐”标签页的选项下拉框。\n- 在选项下拉框中选择要对齐的小行星。\n- 点击“图像”标签页中的“分析”按钮；程序会根据所选天体标注填充图像列表中的 x,y 位置。\n- 如果结果正常，点击“叠加”按钮。"
 
 msgid "Star centering"
 msgstr "恒星居中"
@@ -2051,13 +2051,13 @@ msgid "See lights tab popup menu for \"Auto selection reference object in select
 msgstr "见光帧页弹出菜单中的“在所选图像中自动选择参考目标”"
 
 msgid "Ephemeris alignment: \n\nPreperation:\n- Batch solve the images in the viewer.\n- Batch annotate the images in the viewer.\n\nStacking:\n- Select manual/ephemeris alignment\n- Browse for all the images in the image tab and add if available the dark, flats.\n- Double click on one of the image files to open in the viewer. This will fill in tab alignment the option combobox with all annotations.\n- Select from the option combobox the asteroid to align on.\n- Hit the analyse button in the image tab. This fill all the x,y positions in the image list based on the object annotation selected.\n- If all okay, hit the stack button. "
-msgstr "Ephemeris alignment: \n\nPreperation:\n- Batch solve the images in the viewer.\n- Batch annotate the images in the viewer.\n\nStacking:\n- Select manual/ephemeris alignment\n- Browse for all the images in the image tab and add if available the dark, flats.\n- Double click on one of the image files to open in the viewer. This will fill in tab alignment the option combobox with all annotations.\n- Select from the option combobox the asteroid to align on.\n- Hit the analyse button in the image tab. This fill all the x,y positions in the image list based on the object annotation selected.\n- If all okay, hit the stack button. "
+msgstr "星历对齐：\n\n准备：\n- 在查看器中批量求解图像。\n- 在查看器中批量标注图像。\n\n叠加：\n- 选择手动/星历对齐。\n- 在“图像”标签页浏览并加入全部图像；如有暗场、平场也一并加入。\n- 双击其中一个图像文件在查看器中打开；这会把所有标注填入“对齐”标签页的选项下拉框。\n- 在选项下拉框中选择要对齐的小行星。\n- 点击“图像”标签页中的“分析”按钮；程序会根据所选天体标注填充图像列表中的 x,y 位置。\n- 如果结果正常，点击“叠加”按钮。"
 
 msgid "Ephemeris alignment"
 msgstr "星历对齐"
 
 msgid "This will fill the combobox with objects visible in the selected light"
-msgstr "This will fill the combobox with objects visible in the selected light"
+msgstr "用所选亮场帧中可见的天体填充下拉框。"
 
 msgid "Analyse the selected file in tab lights"
 msgstr "分析光帧页中选中的文件"
@@ -2066,13 +2066,13 @@ msgid "Refresh astrometric solutions"
 msgstr "刷新天文定位求解"
 
 msgid "Apply this if you change the annotation setting. Note that the annotation x,y positions are used for alignment."
-msgstr "Apply this if you change the annotation setting. Note that the annotation x,y positions are used for alignment."
+msgstr "如果更改标注设置，请应用此设置。请注意，标注 x,y 位置用于对齐。"
 
 msgid "Refresh existing asteroid annotations"
 msgstr "刷新现有小行星标注"
 
 msgid "Blinking tool for astronomical images."
-msgstr "Blinking tool for astronomical images."
+msgstr "B天文图像链接工具。"
 
 msgid "Blink"
 msgstr "闪烁对比"
@@ -2084,49 +2084,49 @@ msgid "Annotated"
 msgstr "已标注"
 
 msgid "Clear image list"
-msgstr "Clear image list"
+msgstr "清空图像列表"
 
 msgid "Blink check-marked images once. For single step blink use CTRL+UP/DOWN arrows."
-msgstr "Blink check-marked images once. For single step blink use CTRL+UP/DOWN arrows."
+msgstr "B链接一次选中的图像。对于单步闪烁，请使用 CTRL+UP/DOWN 箭头。"
 
 msgid "Stop blinking"
-msgstr "Stop blinking"
+msgstr "停止闪烁比对"
 
 msgid "Continous blink check-marked images. For single step blink use CTRL+UP/DOWN arrows."
-msgstr "Continous blink check-marked images. For single step blink use CTRL+UP/DOWN arrows."
+msgstr "连续眨眼标记图像。对于单步闪烁，请使用 CTRL+UP/DOWN 箭头。"
 
 msgid "Use star alignment to align images. For the first round additional time will be required for calculating solution. Clear alignment if you reuse images."
-msgstr "Use star alignment to align images. For the first round additional time will be required for calculating solution. Clear alignment if you reuse images."
+msgstr "使用恒星对齐来对齐图像。第一轮需要额外时间计算定位解；重复使用图像时请先清除对齐结果。"
 
 msgid "Align images"
 msgstr "对齐图像"
 
 msgid "Clear the star alignment. Apply this if alignment is poor."
-msgstr "Clear the star alignment. Apply this if alignment is poor."
+msgstr "清除恒星对齐结果。对齐效果较差时使用。"
 
 msgid "Clear image alignment"
 msgstr "清除图像对齐"
 
 msgid "Online help"
-msgstr "Online help"
+msgstr "在线帮助"
 
 msgid "Write image list as YUV4MPEG2 video with extension y4m."
-msgstr "Write image list as YUV4MPEG2 video with extension y4m."
+msgstr "将图像列表写入为 YUV4MPEG2 视频，扩展名为 y4m。"
 
 msgid "Write video"
 msgstr "写入视频"
 
 msgid "Write data and time to screen and image array. If the file is saved this annotation in written in the image itself."
-msgstr "Write data and time to screen and image array. If the file is saved this annotation in written in the image itself."
+msgstr "将数据和时间写入屏幕和图像阵列。如果保存文件，则此标注会写入图像本身。"
 
 msgid "Time stamp"
 msgstr "时间戳"
 
 msgid "Select images to blink."
-msgstr "Select images to blink."
+msgstr "选择要闪烁的图像。"
 
 msgid "Same option as in the viewer under View."
-msgstr "Same option as in the viewer under View."
+msgstr "与View下查看器中的选项相同。"
 
 msgid "Annotations visible"
 msgstr "显示标注"
@@ -2135,22 +2135,22 @@ msgid "For Track and Stack see popup menu"
 msgstr "跟踪叠加请见弹出菜单"
 
 msgid "Reannotate and solve all checked images. To refresh the solution set the override option in tab Alignment."
-msgstr "Reannotate and solve all checked images. To refresh the solution set the override option in tab Alignment."
+msgstr "重新标注并求解所有勾选图像。若要刷新已有解，请在“对齐”标签页设置覆盖选项。"
 
 msgid "(Re)annotate (&&solve)"
 msgstr "(重新)标注 (并解析)"
 
 msgid "Photometry of variable stars."
-msgstr "Photometry of variable stars."
+msgstr "变星测光。"
 
 msgid "Photometry"
 msgstr "测光"
 
 msgid "Stop photometry blinking"
-msgstr "Stop photometry blinking"
+msgstr "停止测光闪烁"
 
 msgid "Play button. Scroll through the check-marked images once and measure the marked stars."
-msgstr "Play button. Scroll through the check-marked images once and measure the marked stars."
+msgstr "播放按钮。滚动浏览一次复选标记的图像并测量标记的恒星。"
 
 msgid "Date (start)"
 msgstr "日期 (开始)"
@@ -2174,49 +2174,49 @@ msgid "Lim-magn"
 msgstr "极限星等"
 
 msgid "Generate AAVSO report"
-msgstr "Generate AAVSO report"
+msgstr "生成 AAVSO 报告"
 
 msgid "Flux measuring aperture radius [x HFD ].  Typical range 1.5 to 2.0 HFD. If max is specified all star flux is measured. Can be adjusted to find the lowest standard deviation in the results (check star)."
-msgstr "Flux measuring aperture radius [x HFD ].  Typical range 1.5 to 2.0 HFD. If max is specified all star flux is measured. Can be adjusted to find the lowest standard deviation in the results (check star)."
+msgstr "通量测量孔径半径 [x HFD ]。 典型范围 1.5 至 2.0 HFD。如果指定了 max，则测量所有星通量。可以调整以找到结果中的最低标准偏差（检查星号）。"
 
 msgid "Aperture:"
 msgstr "孔径:"
 
 msgid "Analyse image files extra"
-msgstr "Analyse image files extra"
+msgstr "额外分析图像文件"
 
 msgid "Annulus inner radius [px]. The annulus radius has to be larger then the aperture radius."
-msgstr "Annulus inner radius [px]. The annulus radius has to be larger then the aperture radius."
+msgstr "环形内半径 [px]。环形半径必须大于孔径半径。"
 
 msgid "Annulus:"
 msgstr "环带:"
 
 msgid "Default observer location for the case it is not available in the file header. Use this for DSLR images."
-msgstr "Default observer location for the case it is not available in the file header. Use this for DSLR images."
+msgstr "文件头中不可用的情况下的默认观察者位置。将其用于 DSLR 图像。"
 
 msgid "Select images for photometry"
-msgstr "Select images for photometry"
+msgstr "选择图像进行测光"
 
 msgid "Annotate variable and comparison stars. Only variable stars with an AUID can be submitted. Else you have to request an AUID first. Local database contains B, V only. For large FOV use local database."
-msgstr "Annotate variable and comparison stars. Only variable stars with an AUID can be submitted. Else you have to request an AUID first. Local database contains B, V only. For large FOV use local database."
+msgstr "标注变量和比较星。只能提交具有 AUID 的变星。否则，您必须先请求 AUID。本地星表仅包含B、V。对于大型 FOV，请使用本地星表。"
 
 msgid "Local DB mag 11"
 msgstr "Local DB mag 11"
 
 msgid "Comparison star database to be used for accurate instrumental magnitude. Set to \n1) Online , Gaia ->auto \nor\n2) Local star database V50 for Johnson-V and B.\nor\n3) Any other database. But use comp star(s) and avoid Gaia ensemble."
-msgstr "Comparison star database to be used for accurate instrumental magnitude. Set to \n1) Online , Gaia ->auto \nor\n2) Local star database V50 for Johnson-V and B.\nor\n3) Any other database. But use comp star(s) and avoid Gaia ensemble."
+msgstr "用于精确仪器星等的比较星数据库。设置为 1) 在线，Gaia ->自动 或 2) Johnson-V和B的本地星数据库V50。 或 3) 任何其他数据库。 B应使用比赛明星并避免Gaia合奏。"
 
 msgid "See popup menu for calibration && extraction"
-msgstr "See popup menu for calibration && extraction"
+msgstr "请参阅弹出菜单进行校准和提取"
 
 msgid "Find best aperture by trial and error. This only works for V, TG filter or clear."
-msgstr "Find best aperture by trial and error. This only works for V, TG filter or clear."
+msgstr "通过反复试验找到最佳光圈。这仅适用于 V、TG 滤镜或透明。"
 
 msgid "Font size of image annotations. Use font size 3 or 4 to shorten abbreviations"
-msgstr "Font size of image annotations. Use font size 3 or 4 to shorten abbreviations"
+msgstr "图像标注的字体大小。使用字体大小 3 或 4 来缩短缩写"
 
 msgid "Font size of image annotations. Using the online database for size 4 only abbreviation are plotted."
-msgstr "Font size of image annotations. Using the online database for size 4 only abbreviation are plotted."
+msgstr "图像标注的字体大小。使用字号 4 的在线星表仅绘制缩写。"
 
 msgid "Font size:"
 msgstr "字体大小:"
@@ -2228,7 +2228,7 @@ msgid "AAVSO annotation:"
 msgstr "AAVSO 标注:"
 
 msgid "Select measuring mode"
-msgstr "Select measuring mode"
+msgstr "选择测量模式"
 
 msgid "Manual star selection"
 msgstr "手动选择恒星"
@@ -2240,40 +2240,40 @@ msgid "Measure all stars.    SNR>"
 msgstr "测量全部恒星   SNR>"
 
 msgid "Minimum SNR of the stars to measure"
-msgstr "Minimum SNR of the stars to measure"
+msgstr "要测量的至少 SNR 颗恒星"
 
 msgid "Enter pixel saturation value manually instead of the highest value in the image."
-msgstr "Enter pixel saturation value manually instead of the highest value in the image."
+msgstr "手动输入像素饱和度值而不是图像中的最高值。"
 
 msgid "Saturation level"
 msgstr "饱和电平"
 
 msgid "This will calculate the transformation equations."
-msgstr "This will calculate the transformation equations."
+msgstr "这将计算变换方程。"
 
 msgid "Transformation"
 msgstr "转换"
 
 msgid "Cycle period filter [days]. Display only variables with a cycle period shorter then this setting."
-msgstr "Cycle period filter [days]. Display only variables with a cycle period shorter then this setting."
+msgstr "周期滤镜[天]。仅显示循环周期短于此设置的变量。"
 
 msgid "Only annotate variables which have an AUID (identifier)"
-msgstr "Only annotate variables which have an AUID (identifier)"
+msgstr "仅标注具有 AUID（标识符）的变量"
 
 msgid "AUID 👌"
 msgstr "AUID 👌"
 
 msgid "Enter here the maximum acceptable pixel value before saturation occurs."
-msgstr "Enter here the maximum acceptable pixel value before saturation occurs."
+msgstr "在此处输入饱和发生前可接受的最大像素值。"
 
 msgid "Calibrate lights in advance and in case of raw OSC light, split it TR, TG, TB frames."
-msgstr "Calibrate lights in advance and in case of raw OSC light, split it TR, TG, TB frames."
+msgstr "预先校准亮场；如果是 RAW OSC 亮场，则拆分为 TR、TG、TB 帧。"
 
 msgid "Calibrate"
 msgstr "校准"
 
 msgid "Disable autocentering measurement. Use this only when the star is omitted by the detection due to bright objects nearby.  It requires an accurate celestial position so the online annotations are preferred."
-msgstr "Disable autocentering measurement. Use this only when the star is omitted by the detection due to bright objects nearby.  It requires an accurate celestial position so the online annotations are preferred."
+msgstr "禁用自动居中测量。仅当恒星因附近有明亮物体而被检测遗漏时才使用此选项。 它需要准确的天体位置，因此首选在线标注。"
 
 msgid "Disable star autocenter"
 msgstr "禁用恒星自动居中"
@@ -2282,7 +2282,7 @@ msgid "radius"
 msgstr "半径"
 
 msgid "Measure the best focus position for several areas of the image."
-msgstr "Measure the best focus position for several areas of the image."
+msgstr "测量图像多个区域的最佳焦点位置。"
 
 msgid "Inspector"
 msgstr "检查器"
@@ -2324,10 +2324,10 @@ msgid "Hyperbola curve fitting"
 msgstr "双曲线拟合"
 
 msgid "Select focus images to inspect"
-msgstr "Select focus images to inspect"
+msgstr "选择要检查的焦点图像"
 
 msgid "Measure the mount celestial position offsets."
-msgstr "Measure the mount celestial position offsets."
+msgstr "测量安装天体位置偏移。"
 
 msgid "Mount analyse"
 msgstr "赤道仪分析"
@@ -2384,16 +2384,16 @@ msgid "P [hPa]"
 msgstr "P [hPa]"
 
 msgid "Select images to analyse."
-msgstr "Select images to analyse."
+msgstr "选择要分析的图像。"
 
 msgid "Calcuates from the two or more images the polar alignment error. The images should be taken at different positions in the sky."
-msgstr "Calcuates from the two or more images the polar alignment error. The images should be taken at different positions in the sky."
+msgstr "根据两个或多个图像计算极轴对准误差。这些图像应该在天空的不同位置拍摄。"
 
 msgid "Calculate polar aligment error"
 msgstr "计算极轴对准误差"
 
 msgid "Format of positions"
-msgstr "Format of positions"
+msgstr "职位格式"
 
 msgid "HH:MM:SS"
 msgstr "HH:MM:SS"
@@ -2402,19 +2402,19 @@ msgid "Solve the images using the popup menu"
 msgstr "使用弹出菜单解析图像"
 
 msgid "Stack live images"
-msgstr "Stack live images"
+msgstr "叠加实时图像"
 
 msgid "Live stacking"
 msgstr "实时叠加"
 
 msgid "Start live stacking."
-msgstr "Start live stacking."
+msgstr "开始实时叠加。"
 
 msgid "Pause live stacking process."
-msgstr "Pause live stacking process."
+msgstr "暂停实时叠加过程。"
 
 msgid "Stop live stacking."
-msgstr "Stop live stacking."
+msgstr "停止实时叠加。"
 
 msgid "Darks and flats will be applied if available."
 msgstr "如果可用，将应用暗场和平场。"
@@ -2426,19 +2426,19 @@ msgid "Debayer and colour correction as set in tab Stack method."
 msgstr "按“叠加方法”页中的设置进行去拜耳和色彩校正。"
 
 msgid "Online help about live stacking"
-msgstr "Online help about live stacking"
+msgstr "有关实时叠加的在线帮助"
 
 msgid "Monitoring"
 msgstr "监控"
 
 msgid "After adding a file copy the interim image to clipboard."
-msgstr "After adding a file copy the interim image to clipboard."
+msgstr "添加文件后，将临时图像复制到剪贴板。"
 
 msgid "Copy each time the interim image to the clipboard"
 msgstr "每次将临时图像复制到剪贴板"
 
 msgid "After adding a file write result to file stack.jpeg at the same location as the files."
-msgstr "After adding a file write result to file stack.jpeg at the same location as the files."
+msgstr "添加文件后，将结果写入与文件相同位置的文件 stack.jpeg 中。"
 
 msgid "Write each time the interim result to stack.jpeg"
 msgstr "每次将临时结果写入 stack.jpeg"
@@ -2447,7 +2447,7 @@ msgid "For log use the log option below."
 msgstr "For log use the log option below."
 
 msgid "Select the directory which will contain the live images to stack. Program will read FITS, RAW(s), JPEG, TIFF, PNG."
-msgstr "Select the directory which will contain the live images to stack. Program will read FITS, RAW(s), JPEG, TIFF, PNG."
+msgstr "选择将包含要叠加的实时图像的目录。程序将显示FITS、RAW(s)、JPEG、TIFF、PNG。"
 
 msgid "Folder"
 msgstr "文件夹"
@@ -2462,16 +2462,16 @@ msgid "Load (and analyse) any new file in the selected folder. Darks and flats a
 msgstr "载入并分析所选文件夹中的新文件；会按配置应用暗场、平场和去拜耳。"
 
 msgid "Select the directory to monitor. Program will read FITS, RAW(s), JPEG, TIFF, PNG."
-msgstr "Select the directory to monitor. Program will read FITS, RAW(s), JPEG, TIFF, PNG."
+msgstr "选择要监控的目录。程序将显示FITS、RAW(s)、JPEG、TIFF、PNG。"
 
 msgid "Start monitoring."
-msgstr "Start monitoring."
+msgstr "开始监控。"
 
 msgid "Stop monitoring"
-msgstr "Stop monitoring"
+msgstr "停止监控"
 
 msgid "Sample size colours"
-msgstr "Sample size colours"
+msgstr "样品尺寸颜色"
 
 msgid "none"
 msgstr "无"
@@ -2495,43 +2495,43 @@ msgid "Action:"
 msgstr "操作:"
 
 msgid "Online help about monitoring"
-msgstr "Online help about monitoring"
+msgstr "有关监控的在线帮助"
 
 msgid "Apply dark and flat for each image"
-msgstr "Apply dark and flat for each image"
+msgstr "为每个图像应用黑暗和平坦"
 
 msgid "Apply dark and flat"
 msgstr "应用暗场和平场"
 
 msgid "Image center position (right ascension of the solution)"
-msgstr "Image center position (right ascension of the solution)"
+msgstr "图像中心位置（解的赤经）"
 
 msgid "Image center position (declination of the solution)"
-msgstr "Image center position (declination of the solution)"
+msgstr "图像中心位置（解的偏角）"
 
 msgid "Target box"
 msgstr "目标框"
 
 msgid "Target object"
-msgstr "Target object"
+msgstr "目标天体"
 
 msgid "Set an object target or position and let the program calculate the distance. "
-msgstr "Set an object target or position and let the program calculate the distance. "
+msgstr "设置物体目标或位置并让程序计算距离。"
 
 msgid "Set target"
 msgstr "设置目标"
 
 msgid "Right ascension correction required to reach target."
-msgstr "Right ascension correction required to reach target."
+msgstr "R达到目标所需的飞行高度校正。"
 
 msgid "Declination correction required to reach target."
-msgstr "Declination correction required to reach target."
+msgstr "需要进行磁偏角修正才能达到目标。"
 
 msgid "Target distance"
-msgstr "Target distance"
+msgstr "目标距离"
 
 msgid "Move the telescope in this direction"
-msgstr "Move the telescope in this direction"
+msgstr "将望远镜朝这个方向移动"
 
 msgid "Latitude [N]:"
 msgstr "纬度 [N]:"
@@ -2540,25 +2540,25 @@ msgid "Longitude [E]:"
 msgstr "经度 [E]:"
 
 msgid "Target altitude"
-msgstr "Target altitude"
+msgstr "目标高度"
 
 msgid "A"
 msgstr "A"
 
 msgid "Target azimuth"
-msgstr "Target azimuth"
+msgstr "目标方位角"
 
 msgid "H"
 msgstr "H"
 
 msgid "Pixel math tools 1"
-msgstr "Pixel math tools 1"
+msgstr "像素数学工具 1"
 
 msgid "Pixel math 1"
 msgstr "像素运算 1"
 
 msgid "Apply following to current displayed image:"
-msgstr "Apply following to current displayed image:"
+msgstr "将以下内容应用于当前显示的图像："
 
 msgid "Colour correction"
 msgstr "色彩校正"
@@ -2570,22 +2570,22 @@ msgid "Multiply with"
 msgstr "乘以"
 
 msgid "Apply above actions. Hit CTRL-Z to undo."
-msgstr "Apply above actions. Hit CTRL-Z to undo."
+msgstr "应用以上操作。按 CTRL-Z 撤消。"
 
 msgid "Apply"
 msgstr "应用"
 
 msgid "Levels for neutral background and white stars"
-msgstr "Levels for neutral background and white stars"
+msgstr "中性背景和白色恒星的级别"
 
 msgid "Reset the add and multiply factors"
-msgstr "Reset the add and multiply factors"
+msgstr "R设置加法和乘法因子"
 
 msgid "Reset"
 msgstr "重置"
 
 msgid "Do not modifiy values of zero and below"
-msgstr "Do not modifiy values of zero and below"
+msgstr "不要修改零及以下的值"
 
 msgid "Ignore zero and below"
 msgstr "忽略零及以下"
@@ -2594,22 +2594,22 @@ msgid "Equalise background tool"
 msgstr "背景均衡工具"
 
 msgid "Test on the current displayed image. CTRL-Z to undo."
-msgstr "Test on the current displayed image. CTRL-Z to undo."
+msgstr "在当前显示的图像上测试。按 CTRL-Z 撤销。"
 
 msgid "Apply \"mode\" filter to remove stars"
 msgstr "应用“众数”滤镜去除恒星"
 
 msgid "Median filter factor (box size). Typical value is 30"
-msgstr "Median filter factor (box size). Typical value is 30"
+msgstr "中值过滤因子（盒子大小）。典型值为 30"
 
 msgid "Applied on the current displayed image. CTRL-Z to undo."
-msgstr "Applied on the current displayed image. CTRL-Z to undo."
+msgstr "应用于当前显示的图像。 CTRL-Z 撤消。"
 
 msgid "Apply gaussian filter"
 msgstr "应用高斯滤镜"
 
 msgid "To remove fuzzies use the viewer  popup menu \"Remove deepsky object\""
-msgstr "To remove fuzzies use the viewer  popup menu \"Remove deepsky object\""
+msgstr "若要移除模糊深空天体，请使用查看器弹出菜单“移除深空天体”。"
 
 msgid "Remove fuzzies with right mouse button"
 msgstr "用鼠标右键移除模糊目标"
@@ -2624,7 +2624,7 @@ msgid "6)"
 msgstr "6)"
 
 msgid "Subtract the created background from the original image and display the result."
-msgstr "Subtract the created background from the original image and display the result."
+msgstr "从原始图像中减去创建的背景并显示结果。"
 
 msgid "Subtract background from saved image."
 msgstr "从保存图像中减去背景。"
@@ -2636,7 +2636,7 @@ msgid "1)"
 msgstr "1)"
 
 msgid "Save to file with equalised added to the filename."
-msgstr "Save to file with equalised added to the filename."
+msgstr "保存到文件，并在文件名中添加均衡。"
 
 msgid "Save current view as new file"
 msgstr "将当前视图另存为新文件"
@@ -2645,7 +2645,7 @@ msgid "Save result"
 msgstr "保存结果"
 
 msgid "This removes dark spots typical for CMOS images. (uses standard deviation for values below most common value) "
-msgstr "This removes dark spots typical for CMOS images. (uses standard deviation for values below most common value) "
+msgstr "这可以消除 CMOS 图像中典型的黑点。 （对于低于最常见值的值使用标准差）"
 
 msgid "Dark spot filter"
 msgstr "暗斑滤镜"
@@ -2654,13 +2654,13 @@ msgid "Optional"
 msgstr "可选"
 
 msgid "Go to step 2"
-msgstr "Go to step 2"
+msgstr "转到步骤 2"
 
 msgid "Convert to mono. This will effect the background gradient correction only and could improve the end result."
-msgstr "Convert to mono. This will effect the background gradient correction only and could improve the end result."
+msgstr "转换为单声道。这只会影响背景梯度校正并可以改善最终结果。"
 
 msgid "See viewer popup menu. The background gradient should be smooth. Remove abnormal spots."
-msgstr "See viewer popup menu. The background gradient should be smooth. Remove abnormal spots."
+msgstr "请参阅查看器弹出菜单。背景渐变应该是平滑的。 R去除异常斑点。"
 
 msgid "Correct gradient with copy+paste tool."
 msgstr "用复制粘贴工具校正渐变。"
@@ -2672,28 +2672,28 @@ msgid "Background colour removal"
 msgstr "背景颜色去除"
 
 msgid "This command removes the background colour."
-msgstr "This command removes the background colour."
+msgstr "该命令删除背景颜色。"
 
 msgid "Standard deviation of background noise. Normal value 2.5 to 3.0. Could influence faint nebula."
-msgstr "Standard deviation of background noise. Normal value 2.5 to 3.0. Could influence faint nebula."
+msgstr "背景噪声的标准偏差。正常值2.5至3.0。可能影响微弱的星云。"
 
 msgid "Signal below σ:"
 msgstr "低于 σ 的信号:"
 
 msgid "Improves colour of saturated stars"
-msgstr "Improves colour of saturated stars"
+msgstr "改善饱和恒星的颜色"
 
 msgid "Global colour smoothing"
 msgstr "全局色彩平滑"
 
 msgid "This routine globally colour smooths the image but tries to preserve nebula."
-msgstr "This routine globally colour smooths the image but tries to preserve nebula."
+msgstr "此例程全局颜色使图像平滑，但试图保留星云。"
 
 msgid "Colour smoothing range in pixels. This will keep luminance but smooth the colours. Default is 10. Set this as high as eight times the HFD value."
-msgstr "Colour smoothing range in pixels. This will keep luminance but smooth the colours. Default is 10. Set this as high as eight times the HFD value."
+msgstr "颜色平滑范围（以像素为单位）。这将保持亮度但使颜色平滑。默认值为 10。将其设置为 HFD 值的八倍。"
 
 msgid "Keep this cheched if a red nebula is visible"
-msgstr "Keep this cheched if a red nebula is visible"
+msgstr "如果红色星云可见，请保持检查"
 
 msgid "Preserve red nebula"
 msgstr "保留红色星云"
@@ -2705,10 +2705,10 @@ msgid "σ factor"
 msgstr "σ 系数"
 
 msgid "Standard deviation to detect deepsky objects not to be blurred. "
-msgstr "Standard deviation to detect deepsky objects not to be blurred. "
+msgstr "用于检测不应被模糊处理的深空天体的标准差。"
 
 msgid "This blur will be applied on the sky background"
-msgstr "This blur will be applied on the sky background"
+msgstr "此模糊将应用于天空背景"
 
 msgid "Gaussian blur"
 msgstr "高斯模糊"
@@ -2717,28 +2717,28 @@ msgid "Remove gradient or dark areas"
 msgstr "移除渐变或暗区"
 
 msgid "This will remove any vertical gradient. For any other angle apply both or use the viewer popup menu \"gradient removal tool\"."
-msgstr "This will remove any vertical gradient. For any other angle apply both or use the viewer popup menu \"gradient removal tool\"."
+msgstr "移除垂直梯度。其他角度可同时应用两个方向，或使用查看器弹出菜单中的“梯度移除工具”。"
 
 msgid "Apply ↕"
 msgstr "应用 ↕"
 
 msgid "This will remove any horizontal gradient. For any other angle apply both or use the viewer popup menu \"gradient removal tool\"."
-msgstr "This will remove any horizontal gradient. For any other angle apply both or use the viewer popup menu \"gradient removal tool\"."
+msgstr "移除水平梯度。其他角度可同时应用两个方向，或使用查看器弹出菜单中的“梯度移除工具”。"
 
 msgid "Apply ↔"
 msgstr "应用 ↔"
 
 msgid "Slice width or box size in pixels to detect local median value. Typical value is 30. "
-msgstr "Slice width or box size in pixels to detect local median value. Typical value is 30. "
+msgstr "以像素为单位的切片宽度或框大小以检测局部中值。典型值为 30。"
 
 msgid "Method to find the background"
-msgstr "Method to find the background"
+msgstr "寻找背景的方法"
 
 msgid "Sigma Clip Mean background detection"
 msgstr "Sigma Clip Mean background detection"
 
 msgid "Equalise corners of the image below the average background. "
-msgstr "Equalise corners of the image below the average background. "
+msgstr "使图像的角点低于平均背景。"
 
 msgid "Raise dark areas"
 msgstr "提升暗区"
@@ -2747,7 +2747,7 @@ msgid "Colour replace"
 msgstr "颜色替换"
 
 msgid "Click on the image in the viewer to select a colour"
-msgstr "Click on the image in the viewer to select a colour"
+msgstr "在查看器图像中点击以选择颜色"
 
 msgid "Old colour"
 msgstr "旧颜色"
@@ -2756,46 +2756,46 @@ msgid "New colour"
 msgstr "新颜色"
 
 msgid "Click on the image in the viewer to select a colour to replace"
-msgstr "Click on the image in the viewer to select a colour to replace"
+msgstr "在查看器图像中点击以选择要替换的颜色"
 
 msgid "Click on the image in the viewer to select a new colour"
-msgstr "Click on the image in the viewer to select a new colour"
+msgstr "单击查看器中的图像以选择新颜色"
 
 msgid "Add noise to the image in the viewer"
-msgstr "Add noise to the image in the viewer"
+msgstr "向查看器中的图像添加噪点"
 
 msgid "Fuziness of old colour.  [0..180°]"
-msgstr "Fuziness of old colour.  [0..180°]"
+msgstr "原颜色的模糊容差。[0..180°]"
 
 msgid "Sample size:"
 msgstr "采样大小:"
 
 msgid "Saturation of new colour [0..200%]"
-msgstr "Saturation of new colour [0..200%]"
+msgstr "新颜色的饱和度 [0..200%]"
 
 msgid "Final new colour"
-msgstr "Final new colour"
+msgstr "最终新颜色"
 
 msgid "Hue and saturation range to be replaced. The hue range is between the two lines. The saturation range is between the two circels."
-msgstr "Hue and saturation range to be replaced. The hue range is between the two lines. The saturation range is between the two circels."
+msgstr "要替换的色调和饱和度范围。色调范围位于两条线之间。饱和度范围位于两个圆之间。"
 
 msgid "Indicates if area is selected."
-msgstr "Indicates if area is selected."
+msgstr "指示是否选择区域。"
 
 msgid "Sub-area selected:"
 msgstr "已选择子区域:"
 
 msgid "Unselect area. If unselected the colours in whole image will be replaced."
-msgstr "Unselect area. If unselected the colours in whole image will be replaced."
+msgstr "取消选择区域。如果未选择，整个图像中的颜色将被替换。"
 
 msgid "Tolerance colour saturation.  [0..50%] A good value is 20%"
-msgstr "Tolerance colour saturation.  [0..50%] A good value is 20%"
+msgstr "容差颜色饱和度。 [0..50%] 较好的值为 20%"
 
 msgid "New luminance [0..200%]"
-msgstr "New luminance [0..200%]"
+msgstr "新亮度 [0..200%]"
 
 msgid "This option on  allows the removal of coloured hot pixels and streaks "
-msgstr "This option on  allows the removal of coloured hot pixels and streaks "
+msgstr "此选项允许去除彩色热像素和条纹"
 
 msgid "Blend in with the surroundings"
 msgstr "与周围区域融合"
@@ -2804,13 +2804,13 @@ msgid "Unsharp mask"
 msgstr "反遮罩锐化"
 
 msgid "Amount of unsharp mask which is subtracted from the image in the viewer."
-msgstr "Amount of unsharp mask which is subtracted from the image in the viewer."
+msgstr "从查看器中的图像中减去的不锐化蒙版的量。"
 
 msgid "Amount:"
 msgstr "数量:"
 
 msgid "Radius of the Gaussian blur"
-msgstr "Radius of the Gaussian blur"
+msgstr "R高斯模糊半径"
 
 msgid "Radius:"
 msgstr "半径:"
@@ -2819,37 +2819,37 @@ msgid "Pixels"
 msgstr "像素"
 
 msgid "Apply unsharp mask. Zoom in to see the difference."
-msgstr "Apply unsharp mask. Zoom in to see the difference."
+msgstr "应用不锐化蒙版。放大查看差异。"
 
 msgid "This will keep the background noise untouched. Expressed in standard deviation of background noise. Set at 2 or 3 σ."
-msgstr "This will keep the background noise untouched. Expressed in standard deviation of background noise. Set at 2 or 3 σ."
+msgstr "这将使背景噪音保持不变。以背景噪声的标准差表示。设置为 2 或 3 σ。"
 
 msgid "Threshold:"
 msgstr "阈值:"
 
 msgid "This command colour smooth the detected stars in the image in the viewer"
-msgstr "This command colour smooth the detected stars in the image in the viewer"
+msgstr "此命令对查看器中图像中检测到的恒星进行颜色平滑处理"
 
 msgid "Artificial flat-field correction"
 msgstr "人工平场校正"
 
 msgid "Set the brightest or darkest center position of the image with the popup menu \"Set area\""
-msgstr "Set the brightest or darkest center position of the image with the popup menu \"Set area\""
+msgstr "通过弹出菜单“设置区域”指定图像最亮或最暗的中心位置"
 
 msgid "Center: default"
 msgstr "中心: 默认"
 
 msgid "Ring equalise: specify object size in the center of the image in percentage of the image height. This area will then be protected against the correction. "
-msgstr "Ring equalise: specify object size in the center of the image in percentage of the image height. This area will then be protected against the correction. "
+msgstr "Ring equalise：以图像高度的百分比指定图像中心的天体大小。然后，该区域将受到保护，免受修正。"
 
 msgid "Equalise all. There should be no object in the center of the image and deepsky objects should be small.. "
-msgstr "Equalise all. There should be no object in the center of the image and deepsky objects should be small.. "
+msgstr "均等。图像中心不应有任何物体，并且深空天体应该很小。"
 
 msgid "Ring equalise"
 msgstr "环形均衡"
 
 msgid "Pixel math tools 2"
-msgstr "Pixel math tools 2"
+msgstr "像素数学工具 2"
 
 msgid "Pixel math 2"
 msgstr "像素运算 2"
@@ -2864,7 +2864,7 @@ msgid "a ="
 msgstr "a ="
 
 msgid "Subtracted from Xij prior application of DDP"
-msgstr "Subtracted from Xij prior application of DDP"
+msgstr "从 Xij 之前申请的 DDP 中扣除"
 
 msgid "background ="
 msgstr "背景 ="
@@ -2873,64 +2873,64 @@ msgid "k ="
 msgstr "k ="
 
 msgid "Use values below 1. Results in unsharp stars. Some  sharping required in a later stage."
-msgstr "Use values below 1. Results in unsharp stars. Some  sharping required in a later stage."
+msgstr "使用低于 1 的值。R会导致恒星不清晰。后期需要进行一些锐化。"
 
 msgid "Typical value 500"
-msgstr "Typical value 500"
+msgstr "典型值 500"
 
 msgid "Background value"
-msgstr "Background value"
+msgstr "B背景值"
 
 msgid "Typical value 5 to 20."
-msgstr "Typical value 5 to 20."
+msgstr "典型值 5 至 20。"
 
 msgid "Results in a nonlinear hyperbolic stretch, excellent for galaxies."
-msgstr "Results in a nonlinear hyperbolic stretch, excellent for galaxies."
+msgstr "R产生非线性双曲线拉伸，对于星系来说非常好。"
 
 msgid "None"
 msgstr "无"
 
 msgid "Use an automatically measured background value."
-msgstr "Use an automatically measured background value."
+msgstr "使用自动测量的背景值。"
 
 msgid "Add noise"
 msgstr "添加噪声"
 
 msgid "Add Gaussian noise. The value is the standard deviation. The mean is three times the value"
-msgstr "Add Gaussian noise. The value is the standard deviation. The mean is three times the value"
+msgstr "添加高斯噪声。该值是标准差。平均值是值的三倍"
 
 msgid "Add a bias to stay positive. Do this for very large noise values."
-msgstr "Add a bias to stay positive. Do this for very large noise values."
+msgstr "添加偏见以保持积极。对于非常大的噪声值执行此操作。"
 
 msgid "Add 3σ bias value"
 msgstr "添加 3σ 偏置值"
 
 msgid "Create artificial test image for testing star detection. This tool is intendent for developpers only."
-msgstr "Create artificial test image for testing star detection. This tool is intendent for developpers only."
+msgstr "创建用于测试恒星检测的人工测试图像。该工具仅供开发人员使用。"
 
 msgid "Create test image for star detection"
 msgstr "创建恒星检测测试图像"
 
 msgid "This will create a FITS image with Gaussian stars having a HFD as specified. Top rows are filled with hot pixels."
-msgstr "This will create a FITS image with Gaussian stars having a HFD as specified. Top rows are filled with hot pixels."
+msgstr "这将创建一个 FITS 图像，其中高斯星具有指定的 HFD。最上面的行充满了热像素。"
 
 msgid "Stars, hot pixels"
 msgstr "恒星、热像素"
 
 msgid "Add a typical gradient of telescope. The center is more bright then the corners."
-msgstr "Add a typical gradient of telescope. The center is more bright then the corners."
+msgstr "添加典型的望远镜梯度。中心比角落更亮。"
 
 msgid "Background gradient"
 msgstr "背景渐变"
 
 msgid "HFD of the simulated stars"
-msgstr "HFD of the simulated stars"
+msgstr "模拟恒星的HFD"
 
 msgid "Donut stars"
 msgstr "甜甜圈状恒星"
 
 msgid "This will create a red and blue nebula"
-msgstr "This will create a red and blue nebula"
+msgstr "这将创建一个红色和蓝色的星云"
 
 msgid "Nebula"
 msgstr "星云"
@@ -2939,22 +2939,22 @@ msgid "Extract background/artificial flat"
 msgstr "提取背景/人工平场"
 
 msgid "Replace the values in each box with the most common value using the most common filter. This works better then removing stars as outliers."
-msgstr "Replace the values in each box with the most common value using the most common filter. This works better then removing stars as outliers."
+msgstr "使用最常见的滤镜将每个框中的值替换为最常见的值。这比删除异常值的恒星效果更好。"
 
 msgid "Filter box size"
-msgstr "Filter box size"
+msgstr "过滤箱尺寸"
 
 msgid "Apply gaussian blur after stacking to reduce noise. Hit CTRL-Z to undo"
-msgstr "Apply gaussian blur after stacking to reduce noise. Hit CTRL-Z to undo"
+msgstr "叠加后应用高斯模糊以减少噪点。按 CTRL-Z 撤消"
 
 msgid "Apply a flat image or add or subtract an image. "
-msgstr "Apply a flat image or add or subtract an image. "
+msgstr "应用平面图像或添加或减去图像。"
 
 msgid "Apply file to image in viewer"
 msgstr "将文件应用到查看器图像"
 
 msgid "Add or subtract files."
-msgstr "Add or subtract files."
+msgstr "添加或减少文件。"
 
 msgid "Add file to view"
 msgstr "将文件叠加到当前视图"
@@ -2975,16 +2975,16 @@ msgid "Multiply (normalised) file"
 msgstr "乘以归一化文件"
 
 msgid "Browse and select image to add/subtract or use a flat."
-msgstr "Browse and select image to add/subtract or use a flat."
+msgstr "B行并选择图像以添加/减去或使用平面。"
 
 msgid "Spit viewer image in red, green and blue file."
-msgstr "Spit viewer image in red, green and blue file."
+msgstr "将查看器图像吐出为红色、绿色和蓝色文件。"
 
 msgid "Split in separate R, G, B files."
 msgstr "拆分为单独 R、G、B 文件。"
 
 msgid "This will make three separate files"
-msgstr "This will make three separate files"
+msgstr "这将生成三个单独的文件"
 
 msgid "Split in R, G, B"
 msgstr "拆分为 R、G、B"
@@ -2993,13 +2993,13 @@ msgid "Resize current viewer image"
 msgstr "调整当前查看器图像大小"
 
 msgid "Resize current image in the viewer. Sizing factor is free selectable but there is no significant noise reducement."
-msgstr "Resize current image in the viewer. Sizing factor is free selectable but there is no significant noise reducement."
+msgstr "R在查看器中调整当前图像的大小。尺寸系数可以自由选择，但不会显着降低噪音。"
 
 msgid "Resize"
 msgstr "调整大小"
 
 msgid "Resize from current format"
-msgstr "Resize from current format"
+msgstr "R调整当前格式的大小"
 
 msgid "FOV calculator"
 msgstr "视场计算器"
@@ -3008,31 +3008,31 @@ msgid "Telescope focal length [mm]"
 msgstr "望远镜焦距 [mm]"
 
 msgid "Focal length of telescope used in mm."
-msgstr "Focal length of telescope used in mm."
+msgstr "所用望远镜的焦距，单位为毫米。"
 
 msgid "Sensor pixel size after binning [µm]"
 msgstr "合并后传感器像素尺寸 [µm]"
 
 msgid "The image sensor pixel size in micrometer after binning."
-msgstr "The image sensor pixel size in micrometer after binning."
+msgstr "合并后的图像传感器像素尺寸（以微米为单位）。"
 
 msgid "Arcseconds per pixel"
-msgstr "Arcseconds per pixel"
+msgstr "每像素角秒"
 
 msgid "Image dimensions in degrees"
-msgstr "Image dimensions in degrees"
+msgstr "图像尺寸（度）"
 
 msgid "Calculated sensor size in mm"
-msgstr "Calculated sensor size in mm"
+msgstr "计算得出的传感器尺寸（以毫米为单位）"
 
 msgid "Box blur filter"
 msgstr "盒式模糊滤镜"
 
 msgid "Test box blur on the current displayed image. Use CTRL-Z to undo."
-msgstr "Test box blur on the current displayed image. Use CTRL-Z to undo."
+msgstr "当前显示图像上的测试框模糊。使用 CTRL-Z 撤消。"
 
 msgid "Factor of bluring"
-msgstr "Factor of bluring"
+msgstr "模糊因素"
 
 msgid "Remove stars"
 msgstr "移除恒星"
@@ -3041,13 +3041,13 @@ msgid "Increase nebulosity signal"
 msgstr "增强星云信号"
 
 msgid "To the image an copy will be added with the stars removed to increase nebulosity signal. An internet connection is required for downloading Gaia stars. \n\nThis could be used for stacking. E.g. to increase the OIII nebulosity signal. Note the background noise will also increase."
-msgstr "To the image an copy will be added with the stars removed to increase nebulosity signal. An internet connection is required for downloading Gaia stars. \n\nThis could be used for stacking. E.g. to increase the OIII nebulosity signal. Note the background noise will also increase."
+msgstr "将在图像中添加一个副本，并删除恒星以增加星云信号。下载Gaia星需要互联网连接。 这可以用于叠加。例如。增加 OIII 星云信号。请注意，背景噪音也会增加。"
 
 msgid "Factor to increase the nebulosity signal"
-msgstr "Factor to increase the nebulosity signal"
+msgstr "增加星云信号的因素"
 
 msgid "Artificial colouring of H-alpha images. Clouds will be made red. Stars white."
-msgstr "Artificial colouring of H-alpha images. Clouds will be made red. Stars white."
+msgstr "H-alpha 图像的人工着色。云彩将变成红色。恒星白色。"
 
 msgid "Artificial colouring"
 msgstr "人工着色"
@@ -3056,10 +3056,10 @@ msgid "Colour nebula"
 msgstr "给星云着色"
 
 msgid "Star level above background"
-msgstr "Star level above background"
+msgstr "背景上方的星级"
 
 msgid "Filter factor to separate stars from nebula."
-msgstr "Filter factor to separate stars from nebula."
+msgstr "将恒星与星云分离的过滤因子。"
 
 msgid "Star level:"
 msgstr "恒星电平:"
@@ -3071,7 +3071,7 @@ msgid "Normalise raw OSC image"
 msgstr "归一化 RAW OSC 图像"
 
 msgid "Normalise flux of RGGB pixels as if the received light was white and all pixels have the same sensitivity. Preferable after dark has been applied. Use CTRL-Z to undo."
-msgstr "Normalise flux of RGGB pixels as if the received light was white and all pixels have the same sensitivity. Preferable after dark has been applied. Use CTRL-Z to undo."
+msgstr "按入射光为白光且所有像素灵敏度相同的假设，归一化 RGGB 像素通量。建议在应用暗场后使用。按 CTRL-Z 撤销。"
 
 msgid "Normalise"
 msgstr "归一化"
@@ -3080,34 +3080,34 @@ msgid "Satellite streak detection"
 msgstr "卫星条痕检测"
 
 msgid "Smoothens noise and improves contour detection"
-msgstr "Smoothens noise and improves contour detection"
+msgstr "平滑噪声并改善轮廓检测"
 
 msgid "Standard deviation above noise. Typical values 2 to 3."
-msgstr "Standard deviation above noise. Typical values 2 to 3."
+msgstr "标准差高于噪音。典型值 2 至 3。"
 
 msgid "σ detection level"
 msgstr "σ 检测阈值"
 
 msgid "Detect object contours and write streak formula to header"
-msgstr "Detect object contours and write streak formula to header"
+msgstr "检测物体轮廓并将条纹公式写入标题"
 
 msgid "Detect"
 msgstr "检测"
 
 msgid "Distance between vertical and horizontal grid lines in pixels. Will only test at the grid lines to speed up."
-msgstr "Distance between vertical and horizontal grid lines in pixels. Will only test at the grid lines to speed up."
+msgstr "垂直和水平网格线间距，单位像素。为加速处理，仅在网格线上测试。"
 
 msgid "Detection grid"
 msgstr "检测网格"
 
 msgid "Stack check marked images using darks, flats and flat dark frames."
-msgstr "Stack check marked images using darks, flats and flat dark frames."
+msgstr "使用深色、平面和平面深色框架叠加检查标记图像。"
 
 msgid "Stack check marked images"
 msgstr "叠加已勾选图像"
 
 msgid "Hit ESC key or click on this text to stop."
-msgstr "Hit ESC key or click on this text to stop."
+msgstr "按 ESC 键或单击此文本即可停止。"
 
 msgid "Press ESC to abort."
 msgstr "按 ESC 中止。"
@@ -3116,49 +3116,49 @@ msgid "Classify by"
 msgstr "分类依据"
 
 msgid "Activate this option if you want to stack LRGB or RGB  images using filter name.  Set filter names in stack method"
-msgstr "Activate this option if you want to stack LRGB or RGB  images using filter name.  Set filter names in stack method"
+msgstr "如果您想使用滤镜名称叠加 LRGB 或 RGB 图像，请激活此选项。 在 stack 方法中设置滤镜名称"
 
 msgid "Light filter"
 msgstr "光帧滤镜"
 
 msgid "Activate this option if you want to stack images of different objects in one run."
-msgstr "Activate this option if you want to stack images of different objects in one run."
+msgstr "如果您想在一次运行中叠加不同天体的图像，请激活此选项。"
 
 msgid "Light object"
 msgstr "光帧目标"
 
 msgid "Activate this option if you want link the flats based on filter name. Works both for stacking and master creation."
-msgstr "Activate this option if you want link the flats based on filter name. Works both for stacking and master creation."
+msgstr "如果您想根据滤镜名称链接单位，请激活此选项。适用于叠加和母版创建。"
 
 msgid "Flat filter"
 msgstr "平场滤镜"
 
 msgid "Activate this option if you want link the darks based on exposure duration. Works both for stacking and master creation."
-msgstr "Activate this option if you want link the darks based on exposure duration. Works both for stacking and master creation."
+msgstr "如果您想根据曝光持续时间链接暗色，请激活此选项。适用于叠加和母版创建。"
 
 msgid "Dark exposure duration"
 msgstr "暗场曝光时长"
 
 msgid "Activate this option if you want link the darks based on sensor temperature. Works both for stacking and master creation."
-msgstr "Activate this option if you want link the darks based on sensor temperature. Works both for stacking and master creation."
+msgstr "如果您想根据传感器温度链接深色，请激活此选项。适用于叠加和母版创建。"
 
 msgid "Dark temperature"
 msgstr "暗场温度"
 
 msgid "Activate this option if you want link the darks based on gain. Works both for stacking and master creation."
-msgstr "Activate this option if you want link the darks based on gain. Works both for stacking and master creation."
+msgstr "如果您想根据增益链接暗色，请激活此选项。适用于叠加和母版创建。"
 
 msgid "Dark gain"
 msgstr "暗场增益"
 
 msgid "Temperature tolorance"
-msgstr "Temperature tolorance"
+msgstr "耐温性"
 
 msgid "°C"
 msgstr "°C"
 
 msgid "If selected, shutdown computer after completion."
-msgstr "If selected, shutdown computer after completion."
+msgstr "选中后，完成后关闭计算机。"
 
 msgid "Power down after completion"
 msgstr "完成后关机"
@@ -3176,7 +3176,7 @@ msgid "Check mark selected"
 msgstr "勾选所选项"
 
 msgid "#Select all items"
-msgstr "#Select all items"
+msgstr "#选择所有项目"
 
 msgid "Remove selected"
 msgstr "移除所选项"
@@ -3185,37 +3185,37 @@ msgid "Change header keyword in selected files"
 msgstr "修改所选文件的头关键字"
 
 msgid "#Modify or add a keyword to the header of the selected files"
-msgstr "#Modify or add a keyword to the header of the selected files"
+msgstr "#修改或添加关键字到所选文件的标头"
 
 msgid "Type keyword and new value"
 msgstr "输入关键字和新值"
 
 msgid "#All select files will be updated with new keyword value. Type for value DELETE to remove keyword."
-msgstr "#All select files will be updated with new keyword value. Type for value DELETE to remove keyword."
+msgstr "#所有选择的文件将使用新的关键字值进行更新。键入值 DELETE 以删除关键字。"
 
 msgid "#In preperation for deleting later. "
-msgstr "#In preperation for deleting later. "
+msgstr "#为以后删除做准备。"
 
 msgid "All select files will be updated with new keyword value. Type for value DELETE to remove keyword."
-msgstr "All select files will be updated with new keyword value. Type for value DELETE to remove keyword."
+msgstr "所有选定的文件都将使用新的关键字值进行更新。键入值 DELETE 以删除关键字。"
 
 msgid "Select all items"
-msgstr "Select all items"
+msgstr "选择所有项目"
 
 msgid "#Select all files"
-msgstr "#Select all files"
+msgstr "#选择所有文件"
 
 msgid "Copy selected files to clipboard"
 msgstr "复制所选文件到剪贴板"
 
 msgid "#Copy the selected files to clipboard."
-msgstr "#Copy the selected files to clipboard."
+msgstr "#将选定的文件复制到剪贴板。"
 
 msgid "Copy file path"
 msgstr "复制文件路径"
 
 msgid "#Copy file path to clipboard for use in your file explorer."
-msgstr "#Copy file path to clipboard for use in your file explorer."
+msgstr "#将文件路径复制到剪贴板以在文件资源管理器中使用。"
 
 msgid "Copy selected images to tab lights"
 msgstr "复制所选图像到光帧页"
@@ -3230,19 +3230,19 @@ msgid "Rename selected files as"
 msgstr "将所选文件重命名为"
 
 msgid "#Rename the file"
-msgstr "#Rename the file"
+msgstr "#重命名文件"
 
 msgid "Compress selected files"
 msgstr "压缩所选文件"
 
 msgid "#Compress selected files using external CFITSIO utility program fpack. Files will get extension .fz"
-msgstr "#Compress selected files using external CFITSIO utility program fpack. Files will get extension .fz"
+msgstr "#使用外部CFITSIO实用程序fpack压缩选定的文件。文件的扩展名为 .fz"
 
 msgid "Copy selected rows to clipboard"
 msgstr "复制所选行到剪贴板"
 
 msgid "#Data will be in clipboard and can be pasted in a spreadsheet"
-msgstr "#Data will be in clipboard and can be pasted in a spreadsheet"
+msgstr "#数据将位于剪贴板中并且可以粘贴到电子表格中"
 
 msgid "Refresh astrometrical solutions of selected files"
 msgstr "刷新所选文件的天文定位求解"
@@ -3257,118 +3257,118 @@ msgid "Track and Stack all selected files for all annotations"
 msgstr "对所有所选文件按全部标注进行跟踪叠加"
 
 msgid "#Stack selected files aligned for each annotated object"
-msgstr "#Stack selected files aligned for each annotated object"
+msgstr "#Stack 为每个带标注的天体对齐的选定文件"
 
 msgid "Bin 2x2 the selected files"
 msgstr "对所选文件 2x2 合并"
 
 msgid "#Bin 2x2 the selected files."
-msgstr "#Bin 2x2 the selected files."
+msgstr "#Bin 2x2 所选文件。"
 
 msgid "Copy selected rows swapped to clipboard"
 msgstr "交换后复制所选行到剪贴板"
 
 msgid "#Selected data will be copied to the clipboard but the rows and columns will be swapped. Data of COMP stars will be added."
-msgstr "#Selected data will be copied to the clipboard but the rows and columns will be swapped. Data of COMP stars will be added."
+msgstr "#选定的数据将被复制到剪贴板，但行和列将被交换。将添加COMP 恒星的数据。"
 
 msgid "Copy selected rows to clipboard in TG format"
 msgstr "以 TG 格式复制所选行到剪贴板"
 
 msgid "#Copy selected rows to clipboard in TG format for processing in Transformation generator."
-msgstr "#Copy selected rows to clipboard in TG format for processing in Transformation generator."
+msgstr "#以 TG 格式将选定的行复制到剪贴板，以便在转换生成器中进行处理。"
 
 msgid "Find text"
 msgstr "查找文本"
 
 msgid "#Find text in the listview"
-msgstr "#Find text in the listview"
+msgstr "#在列表视图中查找文本"
 
 msgid "Calibrate selected files"
 msgstr "校准所选文件"
 
 msgid "#Calibrate selected files with darks, flats and flatdarks. "
-msgstr "#Calibrate selected files with darks, flats and flatdarks. "
+msgstr "#使用暗场、平场和平场暗帧校准所选文件。"
 
 msgid "Extract Green channel of selected raw files"
 msgstr "提取所选 RAW 文件的绿色通道"
 
 msgid "#For raw OSC images only. Not for images converted to colour. The routine will combine for each bayer submosaic the two green sensitive pixels. Check in advance the de-mosaic pattern in stack menu, tab stack method."
-msgstr "#For raw OSC images only. Not for images converted to colour. The routine will combine for each bayer submosaic the two green sensitive pixels. Check in advance the de-mosaic pattern in stack menu, tab stack method."
+msgstr "#仅适用于原始OSC图像。不适用于转换为彩色的图像。该例程将为每个拜耳亚马赛克组合两个绿色敏感像素。预先在叠加菜单、选项卡叠加方法中检查去拜耳图案。"
 
 msgid "Extract Green, Blue and Red channel of selected raw files"
 msgstr "提取所选 RAW 文件的绿、蓝、红通道"
 
 msgid "#For raw OSC images only. Not for images converted to colour. The routine will  extract the blue sensitive pixels. Check in advance the de-mosaic pattern in stack menu, tab stack method."
-msgstr "#For raw OSC images only. Not for images converted to colour. The routine will  extract the blue sensitive pixels. Check in advance the de-mosaic pattern in stack menu, tab stack method."
+msgstr "#仅适用于原始OSC图像。不适用于转换为彩色的图像。该例程将提取蓝色敏感像素。预先在叠加菜单、选项卡叠加方法中检查去拜耳图案。"
 
 msgid "Stack selected files in mode average"
 msgstr "以平均模式叠加所选文件"
 
 msgid "#Stack the selected files in mode AVERAGE and replace them by the stack."
-msgstr "#Stack the selected files in mode AVERAGE and replace them by the stack."
+msgstr "#以AVERAGE模式叠加选定的文件，并用叠加替换它们。"
 
 msgid "Stack ALL files in groups, mode average"
 msgstr "按组以平均模式叠加所有文件"
 
 msgid "#To improve SNR values"
-msgstr "#To improve SNR values"
+msgstr "#提高SNR值"
 
 msgid "#This will bin 2x2 all selected files and add them to the list."
-msgstr "#This will bin 2x2 all selected files and add them to the list."
+msgstr "#这会将所有选定的文件合并为 2x2 并将它们添加到列表中。"
 
 msgid "#This will renew the astrometric solutions and photometric calibration . Use this only for the rare case  the solutions are wrong and alignment is poor."
-msgstr "#This will renew the astrometric solutions and photometric calibration . Use this only for the rare case  the solutions are wrong and alignment is poor."
+msgstr "#这将更新天文定位解和光度校准。仅在定位解错误且对齐不良的极少数情况下使用此选项。"
 
 msgid "Photometric calibration selected files"
 msgstr "测光校准所选文件"
 
 msgid "#Photometric calibration and save it to the file header. This is just an extra tool and not essential. It adds keyword MZERO to the header"
-msgstr "#Photometric calibration and save it to the file header. This is just an extra tool and not essential. It adds keyword MZERO to the header"
+msgstr "#光度校准并保存到文件头。这只是一个额外的工具，并不是必需的。它将关键字 MZERO 添加到标题中"
 
 msgid "Change last column keyword"
 msgstr "修改最后一列关键字"
 
 msgid "#This will change the keyword displayed in the last column "
-msgstr "#This will change the keyword displayed in the last column "
+msgstr "#这将更改最后一列中显示的关键字"
 
 msgid "Enter the keyword"
 msgstr "输入关键字"
 
 msgid "#Enter a new keyword to be listed in this column"
-msgstr "#Enter a new keyword to be listed in this column"
+msgstr "#输入要在此列中列出的新关键字"
 
 msgid "#If missing,  this keyword is made available if the images are batch solved (in viewer menu tools) with option add LIM-MAGN, SQM, CENTALT, AIRMASS"
-msgstr "#If missing,  this keyword is made available if the images are batch solved (in viewer menu tools) with option add LIM-MAGN, SQM, CENTALT, AIRMASS"
+msgstr "#如果缺失，在查看器“工具”菜单中批量求解并启用添加 LIM-MAGN、SQM、CENTALT、AIRMASS 选项后，会生成该关键字。"
 
 msgid "#If missing,  this keyword is made available if the images are batch solved (in viewer menu tools) with option add LIM-MAGN, SQM, CENTALT, AIRMASS, TILT"
-msgstr "#If missing,  this keyword is made available if the images are batch solved (in viewer menu tools) with option add LIM-MAGN, SQM, CENTALT, AIRMASS, TILT"
+msgstr "#如果缺少，如果使用选项添加LIM-MAGN、SQM、CENTALT、AIRMASS、倾斜对图像进行批量求解（在查看器菜单工具中），则此关键字可用"
 
 msgid "Set as reference image"
 msgstr "设为参考图像"
 
 msgid "#Define this image as reference image."
-msgstr "#Define this image as reference image."
+msgstr "#定义该图像为参考图像。"
 
 msgid "Auto selection reference object in selected images"
 msgstr "在所选图像中自动选择参考目标"
 
 msgid "#For manual alignment, This will automatically select the same object in all images based on the selection in the first image "
-msgstr "#For manual alignment, This will automatically select the same object in all images based on the selection in the first image "
+msgstr "#对于手动对齐，这将根据第一张图像中的选择自动选择所有图像中的相同天体"
 
 msgid "Batch processing selected files"
 msgstr "批处理所选文件"
 
 msgid "#Refresh astrometrical solutions of selected files"
-msgstr "#Refresh astrometrical solutions of selected files"
+msgstr "#R刷新所选文件的天文定位解"
 
 msgid "Add SQM value to the file header of selected files. "
 msgstr "将 SQM 值添加到所选文件头。"
 
 msgid "#Will report SQM at optional column (last)"
-msgstr "#Will report SQM at optional column (last)"
+msgstr "#将在可选栏（最后）报告SQM"
 
 msgid "#Photometric calibration selected files"
-msgstr "#Photometric calibration selected files"
+msgstr "#光度校准选定的文件"
 
 msgid "Bin 2x2 selected files"
 msgstr "2x2 合并所选文件"
@@ -3377,10 +3377,10 @@ msgid "Annotate unknown stars in selected files"
 msgstr "标注所选文件中的未知恒星"
 
 msgid "#This will typically annotate novae and minor planets"
-msgstr "#This will typically annotate novae and minor planets"
+msgstr "#这通常会标注新星和小行星"
 
 msgid "Data will be in clipboard and can be pasted in a spreadsheet"
-msgstr "Data will be in clipboard and can be pasted in a spreadsheet"
+msgstr "数据将位于剪贴板中并可以粘贴到电子表格中"
 
 msgid "Rename selected files"
 msgstr "重命名所选文件"
@@ -3389,70 +3389,70 @@ msgid "Refresh astrometrical solutions and photometric cal of selected files"
 msgstr "刷新所选文件的天文定位求解和测光校准"
 
 msgid "#Refresh astrometrical solutions and photometric cal of selected files"
-msgstr "#Refresh astrometrical solutions and photometric cal of selected files"
+msgstr "#R刷新所选文件的天文定位解和光度校准"
 
 msgid "FITS Thumbnails"
 msgstr "FITS 缩略图"
 
 msgid "Open in the viewer"
-msgstr "Open in the viewer"
+msgstr "在查看器中打开"
 
 msgid "Rename image"
 msgstr "重命名图像"
 
 msgid "Give the image a new name"
-msgstr "Give the image a new name"
+msgstr "给图像一个新名称"
 
 msgid "Copy to"
 msgstr "复制到"
 
 msgid "Copy to a different directory"
-msgstr "Copy to a different directory"
+msgstr "复制到另一个目录"
 
 msgid "Move to"
 msgstr "移动到"
 
 msgid "Move to a different directory"
-msgstr "Move to a different directory"
+msgstr "移动到不同的目录"
 
 msgid "Change directory"
 msgstr "更改目录"
 
 msgid "Browse to a different location"
-msgstr "Browse to a different location"
+msgstr "B行至不同位置"
 
 msgid "ASTAP transformation"
 msgstr "ASTAP 转换"
 
 msgid "Calculate the transformation coefficients."
-msgstr "Calculate the transformation coefficients."
+msgstr "计算变换系数。"
 
 msgid "Calculate"
 msgstr "计算"
 
 msgid "Maximum allowed σ value to filter out outliers."
-msgstr "Maximum allowed σ value to filter out outliers."
+msgstr "过滤掉异常值的最大允许 σ 值。"
 
 msgid "Cancel above coeficients."
-msgstr "Cancel above coeficients."
+msgstr "取消以上系数。"
 
 msgid "Save these coefficients"
-msgstr "Save these coefficients"
+msgstr "保存这些系数"
 
 msgid "Show AUID"
-msgstr "Show AUID"
+msgstr "显示AUID"
 
 msgid "Show auid's"
 msgstr "显示 AUID"
 
 msgid "Minimum SNR. A higher minimum will improve the accuracy of the transformation factors. Default 70"
-msgstr "Minimum SNR. A higher minimum will improve the accuracy of the transformation factors. Default 70"
+msgstr "最低SNR。较高的最小值将提高转换因子的准确性。默认 70"
 
 msgid "SNR >"
 msgstr "SNR >"
 
 msgid "Check mark this to find Sloan coefficients for g', r', i'"
-msgstr "Check mark this to find Sloan coefficients for g', r', i'"
+msgstr "勾选此项以查找 g'、r'、i' 的斯隆系数"
 
 msgid "Sloan"
 msgstr "Sloan"
@@ -3461,31 +3461,31 @@ msgid "Coefficients"
 msgstr "系数"
 
 msgid "Tbv"
-msgstr "Tbv"
+msgstr "TBV"
 
 msgid "Tbv=?"
 msgstr "Tbv=?"
 
 msgid "Tb_bv"
-msgstr "Tb_bv"
+msgstr "TB_bv"
 
 msgid "Tb_bv=?"
 msgstr "Tb_bv=?"
 
 msgid "Tv_bv"
-msgstr "Tv_bv"
+msgstr "电视_bv"
 
 msgid "Tv_bv=?"
 msgstr "Tv_bv=?"
 
 msgid "Tvr"
-msgstr "Tvr"
+msgstr "电视台"
 
 msgid "Tvr=?"
 msgstr "Tvr=?"
 
 msgid "Tv_vr"
-msgstr "Tv_vr"
+msgstr "电视_VR"
 
 msgid "Tv_vr=?"
 msgstr "Tv_vr=?"
@@ -3497,7 +3497,7 @@ msgid "Tr_vr=?"
 msgstr "Tr_vr=?"
 
 msgid "Tri"
-msgstr "Tri"
+msgstr "三"
 
 msgid "Tri=?"
 msgstr "Tri=?"
@@ -3795,3 +3795,43 @@ msgstr "已按下停止"
 
 msgid "XISF file too wide !!!!!"
 msgstr "XISF 文件太宽 !!!!!"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+msgid "ASTAP"
+msgstr "ASTAP"
+
+msgid "Browse and select MPCORB.DAT to use"
+msgstr "浏览并选择要使用的 MPCORB.DAT"
+
+msgid "Download MPCORB.DAT or CometEls.txt using default browser"
+msgstr "使用默认浏览器下载 MPCORB.DAT 或 CometEls.txt"
+
+msgid "Path to CometEls.txt file"
+msgstr "CometEls.txt 文件的路径"
+
+msgid "Path to MPCORB.DAT file"
+msgstr "MPCORB.DAT 文件的路径"
+
+msgid "Remove location data from the selected FITS files to protect your privacy. It will remove  SITELAT (latitude) and SITELONG (longitude) keywords from the header. Original files will be renamed to *.bak"
+msgstr "从所选 FITS 文件中移除位置数据以保护隐私。会从文件头删除 SITELAT（纬度）和 SITELONG（经度）关键字。原始文件会重命名为 *.bak"
+
+msgid "Rename all files back to extension .fit. Stacking will be stopped. "
+msgstr "将所有文件扩展名改回 .fit。叠加将停止。"
+
+msgid "Rename to *.bak. "
+msgstr "重命名为 *.bak。"
+
+msgid "Write the stack log to a file with .txt extension at the light directory."
+msgstr "将叠加日志写入亮场目录下扩展名为 .txt 的文件。"
