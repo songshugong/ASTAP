@@ -35,7 +35,7 @@ var
 
 implementation
 
-uses unit_astrometric_solving, unit_contour,unit_threaded_stacking_step1,unit_threaded_stacking_step2,unit_threaded_stacking_step3,unit_threaded_mosaic;
+uses unit_astrometric_solving, unit_contour,unit_threaded_stacking_step1,unit_threaded_stacking_step2,unit_threaded_stacking_step3,unit_threaded_mosaic, unit_language;
 
 
 procedure calc_newx_newy(headA, headB : theader; vector_based : boolean; fitsXfloat,fitsYfloat: double; out  x_new_float,  y_new_float : double); {apply either vector or astrometric correction. Fits in 1..width, out range 0..width-1}
@@ -195,7 +195,7 @@ var
   st :  string;
 begin
   st:=stackmenu1.stack_button1.caption;
-  stackmenu1.stack_button1.caption:='已暂停';
+  stackmenu1.stack_button1.caption:=TranslateText('Paused');
   wait(500);
   stackmenu1.stack_button1.caption:=st;
   if stacking_paused then

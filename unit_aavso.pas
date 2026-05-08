@@ -678,7 +678,7 @@ begin
 
   if length(column_comps)=0 then
   begin
-    form_aavso1.sigma_mzero1.caption:='未选择比较星。';
+    form_aavso1.sigma_mzero1.caption:=TranslateText('No comparison stars selected.');
     exit;
   end
   else
@@ -736,7 +736,7 @@ begin
   end
   else
   begin
-    form_aavso1.sigma_mzero1.caption:='饱和或无可用比较星星等。';
+    form_aavso1.sigma_mzero1.caption:=TranslateText('Saturated or no comparison star magnitudes available.');
   end;
 end;
 

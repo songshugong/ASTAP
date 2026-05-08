@@ -3654,3 +3654,144 @@ msgstr "显示饱和"
 
 msgid "Max range"
 msgstr "最大范围"
+
+msgid "Batch crop"
+msgstr "批量裁剪"
+
+msgid "Can not annotate due to missing image solution!"
+msgstr "缺少图像解析结果，无法标注！"
+
+msgid "Can not read this format."
+msgstr "无法读取此格式。"
+
+msgid "Center-X"
+msgstr "中心 X"
+
+msgid "Center-Y"
+msgstr "中心 Y"
+
+msgid "Center: "
+msgstr "中心："
+
+msgid "Colour image"
+msgstr "彩色图像"
+
+msgid "Completed, all files converted."
+msgstr "完成，所有文件已转换。"
+
+msgid "Completed, all files dates set."
+msgstr "完成，所有文件日期已设置。"
+
+msgid "Completed, all files moved."
+msgstr "完成，所有文件已移动。"
+
+msgid "Completed, all files processed."
+msgstr "完成，所有文件已处理。"
+
+msgid "Crop coordinates can be set by the mouse. See pop-up menu viewer, set area."
+msgstr "裁剪坐标可用鼠标设置。见查看器弹出菜单中的“设置区域”。"
+
+msgid "Distance:"
+msgstr "距离："
+
+msgid "Enter FITS crop coordinates:"
+msgstr "输入 FITS 裁剪坐标："
+
+msgid "Error converting "
+msgstr "转换出错："
+
+msgid "Error converting DATE-OBS."
+msgstr "转换 DATE-OBS 出错。"
+
+msgid "Error, can not read compressed XISF file!!"
+msgstr "错误，无法读取压缩的 XISF 文件！！"
+
+msgid "Error, can not read this format, no attachment"
+msgstr "错误！无法读取此格式，没有附件"
+
+msgid "Exit with error!!"
+msgstr "出错退出！！"
+
+msgid "Finished, all files compressed with extension .fz."
+msgstr "完成，所有文件已压缩为 .fz。"
+
+msgid "Finished, files converted but with errors or stopped!"
+msgstr "已结束，文件已转换，但有错误或被停止！"
+
+msgid "Finished, files date set but with errors or stopped!"
+msgstr "已结束，文件日期已设置，但有错误或被停止！"
+
+msgid "Header "
+msgstr "头信息 "
+
+msgid "Histogram value: "
+msgstr "直方图值："
+
+msgid "LRGB combine"
+msgstr "LRGB 叠加"
+
+msgid "LRGB combine   (disabled by stacking method)"
+msgstr "LRGB 叠加   (因叠加方法而禁用)"
+
+msgid "LRGB combine   (disabled by ☐ Light filter)"
+msgstr "LRGB 叠加   (因 ☐ 光帧滤镜而禁用)"
+
+msgid "Mid-observation"
+msgstr "观测中点"
+
+msgid "Monochrome sensor image"
+msgstr "单色传感器图像"
+
+msgid "No CometEls.txt file"
+msgstr "没有 CometEls.txt 文件"
+
+msgid "No MPCORB.DAT file"
+msgstr "没有 MPCORB.DAT 文件"
+
+msgid "No comparison star data!"
+msgstr "没有比较星数据！"
+
+msgid "No comparison stars selected."
+msgstr "未选择比较星。"
+
+msgid "No solution found!  :("
+msgstr "未找到解析结果！ :("
+
+msgid "OSC image"
+msgstr "OSC 图像"
+
+msgid "Observation start"
+msgstr "观测开始时间"
+
+msgid "Paused"
+msgstr "已暂停"
+
+msgid "Position "
+msgstr "位置 "
+
+msgid "RAW one shot colour camera image (OSC)"
+msgstr "RAW 单次彩色相机图像 (OSC)"
+
+msgid "RAW one shot colour camera image (OSC)   (disabled by ☑ Light filter)"
+msgstr "RAW 单次彩色相机图像 (OSC)   (因 ☑ 光帧滤镜而禁用)"
+
+msgid "Read exception error!!"
+msgstr "读取异常错误！！"
+
+msgid "Saturated or no comparison star magnitudes available."
+msgstr "饱和或无可用比较星星等。"
+
+msgid "Search radius:"
+msgstr "搜索距离："
+
+msgid "Solving......."
+msgstr "正在解析......."
+
+msgid "Solving:"
+msgstr "正在解析："
+
+msgid "Stop pressed"
+msgstr "已按下停止"
+
+msgid "XISF file too wide !!!!!"
+msgstr "XISF 文件太宽 !!!!!"

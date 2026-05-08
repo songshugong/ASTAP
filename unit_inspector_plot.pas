@@ -1634,13 +1634,13 @@ begin
   show_distortion1.enabled:=head.cd1_1<>0;
 
   if head.naxis3>1 then
-    bayer_label1.caption:='彩色图像'
+    bayer_label1.caption:=TranslateText('Colour image')
   else
   begin
     if bayerpat<>'' then
-      bayer_label1.caption:='拜耳矩阵图像'
+      bayer_label1.caption:=TranslateText('Bayer matrix image')
     else
-      bayer_label1.caption:='单色传感器图像';
+      bayer_label1.caption:=TranslateText('Monochrome sensor image');
   end;
 
   triangle1.checked:=three_corners;

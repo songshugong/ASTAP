@@ -3654,3 +3654,144 @@ msgstr ""
 
 msgid "Max range"
 msgstr ""
+
+msgid "Batch crop"
+msgstr ""
+
+msgid "Can not annotate due to missing image solution!"
+msgstr ""
+
+msgid "Can not read this format."
+msgstr ""
+
+msgid "Center-X"
+msgstr ""
+
+msgid "Center-Y"
+msgstr ""
+
+msgid "Center: "
+msgstr ""
+
+msgid "Colour image"
+msgstr ""
+
+msgid "Completed, all files converted."
+msgstr ""
+
+msgid "Completed, all files dates set."
+msgstr ""
+
+msgid "Completed, all files moved."
+msgstr ""
+
+msgid "Completed, all files processed."
+msgstr ""
+
+msgid "Crop coordinates can be set by the mouse. See pop-up menu viewer, set area."
+msgstr ""
+
+msgid "Distance:"
+msgstr ""
+
+msgid "Enter FITS crop coordinates:"
+msgstr ""
+
+msgid "Error converting "
+msgstr ""
+
+msgid "Error converting DATE-OBS."
+msgstr ""
+
+msgid "Error, can not read compressed XISF file!!"
+msgstr ""
+
+msgid "Error, can not read this format, no attachment"
+msgstr ""
+
+msgid "Exit with error!!"
+msgstr ""
+
+msgid "Finished, all files compressed with extension .fz."
+msgstr ""
+
+msgid "Finished, files converted but with errors or stopped!"
+msgstr ""
+
+msgid "Finished, files date set but with errors or stopped!"
+msgstr ""
+
+msgid "Header "
+msgstr ""
+
+msgid "Histogram value: "
+msgstr ""
+
+msgid "LRGB combine"
+msgstr ""
+
+msgid "LRGB combine   (disabled by stacking method)"
+msgstr ""
+
+msgid "LRGB combine   (disabled by ☐ Light filter)"
+msgstr ""
+
+msgid "Mid-observation"
+msgstr ""
+
+msgid "Monochrome sensor image"
+msgstr ""
+
+msgid "No CometEls.txt file"
+msgstr ""
+
+msgid "No MPCORB.DAT file"
+msgstr ""
+
+msgid "No comparison star data!"
+msgstr ""
+
+msgid "No comparison stars selected."
+msgstr ""
+
+msgid "No solution found!  :("
+msgstr ""
+
+msgid "OSC image"
+msgstr ""
+
+msgid "Observation start"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Position "
+msgstr ""
+
+msgid "RAW one shot colour camera image (OSC)"
+msgstr ""
+
+msgid "RAW one shot colour camera image (OSC)   (disabled by ☑ Light filter)"
+msgstr ""
+
+msgid "Read exception error!!"
+msgstr ""
+
+msgid "Saturated or no comparison star magnitudes available."
+msgstr ""
+
+msgid "Search radius:"
+msgstr ""
+
+msgid "Solving......."
+msgstr ""
+
+msgid "Solving:"
+msgstr ""
+
+msgid "Stop pressed"
+msgstr ""
+
+msgid "XISF file too wide !!!!!"
+msgstr ""

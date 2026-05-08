@@ -23,7 +23,7 @@ var
 
 implementation
 
-uses unit_stack, astap_main,unit_stack_routines,unit_astrometric_solving,unit_star_align,unit_inspector_plot, unit_hjd;
+uses unit_stack, astap_main,unit_stack_routines,unit_astrometric_solving,unit_star_align,unit_inspector_plot, unit_hjd, unit_language;
 
 var
   latest_time : integer=0;
@@ -95,7 +95,7 @@ begin
       monitor_longitude1.visible:=true;
 
       ang_sep(head.ra0,head.dec0,ra_target,dec_target ,distance);{calculate distance in radians}
-      target_distance1.caption :='距离:'+floattostrF(distance*180/pi,ffFixed,0,3)+'°';
+      target_distance1.caption :=TranslateText('Distance:')+floattostrF(distance*180/pi,ffFixed,0,3)+'°';
 
       deltaRA:=fnmodulo((ra_target-head.ra0)*12/pi,24);
       if deltaRA>12 then begin direction:='W'; deltaRa:=24-deltaRA;end else begin direction:='E'; end;

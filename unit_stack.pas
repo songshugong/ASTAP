@@ -2629,7 +2629,7 @@ begin
     case pos1 of
        1: begin
             save_as_new_file1.Enabled:=True;
-//            save_as_new_file1.caption:='将当前视图另存为新文件';
+//            save_as_new_file1.caption:=TranslateText('Save current view as new file');
             save_result1.Enabled:=True;
             remove_deepsky_label1.Enabled:=True;
             undo_button_equalise_background1.Caption:='';
@@ -2680,11 +2680,11 @@ begin
   save_fits(img_loaded,mainform1.memo1.lines,head, filename2, True);
   if fileexists(filename2) then
   begin
-    save_as_new_file1.caption:='将当前视图另存为新文件 ✔';
+    save_as_new_file1.caption:=TranslateText('Save current view as new file')+' ✔';
     report_results(object_name, '', 0, -1{no icon},5 {stack icon});{report result in tab results}
   end
   else
-  save_as_new_file1.caption:='将当前视图另存为新文件';
+  save_as_new_file1.caption:=TranslateText('Save current view as new file');
 
   update_equalise_background_step(equalise_background_step + 1); {update menu}
 end;
@@ -7476,14 +7476,14 @@ begin
       if ((esc_pressed) or (pack_cfitsio(filen) = False)) then
       begin
         beep;
-        mainform1.Caption:='出错退出!!';
+        mainform1.Caption:=TranslateText('Exit with error!!');
         Screen.Cursor:=crDefault;
         exit;
       end;
     end;
     Inc(index); {go to next file}
   end;
-  stackmenu1.Caption:='完成，所有文件已压缩为 .fz。';
+  stackmenu1.Caption:=TranslateText('Finished, all files compressed with extension .fz.');
   Screen.Cursor:=crDefault;  { Always restore to normal }
 end;
 
@@ -8552,12 +8552,12 @@ begin
   save_fits(img_loaded,mainform1.memo1.lines,head, filename2, False);
   if fileexists(filename2) then
   begin
-    save_as_new_file1.caption:='将当前视图另存为新文件 ✔';
+    save_as_new_file1.caption:=TranslateText('Save current view as new file')+' ✔';
 
     report_results(object_name, '', 0, -1{no icon},5 {stack icon});{report result in tab results}
   end
   else
-  save_as_new_file1.caption:='将当前视图另存为新文件';
+  save_as_new_file1.caption:=TranslateText('Save current view as new file');
 
   {save result, step 6}
   undo_button_equalise_background1.Enabled:=False;
@@ -13965,24 +13965,24 @@ begin
   raw_box1.Enabled:=classify_filter_light1.Checked = False;
 
   if classify_filter_light1.Checked then
-    raw_box1.Caption:='RAW 单次彩色相机图像 (OSC)   (因 ☑ 光帧滤镜而禁用)'
+    raw_box1.Caption:=TranslateText('RAW one shot colour camera image (OSC)   (disabled by ☑ Light filter)')
   else
-    raw_box1.Caption:='RAW 单次彩色相机图像 (OSC)';
+    raw_box1.Caption:=TranslateText('RAW one shot colour camera image (OSC)');
 
 
   filter_groupbox1.Enabled:=((mosa = False) and (classify_filter_light1.Checked));
 
   if mosa then
   begin
-     filter_groupbox1.Caption:='LRGB 叠加   (因叠加方法而禁用)';
+     filter_groupbox1.Caption:=TranslateText('LRGB combine   (disabled by stacking method)');
      add_sip1.checked:=true;
      memo2_message('Activated SIP for accurate astrometric stitching. Deactive SIP for normal stacking ');
   end
   else
   if classify_filter_light1.Checked = False then
-    filter_groupbox1.Caption:='LRGB 叠加   (因 ☐ 光帧滤镜而禁用)'
+    filter_groupbox1.Caption:=TranslateText('LRGB combine   (disabled by ☐ Light filter)')
   else
-    filter_groupbox1.Caption:='LRGB 叠加';
+    filter_groupbox1.Caption:=TranslateText('LRGB combine');
 
   sd_factor1.Enabled:=sigm;
 
@@ -13998,7 +13998,7 @@ begin
   classify_object1.Enabled:=((cal_only = False) and (mosa = False));
 
   if classify_filter_light1.Checked then mode:='LRGB ' else mode:='';
-  stack_button1.Caption:='叠加 ' + mode + '(' + stack_method1.Text + ')';
+  stack_button1.Caption:=TranslateText('Stack') + ' ' + mode + '(' + stack_method1.Text + ')';
 
   if ((method >= 6 {Skip average or sigma clip LRGB combine}) and (method <=7) and (classify_filter_light1.Checked = False)) then
     memo2_message( '█ █ █ █ █ █ Warning, classify on Light Filter is not check marked !!! █ █ █ █ █ █ ');

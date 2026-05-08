@@ -782,7 +782,7 @@ begin
   if fileExists(form_asteroids1.mpcorb_path1.caption)=false then
   begin
     form_asteroids1.mpcorb_path1.Font.color:=clred;
-    form_asteroids1.mpcorb_filedate1.caption:='没有 MPCORB.DAT 文件';
+    form_asteroids1.mpcorb_filedate1.caption:=TranslateText('No MPCORB.DAT file');
     result:=false;
     exit;
   end
@@ -799,7 +799,7 @@ begin
   if fileExists(form_asteroids1.mpcorb_path2.caption)=false then
   begin
     form_asteroids1.mpcorb_path2.Font.color:=clred;
-    form_asteroids1.mpcorb_filedate2.caption:='没有 CometEls.txt 文件';
+    form_asteroids1.mpcorb_filedate2.caption:=TranslateText('No CometEls.txt file');
     result:=false;
     exit;
   end
@@ -956,14 +956,14 @@ begin
   if head.date_avg<>'' then
   begin
      date_label1.caption:='DATE_AVG';
-     label_start_mid1.caption:='观测中点';
+     label_start_mid1.caption:=TranslateText('Mid-observation');
      date_obs1.Text:=head.date_avg;
      midpoint:=true;
   end
   else
   begin
     date_label1.caption:='DATE_OBS';
-    label_start_mid1.caption:='观测开始时间';
+    label_start_mid1.caption:=TranslateText('Observation start');
     date_obs1.Text:=head.date_obs;
     midpoint:=false;
   end;

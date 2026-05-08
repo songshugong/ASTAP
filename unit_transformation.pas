@@ -734,7 +734,7 @@ begin
   if selected_rows=0 then
   begin
     memo2_message('Abort. No comparison star magnitudes found. Press first the play button and the select rows to process! Select also the correct AAVSO annotation');
-    form_transformation1.error_label1.caption:='没有比较星数据!';
+    form_transformation1.error_label1.caption:=TranslateText('No comparison star data!');
     beep;
     exit;
   end

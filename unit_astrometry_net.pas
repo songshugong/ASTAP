@@ -121,7 +121,7 @@ begin
 
   result:=false;
 
-  mainform1.caption:='正在解析:'+ExtractFileName(filename3);
+  mainform1.caption:=TranslateText('Solving:')+ExtractFileName(filename3);
 
   fpath:=ExtractFilePath(filename3);
   {$ifdef mswindows}
@@ -244,7 +244,7 @@ var
   I: integer;
   failed, solved :integer;
 begin
-  button2.caption:='停止';
+  button2.caption:=TranslateText('Stop');
   show_console:=show_console1.checked;
   keep_console_open:=keep_console_open1.checked;
   cygwin_path:=cygwin1.text;
@@ -294,7 +294,7 @@ end;
 procedure Tform_astrometry_net1.Button2Click(Sender: TObject);
 begin
   esc_pressed:=true;
-  button2.caption:='已按下停止';
+  button2.caption:=TranslateText('Stop pressed');
 end;
 
 

@@ -1334,7 +1334,7 @@ begin
       except;
         close_fits_file;
         beep;
-        mainform1.error_label1.caption:='读取异常错误!!';
+        mainform1.error_label1.caption:=TranslateText('Read exception error!!');
         mainform1.error_label1.visible:=true;
         exit;
       end;
@@ -2366,7 +2366,7 @@ begin
     end;
   end;
   if ((last_extension=false) or (extend_type>0)) then
-     mainform1.tabsheet1.caption:='头信息'+inttostr(get_ext);
+     mainform1.tabsheet1.caption:=TranslateText('Header ')+inttostr(get_ext);
 
   close_fits_file;
 end;
@@ -3896,7 +3896,7 @@ begin
     application.title:='ASTAP';
     mainform1.statusbar1.SimplePanel:=false;
     mainform1.caption:=ExtractFileName(filename2);
-    stackmenu1.caption:='叠加菜单';
+    stackmenu1.caption:=TranslateText('Stack menu');
   end
   else
   begin
@@ -4827,7 +4827,7 @@ end;
 
 procedure Tmainform1.Memo1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-   mainform1.caption:='位置'+ inttostr(tmemo(sender).CaretPos.y)+':'+inttostr(tmemo(sender).CaretPos.x);
+   mainform1.caption:=TranslateText('Position ')+ inttostr(tmemo(sender).CaretPos.y)+':'+inttostr(tmemo(sender).CaretPos.x);
    statusbar1.SimplePanel:=true;
    statusbar1.Simpletext:=mainform1.caption;
 end;
@@ -6468,7 +6468,7 @@ begin
   memo1.lines.beginupdate;
 
   {solve internal}
-  mainform1.caption:='正在解析.......';
+  mainform1.caption:=TranslateText('Solving.......');
   save1.Enabled:=solve_image(img_loaded,head,mainform1.memo1.lines,false {get hist, is already available},false {check filter});{match between loaded image and star database}
   if head.cd1_1<>0 then
   begin
@@ -9567,7 +9567,7 @@ begin
       end;
       if err=false then
       begin
-         mainform1.caption:='完成，所有文件已处理。';
+         mainform1.caption:=TranslateText('Completed, all files processed.');
          memo2_message('Completed, all files processed.');
       end
       else
@@ -10193,14 +10193,14 @@ begin
 
         if convert_to_fits(filename2)=false then
         begin
-          mainform1.caption:='转换出错'+filename2;
+          mainform1.caption:=TranslateText('Error converting ')+filename2;
           err:=true;
         end;
       end;
 
-      if err=false then mainform1.caption:='完成，所有文件已转换。'
+      if err=false then mainform1.caption:=TranslateText('Completed, all files converted.')
       else
-      mainform1.caption:='已结束，文件已转换，但有错误或被停止!';
+      mainform1.caption:=TranslateText('Finished, files converted but with errors or stopped!');
 
     finally
       Screen.Cursor:=crDefault;  { Always restore to normal }
@@ -10364,10 +10364,10 @@ begin
          filename1:=Strings[I];
          memo2_message(filename2+' file nr. '+inttostr(i+1)+'-'+inttostr(Count));
          Application.ProcessMessages;
-         if ((esc_pressed) or (pack_cfitsio(filename1)=false)) then begin beep; mainform1.caption:='出错退出!!'; Screen.Cursor:=crDefault; exit;end;
+         if ((esc_pressed) or (pack_cfitsio(filename1)=false)) then begin beep; mainform1.caption:=TranslateText('Exit with error!!'); Screen.Cursor:=crDefault; exit;end;
       end;
       finally
-      mainform1.caption:='完成，所有文件已压缩为 .fz。';
+      mainform1.caption:=TranslateText('Finished, all files compressed with extension .fz.');
       Screen.Cursor:=crDefault;  { Always restore to normal }
       progress_indicator(-100,'');{progresss done}
     end;
@@ -11502,7 +11502,7 @@ begin
         end
         else err:=true;
       end;
-      if err=false then mainform1.caption:='完成，所有文件已转换。'
+      if err=false then mainform1.caption:=TranslateText('Completed, all files converted.')
       else
       begin
         beep;
@@ -12879,7 +12879,7 @@ begin
     begin
       statusbar1.SimplePanel:=true;
       statusbar1.Simpletext:=hintStr;
-      stackmenu1.Caption:='叠加菜单'; // Or empty string, or default
+      stackmenu1.Caption:=TranslateText('Stack menu'); // Or empty string, or default
     end;
   end
   else
@@ -14624,34 +14624,34 @@ begin
   aForm.Left                 := Left;
   aForm.Width                := fwidth;
   aForm.Height               := fheight;
-  aForm.Caption              := '批量裁剪';
+  aForm.Caption              := TranslateText('Batch crop');
   aLabel                     := TLabel.Create(aForm);
   aLabel.Parent              := aForm;
   aLabel.Top                 := 5;
   aLabel.Left                := editleft;
-  aLabel.Caption             := '输入 FITS 裁剪坐标:';
+  aLabel.Caption             := TranslateText('Enter FITS crop coordinates:');
   aLabel.AutoSize            := True;
 
   LabelX                     := TLabel.Create(aForm);
   LabelX.Parent              := aForm;
   LabelX.Top                 := 30;
   LabelX.Left                := 5;
-  LabelX.Caption             := '中心 X';
+  LabelX.Caption             := TranslateText('Center-X');
   LabelY                     := TLabel.Create(aForm);
   LabelY.Parent              := aForm;
   LabelY.Top                 := 60;
   LabelY.Left                := 5;
-  LabelY.Caption             := '中心 Y';
+  LabelY.Caption             := TranslateText('Center-Y');
   LabelW                     := TLabel.Create(aForm);
   LabelW.Parent              := aForm;
   LabelW.Top                 := 90;
   LabelW.Left                := 5;
-  LabelW.Caption             := '宽度';
+  LabelW.Caption             := TranslateText('Width');
   LabelH                     := TLabel.Create(aForm);
   LabelH.Parent              := aForm;
   LabelH.Top                 := 120;
   LabelH.Left                := 5;
-  LabelH.Caption             := '高度';
+  LabelH.Caption             := TranslateText('Height');
 
   Label_info                 := TLabel.Create(aForm);
   Label_info.Parent          := aForm;
@@ -14660,7 +14660,7 @@ begin
   Label_info.constraints.maxwidth:= Fwidth-10;
   Label_info.wordwrap        := true;
 
-  Label_info.Caption         := '裁剪坐标可用鼠标设置。见查看器弹出菜单中的“设置区域”。';
+  Label_info.Caption         := TranslateText('Crop coordinates can be set by the mouse. See pop-up menu viewer, set area.');
 
 
   EditX                       := TEdit.Create(aForm);
@@ -15151,7 +15151,7 @@ begin
   //stackmenu1.area_set1.caption:='✓';
   stackmenu1.area_set1.caption:='['+inttostr(areax1)+','+inttostr(areay1)+'], ['+inttostr(areax2)+','+inttostr(areay2)+']';
 
-  stackmenu1.center_position1.caption:='中心:'+inttostr((startX+stopX) div 2)+', '+inttostr((startY+stopY) div 2);
+  stackmenu1.center_position1.caption:=TranslateText('Center: ')+inttostr((startX+stopX) div 2)+', '+inttostr((startY+stopY) div 2);
 end;
 
 procedure rotate_arbitrary(angle,flipped_view, flipped_image: double);
@@ -15310,7 +15310,7 @@ var
    value: string;
 begin
    value:=inttostr(round(hist_range*x/histogram1.Width));
-   mainform1.CAPTION:='直方图值:' +value;
+   mainform1.CAPTION:=TranslateText('Histogram value: ') +value;
    application.hint:=mainform1.caption;
    histogram1.hint:=value;
 end;
@@ -15840,7 +15840,7 @@ begin
         end
         else
         begin
-          error_label1.caption:='缺少图像解析结果，无法标注!';
+          error_label1.caption:=TranslateText('Can not annotate due to missing image solution!');
           error_label1.visible:=true;
         end;
 
@@ -17240,9 +17240,9 @@ begin
         end
         else err:=true;
       end;
-      if err=false then mainform1.caption:='完成，所有文件已转换。'
+      if err=false then mainform1.caption:=TranslateText('Completed, all files converted.')
       else
-      mainform1.caption:='已结束，文件已转换，但有错误或被停止!';
+      mainform1.caption:=TranslateText('Finished, files converted but with errors or stopped!');
 
       finally
       Screen.Cursor:=crDefault;  { Always restore to normal }
@@ -17317,9 +17317,9 @@ begin
         end
         else err:=true;
       end;
-      if err=false then mainform1.caption:='完成，所有文件已转换。'
+      if err=false then mainform1.caption:=TranslateText('Completed, all files converted.')
       else
-      mainform1.caption:='已结束，文件已转换，但有错误或被停止!';
+      mainform1.caption:=TranslateText('Finished, files converted but with errors or stopped!');
 
       finally
       Screen.Cursor:=crDefault;  { Always restore to normal }
@@ -17605,9 +17605,9 @@ begin
         end;
       end; //for loop
 
-      if err=false then mainform1.caption:='完成，所有文件已移动。'
+      if err=false then mainform1.caption:=TranslateText('Completed, all files moved.')
       else
-      mainform1.caption:='已结束，文件日期已设置，但有错误或被停止!';
+      mainform1.caption:=TranslateText('Finished, files date set but with errors or stopped!');
     except
     end;
 
@@ -17668,9 +17668,9 @@ begin
         end;
       end;
 
-      if err=false then mainform1.caption:='完成，所有文件日期已设置。'
+      if err=false then mainform1.caption:=TranslateText('Completed, all files dates set.')
       else
-      mainform1.caption:='已结束，文件日期已设置，但有错误或被停止!';
+      mainform1.caption:=TranslateText('Finished, files date set but with errors or stopped!');
     except
     end;
     Screen.Cursor:=crDefault;  { Always restore to normal }

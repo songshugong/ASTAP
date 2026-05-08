@@ -100,7 +100,7 @@ Below is a brief flowchart of the ASTAP astrometric solving process:
 interface
 
 uses  Classes, SysUtils, Controls, Forms, Math, StdCtrls,
-      unit_star_align, unit_star_database, astap_main, unit_stack, unit_annotation, unit_stars_wide_field, unit_calc_trans_cubic, unit_profiler;
+      unit_star_align, unit_star_database, astap_main, unit_stack, unit_annotation, unit_stars_wide_field, unit_calc_trans_cubic, unit_profiler, unit_language;
 
 function solve_image(img: Timage_array;var hd: Theader; memo: TStrings; get_hist{update hist}, check_patternfilter: boolean): boolean;{find match between image and star database}
 procedure bin_and_find_stars(img: Timage_array; var head: theader; binfactor: integer; cropping, hfd_min: double; max_stars: integer; get_hist{update hist}: boolean; out starlist3: Tstar_list; out mean_hfd: double;  out short_warning: string);{bin, measure background, find stars}
@@ -1061,8 +1061,8 @@ begin
                 {show on stackmenu what's happening}
 
                 stackmenu1.actual_search_distance1.Caption := distancestr;
-                stackmenu1.Caption := '搜索距离:' + distancestr;
-                mainform1.Caption := '搜索距离:' + distancestr;
+                stackmenu1.Caption := TranslateText('Search radius:') + distancestr;
+                mainform1.Caption := TranslateText('Search radius:') + distancestr;
 
                 if commandline_execution then {command line execution}
                 begin
@@ -1356,7 +1356,7 @@ begin
   else
   begin
     memo2_message('No solution found!  :(');
-    mainform1.Caption := '未找到解析结果!  :(';
+    mainform1.Caption := TranslateText('No solution found!  :(');
     update_text(memo, 'PLTSOLVD=', '                   F / No plate solution found.   ');
     remove_key(memo, 'COMMENT 7', False{all});
   end;
