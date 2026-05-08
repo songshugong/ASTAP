@@ -30,6 +30,7 @@ uses
   LCLIntf,{for for getkeystate, selectobject, openURL}
   clipbrd, PairSplitter, Types, strutils,
   fileutil,
+  unit_language,
   unit_star_database,
   astap_main;
 
@@ -2628,7 +2629,7 @@ begin
     case pos1 of
        1: begin
             save_as_new_file1.Enabled:=True;
-//            save_as_new_file1.caption:='Save current view as new file';
+//            save_as_new_file1.caption:='将当前视图另存为新文件';
             save_result1.Enabled:=True;
             remove_deepsky_label1.Enabled:=True;
             undo_button_equalise_background1.Caption:='';
@@ -2679,11 +2680,11 @@ begin
   save_fits(img_loaded,mainform1.memo1.lines,head, filename2, True);
   if fileexists(filename2) then
   begin
-    save_as_new_file1.caption:='Save current view as new file ✔';
+    save_as_new_file1.caption:='将当前视图另存为新文件 ✔';
     report_results(object_name, '', 0, -1{no icon},5 {stack icon});{report result in tab results}
   end
   else
-  save_as_new_file1.caption:='Save current view as new file';
+  save_as_new_file1.caption:='将当前视图另存为新文件';
 
   update_equalise_background_step(equalise_background_step + 1); {update menu}
 end;
@@ -4049,11 +4050,19 @@ end;
 
 procedure Tstackmenu1.FormShow(Sender: TObject);
 begin
+  if allow_stackmenu_show = false then
+  begin
+    Hide;
+    exit;
+  end;
+  allow_stackmenu_show:=false;
+
  // set_icon_stackbutton;//update glyph stack button
   stackmenu1.stack_method1Change(nil);
   stackmenu1.quad_tolerance1Change(nil);//make abnormal quad tolerances red
   stackmenu1.pagecontrol1Change(Sender);//update stackbutton1.enabled
   delta_dark_temperature_visibility;//update visibility
+  ApplyLanguageToForm(stackmenu1);
 end;
 
 
@@ -7467,14 +7476,14 @@ begin
       if ((esc_pressed) or (pack_cfitsio(filen) = False)) then
       begin
         beep;
-        mainform1.Caption:='Exit with error!!';
+        mainform1.Caption:='出错退出!!';
         Screen.Cursor:=crDefault;
         exit;
       end;
     end;
     Inc(index); {go to next file}
   end;
-  stackmenu1.Caption:='Finished, all files compressed with extension .fz.';
+  stackmenu1.Caption:='完成，所有文件已压缩为 .fz。';
   Screen.Cursor:=crDefault;  { Always restore to normal }
 end;
 
@@ -8543,12 +8552,12 @@ begin
   save_fits(img_loaded,mainform1.memo1.lines,head, filename2, False);
   if fileexists(filename2) then
   begin
-    save_as_new_file1.caption:='Save current view as new file ✔';
+    save_as_new_file1.caption:='将当前视图另存为新文件 ✔';
 
     report_results(object_name, '', 0, -1{no icon},5 {stack icon});{report result in tab results}
   end
   else
-  save_as_new_file1.caption:='Save current view as new file';
+  save_as_new_file1.caption:='将当前视图另存为新文件';
 
   {save result, step 6}
   undo_button_equalise_background1.Enabled:=False;
@@ -12895,7 +12904,7 @@ begin
   end;
 
   if stackmenu1.use_ephemeris_alignment1.Checked then result:=result + RemoveSpecialChars(stackmenu1.ephemeris_centering1.text);
-  if pos('Aver', stackmenu1.stack_method1.Text) > 0 then Result:=Result + '_average';
+  if stackmenu1.stack_method1.ItemIndex in [0, 6] then Result:=Result + '_average';
   Result:=Result + '_stacked.fits';
 end;
 
@@ -12934,18 +12943,18 @@ begin
   esc_pressed:=False;
 
   memo2_message('Stack method ' + stack_method1.Text);
-  stitching_mode:=pos('stitch', stackmenu1.stack_method1.Text) > 0;
-  sigma_clip:=pos('Sigma', stackmenu1.stack_method1.Text) > 0;
-  comet:=pos('Comet', stackmenu1.stack_method1.Text) > 0;
-  skip_combine:=pos('skip', stackmenu1.stack_method1.Text) > 0;
-  cal_and_align:=pos('alignment', stackmenu1.stack_method1.Text) > 0;  {calibration and alignment only}
+  stitching_mode:=stackmenu1.stack_method1.ItemIndex = 2;
+  sigma_clip:=stackmenu1.stack_method1.ItemIndex in [1, 7];
+  comet:=stackmenu1.stack_method1.ItemIndex = 8;
+  skip_combine:=stackmenu1.stack_method1.ItemIndex in [6, 7];
+  cal_and_align:=stackmenu1.stack_method1.ItemIndex = 3;  {calibration and alignment only}
   sender_photometry:=(Sender = photom_stack1);//stack instruction from photometry tab?
   sender_stack_groups:=(Sender =stack_groups1);//stack instruction from photometry tab?
 
   classify_filter:=((classify_filter_light1.Checked) and (sender_photometry=False) and (stitching_mode=false));  //disable classify filter if sender is photom_stack1
   classify_object:=((classify_object1.Checked) and (sender_photometry = False) and (stitching_mode=false));  //disable classify object if sender is photom_stack1
 
-  if ((stackmenu1.use_manual_alignment1.Checked) and (sigma_clip) and (pos('Comet', stackmenu1.manual_centering1.Text) <> 0)) then memo2_message('█ █ █ █ █ █ Warning, use for comet stacking the stack method "Average"!. █ █ █ █ █ █ ');
+  if ((stackmenu1.use_manual_alignment1.Checked) and (sigma_clip) and (stackmenu1.manual_centering1.ItemIndex in [1..3])) then memo2_message('█ █ █ █ █ █ Warning, use for comet stacking the stack method "Average"!. █ █ █ █ █ █ ');
 
   if stackmenu1.use_ephemeris_alignment1.Checked then
   begin
@@ -12971,8 +12980,8 @@ begin
     backup_img;
   end;{backup image array and header for case esc pressed.}
 
-  calibration_mode:=pos('Calibration only', stackmenu1.stack_method1.Text) > 0;  //"Calibration only"
-  calibration_mode2:=pos('de-mosaic', stackmenu1.stack_method1.Text) > 0;  //"Calibration only. No de-mosaic"
+  calibration_mode:=stackmenu1.stack_method1.ItemIndex in [4, 5];  //"Calibration only"
+  calibration_mode2:=stackmenu1.stack_method1.ItemIndex = 5;  //"Calibration only. No de-mosaic"
 
 
   if ListView1.items.Count <> 0 then
@@ -13956,24 +13965,24 @@ begin
   raw_box1.Enabled:=classify_filter_light1.Checked = False;
 
   if classify_filter_light1.Checked then
-    raw_box1.Caption:='RAW one shot colour images   (Disabled by ☑ Light filter)'
+    raw_box1.Caption:='RAW 单次彩色相机图像 (OSC)   (因 ☑ 光帧滤镜而禁用)'
   else
-    raw_box1.Caption:='RAW one shot colour images';
+    raw_box1.Caption:='RAW 单次彩色相机图像 (OSC)';
 
 
   filter_groupbox1.Enabled:=((mosa = False) and (classify_filter_light1.Checked));
 
   if mosa then
   begin
-     filter_groupbox1.Caption:='LRGB stacking   (Disabled by stack method)';
+     filter_groupbox1.Caption:='LRGB 叠加   (因叠加方法而禁用)';
      add_sip1.checked:=true;
      memo2_message('Activated SIP for accurate astrometric stitching. Deactive SIP for normal stacking ');
   end
   else
   if classify_filter_light1.Checked = False then
-    filter_groupbox1.Caption:='LRGB stacking   (Disabled by ☐ Light filter)'
+    filter_groupbox1.Caption:='LRGB 叠加   (因 ☐ 光帧滤镜而禁用)'
   else
-    filter_groupbox1.Caption:='LRGB stacking';
+    filter_groupbox1.Caption:='LRGB 叠加';
 
   sd_factor1.Enabled:=sigm;
 
@@ -13989,7 +13998,7 @@ begin
   classify_object1.Enabled:=((cal_only = False) and (mosa = False));
 
   if classify_filter_light1.Checked then mode:='LRGB ' else mode:='';
-  stack_button1.Caption:='STACK ' + mode + '(' + stack_method1.Text + ')';
+  stack_button1.Caption:='叠加 ' + mode + '(' + stack_method1.Text + ')';
 
   if ((method >= 6 {Skip average or sigma clip LRGB combine}) and (method <=7) and (classify_filter_light1.Checked = False)) then
     memo2_message( '█ █ █ █ █ █ Warning, classify on Light Filter is not check marked !!! █ █ █ █ █ █ ');

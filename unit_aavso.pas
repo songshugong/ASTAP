@@ -56,7 +56,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, math,
   clipbrd, ExtCtrls, Menus, Buttons, CheckLst, strutils,comctrls, PairSplitter,
   inifiles,
-  astap_main;
+  astap_main, unit_language;
 
 type
 
@@ -678,7 +678,7 @@ begin
 
   if length(column_comps)=0 then
   begin
-    form_aavso1.sigma_mzero1.caption:='No comparison star selected.';
+    form_aavso1.sigma_mzero1.caption:='未选择比较星。';
     exit;
   end
   else
@@ -736,7 +736,7 @@ begin
   end
   else
   begin
-    form_aavso1.sigma_mzero1.caption:='Saturated/No comparison magnitude(s) available.';
+    form_aavso1.sigma_mzero1.caption:='饱和或无可用比较星星等。';
   end;
 end;
 
@@ -2247,6 +2247,7 @@ begin
 
   test_mode:=false;
   plot_graph;
+  ApplyLanguageToForm(form_aavso1);
 end;
 
 

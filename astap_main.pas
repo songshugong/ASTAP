@@ -75,6 +75,7 @@ uses
   clipbrd, {for copy to clipboard}
   Buttons, PopupNotifier, PairSplitter, simpleipc,
   CustApp, Types, fileutil,
+  unit_language,
   IniFiles;{for saving and loading settings}
 
 const
@@ -568,6 +569,13 @@ type
     { Private declarations }
     var
       FStartupDone: Boolean;
+      FLanguageMenu: TMenuItem;
+      FLanguageEnglish: TMenuItem;
+      FLanguageChinese: TMenuItem;
+    procedure BuildLanguageMenu;
+    procedure LanguageMenuClick(Sender: TObject);
+    procedure UpdateLanguageMenuChecks;
+    procedure ApplyCurrentLanguage;
   public
     { Public declarations }
     FShapes: array of TShapes;//for photometry
@@ -795,6 +803,7 @@ var {################# initialised variables #########################}
 
   commandline_execution : boolean=false;{program executed in command line}
   commandline_log       : boolean=false;{file log request in command line}
+  allow_stackmenu_show  : boolean=false;{Chinese build: only a direct user action may show the stack menu.}
   errorlevel        : integer=0;{report errors when shutdown}
 
   mouse_positionRADEC1 : string='';{For manual reference solving}
@@ -1325,7 +1334,7 @@ begin
       except;
         close_fits_file;
         beep;
-        mainform1.error_label1.caption:='Read exception error!!';
+        mainform1.error_label1.caption:='读取异常错误!!';
         mainform1.error_label1.visible:=true;
         exit;
       end;
@@ -2357,7 +2366,7 @@ begin
     end;
   end;
   if ((last_extension=false) or (extend_type>0)) then
-     mainform1.tabsheet1.caption:='Header '+inttostr(get_ext);
+     mainform1.tabsheet1.caption:='头信息'+inttostr(get_ext);
 
   close_fits_file;
 end;
@@ -3224,7 +3233,7 @@ end;
 
 procedure Tmainform1.LoadFITSPNGBMPJPEG1Click(Sender: TObject);
 begin
-  OpenDialog1.Title := 'Open in viewer';
+  OpenDialog1.Title := TranslateText('Open in viewer');
   opendialog1.Filter :=  'All formats |*.fit;*.fits;*.FIT;*.FITS;*.fts;*.FTS;*.png;*.PNG;*.jpg;*.JPG;*.bmp;*.BMP;*.tif;*.tiff;*.TIF;*.new;*.ppm;*.pgm;*.pbm;*.pfm;*.xisf;*.fz;'+
                                       '*.RAW;*.raw;*.CRW;*.crw;*.CR2;*.cr2;*.CR3;*.cr3;*.KDC;*.kdc;*.DCR;*.dcr;*.MRW;*.mrw;*.ARW;*.arw;*.NEF;*.nef;*.NRW;.nrw;*.DNG;*.dng;*.ORF;*.orf; *.PTX;*.ptx;*.PEF;*.pef;*.RW2;*.rw2;*.SRW;*.srw;*.RAF;*.raf;'+
                                       '*.axy;*.xyls'+
@@ -3887,7 +3896,7 @@ begin
     application.title:='ASTAP';
     mainform1.statusbar1.SimplePanel:=false;
     mainform1.caption:=ExtractFileName(filename2);
-    stackmenu1.caption:='stack menu';
+    stackmenu1.caption:='叠加菜单';
   end
   else
   begin
@@ -4463,18 +4472,18 @@ begin
 
   if ((headX.bitpix=24) and (colours5<3)) then
   begin
-    application.messagebox(pchar('Abort, can not save grayscale image as colour image!!'),pchar('Error'),MB_OK);
+    application.messagebox(pchar(TranslateText('Abort, can not save grayscale image as colour image!!')),pchar(TranslateText('Error')),MB_OK);
     exit;
   end;
 
   if  override2=false then
   begin
     if ((fileexists(filen2)) and (pos('ImageToSolve.fit',filen2)=0)) then
-      if MessageDlg('ASTAP: Existing file ' +filen2+ ' Overwrite?', mtConfirmation, [mbYes, mbNo], 0) = mrNo then  Exit;
+      if MessageDlg(TranslateText('ASTAP: Existing file ') +filen2+ TranslateText(' Overwrite?'), mtConfirmation, [mbYes, mbNo], 0) = mrNo then  Exit;
 
     if extend_type=1 then {image extensions in the file. 1=image extension, 2=ascii table extension, 3=bintable extension}
     begin
-      if MessageDlg('Only the current image of the multi-extension FITS will be saved. Displayed table will not be preserved. Continue?', mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+      if MessageDlg(TranslateText('Only the current image of the multi-extension FITS will be saved. Displayed table will not be preserved. Continue?'), mtConfirmation, [mbYes, mbNo], 0) = mrNo then
         exit;
       memo[0]:= head1[0]; {replace XTENSION= with SIMPLE = }
     end;
@@ -4756,12 +4765,12 @@ var
 begin
   if sender=bin2x2 then
   begin
-    OpenDialog1.Title := 'Select multiple  files to reduce in size (bin2x2)';
+    OpenDialog1.Title := TranslateText('Select multiple files to reduce in size (bin2x2)');
     binfactor:=2;
   end
   else
   begin
-    OpenDialog1.Title := 'Select multiple  files to reduce in size (bin3x3)';
+    OpenDialog1.Title := TranslateText('Select multiple files to reduce in size (bin3x3)');
     binfactor:=3;
   end;
   OpenDialog1.Options:= [ofAllowMultiSelect, ofFileMustExist,ofHideReadOnly];
@@ -4818,7 +4827,7 @@ end;
 
 procedure Tmainform1.Memo1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-   mainform1.caption:='Position '+ inttostr(tmemo(sender).CaretPos.y)+':'+inttostr(tmemo(sender).CaretPos.x);
+   mainform1.caption:='位置'+ inttostr(tmemo(sender).CaretPos.y)+':'+inttostr(tmemo(sender).CaretPos.x);
    statusbar1.SimplePanel:=true;
    statusbar1.Simpletext:=mainform1.caption;
 end;
@@ -4872,7 +4881,7 @@ begin
     Screen.Cursor:=crDefault;
   end{fits file}
   else
-  application.messagebox(pchar('No area selected! Hold the right mouse button down while selecting an area.'),'',MB_OK);
+  application.messagebox(pchar(TranslateText('No area selected! Hold the right mouse button down while selecting an area.')),'',MB_OK);
 end;
 
 
@@ -4979,7 +4988,7 @@ end;
 
 procedure Tmainform1.Returntodefaultsettings1Click(Sender: TObject);
 begin
-  if (IDYES= Application.MessageBox('This will set all ASTAP settings to default and close the program. Are you sure?', 'Default settings?', MB_ICONQUESTION + MB_YESNO) ) then
+  if (IDYES= Application.MessageBox(pchar(TranslateText('This will set all ASTAP settings to default and close the program. Are you sure?')), pchar(TranslateText('Default settings?')), MB_ICONQUESTION + MB_YESNO) ) then
   begin
     if deletefile(user_path+'astap.cfg') then
     begin
@@ -6459,7 +6468,7 @@ begin
   memo1.lines.beginupdate;
 
   {solve internal}
-  mainform1.caption:='Solving.......';
+  mainform1.caption:='正在解析.......';
   save1.Enabled:=solve_image(img_loaded,head,mainform1.memo1.lines,false {get hist, is already available},false {check filter});{match between loaded image and star database}
   if head.cd1_1<>0 then
   begin
@@ -8455,6 +8464,7 @@ begin
       font_name:=Sett.ReadString('main', 'font_name2',font_name);
       dum:=Sett.ReadString('main','font_style','');if dum<>'' then font_style:= strtostyle(dum);
       font_charset:=sett.ReadInteger('main','font_charset',font_charset);
+      SetAppLanguageCode(Sett.ReadString('main','language',LanguageCode(GetAppLanguage)));
       pedestal_m:=sett.ReadInteger('main','pedestal',pedestal_m);
 
 
@@ -8868,7 +8878,7 @@ begin
         inc(c);
       until (dum='');
 
-      stackmenu1.visible:=((paramcount=0) and (Sett.ReadBool('stack','stackmenu_visible',false) ) );{do this last, so stackmenu.onshow updates the setting correctly}
+      stackmenu1.visible:=false;{Chinese build: do not restore the stack menu on startup. Open it manually with Ctrl+A or the stack button.}
       listviews_end_update; {start updating listviews. Do this after setting stack menus visible. This is faster.}
     end; //with mainform1
 
@@ -8900,6 +8910,7 @@ begin
       sett.writestring('main','font_name2',font_name);
       sett.writestring('main','font_style',StyleToStr(font_style));
       sett.writeInteger('main','font_charset',font_charset);
+      sett.writestring('main','language',LanguageCode(GetAppLanguage));
       sett.writeInteger('main','pedestal',pedestal_m);
 
 
@@ -8984,7 +8995,7 @@ begin
         sett.writestring('main','recent'+inttostr(c),recent_files[c]);
 
       {########## stackmenu settings #############}
-      sett.writebool('stack','stackmenu_visible',stackmenu1.visible);
+      sett.writebool('stack','stackmenu_visible',false);{Chinese build: keep startup quiet even if the stack menu was open when quitting.}
 
       sett.writeInteger('stack','stackmenu_left',stackmenu1.left);
       sett.writeInteger('stack','stackmenu_top',stackmenu1.top);
@@ -9556,7 +9567,7 @@ begin
       end;
       if err=false then
       begin
-         mainform1.caption:='Completed, all files processed.';
+         mainform1.caption:='完成，所有文件已处理。';
          memo2_message('Completed, all files processed.');
       end
       else
@@ -10182,14 +10193,14 @@ begin
 
         if convert_to_fits(filename2)=false then
         begin
-          mainform1.caption:='Error converting '+filename2;
+          mainform1.caption:='转换出错'+filename2;
           err:=true;
         end;
       end;
 
-      if err=false then mainform1.caption:='Completed, all files converted.'
+      if err=false then mainform1.caption:='完成，所有文件已转换。'
       else
-      mainform1.caption:='Finished, files converted but with errors or stopped!';
+      mainform1.caption:='已结束，文件已转换，但有错误或被停止!';
 
     finally
       Screen.Cursor:=crDefault;  { Always restore to normal }
@@ -10353,10 +10364,10 @@ begin
          filename1:=Strings[I];
          memo2_message(filename2+' file nr. '+inttostr(i+1)+'-'+inttostr(Count));
          Application.ProcessMessages;
-         if ((esc_pressed) or (pack_cfitsio(filename1)=false)) then begin beep; mainform1.caption:='Exit with error!!'; Screen.Cursor:=crDefault; exit;end;
+         if ((esc_pressed) or (pack_cfitsio(filename1)=false)) then begin beep; mainform1.caption:='出错退出!!'; Screen.Cursor:=crDefault; exit;end;
       end;
       finally
-      mainform1.caption:='Finished, all files compressed with extension .fz.';
+      mainform1.caption:='完成，所有文件已压缩为 .fz。';
       Screen.Cursor:=crDefault;  { Always restore to normal }
       progress_indicator(-100,'');{progresss done}
     end;
@@ -11147,6 +11158,7 @@ begin
       listview8.clear;
     end;
     load_settings(opendialog1.filename);
+    ApplyCurrentLanguage;
   end;
 end;
 
@@ -11490,7 +11502,7 @@ begin
         end
         else err:=true;
       end;
-      if err=false then mainform1.caption:='Completed, all files converted.'
+      if err=false then mainform1.caption:='完成，所有文件已转换。'
       else
       begin
         beep;
@@ -12665,11 +12677,74 @@ begin
   end;
 end;
 
+procedure Tmainform1.BuildLanguageMenu;
+var
+  InsertIndex: Integer;
+begin
+  if FLanguageMenu <> nil then Exit;
+
+  FLanguageMenu := TMenuItem.Create(MainMenu1);
+  FLanguageMenu.Name := 'language_menu1';
+  FLanguageMenu.Caption := 'Language';
+
+  InsertIndex := MainMenu1.Items.IndexOf(Help);
+  if InsertIndex < 0 then
+    MainMenu1.Items.Add(FLanguageMenu)
+  else
+    MainMenu1.Items.Insert(InsertIndex, FLanguageMenu);
+
+  FLanguageEnglish := TMenuItem.Create(MainMenu1);
+  FLanguageEnglish.Name := 'language_english1';
+  FLanguageEnglish.Caption := 'English';
+  FLanguageEnglish.RadioItem := True;
+  FLanguageEnglish.GroupIndex := 221;
+  FLanguageEnglish.Tag := Ord(alEnglish);
+  FLanguageEnglish.OnClick := LanguageMenuClick;
+  FLanguageMenu.Add(FLanguageEnglish);
+
+  FLanguageChinese := TMenuItem.Create(MainMenu1);
+  FLanguageChinese.Name := 'language_chinese1';
+  FLanguageChinese.Caption := 'Chinese (Simplified)';
+  FLanguageChinese.RadioItem := True;
+  FLanguageChinese.GroupIndex := 221;
+  FLanguageChinese.Tag := Ord(alChineseSimplified);
+  FLanguageChinese.OnClick := LanguageMenuClick;
+  FLanguageMenu.Add(FLanguageChinese);
+
+  UpdateLanguageMenuChecks;
+end;
+
+procedure Tmainform1.UpdateLanguageMenuChecks;
+begin
+  if FLanguageEnglish <> nil then
+    FLanguageEnglish.Checked := GetAppLanguage = alEnglish;
+  if FLanguageChinese <> nil then
+    FLanguageChinese.Checked := GetAppLanguage = alChineseSimplified;
+end;
+
+procedure Tmainform1.ApplyCurrentLanguage;
+begin
+  ApplyLanguageToOpenForms;
+  UpdateLanguageMenuChecks;
+end;
+
+procedure Tmainform1.LanguageMenuClick(Sender: TObject);
+begin
+  if Sender is TMenuItem then
+  begin
+    SetAppLanguage(TAppLanguage(TMenuItem(Sender).Tag));
+    ApplyCurrentLanguage;
+    if user_path <> '' then
+      save_settings2;
+  end;
+end;
+
 
 
 procedure Tmainform1.FormCreate(Sender: TObject);
 var
    param1: string;
+   open_stack_item: TMenuItem;
 //var
 //  IdleMethod: TIdleEvent;
 begin
@@ -12723,9 +12798,24 @@ begin
 
   head.naxis:=0; {not fits files available}
 
- {$IfDef Darwin}// for MacOS
+  {$IfDef Darwin}// for MacOS
   if commandline_execution=false then update_mainmenu_mac;
- {$endif}
+  {$endif}
+
+  if Stackimages1.Count=0 then
+  begin
+    open_stack_item:=TMenuItem.Create(Stackimages1);
+    open_stack_item.Name:='open_stack_menu1';
+    open_stack_item.Caption:='Open stack menu';
+    open_stack_item.Hint:=Stackimages1.Hint;
+    open_stack_item.ShortCut:=Stackimages1.ShortCut;
+    open_stack_item.OnClick:=Stackimages1Click;
+    Stackimages1.ShortCut:=0;
+    Stackimages1.OnClick:=nil;
+    Stackimages1.Add(open_stack_item);
+  end;
+
+  BuildLanguageMenu;
 
   FStartupDone:=False;
   Application.OnIdle := self.ApplicationIdle;//for photometry_auto
@@ -12789,7 +12879,7 @@ begin
     begin
       statusbar1.SimplePanel:=true;
       statusbar1.Simpletext:=hintStr;
-      stackmenu1.Caption:='Stack menu'; // Or empty string, or default
+      stackmenu1.Caption:='叠加菜单'; // Or empty string, or default
     end;
   end
   else
@@ -13669,6 +13759,7 @@ begin
                    Force directories will make also .config if missing. Using createdir doesn't work if both a directory and subdirectory are to be made in Linux and Mac}
   end;
 
+  ApplyCurrentLanguage;
 
   fov_specified:=false;{assume no FOV specification in commandline}
   screen.Cursor:=0;
@@ -14533,34 +14624,34 @@ begin
   aForm.Left                 := Left;
   aForm.Width                := fwidth;
   aForm.Height               := fheight;
-  aForm.Caption              := 'Batch crop';
+  aForm.Caption              := '批量裁剪';
   aLabel                     := TLabel.Create(aForm);
   aLabel.Parent              := aForm;
   aLabel.Top                 := 5;
   aLabel.Left                := editleft;
-  aLabel.Caption             := 'Enter FITS crop coordinates:';
+  aLabel.Caption             := '输入 FITS 裁剪坐标:';
   aLabel.AutoSize            := True;
 
   LabelX                     := TLabel.Create(aForm);
   LabelX.Parent              := aForm;
   LabelX.Top                 := 30;
   LabelX.Left                := 5;
-  LabelX.Caption             := 'Center-X';
+  LabelX.Caption             := '中心 X';
   LabelY                     := TLabel.Create(aForm);
   LabelY.Parent              := aForm;
   LabelY.Top                 := 60;
   LabelY.Left                := 5;
-  LabelY.Caption             := 'Center-Y';
+  LabelY.Caption             := '中心 Y';
   LabelW                     := TLabel.Create(aForm);
   LabelW.Parent              := aForm;
   LabelW.Top                 := 90;
   LabelW.Left                := 5;
-  LabelW.Caption             := 'Width';
+  LabelW.Caption             := '宽度';
   LabelH                     := TLabel.Create(aForm);
   LabelH.Parent              := aForm;
   LabelH.Top                 := 120;
   LabelH.Left                := 5;
-  LabelH.Caption             := 'Height';
+  LabelH.Caption             := '高度';
 
   Label_info                 := TLabel.Create(aForm);
   Label_info.Parent          := aForm;
@@ -14569,7 +14660,7 @@ begin
   Label_info.constraints.maxwidth:= Fwidth-10;
   Label_info.wordwrap        := true;
 
-  Label_info.Caption         := 'Crop coordinates can be set by the mouse. See pop-up menu viewer, set area.';
+  Label_info.Caption         := '裁剪坐标可用鼠标设置。见查看器弹出菜单中的“设置区域”。';
 
 
   EditX                       := TEdit.Create(aForm);
@@ -15060,7 +15151,7 @@ begin
   //stackmenu1.area_set1.caption:='✓';
   stackmenu1.area_set1.caption:='['+inttostr(areax1)+','+inttostr(areay1)+'], ['+inttostr(areax2)+','+inttostr(areay2)+']';
 
-  stackmenu1.center_position1.caption:='Center: '+inttostr((startX+stopX) div 2)+', '+inttostr((startY+stopY) div 2);
+  stackmenu1.center_position1.caption:='中心:'+inttostr((startX+stopX) div 2)+', '+inttostr((startY+stopY) div 2);
 end;
 
 procedure rotate_arbitrary(angle,flipped_view, flipped_image: double);
@@ -15219,7 +15310,7 @@ var
    value: string;
 begin
    value:=inttostr(round(hist_range*x/histogram1.Width));
-   mainform1.CAPTION:='Histogram value: ' +value;
+   mainform1.CAPTION:='直方图值:' +value;
    application.hint:=mainform1.caption;
    histogram1.hint:=value;
 end;
@@ -15749,7 +15840,7 @@ begin
         end
         else
         begin
-          error_label1.caption:='Can not annotate due to missing image solution!';
+          error_label1.caption:='缺少图像解析结果，无法标注!';
           error_label1.visible:=true;
         end;
 
@@ -17149,9 +17240,9 @@ begin
         end
         else err:=true;
       end;
-      if err=false then mainform1.caption:='Completed, all files converted.'
+      if err=false then mainform1.caption:='完成，所有文件已转换。'
       else
-      mainform1.caption:='Finished, files converted but with errors or stopped!';
+      mainform1.caption:='已结束，文件已转换，但有错误或被停止!';
 
       finally
       Screen.Cursor:=crDefault;  { Always restore to normal }
@@ -17226,9 +17317,9 @@ begin
         end
         else err:=true;
       end;
-      if err=false then mainform1.caption:='Completed, all files converted.'
+      if err=false then mainform1.caption:='完成，所有文件已转换。'
       else
-      mainform1.caption:='Finished, files converted but with errors or stopped!';
+      mainform1.caption:='已结束，文件已转换，但有错误或被停止!';
 
       finally
       Screen.Cursor:=crDefault;  { Always restore to normal }
@@ -17514,9 +17605,9 @@ begin
         end;
       end; //for loop
 
-      if err=false then mainform1.caption:='Completed, all files moved.'
+      if err=false then mainform1.caption:='完成，所有文件已移动。'
       else
-      mainform1.caption:='Finished, files date set but with errors or stopped!';
+      mainform1.caption:='已结束，文件日期已设置，但有错误或被停止!';
     except
     end;
 
@@ -17577,9 +17668,9 @@ begin
         end;
       end;
 
-      if err=false then mainform1.caption:='Completed, all files dates set.'
+      if err=false then mainform1.caption:='完成，所有文件日期已设置。'
       else
-      mainform1.caption:='Finished, files date set but with errors or stopped!';
+      mainform1.caption:='已结束，文件日期已设置，但有错误或被停止!';
     except
     end;
     Screen.Cursor:=crDefault;  { Always restore to normal }
@@ -17734,9 +17825,12 @@ end;
 
 procedure Tmainform1.Stackimages1Click(Sender: TObject);
 begin
+  if ((Sender = nil) or (Sender = Stackimages1)) then exit;{Chinese build: block delayed/background top-level menu popups.}
+
   listviews_begin_update; {speed up making stackmenu visible having a many items}
 
   stackmenu1.windowstate:=wsNormal;
+  allow_stackmenu_show:=true;
   stackmenu1.visible:=true;
   stackmenu1.setfocus;
   listviews_end_update;{speed up making stackmenu visible having a many items}

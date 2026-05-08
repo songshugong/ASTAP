@@ -1,0 +1,101 @@
+name: Build Windows ASTAP-zh
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+      - astap-zh-windows
+    paths:
+      - ".github/workflows/windows-astap-zh.yml"
+      - "**/*.pas"
+      - "**/*.lfm"
+      - "**/*.lpi"
+      - "languages/**"
+  release:
+    types:
+      - published
+
+jobs:
+  windows-x64:
+    name: Windows x64
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install Lazarus
+        shell: pwsh
+        run: |
+          choco install lazarus -y --no-progress
+
+      - name: Build ASTAP
+        shell: pwsh
+        run: |
+          $candidates = @(
+            "${env:ProgramFiles}\Lazarus\lazbuild.exe",
+            "${env:ProgramFiles(x86)}\Lazarus\lazbuild.exe",
+            "C:\lazarus\lazbuild.exe",
+            "C:\ProgramData\chocolatey\bin\lazbuild.exe"
+          )
+
+          $lazbuild = $candidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (-not $lazbuild) {
+            $command = Get-Command lazbuild.exe -ErrorAction SilentlyContinue
+            if ($command) {
+              $lazbuild = $command.Source
+            }
+          }
+          if (-not $lazbuild) {
+            $found = Get-ChildItem -Path C:\ -Filter lazbuild.exe -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($found) {
+              $lazbuild = $found.FullName
+            }
+          }
+          if (-not $lazbuild) {
+            throw "lazbuild.exe was not found after installing Lazarus."
+          }
+
+          & $lazbuild --version
+          & $lazbuild --build-mode=Release -B astap_w64.lpi
+
+          if (-not (Test-Path "astap.exe")) {
+            throw "Build finished but astap.exe was not created."
+          }
+
+      - name: Package Windows zip
+        shell: pwsh
+        run: |
+          $packageRoot = "dist\ASTAP-zh-windows-x64"
+          New-Item -ItemType Directory -Force "$packageRoot\languages\zh_CN" | Out-Null
+
+          Copy-Item "astap.exe" "$packageRoot\astap.exe"
+          Copy-Item "languages\astap.pot" "$packageRoot\languages\astap.pot"
+          Copy-Item "languages\zh_CN\astap.po" "$packageRoot\languages\zh_CN\astap.po"
+
+          $optionalFiles = @(
+            "deep_sky.csv",
+            "variable_stars.csv",
+            "unprocessed_raw.exe"
+          )
+          foreach ($file in $optionalFiles) {
+            if (Test-Path $file) {
+              Copy-Item $file $packageRoot
+            }
+          }
+
+          Compress-Archive -Path "$packageRoot\*" -DestinationPath "dist\ASTAP-zh-windows-x64.zip" -Force
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ASTAP-zh-windows-x64
+          path: dist/ASTAP-zh-windows-x64.zip
+
+      - name: Attach zip to release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/ASTAP-zh-windows-x64.zip

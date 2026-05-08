@@ -1,0 +1,3656 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ASTAP-zh static UI\n"
+"POT-Creation-Date: 2026-05-06 00:00+0800\n"
+"PO-Revision-Date: 2026-05-06 00:00+0800\n"
+"Last-Translator: ASTAP-zh local build\n"
+"Language-Team: Chinese Simplified\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Astrometric Stacking Program and fits viewer (ASTAP)"
+msgstr ""
+
+msgid "Declination"
+msgstr ""
+
+msgid "Right ascension"
+msgstr ""
+
+msgid "Browse & preview fits files"
+msgstr ""
+
+msgid "Right ascension of reference pixel. Normally in the middle of the image. Format 23 30 00.0 or 23.500. Double click to retrieve position from database"
+msgstr ""
+
+msgid "Show stack menu. CTRL-A"
+msgstr ""
+
+msgid "Find an astrometric solution for the image in the viewer.\n\nChecklist for successful solving:\n\n- At least 30 stars are visible.\n- Reasonable round stars.\n- Image dimensions at least 1280x960 pixels.\n- An approximate position is available for a spiral search\n- Correct image height in degrees specified. See stack menu tab alignment.\n- Image is not stretched or heavily photo-shopped."
+msgstr ""
+
+msgid "Solve"
+msgstr ""
+
+msgid "Save FITS file with plate solution"
+msgstr ""
+
+msgid "Use WCS, SIP or DSS polynomial for indicating the position. SIP is available for Astrometry.net solutions and DSS polynomial for images from the DSS survey. A red background is indicating \"no valid\" solution for this option."
+msgstr ""
+
+msgid "Data range"
+msgstr ""
+
+msgid "Histogram:"
+msgstr ""
+
+msgid "Adjust the black level"
+msgstr ""
+
+msgid "Adjust the white level."
+msgstr ""
+
+msgid "At this level the pixels are displayed as black."
+msgstr ""
+
+msgid "At this level the pixels are displayed as fully white."
+msgstr ""
+
+msgid "Preset of the automatic data range adjustments."
+msgstr ""
+
+msgid "Stretch factor applied on displayed image. This is a  colour preserving stretch based on an asinh function."
+msgstr ""
+
+msgid "Saturation adjust factor. The midde position is neutral.  Above is increase, below is decrease."
+msgstr ""
+
+msgid "Selective colour saturation (Luminance-based Saturation Enhancement). This will enhance the colour of faint objects relative to bright objects"
+msgstr ""
+
+msgid "Declination of reference pixel. Normally in the middle of the image. Format +89 30 00 or 89.500. Double click to retrieve position from database."
+msgstr ""
+
+msgid "Inverse zoom action of the mouse wheel."
+msgstr ""
+
+msgid "Inverse 🖱️ wheel"
+msgstr ""
+
+msgid "Long axis is north, small axis is east,  F indicates flipped image."
+msgstr ""
+
+msgid "Header"
+msgstr ""
+
+msgid "Table"
+msgstr ""
+
+msgid "Scroll through the images and tables in the FITS extension."
+msgstr ""
+
+msgid "Orientation of the image north axis, independent of  flip settings."
+msgstr ""
+
+msgid "The image is flipped. Either the east is swapped with west or north is swapped with south."
+msgstr ""
+
+msgid "F"
+msgstr ""
+
+msgid "hint"
+msgstr ""
+
+msgid "reference 1"
+msgstr ""
+
+msgid "Error accessing file!"
+msgstr ""
+
+msgid "reference 2"
+msgstr ""
+
+msgid "Mount"
+msgstr ""
+
+msgid "Lock unreliable, check position"
+msgstr ""
+
+msgid "Select rectangle"
+msgstr ""
+
+msgid "&File"
+msgstr ""
+
+msgid "Load a FITS, PNG, JPG or BPM file."
+msgstr ""
+
+msgid "Load FITS or other format"
+msgstr ""
+
+msgid "Load an image file in the viewer "
+msgstr ""
+
+msgid "Thumbnail viewer"
+msgstr ""
+
+msgid "Show FITS files as thumnails"
+msgstr ""
+
+msgid "Open recent"
+msgstr ""
+
+msgid "Open recent files"
+msgstr ""
+
+msgid "Save as FITS file"
+msgstr ""
+
+msgid "Save image as  32 bit, 16 bit or 8 bits FITS file. "
+msgstr ""
+
+msgid "Export to PNG, TIFF, PPM/PGM"
+msgstr ""
+
+msgid "Save current image as 16 bit PNG, 16 or 32 bit TIFF or 16 bit PPM/PGM. Note that 32 bit files can be re-imported."
+msgstr ""
+
+msgid "Save as JPEG, PNG or BMP"
+msgstr ""
+
+msgid "Save image as JPEG, PNG or BMP. These files are 8 bit and include annotations."
+msgstr ""
+
+msgid "Update FITS header"
+msgstr ""
+
+msgid "Update FITS header as in the memo. "
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Save settings"
+msgstr ""
+
+msgid "Save current settings"
+msgstr ""
+
+msgid "Save settings as"
+msgstr ""
+
+msgid "Settings will be saved as. Note that after restart the default.cfg is loaded automatically. "
+msgstr ""
+
+msgid "Return to default settings and exit"
+msgstr ""
+
+msgid "Prgram will return to default settings"
+msgstr ""
+
+msgid "Load settings"
+msgstr ""
+
+msgid "Load a configuration file"
+msgstr ""
+
+msgid "&Exit        ( and save settings)"
+msgstr ""
+
+msgid "Save settings and leave the program"
+msgstr ""
+
+msgid "Stack"
+msgstr ""
+
+msgid "Stack images. Short cut CTRL+A"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Solve image astrometric (plate solve)"
+msgstr ""
+
+msgid "Find astrometric solution using either the internal solver or astrometry.net if selected. PNG of JPEG files will be first converted to a 8 bit FITS file with the same name."
+msgstr ""
+
+msgid "Batch processing"
+msgstr ""
+
+msgid "Batch processes"
+msgstr ""
+
+msgid "Batch solve images FITS && TIFF"
+msgstr ""
+
+msgid "Find an astrometric (plate) solution for selected files and add to the FITS file header."
+msgstr ""
+
+msgid "          ☑ option \"overwrite existing solutions"
+msgstr ""
+
+msgid "Overwrite existing astrometric solutions"
+msgstr ""
+
+msgid "          ☑ option \"Calibrate\""
+msgstr ""
+
+msgid "Calibrate image prior to solving"
+msgstr ""
+
+msgid "          ☑ option \"Add LIM_MAGN, SQM, CENTALT, AIRMASS\""
+msgstr ""
+
+msgid "Add estimated LIM-MAGN, SQM, CENTALT, AIRMASS to the file header. The display of these keywords can be configured in tab lights popup menu. For SQM enter a fixed pedestal value in viewer menu SQM report."
+msgstr ""
+
+msgid "          ☑ option \"maintain date modified\"       "
+msgstr ""
+
+msgid "Maintains the last date modified"
+msgstr ""
+
+msgid "Batch solve images using local astrometry.net"
+msgstr ""
+
+msgid "Solve the image using a local version of astrometry.net"
+msgstr ""
+
+msgid "Batch convert to FITS"
+msgstr ""
+
+msgid "Convert the selected images to the FITS format."
+msgstr ""
+
+msgid "Batch convert to TIFF"
+msgstr ""
+
+msgid "Convert the selected images to the 16 bit or 32 bit TIFF format."
+msgstr ""
+
+msgid "Batch convert to TIFF, preserve file date"
+msgstr ""
+
+msgid "Batch convert to PBM/PFM"
+msgstr ""
+
+msgid "Convert the selected images to the 16 bit PBM (Portable Bit Map) or 32 bit PFM (Portable Float Map) format."
+msgstr ""
+
+msgid "Set files date modified to DATE-OBS"
+msgstr ""
+
+msgid "Set for all files the \"date modified\" to the value in keyword DATE-OBS. This is the start time of the exposure."
+msgstr ""
+
+msgid "Move images to path \"object, date, filter\""
+msgstr ""
+
+msgid "Move selected images to a new directory based in the header info object name, exposure date and filter."
+msgstr ""
+
+msgid "Batch convert bin2x2"
+msgstr ""
+
+msgid "Bin 2x2 all selected images"
+msgstr ""
+
+msgid "Batch convert bin3x3"
+msgstr ""
+
+msgid "Bin 3x3 all selected images"
+msgstr ""
+
+msgid "Batch Crop"
+msgstr ""
+
+msgid "Crop by coordinates"
+msgstr ""
+
+msgid "As set by pop-up menu \"set area\" of viewer or enter manually coordinates."
+msgstr ""
+
+msgid "Crop as the sample image in the viewer"
+msgstr ""
+
+msgid "Images could be cropped in ASTAP or by CCDCIEL selected sensor section "
+msgstr ""
+
+msgid "Rotate"
+msgstr ""
+
+msgid "Rotate 90 degrees left"
+msgstr ""
+
+msgid "Rotate the selected FITS images 90 degrees left"
+msgstr ""
+
+msgid "Rotate 90 degrees right"
+msgstr ""
+
+msgid "Rotate the selected FITS images 90 degrees right"
+msgstr ""
+
+msgid "Rotate 180 degrees"
+msgstr ""
+
+msgid "Rotate the selected FITS images 180 degrees."
+msgstr ""
+
+msgid "Raw colour separation"
+msgstr ""
+
+msgid "This will extract the colours from a raw DSLR/OCS image write them to separate files."
+msgstr ""
+
+msgid "Extract raw GREEN pixels and combine"
+msgstr ""
+
+msgid "Will combine for each bayer submosaic the two green pixels. Check in advance the de-mosaic pattern in stack menu, tab stack method"
+msgstr ""
+
+msgid "Extract raw RED pixels"
+msgstr ""
+
+msgid "Check in advance the de-mosaic pattern in stack menu, tab stack method"
+msgstr ""
+
+msgid "Extract raw BLUE pixels"
+msgstr ""
+
+msgid "Bayer matrix pixel 11"
+msgstr ""
+
+msgid "Pixels with position 11 in the Bayer matrix are extracted from the selected files."
+msgstr ""
+
+msgid "Bayer matrix pixel 12"
+msgstr ""
+
+msgid "Pixels with position 12 in the Bayer matrix are extracted from the selected files."
+msgstr ""
+
+msgid "Bayer matrix pixel 21"
+msgstr ""
+
+msgid "Pixels with position 21 in the Bayer matrix are extracted from the selected files."
+msgstr ""
+
+msgid "Bayer matrix pixel 22"
+msgstr ""
+
+msgid "Pixels with position 22 in the Bayer matrix are extracted from the selected files."
+msgstr ""
+
+msgid "Remove longitude && latitude info from files"
+msgstr ""
+
+msgid "Batch compress FITS"
+msgstr ""
+
+msgid "Compress all files using the CFITSIO utility program fpack. Works best for 32 bit floating point fits files. Original files will be kept."
+msgstr ""
+
+msgid "Batch annotate asteroids && comets"
+msgstr ""
+
+msgid "This will add asteroid or comet annotations to the fits header. Intended for the blinking routine or manual stacking. Batch solve the images first."
+msgstr ""
+
+msgid "Batch measure tilt and store to header keyword TILT"
+msgstr ""
+
+msgid "A keyword TILT is added to the image headers. This keyword can be read by the configurable last column of tab lights"
+msgstr ""
+
+msgid "Image Inspection "
+msgstr ""
+
+msgid "--- Hidden inspector ---"
+msgstr ""
+
+msgid "--- Hidden roundness"
+msgstr ""
+
+msgid "--- Hidden abberation"
+msgstr ""
+
+msgid "Activate/deactivate auto de-mosaic"
+msgstr ""
+
+msgid "If checked, any new image in viewer will be demosaiced using bilinear interpolation."
+msgstr ""
+
+msgid "De-mosaic Bayer matrix "
+msgstr ""
+
+msgid "Convert RAW to colour using interpolation.  Set first correct Bayer pattern in the stack menu."
+msgstr ""
+
+msgid "Auto correct colours."
+msgstr ""
+
+msgid "Will adjust color settings to get gray background and average white stars. This is the same function as in tab pixel math"
+msgstr ""
+
+msgid "Remove green and purple filter"
+msgstr ""
+
+msgid "Balances RGB to remove green and purple."
+msgstr ""
+
+msgid "Inverse image"
+msgstr ""
+
+msgid "Inverse image. Saving will apply the changes the original image."
+msgstr ""
+
+msgid "Convert to mono"
+msgstr ""
+
+msgid "Convert colour image to gray scale image"
+msgstr ""
+
+msgid "Bin or stretch"
+msgstr ""
+
+msgid "Bin or stretch the image"
+msgstr ""
+
+msgid "Bin 2x2"
+msgstr ""
+
+msgid "Bin the image 2x2"
+msgstr ""
+
+msgid "Bin 3x3"
+msgstr ""
+
+msgid "Bin the image 3x3"
+msgstr ""
+
+msgid "Stretch draw"
+msgstr ""
+
+msgid "Like binning reduce the displayed resolution temporary using current zoom factor. To be used to create images of reduced resolution and to save to file or copy to clipboard."
+msgstr ""
+
+msgid "Stretch draw to FITS"
+msgstr ""
+
+msgid "Convert current view to a FITS image. This will use the current contrast setting and reduce resolution. "
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Undo last Bayer or binning action"
+msgstr ""
+
+msgid "Rotate image"
+msgstr ""
+
+msgid "Rotate the image."
+msgstr ""
+
+msgid "Flip horizontal"
+msgstr ""
+
+msgid "Flip the image horizontal. Saving will apply the change to the original image."
+msgstr ""
+
+msgid "Flip vertical"
+msgstr ""
+
+msgid "Flip the image vertical. Saving will apply the change to the original image."
+msgstr ""
+
+msgid "Rotate arbitrary"
+msgstr ""
+
+msgid "Rotate the image with the angle specified. Accurate algorithm but image quality will be reduced unless 90,180 or 270 degrees rotation."
+msgstr ""
+
+msgid "Clean-up"
+msgstr ""
+
+msgid "Redraw image. Remove any markers except annotations. For removal annotations reload or remove annotations from FITS header."
+msgstr ""
+
+msgid "Calibrate photometry"
+msgstr ""
+
+msgid "Calibrate photometry using available star database (Gaia BP or V magnitude), Aperture setings are in tab photometry. Works best for raw/mono images. For colour images red channel will be used but accuracy will be less."
+msgstr ""
+
+msgid "SQM report based on an image"
+msgstr ""
+
+msgid "Will report the SQM value of the observation site. Use longer exposures. Avoid deepsky objects in the image"
+msgstr ""
+
+msgid "Magnitude (measured) annotation"
+msgstr ""
+
+msgid "Annotate stars with measured star magnitude"
+msgstr ""
+
+msgid "Star (database) annotation"
+msgstr ""
+
+msgid "Annotate all stars in the image. Plate solve the image first. For a G-database the indicated magnitude is Gaia blue. For a V-database the indicated magnitude is Johnson-V  and the following the difference between Gaia blue and red, positive for reddish objects. All in 1/10 of a magnitude."
+msgstr ""
+
+msgid "Unknown star annotation"
+msgstr ""
+
+msgid "Annotate nova and minor planets using the online Gaia database up to about magnitude 20."
+msgstr ""
+
+msgid "Variable star annotation"
+msgstr ""
+
+msgid "Annotate all variable stars and comparison stars from the local database or AAVSO online database. Database setting is in tab Photometry."
+msgstr ""
+
+msgid "Asteroid && comet annotation"
+msgstr ""
+
+msgid "Annotate asteroids"
+msgstr ""
+
+msgid "Deepsky (HyperLeda) annotation"
+msgstr ""
+
+msgid "Use the huge HyperLeda database for annotation.  Prior to this the image needs to be astrometric solved. Zoom in to get small font."
+msgstr ""
+
+msgid "Deepsky annotation"
+msgstr ""
+
+msgid "This will place deep sky annotations on the image. Prior to this the image needs to be astrometric solved. Zoom in to get smaller font"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Image cleanup"
+msgstr ""
+
+msgid "Clear the image of annotations"
+msgstr ""
+
+msgid "Centre lost windows"
+msgstr ""
+
+msgid "Flip the image horizontal."
+msgstr ""
+
+msgid "Flip image vertical."
+msgstr ""
+
+msgid "Flip horizontal and vertical"
+msgstr ""
+
+msgid "This is equivalent to 180° rotation."
+msgstr ""
+
+msgid "Fit to window"
+msgstr ""
+
+msgid "Fit to window."
+msgstr ""
+
+msgid "Zoom 100%"
+msgstr ""
+
+msgid "Zoom to 100%. Image pixels will match with screen pixels."
+msgstr ""
+
+msgid "Annotations header visible"
+msgstr ""
+
+msgid "Switches the annotations on/off. The annotations are stored in the FITS files header with keyword ANNOTATE"
+msgstr ""
+
+msgid "North-East indicator image"
+msgstr ""
+
+msgid "Show a north-east indicator on the image."
+msgstr ""
+
+msgid "Star profile"
+msgstr ""
+
+msgid "Show the star profile for the star at the mouse cursor."
+msgstr ""
+
+msgid "Mount position"
+msgstr ""
+
+msgid "Shows the mount position as a star and a large orientation indicator in the solved image. The center of the image is indicated as  tiny lime coloured square. "
+msgstr ""
+
+msgid "Constellations"
+msgstr ""
+
+msgid "Add the constellations to the image."
+msgstr ""
+
+msgid "A, h grid"
+msgstr ""
+
+msgid "Adds an azimuth & altitude grid to image"
+msgstr ""
+
+msgid "α, δ grid"
+msgstr ""
+
+msgid "Adds a right ascension & declination grid to image"
+msgstr ""
+
+msgid "Centre position && date at bottom"
+msgstr ""
+
+msgid "Add the centre position and date and time at the left bottom of the image. Font colour and font size can be set in the asteroid annotation menu."
+msgstr ""
+
+msgid "Free text at bottom"
+msgstr ""
+
+msgid "Add free text to bottom of the image. Font colour and font size can be set in the asteroid annotation menu."
+msgstr ""
+
+msgid "Zoom out"
+msgstr ""
+
+msgid "Zoom in"
+msgstr ""
+
+msgid "&Help"
+msgstr ""
+
+msgid "Show basic FITS header"
+msgstr ""
+
+msgid "Online help and webpage"
+msgstr ""
+
+msgid "Open the ASTAP webpage"
+msgstr ""
+
+msgid "&About ASTAP"
+msgstr ""
+
+msgid "About this program"
+msgstr ""
+
+msgid "Add annotation (▭)"
+msgstr ""
+
+msgid "Add annotation text to current mouse position. Hold left mouse button down and pull a rectangle with mouse to extend connecting line. Add @ to the text for persistent annotations."
+msgstr ""
+
+msgid "Add rectangle with annotation (▭)"
+msgstr ""
+
+msgid "Add rectangle. Hold left mouse button down and pull a rectangle with mouse."
+msgstr ""
+
+msgid "Add marker"
+msgstr ""
+
+msgid "Add marker on image"
+msgstr ""
+
+msgid "Add object position"
+msgstr ""
+
+msgid "Add astronomical position of the object near the mouse position. Position is auto centered."
+msgstr ""
+
+msgid "Add object position short"
+msgstr ""
+
+msgid "Add object position in short IAU designation style. If there is no lock, no position wll be given. Use then the previouse menu option."
+msgstr ""
+
+msgid "Add marker at α, δ position"
+msgstr ""
+
+msgid "Place marker at specified α, δ position. "
+msgstr ""
+
+msgid "Angular distance (▭)"
+msgstr ""
+
+msgid "Angular distance rigorous method."
+msgstr ""
+
+msgid "Measure total magnitude (▭, ⬭)"
+msgstr ""
+
+msgid "This will report the total magnitude within the pulled shape. Press ctrl or shift for ellipse shape. Flux is measured relative to median background up to five pixels outside the shape. Best accuracy is  achieved by using monochrome images."
+msgstr ""
+
+msgid "Show statistics (▭, ⬭)"
+msgstr ""
+
+msgid "Within selection shape. Calculate mean, median standard deviation, minimum and maximum values within the shape. Press ctrl or shift for ellipse shape."
+msgstr ""
+
+msgid "MPC1992 report line  (.)"
+msgstr ""
+
+msgid "Write a MPC1992 report line to the clipboard for the object at the cursor.. This report line can be tested at:  https://minorplanetcenter.net/cgi-bin/checkmp.cgi"
+msgstr ""
+
+msgid "Star info to clipboard (▭)"
+msgstr ""
+
+msgid "Within selection shape. To clipboard the x,y positions, HFD, and if available α, δ and measured magnitude"
+msgstr ""
+
+msgid "Clean-up "
+msgstr ""
+
+msgid "Solve manually by providing two positions"
+msgstr ""
+
+msgid "Add a solution to image by providing two positions "
+msgstr ""
+
+msgid "Enter position 1"
+msgstr ""
+
+msgid "Enter position 2"
+msgstr ""
+
+msgid "Flipped"
+msgstr ""
+
+msgid "Specifiy if the image is flipped, east<->west or north<->south"
+msgstr ""
+
+msgid "Copy image (selection) to clipboard (▭)"
+msgstr ""
+
+msgid "Copies the image or a image selection to the clipboard. Selection orientation is dependent on the selection direction used."
+msgstr ""
+
+msgid "Copy position to clipboard"
+msgstr ""
+
+msgid "The astronomical mouse position is copied to the clipboard."
+msgstr ""
+
+msgid "Copy position to clipboard in °"
+msgstr ""
+
+msgid "The astronomical mouse position in degrees is copied to the clipboard."
+msgstr ""
+
+msgid "Online query"
+msgstr ""
+
+msgid "Deepsky annotation (▭) (Simbad)"
+msgstr ""
+
+msgid "Annotate the selected area with deepsky object info from Simbad"
+msgstr ""
+
+msgid "Deepsky annotion filtered (▭) (Simbad)"
+msgstr ""
+
+msgid "Annotate the selected area with deepsky object info from Simbad. A input will be shown to filter on object type."
+msgstr ""
+
+msgid "Star annotation (▭) (Simbad)"
+msgstr ""
+
+msgid "Annotate the selected area with star info from Simbad"
+msgstr ""
+
+msgid "Magnitude annotation (▭) (Gaia, transformed)"
+msgstr ""
+
+msgid "Annotate the selected area with transformed Gaia magnitudes from Vizier"
+msgstr ""
+
+msgid "Browser query (▭) (Simbad)"
+msgstr ""
+
+msgid "Retrieve online info of the select area in the default browser.  To select an area, first hold the right mouse down and pull a rectangle."
+msgstr ""
+
+msgid "Browser query (▭) (HyperLeda)"
+msgstr ""
+
+msgid "Retrieve online info of the select area in the default browser. To select an area, first hold the right mouse down and pull a rectangle."
+msgstr ""
+
+msgid "Browser query (▭) (Ned)"
+msgstr ""
+
+msgid "Browser query (▭) (Gaia)"
+msgstr ""
+
+msgid "Will display the online information for any star within 5 arc seconds of the centroid. The Gaia BP (blue) magnitude matches the best with visual."
+msgstr ""
+
+msgid "AAVSO, browser chart request (▭)"
+msgstr ""
+
+msgid "Retrieve an AAVSO chart"
+msgstr ""
+
+msgid "Local adjustments"
+msgstr ""
+
+msgid "Local colour smooth stars (⬭)"
+msgstr ""
+
+msgid "Local remove colour (⬭)"
+msgstr ""
+
+msgid "Intended for some ugly coloured stars in OSC images"
+msgstr ""
+
+msgid "Local Gaussian blur (▭, ⬭)"
+msgstr ""
+
+msgid "Local Gaussian blur with factor as set in pixel math"
+msgstr ""
+
+msgid "Gradient removal tool (▭)"
+msgstr ""
+
+msgid "Remove the light pollution gradient in whole image based on two positions. The greater the distance the better it works."
+msgstr ""
+
+msgid "Dark dust spot removal (▭)"
+msgstr ""
+
+msgid "To remove a dark spot caused by a dust particle. Select an ellipse shaped area by holding the CTRL key."
+msgstr ""
+
+msgid "Copy paste tool (▭, ⬭)"
+msgstr ""
+
+msgid "Copy the selected area to the next mouse click. Use this for small corrections in the background. Press ctrl of shift for ellipse shape. Hold alt, ctrl, shift key for multi paste"
+msgstr ""
+
+msgid "Set area (▭)"
+msgstr ""
+
+msgid "Set area for colour replace in tab pixel math 1."
+msgstr ""
+
+msgid "Remove deep sky object ( ⬭)"
+msgstr ""
+
+msgid "Remove the deep sky object within the pulled rectangle"
+msgstr ""
+
+msgid "Remove borders"
+msgstr ""
+
+msgid "At mouse cursor"
+msgstr ""
+
+msgid "Remove border where mouse is positioned"
+msgstr ""
+
+msgid "LEFT of mouse cursor"
+msgstr ""
+
+msgid "RIGHT of mouse cursor"
+msgstr ""
+
+msgid "ABOVE mouse cursor"
+msgstr ""
+
+msgid "BELOW mouse cursor"
+msgstr ""
+
+msgid "Crop FITS image (▭)"
+msgstr ""
+
+msgid "Pull first rectangle with mouse while holding right mouse button down."
+msgstr ""
+
+msgid "Search database"
+msgstr ""
+
+msgid "Search for a deepsky object position."
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Paste"
+msgstr ""
+
+msgid "Find"
+msgstr ""
+
+msgid "Find next"
+msgstr ""
+
+msgid "Select all"
+msgstr ""
+
+msgid "Select font"
+msgstr ""
+
+msgid "Select another monospace font"
+msgstr ""
+
+msgid "Copy the histogram values to the clipboard"
+msgstr ""
+
+msgid "Copies the histogram to the clipboard. They can be pasted to a spreadsheet."
+msgstr ""
+
+msgid "j2000 °"
+msgstr ""
+
+msgid "Galactic"
+msgstr ""
+
+msgid "A, h"
+msgstr ""
+
+msgid "Azimuth and altitude at the mouse pointer. Geographic longitude, latitude and time of observation should be specified in header."
+msgstr ""
+
+msgid "HFD in arc seconds"
+msgstr ""
+
+msgid "Display the HFD and FWHM in arc seconds rather then pixels."
+msgstr ""
+
+msgid "Noise and SNR based on e-"
+msgstr ""
+
+msgid "Noise and SNR values are calculated from electrons not from ADU's. Noise in electrons uneffected by binning. For raw OSC images apply first binning 2x2."
+msgstr ""
+
+msgid "Set ADU=>e- factors"
+msgstr ""
+
+msgid "Set the conversion factors"
+msgstr ""
+
+msgid "Enter your geographic location manually for airmass calculation."
+msgstr ""
+
+msgid "AAVSO report"
+msgstr ""
+
+msgid "The official AAVSO Observer Code for the observer which was previously assigned by the AAVSO."
+msgstr ""
+
+msgid "The transformation factors should be available. See transformation button in tab photometry. Only for B,V,R filters"
+msgstr ""
+
+msgid "Apply transformation"
+msgstr ""
+
+msgid "OBSTYPE, So the camera type used for the observation,  It can be CCD, DSLR, PEP (for Photoelectric Photometry). If absent, it is assumed to be CCD.  If you use a CMOS camera please report it as CCD"
+msgstr ""
+
+msgid "Report the date as Heliocentric Julian Day"
+msgstr ""
+
+msgid "Extras report lines will added conform BAA. Info is taken from FITS header."
+msgstr ""
+
+msgid "BAA style"
+msgstr ""
+
+msgid "Delimiter"
+msgstr ""
+
+msgid "The delimiter used to separate fields in the report. Any will do. "
+msgstr ""
+
+msgid "Copies the report to the clipboard. Paste it into a text editor, save it and upload it to the AAVSO WebObs."
+msgstr ""
+
+msgid "Report to clipboard"
+msgstr ""
+
+msgid "Writes report to file in the same directory as the input files."
+msgstr ""
+
+msgid "Report to file"
+msgstr ""
+
+msgid "See popup  menu to save. Any check/uncheck in the list view wil result in an update of the graph"
+msgstr ""
+
+msgid "Invalid report! (No stars detected or online standard field selected for normal image or vice versa.)\n\n- View the first image in the list and click both on the variable && check star to mark them for measurement. Then press the ▶| button to measure the stars.\n\n- Or select option \"Measure all\" for measuring all AAVSO stars and  press the ▶| button to measure the stars."
+msgstr ""
+
+msgid "Check star"
+msgstr ""
+
+msgid " Check star  AUID  (much preferred) or designation. Alternatively you could select the IAU designation using the position. The dropdown will be filtered if a part of the designation is typed. Standard deviation is based on Gaia as a reference"
+msgstr ""
+
+msgid "Measured raw and transformed b magnitude error of the check star."
+msgstr ""
+
+msgid "sigma_check1"
+msgstr ""
+
+msgid "Comparison star(s)"
+msgstr ""
+
+msgid "Comparison star(s)  Standard deviation is based on Gaia as a reference"
+msgstr ""
+
+msgid "Colour of the comparison ensemble and standard deviation between comparison stars"
+msgstr ""
+
+msgid "sigma_mzero1"
+msgstr ""
+
+msgid "Variable(s)"
+msgstr ""
+
+msgid "The star's identifier. It can be the AAVSO Designation, the AAVSO Name or the AAVSO Unique Identifier (AUID).\nThe standard deviation is based on Gaia database as a reference\nVariables in the list ending with # have no AUID and will not be accepted unless a new AUID is requested."
+msgstr ""
+
+msgid "Var colour"
+msgstr ""
+
+msgid "This will place comparison stars in variable position for testing."
+msgstr ""
+
+msgid "Test"
+msgstr ""
+
+msgid "Sort the drop-down list alphabetically. Else the drop-down list is sorted on standard deviation."
+msgstr ""
+
+msgid "Sort alphabetically"
+msgstr ""
+
+msgid "If enabled then Gaia  ensemble is used for calibration"
+msgstr ""
+
+msgid "Gaia ensemble"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr ""
+
+msgid "Copy graph to clipboard"
+msgstr ""
+
+msgid "Select in the listview the image for this measuring point"
+msgstr ""
+
+msgid "Deselect all"
+msgstr ""
+
+msgid "Annotation of asteroids and comets"
+msgstr ""
+
+msgid "Annotate asteroids && comets"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Help asteroid annotation"
+msgstr ""
+
+msgid "Database"
+msgstr ""
+
+msgid "Use up to number:"
+msgstr ""
+
+msgid "Specify here the number of asteroids to extract."
+msgstr ""
+
+msgid "Down to magnitude:"
+msgstr ""
+
+msgid "Specify here the limiting magnitude for extracting asteroids."
+msgstr ""
+
+msgid "Show full names"
+msgstr ""
+
+msgid "Add to the bottom of the image date and position."
+msgstr ""
+
+msgid "Add image subtitle"
+msgstr ""
+
+msgid "The asteroids will be marked by annotions in the header and preserved if saved. The annotations can be used later to manual stack the images later to visualise very faint asteroids."
+msgstr ""
+
+msgid "Add as annotations to the FITS header"
+msgstr ""
+
+msgid "Show magnitude"
+msgstr ""
+
+msgid "Clear and disable"
+msgstr ""
+
+msgid "Annotation diameter. For diameter 5 or smaller, two lines will be used for annotation.  Comets annotations are five times larger."
+msgstr ""
+
+msgid "Font and line thickness follow annotation diameter."
+msgstr ""
+
+msgid "Font follows annotation diameter"
+msgstr ""
+
+msgid "Image data"
+msgstr ""
+
+msgid "Format YYYY-MM-DDTHH:MM:SS.SSS. Timezone 0, universal time"
+msgstr ""
+
+msgid "Date:"
+msgstr ""
+
+msgid "The latitude of the observatory in degrees."
+msgstr ""
+
+msgid "Latitude:"
+msgstr ""
+
+msgid "Longitude:"
+msgstr ""
+
+msgid "The longitude of the observatory in degrees. For east enter positive, for west enter negative values."
+msgstr ""
+
+msgid "Start of the observation"
+msgstr ""
+
+msgid "Solving using local astrometry.net. "
+msgstr ""
+
+msgid "Path to Astrometry.net. Change user_name to your real user name."
+msgstr ""
+
+msgid "Extra options:"
+msgstr ""
+
+msgid "Here you could add additional conditions for Astrometery.net"
+msgstr ""
+
+msgid "--downsample 2"
+msgstr ""
+
+msgid "Keep solver window open"
+msgstr ""
+
+msgid "Keep console open"
+msgstr ""
+
+msgid "If grayed show only minimised."
+msgstr ""
+
+msgid "Show console"
+msgstr ""
+
+msgid "Browse for files and execute"
+msgstr ""
+
+msgid "Solved: 0"
+msgstr ""
+
+msgid "Failed: 0"
+msgstr ""
+
+msgid "Command line:"
+msgstr ""
+
+msgid "Stop after finishing current image"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Image inspection"
+msgstr ""
+
+msgid "Restore image"
+msgstr ""
+
+msgid "Online help about inspector"
+msgstr ""
+
+msgid "Show image distortion using the star positions and solution. Lines a 50x larger then distortion."
+msgstr ""
+
+msgid "Show distortion"
+msgstr ""
+
+msgid "Makes a compilation of the image corners and the center for a closer inspection."
+msgstr ""
+
+msgid "Aberration inspector  F6"
+msgstr ""
+
+msgid "Annotate the image with the median background values relative to the center."
+msgstr ""
+
+msgid "Background values"
+msgstr ""
+
+msgid "Calculate tilt and curvature. The absolute font size will be smaller if you zoom in."
+msgstr ""
+
+msgid "Tilt    F4"
+msgstr ""
+
+msgid " Uses all stars with SNR >10 else use star with SNR >30 (more accurate)"
+msgstr ""
+
+msgid "Extra stars"
+msgstr ""
+
+msgid "Octagon shape. For perfect optic the octagon will form a square"
+msgstr ""
+
+msgid "Octagon"
+msgstr ""
+
+msgid "A round area is taken from the image and divided in three slices."
+msgstr ""
+
+msgid "Triangle"
+msgstr ""
+
+msgid "Rotation angle. Use first the tools menu to flip the image vertical or horizontal to get the north up en east left. Then set rotation such that it matches with the three screws of the tilt adapter."
+msgstr ""
+
+msgid "Show the orientation of the star unroundness."
+msgstr ""
+
+msgid "Add unroundness vectors"
+msgstr ""
+
+msgid "Add the star HFD value persistent to the fits file. No HFD filtering."
+msgstr ""
+
+msgid "Add values"
+msgstr ""
+
+msgid "Creates a diagram based on the values. The gray values represent the values *100. The values are local median filtered for each three stars"
+msgstr ""
+
+msgid "Voronoi diagram"
+msgstr ""
+
+msgid "Creates a 2D contour diagram based on the values. The gray values represent the values *100. The values are local median filtered for each three stars."
+msgstr ""
+
+msgid "2D contour diagram"
+msgstr ""
+
+msgid "Creates a diagram based on the HFD values. The gray values represent the HFD *100. The HFD values are local median filtered for each three stars."
+msgstr ""
+
+msgid "Measure the unroundness of the stars."
+msgstr ""
+
+msgid "Roundness   F3"
+msgstr ""
+
+msgid "Bayer matrix image"
+msgstr ""
+
+msgid "Data to clipboard"
+msgstr ""
+
+msgid "Show the background values as a contour"
+msgstr ""
+
+msgid "Background contour"
+msgstr ""
+
+msgid "Grid used for median values."
+msgstr ""
+
+msgid "Grid size[px]:"
+msgstr ""
+
+msgid "How many background shall be detected"
+msgstr ""
+
+msgid "Gradations:"
+msgstr ""
+
+msgid "Binning"
+msgstr ""
+
+msgid "Bin current image in the viewer. Noise will be reduced."
+msgstr ""
+
+msgid "Enter designation to retrieve position. Use wildcard to find designations. E.g. ngc1* or boo*"
+msgstr ""
+
+msgid "Accept the α, δ of the object as an initial start for solving."
+msgstr ""
+
+msgid "Enter object designation or position:"
+msgstr ""
+
+msgid "This listbox will be filled if you enter an object designation with a wildcard. E.g. ngc10*"
+msgstr ""
+
+msgid "Cancel search"
+msgstr ""
+
+msgid "SQM measurement"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Altitude calculated [°]:"
+msgstr ""
+
+msgid "SQM [magn/arcsec²]:"
+msgstr ""
+
+msgid "Pre-conditions\n1)  Image is astrometrical solved. (For flux-calibration against the star database)\n2) The image background value has measurable increased above the pedestal value or mean dark value.\n     If not expose longer. This increase is caused by the sky glow.\n3) Apply on a single unprocessed raw image only. \n4) Providing dark image(s) in tab darks (ctrl+A) or entering a pedestal value  (mean value of a dark)\n    increases the accuracy. If possible provide also a flat(s) in tab flats. Calibrated images are also fine.\n5) DSLR/OSC raw images require 2x2 binning. For DSLR images this is done automatically.\n6) No very large bright nebula is visible. Most of the image shall contain empty sky filled with stars.\n7) The calculated altitude is correct. The altitude will be used for an atmospheric extinction\n    correction of the star light. The altitude is calculated based on time, latitude, longitude\n    Note that poor transparency will result in lower values compared with handheld meters."
+msgstr ""
+
+msgid "Background (measured):"
+msgstr ""
+
+msgid "Pedestal (manual):"
+msgstr ""
+
+msgid "Enter camera pedestal correction to zero the background. Measure for the median or mean value of a dark frame and use that as pedestal value."
+msgstr ""
+
+msgid "Automatically measured from the light frame"
+msgstr ""
+
+msgid "Calculated from light frame time, geographic location and celestial position"
+msgstr ""
+
+msgid "The measured sky background expressed in magnitudes per square arcseconds."
+msgstr ""
+
+msgid "Message: none"
+msgstr ""
+
+msgid "Use the darks & flats in the stack menu"
+msgstr ""
+
+msgid "Apply dark && flat "
+msgstr ""
+
+msgid "The Bortle scale is a nine-level numeric scale of the night sky's brightness."
+msgstr ""
+
+msgid "stack menu"
+msgstr ""
+
+msgid "Stack menu"
+msgstr ""
+
+msgid "Select here the light frames."
+msgstr ""
+
+msgid "Lights"
+msgstr ""
+
+msgid "Total number of images in the list"
+msgstr ""
+
+msgid "Analyse and move dark, flat or bias images to the corresponding tabs. To analyse planetary image on sharpness set in tab alignment max stars on 0."
+msgstr ""
+
+msgid "Analyse and organise images"
+msgstr ""
+
+msgid "Clear the frame list"
+msgstr ""
+
+msgid "Clear list"
+msgstr ""
+
+msgid "Double click to view image"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Object"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Result"
+msgstr ""
+
+msgid "Bin"
+msgstr ""
+
+msgid "Quality"
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Stars"
+msgstr ""
+
+msgid "Exposure"
+msgstr ""
+
+msgid "Temperature "
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Date/time"
+msgstr ""
+
+msgid "Position"
+msgstr ""
+
+msgid "Gain"
+msgstr ""
+
+msgid "Solution"
+msgstr ""
+
+msgid "X ref"
+msgstr ""
+
+msgid "Y ref"
+msgstr ""
+
+msgid "Calibration"
+msgstr ""
+
+msgid "FocPos"
+msgstr ""
+
+msgid "FocTemp"
+msgstr ""
+
+msgid "CentAlt"
+msgstr ""
+
+msgid "CentAz"
+msgstr ""
+
+msgid "After analysing uncheck files with abnormal HFD or abnormal amount number of stars detected."
+msgstr ""
+
+msgid "Untick worst images"
+msgstr ""
+
+msgid "Sigma factor (or percentage to keep) to identify statistically low quality images."
+msgstr ""
+
+msgid "Online help about analyse"
+msgstr ""
+
+msgid "Un-aligned blink. Note: For single step blink use CTRL+UP/DOWN arrows."
+msgstr ""
+
+msgid "Pause blinking"
+msgstr ""
+
+msgid "Un-aligned blink. Note: For single step blink use the keyboard left and right arrows."
+msgstr ""
+
+msgid "Checkmark this option for analysing planetary images on sharpness. Note the stack routine is not suitable for stacking of planetary images."
+msgstr ""
+
+msgid "Planetary"
+msgstr ""
+
+msgid "Browse and select lights to stack"
+msgstr ""
+
+msgid "Browse"
+msgstr ""
+
+msgid "Report satellite streaks. For streak detection settings see tab \"pixel math 2\""
+msgstr ""
+
+msgid "Streaks"
+msgstr ""
+
+msgid "Analyse the images binned 2x2 to speed up."
+msgstr ""
+
+msgid "quick"
+msgstr ""
+
+msgid "Select here the dark frames."
+msgstr ""
+
+msgid "Darks"
+msgstr ""
+
+msgid "Combine to check-marked files to master dark. The other files are not affected."
+msgstr ""
+
+msgid "Replace check-marked by one or more master dark"
+msgstr ""
+
+msgid "Temperature"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "σ centre"
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid "Analyse image files"
+msgstr ""
+
+msgid "Analyse"
+msgstr ""
+
+msgid "Number of images in the list"
+msgstr ""
+
+msgid "Combine darks within 12 hour time range to master"
+msgstr ""
+
+msgid "Classify by date for master creation"
+msgstr ""
+
+msgid "Browse and select darks"
+msgstr ""
+
+msgid "Select here the flat frames"
+msgstr ""
+
+msgid "Flats"
+msgstr ""
+
+msgid "Combine the check-marked flats and flat darks to one master flat. The other files are not affected."
+msgstr ""
+
+msgid "Replace check-marked by master flat, flat darks included."
+msgstr ""
+
+msgid "Browse and select flats"
+msgstr ""
+
+msgid "Combine flats within 12 hour time range to master flat. Date flat-darks is ignored."
+msgstr ""
+
+msgid "Match the flat and flat-dark by exposure duration"
+msgstr ""
+
+msgid "Classify by exposure duration for master creation"
+msgstr ""
+
+msgid "Select here the flat-dark/bias frames."
+msgstr ""
+
+msgid "Flat darks"
+msgstr ""
+
+msgid "Browse and select flat-darks (bias)"
+msgstr ""
+
+msgid "This page contains the result of stacking. See pop-up menu for more options."
+msgstr ""
+
+msgid "Results"
+msgstr ""
+
+msgid "Issues"
+msgstr ""
+
+msgid "Stacked images are displayed here. Double click to view in viewer."
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Add time to stack file name. This allow comparison of different settings."
+msgstr ""
+
+msgid "Add time to stack file name"
+msgstr ""
+
+msgid "Save a copy of the settings at image location. Can be retrieved with viewer file menu."
+msgstr ""
+
+msgid "Include configuration copy"
+msgstr ""
+
+msgid "Clear result list"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Set here the stack method"
+msgstr ""
+
+msgid "Stack method"
+msgstr ""
+
+msgid "Select stack method."
+msgstr ""
+
+msgid "Image stitching mode   🧩"
+msgstr ""
+
+msgid "Calibration and alignment only"
+msgstr ""
+
+msgid "Calibration only"
+msgstr ""
+
+msgid "Calibration only. No de-mosaic"
+msgstr ""
+
+msgid "Average, skip LRGB  combine"
+msgstr ""
+
+msgid "Sigma clip, skip LRGB combine"
+msgstr ""
+
+msgid "Comet and stars sharp"
+msgstr ""
+
+msgid "Sigma factor to identify outlier pixels. A factor of around 2.0 will remove satellite tracks and hot pixels. Sigma stands for standard deviation."
+msgstr ""
+
+msgid "Master flat :=  (1/n ∑ [flats] - 1/n ∑ [flat darks] )"
+msgstr ""
+
+msgid "σ factor:"
+msgstr ""
+
+msgid "Stacked image:=  1/n ∑ ((image- 1/n ∑ [darks] ) / master flat)"
+msgstr ""
+
+msgid "Stack method "
+msgstr ""
+
+msgid "Settings for LRGB stacking, LRGB  stacking is activated if \"Classify by light filter\" is check marked."
+msgstr ""
+
+msgid "LRGB stacking"
+msgstr ""
+
+msgid "Enter here a filter name for red"
+msgstr ""
+
+msgid "Enter here a filter name for green"
+msgstr ""
+
+msgid "Enter here a filter name for blue"
+msgstr ""
+
+msgid "Enter here a second filter name for red"
+msgstr ""
+
+msgid "Enter here a second filter name for green"
+msgstr ""
+
+msgid "Enter here a second filter name for blue"
+msgstr ""
+
+msgid "Colour matrix"
+msgstr ""
+
+msgid "x"
+msgstr ""
+
+msgid "Enter here a filter name for Luminance"
+msgstr ""
+
+msgid "Enter here a second filter name for Luminance"
+msgstr ""
+
+msgid "Red signal"
+msgstr ""
+
+msgid "R_out"
+msgstr ""
+
+msgid "Green signal"
+msgstr ""
+
+msgid "G_out"
+msgstr ""
+
+msgid "Blue signal"
+msgstr ""
+
+msgid "B_out"
+msgstr ""
+
+msgid "Filter names"
+msgstr ""
+
+msgid "Auto adjust the colour levels after stacking."
+msgstr ""
+
+msgid "Auto levels"
+msgstr ""
+
+msgid "Apply smart global colour smooth after stacking."
+msgstr ""
+
+msgid "Global colour smooth"
+msgstr ""
+
+msgid "Colour smoothing range in pixels. This will keep luminance but smooth the colours. Default is 10, Set this as high as eight times the HFD value."
+msgstr ""
+
+msgid "Remove green && purple"
+msgstr ""
+
+msgid "Colour smooth the detected stars after stacking"
+msgstr ""
+
+msgid "Star colour smooth"
+msgstr ""
+
+msgid "Diameter times HFD to smooth"
+msgstr ""
+
+msgid "Number of stars to smooth"
+msgstr ""
+
+msgid "Signal level above background noise to detect objects to be colour blurred. Default 3"
+msgstr ""
+
+msgid "This will fix the colour of saturated stars center using the outer regios of the star"
+msgstr ""
+
+msgid "Fix colour saturated stars"
+msgstr ""
+
+msgid "- LRGB stacking is activated by check-mark Classify by \"Light filter\". Else it will stack in grayscale or colour depending on BAYERPAT in header."
+msgstr ""
+
+msgid "Tools for equalizing the tiles of the mosaic."
+msgstr ""
+
+msgid "Image stitching (mosaic) settings"
+msgstr ""
+
+msgid "This is for setting the background level of each tile equal based on the histogram. Use this option only if most of the image doesn't contain nebula."
+msgstr ""
+
+msgid "Equalise background"
+msgstr ""
+
+msgid "Crop each image [%] "
+msgstr ""
+
+msgid "Use to remove poor areas near borders"
+msgstr ""
+
+msgid "The overlapping areas  are combined except for stars. This could result in better or worse result. If your image shows distortion uncheck this option."
+msgstr ""
+
+msgid "Merge overlapping backgrounds"
+msgstr ""
+
+msgid "If equalizing background is not working then switch this off."
+msgstr ""
+
+msgid "Limit background correction"
+msgstr ""
+
+msgid "For an LRGB mosaic combine the colours after creating a mosaic for each colour."
+msgstr ""
+
+msgid "Settings for OSC images.. If disabled uncheck \"Classify by light filter\"."
+msgstr ""
+
+msgid "RAW one shot colour images"
+msgstr ""
+
+msgid "Force converting OSC images to colour.  This setting is only required if BAYERPAT keyword is missing in the header."
+msgstr ""
+
+msgid "Force processing as OSC images. "
+msgstr ""
+
+msgid "Bayer pattern "
+msgstr ""
+
+msgid "Demosaic method of colour filter array.  Best methods are AstroC and Simple.  For pure white stars you could AstroM. "
+msgstr ""
+
+msgid "Test Bayer demosaic pattern on the image in the viewer. Hit ctrl-Z to restore"
+msgstr ""
+
+msgid "Test pattern"
+msgstr ""
+
+msgid "De-mosaic method:"
+msgstr ""
+
+msgid "Undo last action"
+msgstr ""
+
+msgid "Best demosaic methods are AstroC and AstroSimple."
+msgstr ""
+
+msgid "Raw conversion:"
+msgstr ""
+
+msgid "Conversion program for raw files."
+msgstr ""
+
+msgid "LibRaw (full active area)"
+msgstr ""
+
+msgid "LibRaw (cropped active area)"
+msgstr ""
+
+msgid "Apply colour smooth after stacking."
+msgstr ""
+
+msgid "Colour smooth"
+msgstr ""
+
+msgid "Colour smoothing range in pixels. This will keep luminance but smooth the colours. Default is 10"
+msgstr ""
+
+msgid "Set here the frame alignment and solver options."
+msgstr ""
+
+msgid "Alignment"
+msgstr ""
+
+msgid "Star alignment is the best option for stacking"
+msgstr ""
+
+msgid "Star alignment"
+msgstr ""
+
+msgid "Manual alignment:  Double click on each image in the list to display it in the viewer. In the viewer click on the object the be used for alignment. Position is auto centered. "
+msgstr ""
+
+msgid "Manual alignment"
+msgstr ""
+
+msgid "Solve current image"
+msgstr ""
+
+msgid "Use this for mosaic building."
+msgstr ""
+
+msgid "Astrometric alignment"
+msgstr ""
+
+msgid "Solver"
+msgstr ""
+
+msgid "Star database in use.  Selection will be automatic. Enter manually a database to force use. Type blank to reactivate automatic selection."
+msgstr ""
+
+msgid "Star database used:"
+msgstr ""
+
+msgid "Radius search area  [°]:"
+msgstr ""
+
+msgid "Enter the search field in degrees. The program will search in a square spiral around the start position as indicated in the viewer."
+msgstr ""
+
+msgid "Field of view (height)[°]:"
+msgstr ""
+
+msgid "Field height of the image. In most cases this will be calculated automatically. If not enter the field height manually or select auto mode."
+msgstr ""
+
+msgid "Quad detection"
+msgstr ""
+
+msgid "Number of stars takens from the image for alignment. Typical value 200 to 500. For crowded star fields reduce to 100 to 200 or use auto mode."
+msgstr ""
+
+msgid "Maximum number of stars to use:"
+msgstr ""
+
+msgid "Hash code tolerance:"
+msgstr ""
+
+msgid "If detections fails increase tolerance. Typical value 0.003 up to 0.008"
+msgstr ""
+
+msgid "Show extra information in log for debugging."
+msgstr ""
+
+msgid "Show extended solver log"
+msgstr ""
+
+msgid "Binning of the image will be applied prior to plate solving. 0 is automatic selection. Use binning if image is large or very noisy."
+msgstr ""
+
+msgid "Downsample:"
+msgstr ""
+
+msgid "Default value is 0.8. Use this to ignore hotpixels.  For stacking only."
+msgstr ""
+
+msgid "Crop images above this height [degrees]."
+msgstr ""
+
+msgid "Ignore stars less than [HFD]:"
+msgstr ""
+
+msgid "Check-mark  this to improve solving reliability in some cases. Search window will be always large with overlap but it will slow down solving.  Default this is off.  If off  the search window size will be automatically reduced if sufficient stars are found. This option is equivalent to command line option -speed"
+msgstr ""
+
+msgid "Slow"
+msgstr ""
+
+msgid "Will filter out hot pixels"
+msgstr ""
+
+msgid "Ignore stars less than [\"]:"
+msgstr ""
+
+msgid "Apply this if the FITS header contains already a solution which is not accurate. "
+msgstr ""
+
+msgid "Ignore existing FITS header solution for astrometric stacking"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Use triples (three star) for pattern detection for images with less then 30 stars. In all other case use quads (four star)."
+msgstr ""
+
+msgid "Use triples"
+msgstr ""
+
+msgid "Use SIP coeficients for accurate positional information of celestial objects and  image stitching."
+msgstr ""
+
+msgid "Add SIP coefficients"
+msgstr ""
+
+msgid "Use this to stack alligned on moving solar objects. Solar movement can be calculated by JPL Horizons with option \"Rates; RA & DEC\""
+msgstr ""
+
+msgid "Solar drift compensation"
+msgstr ""
+
+msgid "Drift RA*cos(DEC)  in arcsec/hours. Get this \"dRA*cosD\" value from JPL Horizons"
+msgstr ""
+
+msgid "Δα[\"/hr]"
+msgstr ""
+
+msgid "Drift DEC in arcsec/hours. Get this \"d(DEC)/dt\" value from JPL Horizons"
+msgstr ""
+
+msgid "Δδ[\"/hr]"
+msgstr ""
+
+msgid "Show quads connections  as irregular tetrahedrons in the current image."
+msgstr ""
+
+msgid "Test button to show quads"
+msgstr ""
+
+msgid "Manual alignment: Select an object center routine. After clicking on a star or comet the program will autocenter.\n\n\nEphemeris alignment: \n\nPreperation:\n- Batch solve the images in the viewer.\n- Batch annotate the images in the viewer.\n\nStacking:\n- Select manual/ephemeris alignment\n- Browse for all the images in the image tab and add if available the dark, flats.\n- Double click on one of the image files to open in the viewer. This will fill in tab alignment the option combobox with all annotations.\n- Select from the option combobox the asteroid to align on.\n- Hit the analyse button in the image tab. This fill all the x,y positions in the image list based on the object annotation selected.\n- If all okay, hit the stack button. "
+msgstr ""
+
+msgid "Star centering"
+msgstr ""
+
+msgid "Comet centering (small object)"
+msgstr ""
+
+msgid "Comet centering (medium object)"
+msgstr ""
+
+msgid "Comet centering (large object)"
+msgstr ""
+
+msgid "No centering"
+msgstr ""
+
+msgid "See lights tab popup menu for \"Auto selection reference object in selected images\""
+msgstr ""
+
+msgid "Ephemeris alignment: \n\nPreperation:\n- Batch solve the images in the viewer.\n- Batch annotate the images in the viewer.\n\nStacking:\n- Select manual/ephemeris alignment\n- Browse for all the images in the image tab and add if available the dark, flats.\n- Double click on one of the image files to open in the viewer. This will fill in tab alignment the option combobox with all annotations.\n- Select from the option combobox the asteroid to align on.\n- Hit the analyse button in the image tab. This fill all the x,y positions in the image list based on the object annotation selected.\n- If all okay, hit the stack button. "
+msgstr ""
+
+msgid "Ephemeris alignment"
+msgstr ""
+
+msgid "This will fill the combobox with objects visible in the selected light"
+msgstr ""
+
+msgid "Analyse the selected file in tab lights"
+msgstr ""
+
+msgid "Refresh astrometric solutions"
+msgstr ""
+
+msgid "Apply this if you change the annotation setting. Note that the annotation x,y positions are used for alignment."
+msgstr ""
+
+msgid "Refresh existing asteroid annotations"
+msgstr ""
+
+msgid "Blinking tool for astronomical images."
+msgstr ""
+
+msgid "Blink"
+msgstr ""
+
+msgid "Date/Time"
+msgstr ""
+
+msgid "Annotated"
+msgstr ""
+
+msgid "Clear image list"
+msgstr ""
+
+msgid "Blink check-marked images once. For single step blink use CTRL+UP/DOWN arrows."
+msgstr ""
+
+msgid "Stop blinking"
+msgstr ""
+
+msgid "Continous blink check-marked images. For single step blink use CTRL+UP/DOWN arrows."
+msgstr ""
+
+msgid "Use star alignment to align images. For the first round additional time will be required for calculating solution. Clear alignment if you reuse images."
+msgstr ""
+
+msgid "Align images"
+msgstr ""
+
+msgid "Clear the star alignment. Apply this if alignment is poor."
+msgstr ""
+
+msgid "Clear image alignment"
+msgstr ""
+
+msgid "Online help"
+msgstr ""
+
+msgid "Write image list as YUV4MPEG2 video with extension y4m."
+msgstr ""
+
+msgid "Write video"
+msgstr ""
+
+msgid "Write data and time to screen and image array. If the file is saved this annotation in written in the image itself."
+msgstr ""
+
+msgid "Time stamp"
+msgstr ""
+
+msgid "Select images to blink."
+msgstr ""
+
+msgid "Same option as in the viewer under View."
+msgstr ""
+
+msgid "Annotations visible"
+msgstr ""
+
+msgid "For Track and Stack see popup menu"
+msgstr ""
+
+msgid "Reannotate and solve all checked images. To refresh the solution set the override option in tab Alignment."
+msgstr ""
+
+msgid "(Re)annotate (&&solve)"
+msgstr ""
+
+msgid "Photometry of variable stars."
+msgstr ""
+
+msgid "Photometry"
+msgstr ""
+
+msgid "Stop photometry blinking"
+msgstr ""
+
+msgid "Play button. Scroll through the check-marked images once and measure the marked stars."
+msgstr ""
+
+msgid "Date (start)"
+msgstr ""
+
+msgid "JD (midpoint)"
+msgstr ""
+
+msgid "HJD (helio)"
+msgstr ""
+
+msgid "Astrometric"
+msgstr ""
+
+msgid "Centalt"
+msgstr ""
+
+msgid "Airmass"
+msgstr ""
+
+msgid "Lim-magn"
+msgstr ""
+
+msgid "Generate AAVSO report"
+msgstr ""
+
+msgid "Flux measuring aperture radius [x HFD ].  Typical range 1.5 to 2.0 HFD. If max is specified all star flux is measured. Can be adjusted to find the lowest standard deviation in the results (check star)."
+msgstr ""
+
+msgid "Aperture:"
+msgstr ""
+
+msgid "Analyse image files extra"
+msgstr ""
+
+msgid "Annulus inner radius [px]. The annulus radius has to be larger then the aperture radius."
+msgstr ""
+
+msgid "Annulus:"
+msgstr ""
+
+msgid "Default observer location for the case it is not available in the file header. Use this for DSLR images."
+msgstr ""
+
+msgid "Select images for photometry"
+msgstr ""
+
+msgid "Annotate variable and comparison stars. Only variable stars with an AUID can be submitted. Else you have to request an AUID first. Local database contains B, V only. For large FOV use local database."
+msgstr ""
+
+msgid "Local DB mag 11"
+msgstr ""
+
+msgid "Comparison star database to be used for accurate instrumental magnitude. Set to \n1) Online , Gaia ->auto \nor\n2) Local star database V50 for Johnson-V and B.\nor\n3) Any other database. But use comp star(s) and avoid Gaia ensemble."
+msgstr ""
+
+msgid "See popup menu for calibration && extraction"
+msgstr ""
+
+msgid "Find best aperture by trial and error. This only works for V, TG filter or clear."
+msgstr ""
+
+msgid "Font size of image annotations. Use font size 3 or 4 to shorten abbreviations"
+msgstr ""
+
+msgid "Font size of image annotations. Using the online database for size 4 only abbreviation are plotted."
+msgstr ""
+
+msgid "Font size:"
+msgstr ""
+
+msgid "Gaia comp. stars:"
+msgstr ""
+
+msgid "AAVSO annotation:"
+msgstr ""
+
+msgid "Select measuring mode"
+msgstr ""
+
+msgid "Manual star selection"
+msgstr ""
+
+msgid "Measure all annotated.   SNR>"
+msgstr ""
+
+msgid "Measure all stars.    SNR>"
+msgstr ""
+
+msgid "Minimum SNR of the stars to measure"
+msgstr ""
+
+msgid "Enter pixel saturation value manually instead of the highest value in the image."
+msgstr ""
+
+msgid "Saturation level"
+msgstr ""
+
+msgid "This will calculate the transformation equations."
+msgstr ""
+
+msgid "Transformation"
+msgstr ""
+
+msgid "Cycle period filter [days]. Display only variables with a cycle period shorter then this setting."
+msgstr ""
+
+msgid "Only annotate variables which have an AUID (identifier)"
+msgstr ""
+
+msgid "AUID 👌"
+msgstr ""
+
+msgid "Enter here the maximum acceptable pixel value before saturation occurs."
+msgstr ""
+
+msgid "Calibrate lights in advance and in case of raw OSC light, split it TR, TG, TB frames."
+msgstr ""
+
+msgid "Calibrate"
+msgstr ""
+
+msgid "Disable autocentering measurement. Use this only when the star is omitted by the detection due to bright objects nearby.  It requires an accurate celestial position so the online annotations are preferred."
+msgstr ""
+
+msgid "Disable star autocenter"
+msgstr ""
+
+msgid "radius"
+msgstr ""
+
+msgid "Measure the best focus position for several areas of the image."
+msgstr ""
+
+msgid "Inspector"
+msgstr ""
+
+msgid "Star detections"
+msgstr ""
+
+msgid "hfd cent"
+msgstr ""
+
+msgid "hfd out"
+msgstr ""
+
+msgid "hfd 11"
+msgstr ""
+
+msgid "hfd 21"
+msgstr ""
+
+msgid "hfd 31"
+msgstr ""
+
+msgid "hfd 12"
+msgstr ""
+
+msgid "hfd 32"
+msgstr ""
+
+msgid "hfd 13"
+msgstr ""
+
+msgid "hfd 23"
+msgstr ""
+
+msgid "hfd 33"
+msgstr ""
+
+msgid "Hyperbola curve fitting"
+msgstr ""
+
+msgid "Select focus images to inspect"
+msgstr ""
+
+msgid "Measure the mount celestial position offsets."
+msgstr ""
+
+msgid "Mount analyse"
+msgstr ""
+
+msgid "Date/Time (start)"
+msgstr ""
+
+msgid "JD (mid exp)"
+msgstr ""
+
+msgid "α 2000 [°]"
+msgstr ""
+
+msgid "δ 2000 [°]"
+msgstr ""
+
+msgid "α mount [°]"
+msgstr ""
+
+msgid "δ mount [°]"
+msgstr ""
+
+msgid "Δα 2000 [\"] "
+msgstr ""
+
+msgid "Δδ 2000 [\"]"
+msgstr ""
+
+msgid "α Jnow [°]"
+msgstr ""
+
+msgid "δ Jnow [°]"
+msgstr ""
+
+msgid "α mount jnow [°]"
+msgstr ""
+
+msgid "δ mount jnow [°]"
+msgstr ""
+
+msgid "h Jnow [°]"
+msgstr ""
+
+msgid "A Jnow [°]"
+msgstr ""
+
+msgid "crota_jnow [°]"
+msgstr ""
+
+msgid "Foc_Temp"
+msgstr ""
+
+msgid "P [hPa]"
+msgstr ""
+
+msgid "Select images to analyse."
+msgstr ""
+
+msgid "Calcuates from the two or more images the polar alignment error. The images should be taken at different positions in the sky."
+msgstr ""
+
+msgid "Calculate polar aligment error"
+msgstr ""
+
+msgid "Format of positions"
+msgstr ""
+
+msgid "HH:MM:SS"
+msgstr ""
+
+msgid "Solve the images using the popup menu"
+msgstr ""
+
+msgid "Stack live images"
+msgstr ""
+
+msgid "Live stacking"
+msgstr ""
+
+msgid "Start live stacking."
+msgstr ""
+
+msgid "Pause live stacking process."
+msgstr ""
+
+msgid "Stop live stacking."
+msgstr ""
+
+msgid "Darks and flats will be applied if available."
+msgstr ""
+
+msgid "Stacking will restart if telescope position has moved  0.2° or when exposure time changes"
+msgstr ""
+
+msgid "Debayer and colour correction as set in tab Stack method."
+msgstr ""
+
+msgid "Online help about live stacking"
+msgstr ""
+
+msgid "Monitoring"
+msgstr ""
+
+msgid "After adding a file copy the interim image to clipboard."
+msgstr ""
+
+msgid "Copy each time the interim image to the clipboard"
+msgstr ""
+
+msgid "After adding a file write result to file stack.jpeg at the same location as the files."
+msgstr ""
+
+msgid "Write each time the interim result to stack.jpeg"
+msgstr ""
+
+msgid "For log use the log option below."
+msgstr ""
+
+msgid "Select the directory which will contain the live images to stack. Program will read FITS, RAW(s), JPEG, TIFF, PNG."
+msgstr ""
+
+msgid "Folder"
+msgstr ""
+
+msgid "Processed files will get a new extension *.*_"
+msgstr ""
+
+msgid "Rename all files back to original"
+msgstr ""
+
+msgid "Load (and analyse) any new file in the selected folder. Darks and flats and debayer will be applied as configured."
+msgstr ""
+
+msgid "Select the directory to monitor. Program will read FITS, RAW(s), JPEG, TIFF, PNG."
+msgstr ""
+
+msgid "Start monitoring."
+msgstr ""
+
+msgid "Stop monitoring"
+msgstr ""
+
+msgid "Sample size colours"
+msgstr ""
+
+msgid "none"
+msgstr ""
+
+msgid "Tilt, 8 point measurement & HFD"
+msgstr ""
+
+msgid "Tilt, 3 point measurement & HFD"
+msgstr ""
+
+msgid "Aberration view"
+msgstr ""
+
+msgid "Solve image"
+msgstr ""
+
+msgid "Background Contour"
+msgstr ""
+
+msgid "Action:"
+msgstr ""
+
+msgid "Online help about monitoring"
+msgstr ""
+
+msgid "Apply dark and flat for each image"
+msgstr ""
+
+msgid "Apply dark and flat"
+msgstr ""
+
+msgid "Image center position (right ascension of the solution)"
+msgstr ""
+
+msgid "Image center position (declination of the solution)"
+msgstr ""
+
+msgid "Target box"
+msgstr ""
+
+msgid "Target object"
+msgstr ""
+
+msgid "Set an object target or position and let the program calculate the distance. "
+msgstr ""
+
+msgid "Set target"
+msgstr ""
+
+msgid "Right ascension correction required to reach target."
+msgstr ""
+
+msgid "Declination correction required to reach target."
+msgstr ""
+
+msgid "Target distance"
+msgstr ""
+
+msgid "Move the telescope in this direction"
+msgstr ""
+
+msgid "Latitude [N]:"
+msgstr ""
+
+msgid "Longitude [E]:"
+msgstr ""
+
+msgid "Target altitude"
+msgstr ""
+
+msgid "A"
+msgstr ""
+
+msgid "Target azimuth"
+msgstr ""
+
+msgid "H"
+msgstr ""
+
+msgid "Pixel math tools 1"
+msgstr ""
+
+msgid "Pixel math 1"
+msgstr ""
+
+msgid "Apply following to current displayed image:"
+msgstr ""
+
+msgid "Colour correction"
+msgstr ""
+
+msgid "Add value"
+msgstr ""
+
+msgid "Multiply with"
+msgstr ""
+
+msgid "Apply above actions. Hit CTRL-Z to undo."
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Levels for neutral background and white stars"
+msgstr ""
+
+msgid "Reset the add and multiply factors"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Do not modifiy values of zero and below"
+msgstr ""
+
+msgid "Ignore zero and below"
+msgstr ""
+
+msgid "Equalise background tool"
+msgstr ""
+
+msgid "Test on the current displayed image. CTRL-Z to undo."
+msgstr ""
+
+msgid "Apply \"mode\" filter to remove stars"
+msgstr ""
+
+msgid "Median filter factor (box size). Typical value is 30"
+msgstr ""
+
+msgid "Applied on the current displayed image. CTRL-Z to undo."
+msgstr ""
+
+msgid "Apply gaussian filter"
+msgstr ""
+
+msgid "To remove fuzzies use the viewer  popup menu \"Remove deepsky object\""
+msgstr ""
+
+msgid "Remove fuzzies with right mouse button"
+msgstr ""
+
+msgid "3)"
+msgstr ""
+
+msgid "4)"
+msgstr ""
+
+msgid "6)"
+msgstr ""
+
+msgid "Subtract the created background from the original image and display the result."
+msgstr ""
+
+msgid "Subtract background from saved image."
+msgstr ""
+
+msgid "5)"
+msgstr ""
+
+msgid "1)"
+msgstr ""
+
+msgid "Save to file with equalised added to the filename."
+msgstr ""
+
+msgid "Save current view as new file"
+msgstr ""
+
+msgid "Save result"
+msgstr ""
+
+msgid "This removes dark spots typical for CMOS images. (uses standard deviation for values below most common value) "
+msgstr ""
+
+msgid "Dark spot filter"
+msgstr ""
+
+msgid "Optional"
+msgstr ""
+
+msgid "Go to step 2"
+msgstr ""
+
+msgid "Convert to mono. This will effect the background gradient correction only and could improve the end result."
+msgstr ""
+
+msgid "See viewer popup menu. The background gradient should be smooth. Remove abnormal spots."
+msgstr ""
+
+msgid "Correct gradient with copy+paste tool."
+msgstr ""
+
+msgid "2)"
+msgstr ""
+
+msgid "Background colour removal"
+msgstr ""
+
+msgid "This command removes the background colour."
+msgstr ""
+
+msgid "Standard deviation of background noise. Normal value 2.5 to 3.0. Could influence faint nebula."
+msgstr ""
+
+msgid "Signal below σ:"
+msgstr ""
+
+msgid "Improves colour of saturated stars"
+msgstr ""
+
+msgid "Global colour smoothing"
+msgstr ""
+
+msgid "This routine globally colour smooths the image but tries to preserve nebula."
+msgstr ""
+
+msgid "Colour smoothing range in pixels. This will keep luminance but smooth the colours. Default is 10. Set this as high as eight times the HFD value."
+msgstr ""
+
+msgid "Keep this cheched if a red nebula is visible"
+msgstr ""
+
+msgid "Preserve red nebula"
+msgstr ""
+
+msgid "Background noise filter"
+msgstr ""
+
+msgid "σ factor"
+msgstr ""
+
+msgid "Standard deviation to detect deepsky objects not to be blurred. "
+msgstr ""
+
+msgid "This blur will be applied on the sky background"
+msgstr ""
+
+msgid "Gaussian blur"
+msgstr ""
+
+msgid "Remove gradient or dark areas"
+msgstr ""
+
+msgid "This will remove any vertical gradient. For any other angle apply both or use the viewer popup menu \"gradient removal tool\"."
+msgstr ""
+
+msgid "Apply ↕"
+msgstr ""
+
+msgid "This will remove any horizontal gradient. For any other angle apply both or use the viewer popup menu \"gradient removal tool\"."
+msgstr ""
+
+msgid "Apply ↔"
+msgstr ""
+
+msgid "Slice width or box size in pixels to detect local median value. Typical value is 30. "
+msgstr ""
+
+msgid "Method to find the background"
+msgstr ""
+
+msgid "Sigma Clip Mean background detection"
+msgstr ""
+
+msgid "Equalise corners of the image below the average background. "
+msgstr ""
+
+msgid "Raise dark areas"
+msgstr ""
+
+msgid "Colour replace"
+msgstr ""
+
+msgid "Click on the image in the viewer to select a colour"
+msgstr ""
+
+msgid "Old colour"
+msgstr ""
+
+msgid "New colour"
+msgstr ""
+
+msgid "Click on the image in the viewer to select a colour to replace"
+msgstr ""
+
+msgid "Click on the image in the viewer to select a new colour"
+msgstr ""
+
+msgid "Add noise to the image in the viewer"
+msgstr ""
+
+msgid "Fuziness of old colour.  [0..180°]"
+msgstr ""
+
+msgid "Sample size:"
+msgstr ""
+
+msgid "Saturation of new colour [0..200%]"
+msgstr ""
+
+msgid "Final new colour"
+msgstr ""
+
+msgid "Hue and saturation range to be replaced. The hue range is between the two lines. The saturation range is between the two circels."
+msgstr ""
+
+msgid "Indicates if area is selected."
+msgstr ""
+
+msgid "Sub-area selected:"
+msgstr ""
+
+msgid "Unselect area. If unselected the colours in whole image will be replaced."
+msgstr ""
+
+msgid "Tolerance colour saturation.  [0..50%] A good value is 20%"
+msgstr ""
+
+msgid "New luminance [0..200%]"
+msgstr ""
+
+msgid "This option on  allows the removal of coloured hot pixels and streaks "
+msgstr ""
+
+msgid "Blend in with the surroundings"
+msgstr ""
+
+msgid "Unsharp mask"
+msgstr ""
+
+msgid "Amount of unsharp mask which is subtracted from the image in the viewer."
+msgstr ""
+
+msgid "Amount:"
+msgstr ""
+
+msgid "Radius of the Gaussian blur"
+msgstr ""
+
+msgid "Radius:"
+msgstr ""
+
+msgid "Pixels"
+msgstr ""
+
+msgid "Apply unsharp mask. Zoom in to see the difference."
+msgstr ""
+
+msgid "This will keep the background noise untouched. Expressed in standard deviation of background noise. Set at 2 or 3 σ."
+msgstr ""
+
+msgid "Threshold:"
+msgstr ""
+
+msgid "This command colour smooth the detected stars in the image in the viewer"
+msgstr ""
+
+msgid "Artificial flat-field correction"
+msgstr ""
+
+msgid "Set the brightest or darkest center position of the image with the popup menu \"Set area\""
+msgstr ""
+
+msgid "Center: default"
+msgstr ""
+
+msgid "Ring equalise: specify object size in the center of the image in percentage of the image height. This area will then be protected against the correction. "
+msgstr ""
+
+msgid "Equalise all. There should be no object in the center of the image and deepsky objects should be small.. "
+msgstr ""
+
+msgid "Ring equalise"
+msgstr ""
+
+msgid "Pixel math tools 2"
+msgstr ""
+
+msgid "Pixel math 2"
+msgstr ""
+
+msgid "Digital development process"
+msgstr ""
+
+msgid "Yij = k [ a * Xij / ({Xij} + a ) ] + b"
+msgstr ""
+
+msgid "a ="
+msgstr ""
+
+msgid "Subtracted from Xij prior application of DDP"
+msgstr ""
+
+msgid "background ="
+msgstr ""
+
+msgid "k ="
+msgstr ""
+
+msgid "Use values below 1. Results in unsharp stars. Some  sharping required in a later stage."
+msgstr ""
+
+msgid "Typical value 500"
+msgstr ""
+
+msgid "Background value"
+msgstr ""
+
+msgid "Typical value 5 to 20."
+msgstr ""
+
+msgid "Results in a nonlinear hyperbolic stretch, excellent for galaxies."
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Use an automatically measured background value."
+msgstr ""
+
+msgid "Add noise"
+msgstr ""
+
+msgid "Add Gaussian noise. The value is the standard deviation. The mean is three times the value"
+msgstr ""
+
+msgid "Add a bias to stay positive. Do this for very large noise values."
+msgstr ""
+
+msgid "Add 3σ bias value"
+msgstr ""
+
+msgid "Create artificial test image for testing star detection. This tool is intendent for developpers only."
+msgstr ""
+
+msgid "Create test image for star detection"
+msgstr ""
+
+msgid "This will create a FITS image with Gaussian stars having a HFD as specified. Top rows are filled with hot pixels."
+msgstr ""
+
+msgid "Stars, hot pixels"
+msgstr ""
+
+msgid "Add a typical gradient of telescope. The center is more bright then the corners."
+msgstr ""
+
+msgid "Background gradient"
+msgstr ""
+
+msgid "HFD of the simulated stars"
+msgstr ""
+
+msgid "Donut stars"
+msgstr ""
+
+msgid "This will create a red and blue nebula"
+msgstr ""
+
+msgid "Nebula"
+msgstr ""
+
+msgid "Extract background/artificial flat"
+msgstr ""
+
+msgid "Replace the values in each box with the most common value using the most common filter. This works better then removing stars as outliers."
+msgstr ""
+
+msgid "Filter box size"
+msgstr ""
+
+msgid "Apply gaussian blur after stacking to reduce noise. Hit CTRL-Z to undo"
+msgstr ""
+
+msgid "Apply a flat image or add or subtract an image. "
+msgstr ""
+
+msgid "Apply file to image in viewer"
+msgstr ""
+
+msgid "Add or subtract files."
+msgstr ""
+
+msgid "Add file to view"
+msgstr ""
+
+msgid "Subtract file from view"
+msgstr ""
+
+msgid "Subtract file from view +1000"
+msgstr ""
+
+msgid "Subtract file scaled from view"
+msgstr ""
+
+msgid "Apply file as flat field (divide normalized)"
+msgstr ""
+
+msgid "Multiply (normalised) file"
+msgstr ""
+
+msgid "Browse and select image to add/subtract or use a flat."
+msgstr ""
+
+msgid "Spit viewer image in red, green and blue file."
+msgstr ""
+
+msgid "Split in separate R, G, B files."
+msgstr ""
+
+msgid "This will make three separate files"
+msgstr ""
+
+msgid "Split in R, G, B"
+msgstr ""
+
+msgid "Resize current viewer image"
+msgstr ""
+
+msgid "Resize current image in the viewer. Sizing factor is free selectable but there is no significant noise reducement."
+msgstr ""
+
+msgid "Resize"
+msgstr ""
+
+msgid "Resize from current format"
+msgstr ""
+
+msgid "FOV calculator"
+msgstr ""
+
+msgid "Telescope focal length [mm]"
+msgstr ""
+
+msgid "Focal length of telescope used in mm."
+msgstr ""
+
+msgid "Sensor pixel size after binning [µm]"
+msgstr ""
+
+msgid "The image sensor pixel size in micrometer after binning."
+msgstr ""
+
+msgid "Arcseconds per pixel"
+msgstr ""
+
+msgid "Image dimensions in degrees"
+msgstr ""
+
+msgid "Calculated sensor size in mm"
+msgstr ""
+
+msgid "Box blur filter"
+msgstr ""
+
+msgid "Test box blur on the current displayed image. Use CTRL-Z to undo."
+msgstr ""
+
+msgid "Factor of bluring"
+msgstr ""
+
+msgid "Remove stars"
+msgstr ""
+
+msgid "Increase nebulosity signal"
+msgstr ""
+
+msgid "To the image an copy will be added with the stars removed to increase nebulosity signal. An internet connection is required for downloading Gaia stars. \n\nThis could be used for stacking. E.g. to increase the OIII nebulosity signal. Note the background noise will also increase."
+msgstr ""
+
+msgid "Factor to increase the nebulosity signal"
+msgstr ""
+
+msgid "Artificial colouring of H-alpha images. Clouds will be made red. Stars white."
+msgstr ""
+
+msgid "Artificial colouring"
+msgstr ""
+
+msgid "Colour nebula"
+msgstr ""
+
+msgid "Star level above background"
+msgstr ""
+
+msgid "Filter factor to separate stars from nebula."
+msgstr ""
+
+msgid "Star level:"
+msgstr ""
+
+msgid "Filter factor:"
+msgstr ""
+
+msgid "Normalise raw OSC image"
+msgstr ""
+
+msgid "Normalise flux of RGGB pixels as if the received light was white and all pixels have the same sensitivity. Preferable after dark has been applied. Use CTRL-Z to undo."
+msgstr ""
+
+msgid "Normalise"
+msgstr ""
+
+msgid "Satellite streak detection"
+msgstr ""
+
+msgid "Smoothens noise and improves contour detection"
+msgstr ""
+
+msgid "Standard deviation above noise. Typical values 2 to 3."
+msgstr ""
+
+msgid "σ detection level"
+msgstr ""
+
+msgid "Detect object contours and write streak formula to header"
+msgstr ""
+
+msgid "Detect"
+msgstr ""
+
+msgid "Distance between vertical and horizontal grid lines in pixels. Will only test at the grid lines to speed up."
+msgstr ""
+
+msgid "Detection grid"
+msgstr ""
+
+msgid "Stack check marked images using darks, flats and flat dark frames."
+msgstr ""
+
+msgid "Stack check marked images"
+msgstr ""
+
+msgid "Hit ESC key or click on this text to stop."
+msgstr ""
+
+msgid "Press ESC to abort."
+msgstr ""
+
+msgid "Classify by"
+msgstr ""
+
+msgid "Activate this option if you want to stack LRGB or RGB  images using filter name.  Set filter names in stack method"
+msgstr ""
+
+msgid "Light filter"
+msgstr ""
+
+msgid "Activate this option if you want to stack images of different objects in one run."
+msgstr ""
+
+msgid "Light object"
+msgstr ""
+
+msgid "Activate this option if you want link the flats based on filter name. Works both for stacking and master creation."
+msgstr ""
+
+msgid "Flat filter"
+msgstr ""
+
+msgid "Activate this option if you want link the darks based on exposure duration. Works both for stacking and master creation."
+msgstr ""
+
+msgid "Dark exposure duration"
+msgstr ""
+
+msgid "Activate this option if you want link the darks based on sensor temperature. Works both for stacking and master creation."
+msgstr ""
+
+msgid "Dark temperature"
+msgstr ""
+
+msgid "Activate this option if you want link the darks based on gain. Works both for stacking and master creation."
+msgstr ""
+
+msgid "Dark gain"
+msgstr ""
+
+msgid "Temperature tolorance"
+msgstr ""
+
+msgid "°C"
+msgstr ""
+
+msgid "If selected, shutdown computer after completion."
+msgstr ""
+
+msgid "Power down after completion"
+msgstr ""
+
+msgid "Write stack log file"
+msgstr ""
+
+msgid "View image"
+msgstr ""
+
+msgid "Uncheck selected"
+msgstr ""
+
+msgid "Check mark selected"
+msgstr ""
+
+msgid "#Select all items"
+msgstr ""
+
+msgid "Remove selected"
+msgstr ""
+
+msgid "Change header keyword in selected files"
+msgstr ""
+
+msgid "#Modify or add a keyword to the header of the selected files"
+msgstr ""
+
+msgid "Type keyword and new value"
+msgstr ""
+
+msgid "#All select files will be updated with new keyword value. Type for value DELETE to remove keyword."
+msgstr ""
+
+msgid "#In preperation for deleting later. "
+msgstr ""
+
+msgid "All select files will be updated with new keyword value. Type for value DELETE to remove keyword."
+msgstr ""
+
+msgid "Select all items"
+msgstr ""
+
+msgid "#Select all files"
+msgstr ""
+
+msgid "Copy selected files to clipboard"
+msgstr ""
+
+msgid "#Copy the selected files to clipboard."
+msgstr ""
+
+msgid "Copy file path"
+msgstr ""
+
+msgid "#Copy file path to clipboard for use in your file explorer."
+msgstr ""
+
+msgid "Copy selected images to tab lights"
+msgstr ""
+
+msgid "Copy selected images to tab Blink"
+msgstr ""
+
+msgid "Copy selected images to tab Photometry"
+msgstr ""
+
+msgid "Rename selected files as"
+msgstr ""
+
+msgid "#Rename the file"
+msgstr ""
+
+msgid "Compress selected files"
+msgstr ""
+
+msgid "#Compress selected files using external CFITSIO utility program fpack. Files will get extension .fz"
+msgstr ""
+
+msgid "Copy selected rows to clipboard"
+msgstr ""
+
+msgid "#Data will be in clipboard and can be pasted in a spreadsheet"
+msgstr ""
+
+msgid "Refresh astrometrical solutions of selected files"
+msgstr ""
+
+msgid "View previous image"
+msgstr ""
+
+msgid "View next image"
+msgstr ""
+
+msgid "Track and Stack all selected files for all annotations"
+msgstr ""
+
+msgid "#Stack selected files aligned for each annotated object"
+msgstr ""
+
+msgid "Bin 2x2 the selected files"
+msgstr ""
+
+msgid "#Bin 2x2 the selected files."
+msgstr ""
+
+msgid "Copy selected rows swapped to clipboard"
+msgstr ""
+
+msgid "#Selected data will be copied to the clipboard but the rows and columns will be swapped. Data of COMP stars will be added."
+msgstr ""
+
+msgid "Copy selected rows to clipboard in TG format"
+msgstr ""
+
+msgid "#Copy selected rows to clipboard in TG format for processing in Transformation generator."
+msgstr ""
+
+msgid "Find text"
+msgstr ""
+
+msgid "#Find text in the listview"
+msgstr ""
+
+msgid "Calibrate selected files"
+msgstr ""
+
+msgid "#Calibrate selected files with darks, flats and flatdarks. "
+msgstr ""
+
+msgid "Extract Green channel of selected raw files"
+msgstr ""
+
+msgid "#For raw OSC images only. Not for images converted to colour. The routine will combine for each bayer submosaic the two green sensitive pixels. Check in advance the de-mosaic pattern in stack menu, tab stack method."
+msgstr ""
+
+msgid "Extract Green, Blue and Red channel of selected raw files"
+msgstr ""
+
+msgid "#For raw OSC images only. Not for images converted to colour. The routine will  extract the blue sensitive pixels. Check in advance the de-mosaic pattern in stack menu, tab stack method."
+msgstr ""
+
+msgid "Stack selected files in mode average"
+msgstr ""
+
+msgid "#Stack the selected files in mode AVERAGE and replace them by the stack."
+msgstr ""
+
+msgid "Stack ALL files in groups, mode average"
+msgstr ""
+
+msgid "#To improve SNR values"
+msgstr ""
+
+msgid "#This will bin 2x2 all selected files and add them to the list."
+msgstr ""
+
+msgid "#This will renew the astrometric solutions and photometric calibration . Use this only for the rare case  the solutions are wrong and alignment is poor."
+msgstr ""
+
+msgid "Photometric calibration selected files"
+msgstr ""
+
+msgid "#Photometric calibration and save it to the file header. This is just an extra tool and not essential. It adds keyword MZERO to the header"
+msgstr ""
+
+msgid "Change last column keyword"
+msgstr ""
+
+msgid "#This will change the keyword displayed in the last column "
+msgstr ""
+
+msgid "Enter the keyword"
+msgstr ""
+
+msgid "#Enter a new keyword to be listed in this column"
+msgstr ""
+
+msgid "#If missing,  this keyword is made available if the images are batch solved (in viewer menu tools) with option add LIM-MAGN, SQM, CENTALT, AIRMASS"
+msgstr ""
+
+msgid "#If missing,  this keyword is made available if the images are batch solved (in viewer menu tools) with option add LIM-MAGN, SQM, CENTALT, AIRMASS, TILT"
+msgstr ""
+
+msgid "Set as reference image"
+msgstr ""
+
+msgid "#Define this image as reference image."
+msgstr ""
+
+msgid "Auto selection reference object in selected images"
+msgstr ""
+
+msgid "#For manual alignment, This will automatically select the same object in all images based on the selection in the first image "
+msgstr ""
+
+msgid "Batch processing selected files"
+msgstr ""
+
+msgid "#Refresh astrometrical solutions of selected files"
+msgstr ""
+
+msgid "Add SQM value to the file header of selected files. "
+msgstr ""
+
+msgid "#Will report SQM at optional column (last)"
+msgstr ""
+
+msgid "#Photometric calibration selected files"
+msgstr ""
+
+msgid "Bin 2x2 selected files"
+msgstr ""
+
+msgid "Annotate unknown stars in selected files"
+msgstr ""
+
+msgid "#This will typically annotate novae and minor planets"
+msgstr ""
+
+msgid "Data will be in clipboard and can be pasted in a spreadsheet"
+msgstr ""
+
+msgid "Rename selected files"
+msgstr ""
+
+msgid "Refresh astrometrical solutions and photometric cal of selected files"
+msgstr ""
+
+msgid "#Refresh astrometrical solutions and photometric cal of selected files"
+msgstr ""
+
+msgid "FITS Thumbnails"
+msgstr ""
+
+msgid "Open in the viewer"
+msgstr ""
+
+msgid "Rename image"
+msgstr ""
+
+msgid "Give the image a new name"
+msgstr ""
+
+msgid "Copy to"
+msgstr ""
+
+msgid "Copy to a different directory"
+msgstr ""
+
+msgid "Move to"
+msgstr ""
+
+msgid "Move to a different directory"
+msgstr ""
+
+msgid "Change directory"
+msgstr ""
+
+msgid "Browse to a different location"
+msgstr ""
+
+msgid "ASTAP transformation"
+msgstr ""
+
+msgid "Calculate the transformation coefficients."
+msgstr ""
+
+msgid "Calculate"
+msgstr ""
+
+msgid "Maximum allowed σ value to filter out outliers."
+msgstr ""
+
+msgid "Cancel above coeficients."
+msgstr ""
+
+msgid "Save these coefficients"
+msgstr ""
+
+msgid "Show AUID"
+msgstr ""
+
+msgid "Show auid's"
+msgstr ""
+
+msgid "Minimum SNR. A higher minimum will improve the accuracy of the transformation factors. Default 70"
+msgstr ""
+
+msgid "SNR >"
+msgstr ""
+
+msgid "Check mark this to find Sloan coefficients for g', r', i'"
+msgstr ""
+
+msgid "Sloan"
+msgstr ""
+
+msgid "Coefficients"
+msgstr ""
+
+msgid "Tbv"
+msgstr ""
+
+msgid "Tbv=?"
+msgstr ""
+
+msgid "Tb_bv"
+msgstr ""
+
+msgid "Tb_bv=?"
+msgstr ""
+
+msgid "Tv_bv"
+msgstr ""
+
+msgid "Tv_bv=?"
+msgstr ""
+
+msgid "Tvr"
+msgstr ""
+
+msgid "Tvr=?"
+msgstr ""
+
+msgid "Tv_vr"
+msgstr ""
+
+msgid "Tv_vr=?"
+msgstr ""
+
+msgid "Tr_vr"
+msgstr ""
+
+msgid "Tr_vr=?"
+msgstr ""
+
+msgid "Tri"
+msgstr ""
+
+msgid "Tri=?"
+msgstr ""
+
+msgid "Tr_ri"
+msgstr ""
+
+msgid "Tr_ri=?"
+msgstr ""
+
+msgid "Ti_ri"
+msgstr ""
+
+msgid "Ti_ri=?"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "Chinese (Simplified)"
+msgstr ""
+
+msgid "Open stack menu"
+msgstr ""
+
+msgid "Open in viewer"
+msgstr ""
+
+msgid "Abort, can not save grayscale image as colour image!!"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "ASTAP: Existing file "
+msgstr ""
+
+msgid "Existing file "
+msgstr ""
+
+msgid " Overwrite?"
+msgstr ""
+
+msgid "Only the current image of the multi-extension FITS will be saved. Displayed table will not be preserved. Continue?"
+msgstr ""
+
+msgid "No area selected! Hold the right mouse button down while selecting an area."
+msgstr ""
+
+msgid "This will set all ASTAP settings to default and close the program. Are you sure?"
+msgstr ""
+
+msgid "Default settings?"
+msgstr ""
+
+msgid "Select multiple files to reduce in size (bin2x2)"
+msgstr ""
+
+msgid "Select multiple files to reduce in size (bin3x3)"
+msgstr ""
+
+msgid "New name:"
+msgstr ""
+
+msgid "ESC pressed. Stopped reading images."
+msgstr ""
+
+msgid "Select a directory"
+msgstr ""
+
+msgid "Abort!, source and destination are the same."
+msgstr ""
+
+msgid "File exists: overwrite?"
+msgstr ""
+
+msgid "Write error!!"
+msgstr ""
+
+msgid "Abort, first solve the image!"
+msgstr ""
+
+msgid "Error converting DATE-OBS or DATE-AVG from the file header!"
+msgstr ""
+
+msgid "Warning observatory latitude not found in the fits header"
+msgstr ""
+
+msgid "Warning observatory longitude not found in the fits header"
+msgstr ""
+
+msgid "MPCORB.DAT file not found: "
+msgstr ""
+
+msgid "Set path in Asteroid & Comet annotation menu, CTRL+R"
+msgstr ""
+
+msgid "Select MPCORB.DAT to use"
+msgstr ""
+
+msgid "Select AllCometEls.txt to use"
+msgstr ""
+
+msgid "Select multiple files to add astrometric solution"
+msgstr ""
+
+msgid "Solving"
+msgstr ""
+
+msgid "Solved:"
+msgstr ""
+
+msgid "Solved: "
+msgstr ""
+
+msgid "Failed:"
+msgstr ""
+
+msgid "Failed: "
+msgstr ""
+
+msgid "File not found: "
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "Low +"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "Medium +"
+msgstr ""
+
+msgid "High"
+msgstr ""
+
+msgid "High +"
+msgstr ""
+
+msgid "Range"
+msgstr ""
+
+msgid "Manual"
+msgstr ""
+
+msgid "Show saturation"
+msgstr ""
+
+msgid "Max range"
+msgstr ""

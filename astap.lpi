@@ -146,7 +146,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="20">
+    <Units Count="21">
       <Unit0>
         <Filename Value="astap.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -251,6 +251,10 @@
         <Filename Value="unit_stars_wide_field.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit19>
+      <Unit20>
+        <Filename Value="unit_language.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit20>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

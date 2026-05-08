@@ -13,7 +13,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, LCLintf, StdCtrls,
-  Buttons, math, astap_main, unit_stack, unit_annotation,
+  Buttons, math, astap_main, unit_stack, unit_annotation, unit_language,
   clipbrd, ExtCtrls,{for copy to clipboard}
   unit_threaded_gaussian_blur ;
 
@@ -1634,13 +1634,13 @@ begin
   show_distortion1.enabled:=head.cd1_1<>0;
 
   if head.naxis3>1 then
-    bayer_label1.caption:='Colour image'
+    bayer_label1.caption:='彩色图像'
   else
   begin
     if bayerpat<>'' then
-      bayer_label1.caption:='Bayer matrix image'
+      bayer_label1.caption:='拜耳矩阵图像'
     else
-      bayer_label1.caption:='Mono sensor image';
+      bayer_label1.caption:='单色传感器图像';
   end;
 
   triangle1.checked:=three_corners;
@@ -1652,6 +1652,7 @@ begin
   bin_factor1.itemindex:=inspector_binning;
   grid_size1.text:=inttostr(inspector_grid_size);
   gradations1.text:=inttostr(inspector_gradations);
+  ApplyLanguageToForm(form_inspection1);
 end;
 
 procedure Tform_inspection1.gradations1Change(Sender: TObject);

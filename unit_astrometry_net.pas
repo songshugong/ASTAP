@@ -12,7 +12,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, strutils,
-  astap_main, unit_stack;
+  astap_main, unit_stack, unit_language;
 
 
 type
@@ -121,7 +121,7 @@ begin
 
   result:=false;
 
-  mainform1.caption:='Solving: '+ExtractFileName(filename3);
+  mainform1.caption:='正在解析:'+ExtractFileName(filename3);
 
   fpath:=ExtractFilePath(filename3);
   {$ifdef mswindows}
@@ -244,7 +244,7 @@ var
   I: integer;
   failed, solved :integer;
 begin
-  button2.caption:='Stop';
+  button2.caption:='停止';
   show_console:=show_console1.checked;
   keep_console_open:=keep_console_open1.checked;
   cygwin_path:=cygwin1.text;
@@ -252,7 +252,7 @@ begin
 
   save_settings2;
 
-  mainform1.OpenDialog1.Title := 'Select multiple  files to add astrometric solution';
+  mainform1.OpenDialog1.Title := TranslateText('Select multiple files to add astrometric solution');
   mainform1.OpenDialog1.Options := [ofAllowMultiSelect, ofFileMustExist,ofHideReadOnly];
   mainform1.OpenDialog1.Filter := 'FITS files|*.fit;*.fits;*.FIT;*.FITS;*.fts;*.FTS';
   esc_pressed:=false;
@@ -269,7 +269,7 @@ begin
         for I := 0 to Count - 1 do
         begin
           filename2:=Strings[I];
-          fileprocessed1.caption:='Solving '+inttostr(i)+'-'+inttostr(Count-1)+': '+filename2;
+          fileprocessed1.caption:=TranslateText('Solving')+' '+inttostr(i)+'-'+inttostr(Count-1)+': '+filename2;
           progress_indicator(i/count,' Solving');{show progress}
 
           Application.ProcessMessages;
@@ -279,9 +279,9 @@ begin
             exit;
           end;
           if astrometry_net(filename2,true {remove_tmp},show_console,keep_console_open) then
-             begin inc(solved); solved1.caption:= 'Solved: '+inttostr(solved); memo2_message('Solved: '+filename2);    end
+             begin inc(solved); solved1.caption:= TranslateText('Solved:')+inttostr(solved); memo2_message(TranslateText('Solved: ')+filename2);    end
           else
-             begin inc(failed); failed1.caption:= 'Failed: '+inttostr(failed);memo2_message('Failed: '+filename2); end
+             begin inc(failed); failed1.caption:= TranslateText('Failed:')+inttostr(failed);memo2_message(TranslateText('Failed: ')+filename2); end
         end;
       finally
       progress_indicator(-100,'');{progresss done}
@@ -294,7 +294,7 @@ end;
 procedure Tform_astrometry_net1.Button2Click(Sender: TObject);
 begin
   esc_pressed:=true;
-  button2.caption:='Stop pressed';
+  button2.caption:='已按下停止';
 end;
 
 
@@ -332,6 +332,7 @@ begin
   keep_console_open1.checked:= keep_console_open;
   cygwin1.text:=cygwin_path;
   astrometry_extra_options1.text:=astrometry_extra_options;
+  ApplyLanguageToForm(form_astrometry_net1);
 end;
 
 procedure Tform_astrometry_net1.keep_console_open1Change(Sender: TObject);

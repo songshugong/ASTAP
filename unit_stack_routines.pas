@@ -195,7 +195,7 @@ var
   st :  string;
 begin
   st:=stackmenu1.stack_button1.caption;
-  stackmenu1.stack_button1.caption:='PAUSED';
+  stackmenu1.stack_button1.caption:='已暂停';
   wait(500);
   stackmenu1.stack_button1.caption:=st;
   if stacking_paused then

@@ -1061,8 +1061,8 @@ begin
                 {show on stackmenu what's happening}
 
                 stackmenu1.actual_search_distance1.Caption := distancestr;
-                stackmenu1.Caption := 'Search distance:  ' + distancestr;
-                mainform1.Caption := 'Search distance:  ' + distancestr;
+                stackmenu1.Caption := '搜索距离:' + distancestr;
+                mainform1.Caption := '搜索距离:' + distancestr;
 
                 if commandline_execution then {command line execution}
                 begin
@@ -1356,7 +1356,7 @@ begin
   else
   begin
     memo2_message('No solution found!  :(');
-    mainform1.Caption := 'No solution found!  :(';
+    mainform1.Caption := '未找到解析结果!  :(';
     update_text(memo, 'PLTSOLVD=', '                   F / No plate solution found.   ');
     remove_key(memo, 'COMMENT 7', False{all});
   end;

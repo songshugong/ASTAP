@@ -14,7 +14,7 @@ interface
 uses
    Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
    LCLIntf, Buttons,{for for getkeystate, selectobject, openURL}
-   astap_main, unit_annotation,unit_hjd,unit_stack;
+   astap_main, unit_annotation,unit_hjd,unit_stack,unit_language;
 
 type
 
@@ -102,7 +102,7 @@ begin
   begin
     if bayer then
     begin
-      form_sqm1.green_message1.caption:='OSC image'+#10;
+      form_sqm1.green_message1.caption:='OSC 图像'+#10;
       application.processmessages;
 
       c:=length(img);
@@ -260,7 +260,7 @@ begin
 
     if jd_start<=2400000 then {no date, found year <1858}
     begin
-      error_message1.caption:='Error converting DATE-OBS.'+#10;
+      error_message1.caption:='转换 DATE-OBS 出错。'+#10;
       sqm1.caption:='?';
       bortle1.caption:='';
       exit;
@@ -431,6 +431,7 @@ begin
   pedestal1.Text:=inttostr(pedestal_m);
 
   display_sqm;
+  ApplyLanguageToForm(form_sqm1);
 end;
 
 

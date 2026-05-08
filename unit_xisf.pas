@@ -115,7 +115,7 @@ begin
     reader.read(header2[0],16);{read XISF signature}
   except;
     close_fits_file;
-    mainform1.error_label1.caption:='Error';
+    mainform1.error_label1.caption:='错误';
     mainform1.statusbar1.panels[5].text:='Error';
     mainform1.error_label1.caption:=('Error, accessing the file!');
     mainform1.error_label1.visible:=true;
@@ -142,7 +142,7 @@ begin
   SetString(aline, Pansichar(@header2[0]),header_length);{convert header to string starting <Image}
   start_image:=pos('<Image ',aline);{find range <image..../image>}
 
-  if posex('compression=',aline,start_image)>0 then begin close_fits_file;mainform1.error_label1.caption:='Error, can not read compressed XISF files!!'; mainform1.error_label1.visible:=true; exit; end;
+  if posex('compression=',aline,start_image)>0 then begin close_fits_file;mainform1.error_label1.caption:='错误，无法读取压缩的 XISF 文件!!'; mainform1.error_label1.visible:=true; exit; end;
 
   a:=posex('geometry=',aline,start_image);
   if a>0 then
@@ -183,7 +183,7 @@ begin
   if ((a=0) or (error2<>0)) then
   begin
     close_fits_file;
-    mainform1.error_label1.caption:='Error!. Can not read this format, no attachment';
+    mainform1.error_label1.caption:='错误！无法读取此格式，没有附件';
     mainform1.error_label1.visible:=true;
     head.naxis:=0;
     exit;
@@ -206,7 +206,7 @@ begin
   if ((a=0) or (error2<>0)) then
   begin
     close_fits_file;
-    mainform1.error_label1.caption:='Can not read this format.';
+    mainform1.error_label1.caption:='无法读取此格式。';
     mainform1.error_label1.enabled:=true;
     Memo.endupdate;
     head.naxis:=0;
@@ -394,7 +394,7 @@ begin
   if head.width>i then
   begin
     sysutils.beep;
-    mainform1.error_label1.caption:='Too wide XISF file !!!!!';
+    mainform1.error_label1.caption:='XISF 文件太宽 !!!!!';
     mainform1.error_label1.visible:=true;
     close_fits_file;
     head.naxis:=0;{failure}

@@ -67,7 +67,7 @@ implementation
 {$R *.lfm}
 { Tform_listbox1 }
 uses
-   astap_main;
+   astap_main, unit_language;
 
 
 
@@ -93,6 +93,7 @@ procedure Tform_listbox1.FormShow(Sender: TObject);
 begin
   object_found:=false;
   edit1.text:=keyboard_text;
+  ApplyLanguageToForm(form_listbox1);
 end;
 
 

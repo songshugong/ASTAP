@@ -89,7 +89,7 @@ var
 
 implementation
 
-uses astap_main,unit_stack, unit_contour, unit_aavso;
+uses astap_main,unit_stack, unit_contour, unit_aavso, unit_language;
 
 {$R *.lfm}
 
@@ -734,7 +734,7 @@ begin
   if selected_rows=0 then
   begin
     memo2_message('Abort. No comparison star magnitudes found. Press first the play button and the select rows to process! Select also the correct AAVSO annotation');
-    form_transformation1.error_label1.caption:='No comparison star data!';
+    form_transformation1.error_label1.caption:='没有比较星数据!';
     beep;
     exit;
   end
@@ -1000,6 +1000,7 @@ begin
 //  update_radiobuttons;
 
   cancel:=true;
+  ApplyLanguageToForm(Form_transformation1);
 end;
 
 procedure TForm_transformation1.sigma_transformation1EditingDone(Sender: TObject );

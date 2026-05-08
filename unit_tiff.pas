@@ -31,7 +31,7 @@ procedure read_tiff(filen: string; var img: Timg_array; out description: string;
 implementation
 
 uses
-  SysUtils, Classes, dialogs, math,
+  SysUtils, Classes, dialogs, math, unit_language,
   zstream, //for ZIP compression/decompression
   FPReadTiff;//for LZW decompression
 
@@ -159,7 +159,7 @@ begin
     filen2 := ChangeFileExt(filen2, '.tif');
 
   if ((overwrite=false) and (fileexists(filen2))) = true then
-    if MessageDlg('Existing file ' + filen2 + ' Overwrite?', mtConfirmation, [mbYes, mbNo], 0) <> 6 {mbYes} then
+    if MessageDlg(TranslateText('Existing file ') + filen2 + TranslateText(' Overwrite?'), mtConfirmation, [mbYes, mbNo], 0) <> 6 {mbYes} then
       Exit;
 
   if length(img)=1 then //monochrome
@@ -1004,7 +1004,7 @@ begin
 
   if not FileExists(filen) then
   begin
-    MessageDlg('File not found: ' + filen, mtError, [mbOK], 0);
+    MessageDlg(TranslateText('File not found: ') + filen, mtError, [mbOK], 0);
     Exit;
   end;
 

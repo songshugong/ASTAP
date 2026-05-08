@@ -56,7 +56,7 @@ procedure plot_thumbnails; {plot images in new created timage}
 
 implementation
 
-uses astap_main;
+uses astap_main, unit_language;
 
 var
   imageindex: integer;
@@ -69,6 +69,7 @@ procedure Tthumbnails1.FormShow(Sender: TObject);
 begin
   thumbnails1.width:=thumbnails1_width;
   thumbnails1.height:=thumbnails1_height;
+  ApplyLanguageToForm(thumbnails1);
 end;
 
 procedure Tthumbnails1.MenuItem1Click(Sender: TObject);
@@ -122,7 +123,7 @@ var
    value: string;
 begin
 
-  value:=InputBox('New name:','',filename2);
+  value:=InputBox(TranslateText('New name:'),'',filename2);
   if value=''  then exit;
   RenameFile(filename2,value);
 end;
@@ -130,7 +131,7 @@ end;
 procedure Tthumbnails1.changedirectory1Click(Sender: TObject);
 var i: integer;
 begin
-  if SelectDirectory('Select a directory', ExtractFileDir(filename2){initialdir} , chosenDirectory) then
+  if SelectDirectory(TranslateText('Select a directory'), ExtractFileDir(filename2){initialdir} , chosenDirectory) then
   begin
     for i:=0 to imageindex-1 do  {resize images}
       begin
@@ -161,7 +162,7 @@ begin
    if key=#27 then
    begin
      esc_pressed:=true;
-     thumbnails1.caption:='ESC pressed, stopped reading images.';
+     thumbnails1.caption:=TranslateText('ESC pressed. Stopped reading images.');
    end;
 end;
 
@@ -182,15 +183,15 @@ var
   OK: Boolean;
 begin
    {filename2 is set in Tthumbnails1.ImageMouseDown}
-   if SelectDirectory('Select a directory', ExtractFileDir(filename2){initialdir} , path2) then
+  if SelectDirectory(TranslateText('Select a directory'), ExtractFileDir(filename2){initialdir} , path2) then
    begin
       destname:= path2+PathDelim+ExtractFilename(filename2);
       if destname=filename2 then
-        ShowMessage('Abort!, source and destination are the same.')
+        ShowMessage(TranslateText('Abort!, source and destination are the same.'))
       else
       begin
         if not FileExists(DestName) or  //only copy if the file does not exists yet, or the user accepts overwriting the existig one
-        (MessageDlg('File exists: overwrite?',mtConfirmation,[mbYes,mbNo],0) = mrYes) then
+        (MessageDlg(TranslateText('File exists: overwrite?'),mtConfirmation,[mbYes,mbNo],0) = mrYes) then
         begin
           //try to copy/move the file
           if sender=copyto1 then OK := CopyFile(filename2,destname , [cffPreserveTime, cffOverwriteFile])
@@ -199,7 +200,7 @@ begin
           else
           ok:=false;{should never happen, programmers failure}
 
-          if not OK then ShowMessage('Write error!!');
+          if not OK then ShowMessage(TranslateText('Write error!!'));
         end;
       end;
    end;

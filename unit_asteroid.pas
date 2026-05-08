@@ -11,7 +11,7 @@ interface
 uses
    Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
    LCLIntf, ColorBox, Buttons,{for for getkeystate, selectobject, openURL}
-   math, astap_main, unit_stack, unit_ephemerides;
+   math, astap_main, unit_stack, unit_ephemerides, unit_language;
 
 type
 
@@ -671,7 +671,7 @@ var
 
 begin
   if head.naxis=0 then exit;
-  if head.cd1_1=0 then begin memo2_message('Abort, first solve the image!');exit;end;
+  if head.cd1_1=0 then begin memo2_message(TranslateText('Abort, first solve the image!'));exit;end;
   cos_telescope_dec:=cos(head.dec0);
   fov:=1.5*sqrt(sqr(0.5*head.width*head.cdelt1)+sqr(0.5*head.height*head.cdelt2))*pi/180; {field of view with 50% extra}
 //  flip_vertical:=mainform1.flip_vertical1.Checked;
@@ -705,18 +705,18 @@ begin
 
   if jd_start<=2400000 then {no date, found year <1858}
   begin
-    mainform1.error_label1.caption:=('Error converting DATE-OBS or DATE-AVG from the file header!');
+    mainform1.error_label1.caption:=TranslateText('Error converting DATE-OBS or DATE-AVG from the file header!');
     mainform1.error_label1.visible:=true;
-    memo2_message(filename2+ ' Error converting DATE-OBS or DATE-AVG from the file header!');
+    memo2_message(filename2+ ' ' + TranslateText('Error converting DATE-OBS or DATE-AVG from the file header!'));
     exit;
   end;
 
   dec_text_to_radians(sitelat,site_lat_radians,errordecode);
-  if errordecode then memo2_message('Warning observatory latitude not found in the fits header');
+  if errordecode then memo2_message(TranslateText('Warning observatory latitude not found in the fits header'));
 
   dec_text_to_radians(sitelong,site_long_radians,errordecode); {longitude is in degrees, not in hours. East is positive according ESA standard and diffractionlimited}
                                                                {see https://indico.esa.int/event/124/attachments/711/771/06_ESA-SSA-NEO-RS-0003_1_6_FITS_keyword_requirements_2014-08-01.pdf}
-  if errordecode then memo2_message('Warning observatory longitude not found in the fits header');
+  if errordecode then memo2_message(TranslateText('Warning observatory longitude not found in the fits header'));
 
   delta_t:=deltaT_calc(jd_mid); {calculate delta_T in days}
 
@@ -746,7 +746,7 @@ begin
       if  fileexists(mpcorb_path) then
         read_and_plot(true,mpcorb_path)
       else
-        memo2_message('MPCORB.DAT file not found: '+ mpcorb_path+'   Set path in Asteroid & Comet annotation menu, CTRL+R' );
+        memo2_message(TranslateText('MPCORB.DAT file not found: ')+ mpcorb_path+'   '+TranslateText('Set path in Asteroid & Comet annotation menu, CTRL+R') );
     end;
 
     if cometels_path<>'' then
@@ -782,7 +782,7 @@ begin
   if fileExists(form_asteroids1.mpcorb_path1.caption)=false then
   begin
     form_asteroids1.mpcorb_path1.Font.color:=clred;
-    form_asteroids1.mpcorb_filedate1.caption:='No MPCORB.DAT file';
+    form_asteroids1.mpcorb_filedate1.caption:='没有 MPCORB.DAT 文件';
     result:=false;
     exit;
   end
@@ -799,7 +799,7 @@ begin
   if fileExists(form_asteroids1.mpcorb_path2.caption)=false then
   begin
     form_asteroids1.mpcorb_path2.Font.color:=clred;
-    form_asteroids1.mpcorb_filedate2.caption:='No CometEls.txt file';
+    form_asteroids1.mpcorb_filedate2.caption:='没有 CometEls.txt 文件';
     result:=false;
     exit;
   end
@@ -905,7 +905,7 @@ end;
 
 procedure Tform_asteroids1.file_to_add1Click(Sender: TObject); {han.k}
 begin
-  OpenDialog1.Title := 'Select MPCORB.DAT to use';
+  OpenDialog1.Title := TranslateText('Select MPCORB.DAT to use');
   OpenDialog1.Options := [ofFileMustExist,ofHideReadOnly];
   opendialog1.Filter := 'MPCORB, NEA(*.DAT*;*.txt)|*.dat;*.DAT;*.txt';
   if opendialog1.execute then
@@ -918,7 +918,7 @@ end;
 
 procedure Tform_asteroids1.file_to_add2Click(Sender: TObject);
 begin
-  OpenDialog1.Title := 'Select AllCometEls.txt to use';
+  OpenDialog1.Title := TranslateText('Select AllCometEls.txt to use');
   OpenDialog1.Options := [ofFileMustExist,ofHideReadOnly];
   opendialog1.Filter := 'AllCometEls.txt file (A*.txt)|A*.txt';
   if opendialog1.execute then
@@ -956,14 +956,14 @@ begin
   if head.date_avg<>'' then
   begin
      date_label1.caption:='DATE_AVG';
-     label_start_mid1.caption:='Midpoint of the observation';
+     label_start_mid1.caption:='观测中点';
      date_obs1.Text:=head.date_avg;
      midpoint:=true;
   end
   else
   begin
     date_label1.caption:='DATE_OBS';
-    label_start_mid1.caption:='Start of the observation';
+    label_start_mid1.caption:='观测开始时间';
     date_obs1.Text:=head.date_obs;
     midpoint:=false;
   end;
@@ -992,6 +992,7 @@ begin
   annotation_size2.position:=annotation_diameter*2;
   font_follows_diameter1.checked:=font_follows_diameter;
 
+  ApplyLanguageToForm(form_asteroids1);
 end;
 
 
