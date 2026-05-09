@@ -195,7 +195,7 @@ var {################# initialised variables #########################}
 
 implementation
 
-uses forms,astap_main, unit_stack {for memo2_message};
+uses forms,astap_main, unit_stack {for memo2_message}, unit_language;
 
 var {################# initialised variables #########################}
 
@@ -2829,7 +2829,7 @@ begin
   if fileexists( database_path+'g17_0101.290') then begin name_database:='g17'; database_type:=290;warning:=true; end //old database sorted on magnitude
   else
   begin
-    application.messagebox(PChar('No star database found at ' + database_path + ' !' + #13 + 'Download and install one star database.'), pchar('ASTAP error:'),0);
+    application.messagebox(PChar(TranslateText('No star database found at ') + database_path + TranslateText(' !') + #13 + TranslateText('Download and install one star database.')), pchar(TranslateText('ASTAP error:')),0);
     result:=false;
   end;
 

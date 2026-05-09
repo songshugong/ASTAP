@@ -127,13 +127,13 @@ begin
   {$ifdef mswindows}
   if FileExists(form_astrometry_net1.cygwin1.text)=false then
   begin
-     application.messagebox(pchar('Can'+#39+'t find local astrometry.net program. Check path or installation.'),pchar('No local astrometry.net'), 0);
+     application.messagebox(pchar(TranslateText('Can''t find local astrometry.net program. Check path or installation.')),pchar(TranslateText('No local astrometry.net')), 0);
      exit
   end;
   {$else} {unix}
   if FileExists(form_astrometry_net1.cygwin1.text+'/solve-field')=false then
   begin
-     application.messagebox(pchar('Can'+#39+'t find local astrometry.net program solve-field. Check path or installation.'),pchar('No local astrometry.net'), 0);
+     application.messagebox(pchar(TranslateText('Can''t find local astrometry.net program solve-field. Check path or installation.')),pchar(TranslateText('No local astrometry.net')), 0);
      exit
   end;
   {$endif}

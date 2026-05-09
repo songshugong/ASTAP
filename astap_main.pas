@@ -572,10 +572,22 @@ type
       FLanguageMenu: TMenuItem;
       FLanguageEnglish: TMenuItem;
       FLanguageChinese: TMenuItem;
+      FFitsHeaderDisplayMemo: TMemo;
+      FFitsHeaderDisplayTimer: TTimer;
+      FUpdatingFitsHeaderDisplay: Boolean;
+      FFitsHeaderDisplaySource: string;
+      FFitsHeaderDisplayLanguage: TAppLanguage;
     procedure BuildLanguageMenu;
     procedure LanguageMenuClick(Sender: TObject);
     procedure UpdateLanguageMenuChecks;
     procedure ApplyCurrentLanguage;
+    function FitsHeaderCommentStart(const ALine: string): Integer;
+    function FitsHeaderKeyword(const ALine: string): string;
+    function TranslateFitsHeaderCommentForDisplay(const AKeyword, AComment: string): string;
+    function TranslateFitsHeaderLineForDisplay(const ALine: string): string;
+    procedure EnsureFitsHeaderDisplayMemo;
+    procedure UpdateFitsHeaderDisplayMemo;
+    procedure FitsHeaderDisplayTimerTimer(Sender: TObject);
   public
     { Public declarations }
     FShapes: array of TShapes;//for photometry
@@ -4982,7 +4994,7 @@ begin
     Screen.Cursor:=crDefault;
   end{fits file}
   else
-  application.messagebox(pchar('No area selected! Hold the right mouse button down while selecting an area.'),'',MB_OK);
+  application.messagebox(pchar(TranslateText('No area selected! Hold the right mouse button down while selecting an area.')),'',MB_OK);
 end;
 
 
@@ -6332,7 +6344,7 @@ begin
                                             'Hot pixels RMS = the root mean square value of the hotpixels | '+
                                             '≥64E3 = number of values equal or above 64000';
 
-  case  QuestionDlg (pchar('Statistics within '+shapeform2+' '+inttostr(stopX-1-startX)+' x '+inttostr(stopY-1-startY)),pchar(info_message),mtCustom,[mrYes,'Copy to clipboard?', mrNo, 'No', 'IsDefault'],'') of
+  case  QuestionDlg (pchar(TranslateText('Statistics within ')+TranslateText(shapeform2)+' '+inttostr(stopX-1-startX)+' x '+inttostr(stopY-1-startY)),pchar(info_message),mtCustom,[mrYes,TranslateText('Copy to clipboard?'), mrNo, TranslateText('No'), 'IsDefault'],'') of
            mrYes: Clipboard.AsText:=info_message;
   end;
 
@@ -6803,7 +6815,7 @@ begin
   if fileexists(filename2) then load_image(filename2,img_loaded,head,mainform1.memo1.lines,true,true {plot}) {load and center, plot}
   else
   begin {file gone/deleted}
-     application.messagebox(pchar('File not found:'+#13+#10+#13+#10+(Sender as Tmenuitem).caption),pchar('Error'),MB_ICONWARNING+MB_OK);
+     application.messagebox(pchar(TranslateText('File not found:')+#13+#10+#13+#10+(Sender as Tmenuitem).caption),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);
     (Sender as Tmenuitem).caption:='';
   end;
   add_recent_file(filename2);{update recent files list by moving this one up to first position}
@@ -6875,7 +6887,7 @@ begin
     Screen.Cursor:=crDefault;
   end {fits file}
   else
-  application.messagebox(pchar('No area selected! Hold the right mouse button down while selecting an area.'),'',MB_OK);
+  application.messagebox(pchar(TranslateText('No area selected! Hold the right mouse button down while selecting an area.')),'',MB_OK);
 end;
 
 
@@ -9511,7 +9523,7 @@ begin
     Screen.Cursor:=crDefault;
   end {usefull area}
   else
-  application.messagebox(pchar('No area selected! Hold the right mouse button down while selecting an area.'),'',MB_OK);
+  application.messagebox(pchar(TranslateText('No area selected! Hold the right mouse button down while selecting an area.')),'',MB_OK);
 end;
 
 
@@ -9553,7 +9565,7 @@ begin
           begin
             if save_fits_tiff_secure(img_temp,memox,filename2,headx.bitpix)=false then {guarantee no file is lost}
             begin
-              ShowMessage('Write error !!' + filename2);
+              ShowMessage(TranslateText('Write error !!') + filename2);
               Screen.Cursor:=crDefault;
               exit;
             end
@@ -9573,7 +9585,7 @@ begin
       else
       begin
         beep;
-        ShowMessage('Errors!! Files modified but with errors or stopped!!');
+        ShowMessage(TranslateText('Errors!! Files modified but with errors or stopped!!'));
       end;
       finally
       Screen.Cursor:=crDefault;  { Always restore to normal }
@@ -9722,7 +9734,7 @@ end;
 
 procedure Tmainform1.simbad_annotation_deepsky_filtered1Click(Sender: TObject);
 begin
-  maintype:=InputBox('Simbad search by criteria.','Enter the object main type (E.g. star=*, galaxy=G, quasar=QSO):',maintype);
+  maintype:=InputBox(TranslateText('Simbad search by criteria.'),TranslateText('Enter the object main type (E.g. star=*, galaxy=G, quasar=QSO):'),maintype);
   gaia_star_position1Click(sender);
 end;
 
@@ -9825,7 +9837,7 @@ begin
   {$ifdef mswindows}
   if fileexists(application_path+'funpack.exe')=false then
   begin
-    application.messagebox(pchar('Could not find: '+application_path+'funpack.exe !!, Download and install fpack_funpack.exe' ),pchar('Error'),MB_ICONWARNING+MB_OK);
+    application.messagebox(pchar(TranslateText('Could not find: ')+application_path+TranslateText('funpack.exe !!, Download and install fpack_funpack.exe')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);
     exit;
   end;
   ExecuteAndWait(application_path+'funpack.exe '+commando+ ' "'+filename3+'"',false);{execute command and wait}
@@ -9833,7 +9845,7 @@ begin
   {$ifdef Darwin}{MacOS}
   if fileexists(application_path+'/funpack')=false then
   begin
-    application.messagebox(pchar('Could not find: '+application_path+'funpack' ),pchar('Error'),MB_ICONWARNING+MB_OK);
+    application.messagebox(pchar(TranslateText('Could not find: ')+application_path+TranslateText('funpack')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);
     exit;
   end;
   execute_unix2(application_path+'/funpack '+commando+' "'+filename3+'"');
@@ -9846,7 +9858,7 @@ begin
   {$ifdef linux}
   if fileexists('/usr/bin/funpack')=false then
   begin
-    application.messagebox(pchar('Could not find program funpack !!, Install this program. Eg: sudo apt-get install libcfitsio-bin' ),pchar('Error'),MB_ICONWARNING+MB_OK);
+    application.messagebox(pchar(TranslateText('Could not find program funpack !!, Install this program. Eg: sudo apt-get install libcfitsio-bin')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);
     exit;
   end;
   execute_unix2('/usr/bin/funpack '+commando+' "'+filename3+'"');
@@ -9860,15 +9872,15 @@ function pack_cfitsio(filename3: string): boolean; {convert .fz to .fits using f
 begin
   result:=false;
   {$ifdef mswindows}
-  if fileexists(application_path+'fpack.exe')=false then begin result:=false; application.messagebox(pchar('Could not find: '+application_path+'fpack.exe !!, Download and install fpack_funpack.exe' ),pchar('Error'),MB_ICONWARNING+MB_OK);exit; end;
+  if fileexists(application_path+'fpack.exe')=false then begin result:=false; application.messagebox(pchar(TranslateText('Could not find: ')+application_path+TranslateText('fpack.exe !!, Download and install fpack_funpack.exe')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);exit; end;
   ExecuteAndWait(application_path+'fpack.exe '+ ' "'+filename3+'"',false);{execute command and wait}
   {$endif}
   {$ifdef Darwin}{MacOS}
-  if fileexists(application_path+'/fpack')=false then begin result:=false; application.messagebox(pchar('Could not find: '+application_path+'fpack' ),pchar('Error'),MB_ICONWARNING+MB_OK);exit; end;
+  if fileexists(application_path+'/fpack')=false then begin result:=false; application.messagebox(pchar(TranslateText('Could not find: ')+application_path+TranslateText('fpack')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);exit; end;
   execute_unix2(application_path+'/fpack '+' "'+filename3+'"');
   {$endif}
    {$ifdef linux}
-  if fileexists('/usr/bin/fpack')=false then begin result:=false; application.messagebox(pchar('Could not find program fpack !!, Install this program. Eg: sudo apt-get install libcfitsio-bin' ),pchar('Error'),MB_ICONWARNING+MB_OK);;exit; end;
+  if fileexists('/usr/bin/fpack')=false then begin result:=false; application.messagebox(pchar(TranslateText('Could not find program fpack !!, Install this program. Eg: sudo apt-get install libcfitsio-bin')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);;exit; end;
   execute_unix2('/usr/bin/fpack '+' "'+filename3+'"');
   {$endif}
   result:=true;
@@ -10046,26 +10058,26 @@ begin
     if conv_index=2 then
     begin
     {$ifdef mswindows}
-       application.messagebox(pchar('Could not find: '+application_path+'dcraw.exe !!' ),pchar('Error'),MB_ICONWARNING+MB_OK);
+       application.messagebox(pchar(TranslateText('Could not find: ')+application_path+TranslateText('dcraw.exe !!')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);
     {$endif}
     {$ifdef Linux}
-      application.messagebox(pchar('Could not find program dcdraw !!, Install this program. Eg: sudo apt-get install dcraw' ),pchar('Error'),MB_ICONWARNING+MB_OK);
+      application.messagebox(pchar(TranslateText('Could not find program dcdraw !!, Install this program. Eg: sudo apt-get install dcraw')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);
     {$endif}
     {$ifdef Darwin} {MacOS}
-      application.messagebox(pchar('Could not find: '+application_path+'dcraw' ),pchar('Error'),MB_ICONWARNING+MB_OK);
+      application.messagebox(pchar(TranslateText('Could not find: ')+application_path+TranslateText('dcraw')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);
     {$endif}
     end;
 
     if conv_index<=1 then
     begin {LibRaw}
       {$ifdef mswindows}
-      application.messagebox(pchar('Could not find: '+application_path+'unprocessed_raw.exe !!, Download, libraw and place in program directory' ),pchar('Error'),MB_ICONWARNING+MB_OK);
+      application.messagebox(pchar(TranslateText('Could not find: ')+application_path+TranslateText('unprocessed_raw.exe !!, Download, libraw and place in program directory')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);
       {$endif}
       {$ifdef linux}
-       application.messagebox(pchar('Could not find program unprocessed_raw !!, Install libraw. Eg: sudo apt-get install libraw-bin' ),pchar('Error'),MB_ICONWARNING+MB_OK);
+       application.messagebox(pchar(TranslateText('Could not find program unprocessed_raw !!, Install libraw. Eg: sudo apt-get install libraw-bin')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);
       {$endif}
       {$ifdef Darwin}{MacOS}
-      application.messagebox(pchar('Could not find: '+application_path+'unprocessed_raw' ),pchar('Error'),MB_ICONWARNING+MB_OK);
+      application.messagebox(pchar(TranslateText('Could not find: ')+application_path+TranslateText('unprocessed_raw')),pchar(TranslateText('Error')),MB_ICONWARNING+MB_OK);
       {$endif}
     end;
 
@@ -11136,7 +11148,7 @@ begin
 
   end{fits file}
   else
-  application.messagebox(pchar('No area selected! Hold the right mouse button down while selecting an area.'),'',MB_OK);
+  application.messagebox(pchar(TranslateText('No area selected! Hold the right mouse button down while selecting an area.')),'',MB_OK);
 end;
 
 
@@ -11215,7 +11227,7 @@ begin
     shape_paste1.visible:=true;
   end {fits file}
   else
-  application.messagebox(pchar('No area selected! Hold the right mouse button down while selecting an area.'),'',MB_OK);
+  application.messagebox(pchar(TranslateText('No area selected! Hold the right mouse button down while selecting an area.')),'',MB_OK);
 end;
 
 
@@ -11298,14 +11310,14 @@ begin
     ang_sep_two_positions(shape_marker1_fitsX,shape_marker1_fitsY, shape_marker2_fitsX,shape_marker2_fitsY,info_message2,info_message1);
     info_message2:=info_message2+#9+'        ∠ '+info_message1;
 
-    case  QuestionDlg (pchar('Angular distance '),pchar(info_message+info_message2),mtCustom,[mrYes,'Copy to clipboard?', mrNo, 'No', 'IsDefault'],'') of
+    case  QuestionDlg (pchar(TranslateText('Angular distance ')),pchar(info_message+info_message2),mtCustom,[mrYes,TranslateText('Copy to clipboard?'), mrNo, TranslateText('No'), 'IsDefault'],'') of
              mrYes: Clipboard.AsText:=info_message2;
     end;
     boxshape1.visible:=false; //remove info box
     Screen.Cursor:=crDefault;
   end {fits file}
   else
-  application.messagebox(pchar('No distance selected! Hold the right mouse button down while moving from first to second star.'),'',MB_OK);
+  application.messagebox(pchar(TranslateText('No distance selected! Hold the right mouse button down while moving from first to second star.')),'',MB_OK);
 end;
 
 
@@ -11455,9 +11467,9 @@ begin
     Screen.Cursor:=crDefault;
   end {fits file}
   else
-  application.messagebox(pchar('Place the mouse pointer at a dark area. Hold the right mouse button down and move the mouse pointer to a bright area.'+#10+#10+
-                               'Try to select two areas without a deepsky object within 20 pixels.'+#10+#10+
-                               'Moving from the dark area to the bright area should follow the direction of the gradient.'),'',MB_OK);
+  application.messagebox(pchar(TranslateText('Place the mouse pointer at a dark area. Hold the right mouse button down and move the mouse pointer to a bright area.')+#10+#10+
+                               TranslateText('Try to select two areas without a deepsky object within 20 pixels.')+#10+#10+
+                               TranslateText('Moving from the dark area to the bright area should follow the direction of the gradient.')),'',MB_OK);
 end;
 
 
@@ -11495,7 +11507,7 @@ begin
 
           if save_fits_tiff_secure(img_loaded,mainform1.memo1.lines,filename2,head.bitpix)=false then
           begin
-            ShowMessage('Write error !!' + filename2);
+            ShowMessage(TranslateText('Write error !!') + filename2);
             Screen.Cursor:=crDefault;
             exit;
           end;
@@ -11506,7 +11518,7 @@ begin
       else
       begin
         beep;
-        ShowMessage('Errors!! Files modified but with errors or stopped!!');
+        ShowMessage(TranslateText('Errors!! Files modified but with errors or stopped!!'));
       end;
       finally
       if dobackup then restore_img;{for the viewer}
@@ -12207,7 +12219,7 @@ begin
               plot_mpcorb(strtoint(maxcount_asteroid),strtofloat2(maxmag_asteroid),true {add annotations},false);
               if save_fits_tiff_secure(img_loaded,mainform1.memo1.lines,filename2,head.bitpix)=false then {guarantee no file is lost}
               begin
-                ShowMessage('Write error !!' + filename2);
+                ShowMessage(TranslateText('Write error !!') + filename2);
                 Screen.Cursor:=crDefault;
                 exit;
               end;
@@ -12352,7 +12364,7 @@ begin
   end
   else
   begin
-    freetext:=InputBox('Free text:','',freetext );
+    freetext:=InputBox(TranslateText('Free text:'),'',freetext );
     if freetext<>'' then plot_text;
   end;
 end;
@@ -12380,7 +12392,7 @@ procedure Tmainform1.add_marker_position1Click(Sender: TObject);
 begin
   if add_marker_position1.checked then
   begin
-    marker_position:=InputBox('Enter α, δ position in one of the following formats: ','23 00 00.0 +89 00 00.0   or  23.99 +89.99  or  359.99d 89.99  or  C for center',marker_position );
+    marker_position:=InputBox(TranslateText('Enter α, δ position in one of the following formats: '),TranslateText('23 00 00.0 +89 00 00.0   or  23.99 +89.99  or  359.99d 89.99  or  C for center'),marker_position );
     if marker_position='' then begin add_marker_position1.checked:=false; exit; end;
 
     mainform1.shape_marker3.visible:=true;
@@ -12405,12 +12417,12 @@ begin
   if head.naxis<>0 then
   begin
     Statusbar1.Panels[0].text:='α, δ';
-    Statusbar1.Panels[1].text:='α, δ centered';
-    Statusbar1.Panels[2].text:='Local standard deviation or star values';
-    Statusbar1.Panels[3].text:='X, Y = [pixel value(s)]';
-    Statusbar1.Panels[4].text:='RGB values screen';
-    Statusbar1.Panels[7].text:='w x h  angular_distance  angle';
-    Statusbar1.Panels[8].text:='zoom factor';
+    Statusbar1.Panels[1].text:='α, δ '+TranslateText('centered');
+    Statusbar1.Panels[2].text:=TranslateText('Local standard deviation or star values');
+    Statusbar1.Panels[3].text:=TranslateText('X, Y = [pixel value(s)]');
+    Statusbar1.Panels[4].text:=TranslateText('RGB values screen');
+    Statusbar1.Panels[7].text:=TranslateText('w x h  angular_distance  angle');
+    Statusbar1.Panels[8].text:=TranslateText('zoom factor');
   end;
 end;
 
@@ -12726,6 +12738,7 @@ procedure Tmainform1.ApplyCurrentLanguage;
 begin
   ApplyLanguageToOpenForms;
   UpdateLanguageMenuChecks;
+  UpdateFitsHeaderDisplayMemo;
 end;
 
 procedure Tmainform1.LanguageMenuClick(Sender: TObject);
@@ -12737,6 +12750,183 @@ begin
     if user_path <> '' then
       save_settings2;
   end;
+end;
+
+function Tmainform1.FitsHeaderCommentStart(const ALine: string): Integer;
+var
+  I: Integer;
+  InQuotedString: Boolean;
+begin
+  Result := 0;
+  InQuotedString := False;
+  I := 1;
+
+  while I <= Length(ALine) do
+  begin
+    if ALine[I] = '''' then
+    begin
+      if InQuotedString and (I < Length(ALine)) and (ALine[I + 1] = '''') then
+        Inc(I)
+      else
+        InQuotedString := not InQuotedString;
+    end
+    else
+    if (ALine[I] = '/') and (not InQuotedString) then
+    begin
+      Result := I;
+      Exit;
+    end;
+    Inc(I);
+  end;
+end;
+
+function Tmainform1.FitsHeaderKeyword(const ALine: string): string;
+var
+  EqualPos: Integer;
+begin
+  EqualPos := Pos('=', ALine);
+  if EqualPos > 0 then
+    Result := UpperCase(Trim(Copy(ALine, 1, EqualPos - 1)))
+  else
+    Result := '';
+end;
+
+function Tmainform1.TranslateFitsHeaderCommentForDisplay(const AKeyword,
+  AComment: string): string;
+var
+  KeywordTranslationKey, KeywordTranslation, GenericKeyword: string;
+begin
+  Result := TranslateText(AComment);
+  if Result <> AComment then Exit;
+
+  if AKeyword = '' then Exit;
+
+  KeywordTranslationKey := 'FITS:' + AKeyword;
+  KeywordTranslation := TranslateText(KeywordTranslationKey);
+  if KeywordTranslation <> KeywordTranslationKey then
+  begin
+    Result := KeywordTranslation;
+    Exit;
+  end;
+
+  GenericKeyword := AKeyword;
+  while (Length(GenericKeyword) > 0) and
+        (GenericKeyword[Length(GenericKeyword)] in ['0'..'9']) do
+    Delete(GenericKeyword, Length(GenericKeyword), 1);
+
+  if (GenericKeyword <> '') and (GenericKeyword <> AKeyword) then
+  begin
+    KeywordTranslationKey := 'FITS:' + GenericKeyword;
+    KeywordTranslation := TranslateText(KeywordTranslationKey);
+    if KeywordTranslation <> KeywordTranslationKey then
+      Result := KeywordTranslation;
+  end;
+end;
+
+function Tmainform1.TranslateFitsHeaderLineForDisplay(const ALine: string): string;
+var
+  SlashPos: Integer;
+  KeywordText, CommentText, TranslatedComment: string;
+begin
+  Result := ALine;
+  if GetAppLanguage <> alChineseSimplified then Exit;
+
+  if (Copy(UpperCase(ALine), 1, 7) = 'COMMENT') or
+     (Copy(UpperCase(ALine), 1, 7) = 'HISTORY') then
+  begin
+    CommentText := Trim(Copy(ALine, 8, MaxInt));
+    if CommentText = '' then Exit;
+    TranslatedComment := TranslateFitsHeaderCommentForDisplay('', CommentText);
+    if TranslatedComment <> CommentText then
+      Result := Copy(ALine, 1, 7) + ' ' + TranslatedComment;
+    Exit;
+  end;
+
+  SlashPos := FitsHeaderCommentStart(ALine);
+  if SlashPos <= 0 then Exit;
+
+  KeywordText := FitsHeaderKeyword(ALine);
+  CommentText := Trim(Copy(ALine, SlashPos + 1, MaxInt));
+  if CommentText = '' then Exit;
+
+  TranslatedComment := TranslateFitsHeaderCommentForDisplay(KeywordText, CommentText);
+  if TranslatedComment = CommentText then Exit;
+
+  Result := Copy(ALine, 1, SlashPos) + ' ' + TranslatedComment;
+end;
+
+procedure Tmainform1.EnsureFitsHeaderDisplayMemo;
+begin
+  if Assigned(FFitsHeaderDisplayMemo) then Exit;
+  if (not Assigned(Memo1)) or (not Assigned(Memo1.Parent)) then Exit;
+
+  FFitsHeaderDisplayMemo := TMemo.Create(Self);
+  FFitsHeaderDisplayMemo.Name := 'fits_header_display_memo';
+  FFitsHeaderDisplayMemo.Parent := Memo1.Parent;
+  FFitsHeaderDisplayMemo.Align := Memo1.Align;
+  FFitsHeaderDisplayMemo.Font.Assign(Memo1.Font);
+  FFitsHeaderDisplayMemo.ParentFont := Memo1.ParentFont;
+  FFitsHeaderDisplayMemo.ScrollBars := Memo1.ScrollBars;
+  FFitsHeaderDisplayMemo.WordWrap := Memo1.WordWrap;
+  FFitsHeaderDisplayMemo.ReadOnly := True;
+  FFitsHeaderDisplayMemo.TabStop := False;
+  FFitsHeaderDisplayMemo.Visible := False;
+
+  FFitsHeaderDisplayTimer := TTimer.Create(Self);
+  FFitsHeaderDisplayTimer.Enabled := False;
+  FFitsHeaderDisplayTimer.Interval := 250;
+  FFitsHeaderDisplayTimer.OnTimer := FitsHeaderDisplayTimerTimer;
+end;
+
+procedure Tmainform1.UpdateFitsHeaderDisplayMemo;
+var
+  I: Integer;
+  SourceText: string;
+begin
+  if FUpdatingFitsHeaderDisplay then Exit;
+
+  EnsureFitsHeaderDisplayMemo;
+  if not Assigned(FFitsHeaderDisplayMemo) then Exit;
+
+  FUpdatingFitsHeaderDisplay := True;
+  try
+    if GetAppLanguage = alChineseSimplified then
+    begin
+      SourceText := Memo1.Text;
+      if FFitsHeaderDisplayMemo.Visible and
+         (FFitsHeaderDisplaySource = SourceText) and
+         (FFitsHeaderDisplayLanguage = GetAppLanguage) then
+        Exit;
+
+      FFitsHeaderDisplayMemo.Lines.BeginUpdate;
+      try
+        FFitsHeaderDisplayMemo.Lines.Clear;
+        for I := 0 to Memo1.Lines.Count - 1 do
+          FFitsHeaderDisplayMemo.Lines.Add(TranslateFitsHeaderLineForDisplay(Memo1.Lines[I]));
+      finally
+        FFitsHeaderDisplayMemo.Lines.EndUpdate;
+      end;
+      FFitsHeaderDisplayMemo.Visible := True;
+      FFitsHeaderDisplayMemo.BringToFront;
+      FFitsHeaderDisplaySource := SourceText;
+      FFitsHeaderDisplayLanguage := GetAppLanguage;
+    end
+    else if FFitsHeaderDisplayMemo.Visible then
+    begin
+      FFitsHeaderDisplayMemo.Visible := False;
+      FFitsHeaderDisplaySource := '';
+      FFitsHeaderDisplayLanguage := GetAppLanguage;
+    end;
+  finally
+    FUpdatingFitsHeaderDisplay := False;
+  end;
+end;
+
+procedure Tmainform1.FitsHeaderDisplayTimerTimer(Sender: TObject);
+begin
+  if Assigned(FFitsHeaderDisplayTimer) then
+    FFitsHeaderDisplayTimer.Enabled := False;
+  UpdateFitsHeaderDisplayMemo;
 end;
 
 
@@ -12816,6 +13006,7 @@ begin
   end;
 
   BuildLanguageMenu;
+  EnsureFitsHeaderDisplayMemo;
 
   FStartupDone:=False;
   Application.OnIdle := self.ApplicationIdle;//for photometry_auto
@@ -13210,7 +13401,7 @@ var
   boldness        : double;
 begin
   backup_img;
-  value:=InputBox('Enter annotation text. Add one @ or more to create a persistent annotation','Text:','' );
+  value:=InputBox(TranslateText('Enter annotation text. Add one @ or more to create a persistent annotation'),TranslateText('Text:'),'' );
   if value=''  then exit;
 
   if pos('@',value)>0 then
@@ -13280,14 +13471,14 @@ procedure Tmainform1.ShowFITSheader1Click(Sender: TObject);
 var bericht: array[0..512] of char;{make this one not too short !}
 begin
    strpcopy(bericht,
-  'Origin: '+origin+#13+#10+
-  'Telescope: '+ telescop+#13+#10+
-  'Instrument: '+instrum+#13+#10+
-  'Filter: '+head.filter_name+#13+#10+
-  'Calibration-status: '+head.calstat+#13+#10+
-  'Date-obs: '+head.date_obs+#13+#10+
-  'Exposure-time: '+floattostr(head.exposure));
-  messagebox(mainform1.handle,bericht,'Basic fits header',MB_OK);
+  TranslateText('Origin: ')+origin+#13+#10+
+  TranslateText('Telescope: ')+ telescop+#13+#10+
+  TranslateText('Instrument: ')+instrum+#13+#10+
+  TranslateText('Filter: ')+head.filter_name+#13+#10+
+  TranslateText('Calibration-status: ')+head.calstat+#13+#10+
+  TranslateText('Date-obs: ')+head.date_obs+#13+#10+
+  TranslateText('Exposure-time: ')+floattostr(head.exposure));
+  messagebox(mainform1.handle,bericht,pchar(TranslateText('Basic fits header')),MB_OK);
 end;
 
 
@@ -14103,7 +14294,7 @@ begin
 
   {$IfDef Darwin}// for OS X,
   {$IF FPC_FULLVERSION <= 30200} {FPC3.2.0}
-     application.messagebox( pchar('Warning this code requires later LAZARUS 2.1 and FPC 3.3.1 version!!!'), pchar('Warning'),MB_OK);
+     application.messagebox( pchar(TranslateText('Warning this code requires later LAZARUS 2.1 and FPC 3.3.1 version!!!')), pchar(TranslateText('Warning')),MB_OK);
   {$ENDIF}
   {$ENDIF}
 
@@ -14272,7 +14463,7 @@ begin
             else
               success:=save_fits_tiff_secure(img_temp,memox,filename2,headX.bitpix);{guarantee no file is lost}
 
-            if success=false then begin ShowMessage('Write error !!'+#10+#10 + filename2);Screen.Cursor:=crDefault; exit;end;
+            if success=false then begin ShowMessage(TranslateText('Write error !!')+#10+#10 + filename2);Screen.Cursor:=crDefault; exit;end;
 
             if ((maintain_date) and (file_age>-1)) then FileSetDate(filename2,file_age);
           end;
@@ -14502,7 +14693,7 @@ var
 begin
    if ((head.xorgsubf=0) and (head.yorgsubf=0)) then  //head, so from image in the viewer
    begin
-     application.messagebox(pchar('Abort. No image in the viewer or the image in the viewer does not contain keywords XORGSUBF, YORGSUBF or FRAMEX, FRAMEY. Crop an sample image first with the popup menu and mouse.'),'',MB_OK);
+     application.messagebox(pchar(TranslateText('Abort. No image in the viewer or the image in the viewer does not contain keywords XORGSUBF, YORGSUBF or FRAMEX, FRAMEY. Crop an sample image first with the popup menu and mouse.')),'',MB_OK);
      exit;
    end;
 
@@ -14541,12 +14732,12 @@ begin
 
         if sample_binning<>round(head4.xbinning) then
         begin
-          application.messagebox(pchar('Abort. Sample and target frames should have equal binning!'),'Abort',MB_OK);
+          application.messagebox(pchar(TranslateText('Abort. Sample and target frames should have equal binning!')),pchar(TranslateText('Abort')),MB_OK);
           break;
         end;
         if head.roworder<>head4.roworder then
         begin
-          application.messagebox(pchar('Abort. Sample and target frames should have ROWORDER keyword value!'),'Abort',MB_OK);
+          application.messagebox(pchar(TranslateText('Abort. Sample and target frames should have ROWORDER keyword value!')),pchar(TranslateText('Abort')),MB_OK);
           break;
         end;
 
@@ -14567,7 +14758,7 @@ begin
             filename3:=ChangeFileExt(Filename2,'_cropped.tif');
             success:=save_tiff_new(img4,filename3, memo4.text,head4.bitpix,false {flip H},false {flip V}, true{overwrite}, 1 {compression}); //save to TIFF file
           end;
-          if success=false then begin ShowMessage('Write error !!' + filename3);break; end;
+          if success=false then begin ShowMessage(TranslateText('Write error !!') + filename3);break; end;
         end;
 
         Application.ProcessMessages;
@@ -14746,7 +14937,7 @@ begin
               filename3:=ChangeFileExt(Filename2,'_cropped.tif');
               success:=save_tiff_new(img,filename3, memo.text,head_temp.bitpix,false {flip H},false {flip V}, true{overwrite}, 1 {compression}); //save to TIFF file
             end;
-            if success=false then begin ShowMessage('Write error !!' + filename3);break; end;
+            if success=false then begin ShowMessage(TranslateText('Write error !!') + filename3);break; end;
           end;
 
           Application.ProcessMessages;
@@ -15008,7 +15199,7 @@ begin
     shape_marker1_fitsY:=yc+1;
     show_marker_shape(mainform1.shape_marker1,0 {rectangle},20,20,0 {minimum size},shape_marker1_fitsX, shape_marker1_fitsY);
 
-    mouse_positionRADEC1:=InputBox('Enter α, δ of mouse position separated by a comma:','Format 24 00 00.0, 90 00 00.0   or   24 00, 90 00',mouse_positionRADEC1);
+    mouse_positionRADEC1:=InputBox(TranslateText('Enter α, δ of mouse position separated by a comma:'),TranslateText('Format 24 00 00.0, 90 00 00.0   or   24 00, 90 00'),mouse_positionRADEC1);
     if mouse_positionRADEC1=''  then exit; {cancel used}
     shape_marker1.hint:='Reference 1: '+mouse_positionRADEC1
   end
@@ -15020,7 +15211,7 @@ begin
     shape_marker2_fitsY:=yc+1;
     show_marker_shape(mainform1.shape_marker2,0 {rectangle},20,20,0 {minimum size},shape_marker2_fitsX, shape_marker2_fitsY);
 
-    mouse_positionRADEC2:=InputBox('Enter α, δ of mouse position separated by a comma:','Format 24 00 00.0, 90 00 00.0   or   24 00, 90 00',mouse_positionRADEC2);
+    mouse_positionRADEC2:=InputBox(TranslateText('Enter α, δ of mouse position separated by a comma:'),TranslateText('Format 24 00 00.0, 90 00 00.0   or   24 00, 90 00'),mouse_positionRADEC2);
     if mouse_positionRADEC2=''  then exit;  {cancel used}
     shape_marker2.hint:='Reference 2: '+mouse_positionRADEC2
   end;
@@ -15212,7 +15403,7 @@ begin
   else
     flipped_image:=+1;//not flipped
 
-  valueI:=InputBox('Arbitrary rotation','Enter angle CCW in degrees:              (If solved, enter N for north up)','' );
+  valueI:=InputBox(TranslateText('Arbitrary rotation'),TranslateText('Enter angle CCW in degrees:              (If solved, enter N for north up)'),'' );
   if valueI=''  then exit;
   if ((valueI='n') or (valueI='N')) then
   begin
@@ -15221,7 +15412,7 @@ begin
       angle:=angle*flipped_image
     else
     begin
-      application.messagebox(pchar('Abort! Can not execute without astrometric solution. Solve image first.'),'',MB_OK);
+      application.messagebox(pchar(TranslateText('Abort! Can not execute without astrometric solution. Solve image first.')),'',MB_OK);
       exit;
     end;
   end
@@ -15294,7 +15485,7 @@ begin
         success:=save_tiff_new(img_loaded,filename2, memo1.text,head.bitpix,false {flip H},false {flip V}, true{overwrite}, 1 {compression}); //save to TIFF file
       if success=false then
       begin
-        ShowMessage('Write error !!' + filename2);
+        ShowMessage(TranslateText('Write error !!') + filename2);
         break;
       end;
     end;
@@ -15561,7 +15752,7 @@ begin
     end
     else
     begin
-      application.messagebox(pchar('No star lock or no area selected!'+#10+#10+'Place mouse on a star or hold the right mouse button down while selecting an area.'),'',MB_OK);
+      application.messagebox(pchar(TranslateText('No star lock or no area selected!')+#10+#10+TranslateText('Place mouse on a star or hold the right mouse button down while selecting an area.')),'',MB_OK);
       exit;
     end;
   end
@@ -16757,13 +16948,21 @@ begin
   else
     result:=save_tiff_new(img_loaded,filename2, memo1.text,head.bitpix,false {flip H},false {flip V}, true{overwrite}, 1 {compression}); //save to TIFF file
 
-  if result=false then ShowMessage('Write error !!' + filename2);
+  if result=false then ShowMessage(TranslateText('Write error !!') + filename2);
 end;
 
 
 procedure Tmainform1.Memo1Change(Sender: TObject);
 begin
   save1.Enabled:=true;
+  EnsureFitsHeaderDisplayMemo;
+  if Assigned(FFitsHeaderDisplayTimer) then
+  begin
+    FFitsHeaderDisplayTimer.Enabled := False;
+    FFitsHeaderDisplayTimer.Enabled := True;
+  end
+  else
+    UpdateFitsHeaderDisplayMemo;
 end;
 
 
@@ -16940,7 +17139,7 @@ begin
     header:=pansichar('Pf'+#10+inttostr(width2)+#10+inttostr(height2)+#10+'-1.0'+#10); {colour 32 bit, little-endian=-1, big-endian=+1}
 
   if fileexists(filen2)=true then
-    if MessageDlg('Existing file ' +filen2+ ' Overwrite?', mtConfirmation, [mbYes, mbNo], 0) <> 6 {mbYes} then
+    if MessageDlg(TranslateText('Existing file ') +filen2+ TranslateText(' Overwrite?'), mtConfirmation, [mbYes, mbNo], 0) <> 6 {mbYes} then
       Exit;
 
   try
@@ -17430,19 +17629,19 @@ end;
 procedure Tmainform1.electron_to_adu_factors1Click(Sender: TObject);
 begin
   if head.egain='' then head.egain:=floattostrF(egain_default,FFgeneral,3,0);
-  head.egain:=InputBox('factor e-/ADU, unbinned?',
-  'At unity gain this factor shall be 1'+#10
+  head.egain:=InputBox(TranslateText('factor e-/ADU, unbinned?'),
+  TranslateText('At unity gain this factor shall be 1')+#10
   ,head.egain);
   egain_default:=strtofloat2(head.egain);//for next file load. Works with either dot (from header) or komma as decimal separator
 
-  egain_extra_factor:=round(strtofloat(InputBox('Additional conversion factor for an unbinned sensor',
-  'For a 12 bit sensor with an output range [0..65535] enter 16'+#10+
-  'For a 12 bit sensor with an output range [0. . 4096] enter 1'+#10+
-  'For a 14 bit sensor with an output range [0..65535] enter 4'+#10+
-  'For a 14 bit sensor with an output range [0..16384] enter 1'+#10+
-  'For a 16 bit sensor with an output range [0..65535] enter 1'+#10+
+  egain_extra_factor:=round(strtofloat(InputBox(TranslateText('Additional conversion factor for an unbinned sensor'),
+  TranslateText('For a 12 bit sensor with an output range [0..65535] enter 16')+#10+
+  TranslateText('For a 12 bit sensor with an output range [0. . 4096] enter 1')+#10+
+  TranslateText('For a 14 bit sensor with an output range [0..65535] enter 4')+#10+
+  TranslateText('For a 14 bit sensor with an output range [0..16384] enter 1')+#10+
+  TranslateText('For a 16 bit sensor with an output range [0..65535] enter 1')+#10+
   #10+
-  'The bit depth of the sensor can be measured from a light using popup menu "Show statistics"'+#10
+  TranslateText('The bit depth of the sensor can be measured from a light using popup menu "Show statistics"')+#10
   ,inttostr(egain_extra_factor))));
 end;
 
@@ -17534,7 +17733,7 @@ begin
     Screen.Cursor:=crDefault;
   end{fits file}
   else
-  application.messagebox(pchar('No area selected! Hold the right mouse button down while selecting an area.'),'',MB_OK);
+  application.messagebox(pchar(TranslateText('No area selected! Hold the right mouse button down while selecting an area.')),'',MB_OK);
 end;
 
 procedure Tmainform1.fittowindow1Click(Sender: TObject);
@@ -17868,7 +18067,7 @@ begin
     if SaveDialog1.FilterIndex=2 then
     begin
       if head.bitpix=-32 then
-        if (IDYES= Application.MessageBox('16 bit will reduce image quality (was -32). Select yes to continue', 'Save as 16 bit FITS', MB_ICONQUESTION + MB_YESNO) )=false then {ask queastion if bitpix is reduced}
+        if (IDYES= Application.MessageBox(pchar(TranslateText('16 bit will reduce image quality (was -32). Select yes to continue')), pchar(TranslateText('Save as 16 bit FITS')), MB_ICONQUESTION + MB_YESNO) )=false then {ask queastion if bitpix is reduced}
           exit;
       head.bitpix:=16;
     end
@@ -17876,14 +18075,14 @@ begin
     if SaveDialog1.FilterIndex=3 then
     begin
       if abs(head.bitpix)>8 then
-        if (IDYES= Application.MessageBox('8 bit will reduce image quality. Select yes to continue', 'Save as 8 bit FITS', MB_ICONQUESTION + MB_YESNO) )=false then {ask queastion if bitpix is reduced}
+        if (IDYES= Application.MessageBox(pchar(TranslateText('8 bit will reduce image quality. Select yes to continue')), pchar(TranslateText('Save as 8 bit FITS')), MB_ICONQUESTION + MB_YESNO) )=false then {ask queastion if bitpix is reduced}
           exit;
       head.bitpix:=8;
     end
     else
     if SaveDialog1.FilterIndex=4 then {special naxis1=3}
     begin
-      if (IDYES= Application.MessageBox('Special 8 bit format. Select yes to continue', 'Save as special 8 bit FITS', MB_ICONQUESTION + MB_YESNO) )=false then {ask queastion if bitpix is reduced}
+      if (IDYES= Application.MessageBox(pchar(TranslateText('Special 8 bit format. Select yes to continue')), pchar(TranslateText('Save as special 8 bit FITS')), MB_ICONQUESTION + MB_YESNO) )=false then {ask queastion if bitpix is reduced}
          exit;
       head.bitpix:=24;
     end;

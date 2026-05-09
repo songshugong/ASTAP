@@ -3795,3 +3795,825 @@ msgstr ""
 
 msgid "XISF file too wide !!!!!"
 msgstr ""
+
+msgid " !"
+msgstr ""
+
+msgid " In manual mode, you should select comparison stars first."
+msgstr ""
+
+msgid " This process may take a long time."
+msgstr ""
+
+msgid " Use this with images that have FAINT comparison stars taken with a SINGLE filter. Preferable from a rich cluster like M67. Set measure all minimum SNR at 10."
+msgstr ""
+
+msgid "\" not found"
+msgstr ""
+
+msgid "16 bit will reduce image quality (was -32). Select yes to continue"
+msgstr ""
+
+msgid "23 00 00.0 +89 00 00.0   or  23.99 +89.99  or  359.99d 89.99  or  C for center"
+msgstr ""
+
+msgid "8 bit will reduce image quality. Select yes to continue"
+msgstr ""
+
+msgid "ASTAP error:"
+msgstr ""
+
+msgid "Abort"
+msgstr ""
+
+msgid "Abort!"
+msgstr ""
+
+msgid "Abort! Can not execute without astrometric solution. Solve image first."
+msgstr ""
+
+msgid "Abort. No image in the viewer or the image in the viewer does not contain keywords XORGSUBF, YORGSUBF or FRAMEX, FRAMEY. Crop an sample image first with the popup menu and mouse."
+msgstr ""
+
+msgid "Abort. Sample and target frames should have ROWORDER keyword value!"
+msgstr ""
+
+msgid "Abort. Sample and target frames should have equal binning!"
+msgstr ""
+
+msgid "Additional conversion factor for an unbinned sensor"
+msgstr ""
+
+msgid "All selected files will be updated!! Hit cancel to abort. Type keyword:"
+msgstr ""
+
+msgid "Angular distance "
+msgstr ""
+
+msgid "Arbitrary rotation"
+msgstr ""
+
+msgid "At unity gain this factor shall be 1"
+msgstr ""
+
+msgid "Basic fits header"
+msgstr ""
+
+msgid "Calibration-status: "
+msgstr ""
+
+msgid "Can not proceed!"
+msgstr ""
+
+msgid "Can't find local astrometry.net program solve-field. Check path or installation."
+msgstr ""
+
+msgid "Can't find local astrometry.net program. Check path or installation."
+msgstr ""
+
+msgid "Continue?"
+msgstr ""
+
+msgid "Copy to clipboard?"
+msgstr ""
+
+msgid "Could not find program dcdraw !!, Install this program. Eg: sudo apt-get install dcraw"
+msgstr ""
+
+msgid "Could not find program fpack !!, Install this program. Eg: sudo apt-get install libcfitsio-bin"
+msgstr ""
+
+msgid "Could not find program funpack !!, Install this program. Eg: sudo apt-get install libcfitsio-bin"
+msgstr ""
+
+msgid "Could not find program unprocessed_raw !!, Install libraw. Eg: sudo apt-get install libraw-bin"
+msgstr ""
+
+msgid "Could not find: "
+msgstr ""
+
+msgid "Crop"
+msgstr ""
+
+msgid "Crop of full size video?"
+msgstr ""
+
+msgid "Date-obs: "
+msgstr ""
+
+msgid "Default observer location:"
+msgstr ""
+
+msgid "Download and install one star database."
+msgstr ""
+
+msgid "Enter angle CCW in degrees:              (If solved, enter N for north up)"
+msgstr ""
+
+msgid "Enter annotation text. Add one @ or more to create a persistent annotation"
+msgstr ""
+
+msgid "Enter the default observer latitude in degrees [DD.DDD or DD MM]"
+msgstr ""
+
+msgid "Enter the default observer longitude in degrees. East is positive, West is negative [DDD.DDD or DD MM]"
+msgstr ""
+
+msgid "Enter the object main type (E.g. star=*, galaxy=G, quasar=QSO):"
+msgstr ""
+
+msgid "Enter the scale factor:"
+msgstr ""
+
+msgid "Enter video frame rate in [frames/second]:"
+msgstr ""
+
+msgid "Enter α, δ of mouse position separated by a comma:"
+msgstr ""
+
+msgid "Enter α, δ position in one of the following formats: "
+msgstr ""
+
+msgid "Errors!! Files modified but with errors or stopped!!"
+msgstr ""
+
+msgid "Exposure-time: "
+msgstr ""
+
+msgid "File not found:"
+msgstr ""
+
+msgid "Filter: "
+msgstr ""
+
+msgid "Find Best Aperture?"
+msgstr ""
+
+msgid "Find tranformation coeficients"
+msgstr ""
+
+msgid "First load an image in the viewer!"
+msgstr ""
+
+msgid "For a 12 bit sensor with an output range [0. . 4096] enter 1"
+msgstr ""
+
+msgid "For a 12 bit sensor with an output range [0..65535] enter 16"
+msgstr ""
+
+msgid "For a 14 bit sensor with an output range [0..16384] enter 1"
+msgstr ""
+
+msgid "For a 14 bit sensor with an output range [0..65535] enter 4"
+msgstr ""
+
+msgid "For a 16 bit sensor with an output range [0..65535] enter 1"
+msgstr ""
+
+msgid "For monochrome images Y4M video files will be smaller."
+msgstr ""
+
+msgid "Format 24 00 00.0, 90 00 00.0   or   24 00, 90 00"
+msgstr ""
+
+msgid "Free text:"
+msgstr ""
+
+msgid "Full size"
+msgstr ""
+
+msgid "How many images per stack?:"
+msgstr ""
+
+msgid "HyperLeda database not found! Download from the ASTAP webpage and install."
+msgstr ""
+
+msgid "Install additonally OpenSSL. Required for https conections. See webpage for more information"
+msgstr ""
+
+msgid "Instrument: "
+msgstr ""
+
+msgid "Missing comparison stars"
+msgstr ""
+
+msgid "Missing crop area"
+msgstr ""
+
+msgid "Missing libraries"
+msgstr ""
+
+msgid "Moving from the dark area to the bright area should follow the direction of the gradient."
+msgstr ""
+
+msgid "New value header keyword (Type DELETE to remove keyword):"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "No action"
+msgstr ""
+
+msgid "No comparison stars selected with an AUID (000-...) selected!"
+msgstr ""
+
+msgid "No distance selected! Hold the right mouse button down while moving from first to second star."
+msgstr ""
+
+msgid "No local astrometry.net"
+msgstr ""
+
+msgid "No star database found at "
+msgstr ""
+
+msgid "No star lock or no area selected!"
+msgstr ""
+
+msgid "No star(s) selected. Display the first image in the viewer by double click on it and then select stars in the image by clicking on them."
+msgstr ""
+
+msgid "No suitable comparison star(s) starting with 000- found! "
+msgstr ""
+
+msgid "Or select mode \"Measure all annotated\" and select later. Then press on the ▶| (play) button to measure."
+msgstr ""
+
+msgid "Origin: "
+msgstr ""
+
+msgid "Place mouse on a star or hold the right mouse button down while selecting an area."
+msgstr ""
+
+msgid "Place the mouse pointer at a dark area. Hold the right mouse button down and move the mouse pointer to a bright area."
+msgstr ""
+
+msgid "Please download and install a new version of the \"Variable_stars\" database!"
+msgstr ""
+
+msgid "Save as 16 bit FITS"
+msgstr ""
+
+msgid "Save as 8 bit FITS"
+msgstr ""
+
+msgid "Save as special 8 bit FITS"
+msgstr ""
+
+msgid "Scaled dark application"
+msgstr ""
+
+msgid "Select one or more comparison stars starting with 000- !"
+msgstr ""
+
+msgid "Set first the area with the mouse and mouse popup menu \"Set area\" !"
+msgstr ""
+
+msgid "Set video frame rate menu"
+msgstr ""
+
+msgid "Shift in hours:"
+msgstr ""
+
+msgid "Simbad search by criteria."
+msgstr ""
+
+msgid "Special 8 bit format. Select yes to continue"
+msgstr ""
+
+msgid "Stack all file in groups, mode average"
+msgstr ""
+
+msgid "Star database file permission error near pole. Update the D50 database to correct !!"
+msgstr ""
+
+msgid "Statistics within "
+msgstr ""
+
+msgid "Telescope: "
+msgstr ""
+
+msgid "Text \""
+msgstr ""
+
+msgid "Text to find in listview:"
+msgstr ""
+
+msgid "Text:"
+msgstr ""
+
+msgid "The bit depth of the sensor can be measured from a light using popup menu \"Show statistics\""
+msgstr ""
+
+msgid "The deep sky database was not found. Download and unpack in program directory"
+msgstr ""
+
+msgid "The variable star database not found!"
+msgstr ""
+
+msgid "This routine will test aperture radii from 0.7 to 2.2 HFD in steps of 0.1 to find the value that gives the lowest standard deviation for the comparison stars."
+msgstr ""
+
+msgid "This routine will work with any comparison stars so you could continue."
+msgstr ""
+
+msgid "To crop set the area first with the right mouse button."
+msgstr ""
+
+msgid "Try to select two areas without a deepsky object within 20 pixels."
+msgstr ""
+
+msgid "Type header keyword to display in the last column:"
+msgstr ""
+
+msgid "Video can be saved as uncompressed in Y4M or AVI container."
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "Warning this code requires later LAZARUS 2.1 and FPC 3.3.1 version!!!"
+msgstr ""
+
+msgid "Warning. AAVSO annotation is not set at \"std field\". If no AAVSO comparison stars are available then this routine will not work."
+msgstr ""
+
+msgid "Write error !!"
+msgstr ""
+
+msgid "dcraw"
+msgstr ""
+
+msgid "dcraw.exe !!"
+msgstr ""
+
+msgid "factor e-/ADU, unbinned?"
+msgstr ""
+
+msgid "fpack"
+msgstr ""
+
+msgid "fpack.exe !!, Download and install fpack_funpack.exe"
+msgstr ""
+
+msgid "funpack"
+msgstr ""
+
+msgid "funpack.exe !!, Download and install fpack_funpack.exe"
+msgstr ""
+
+msgid "unprocessed_raw"
+msgstr ""
+
+msgid "unprocessed_raw.exe !!, Download, libraw and place in program directory"
+msgstr ""
+
+msgid "file does conform to FITS standard"
+msgstr ""
+
+msgid "Bits per entry"
+msgstr ""
+
+msgid "Number of dimensions"
+msgstr ""
+
+msgid "length of x axis"
+msgstr ""
+
+msgid "length of y axis"
+msgstr ""
+
+msgid "length of z axis (mostly colors)"
+msgstr ""
+
+msgid "FITS dataset may contain extensions"
+msgstr ""
+
+msgid "FITS (Flexible Image Transport System) format is defined in 'Astronomy"
+msgstr ""
+
+msgid "and Astrophysics', volume 376, page 359; bibcode: 2001A&A...376..359H"
+msgstr ""
+
+msgid "ZWO binary file"
+msgstr ""
+
+msgid "Order of the rows in image array"
+msgstr ""
+
+msgid "physical_value = BZERO + BSCALE * array_value"
+msgstr ""
+
+msgid "Minimum data value"
+msgstr ""
+
+msgid "Maximum data value"
+msgstr ""
+
+msgid "Black point used for displaying image."
+msgstr ""
+
+msgid "White point used for displaying the image."
+msgstr ""
+
+msgid "Instrument name"
+msgstr ""
+
+msgid "[degC] CCD temperature"
+msgstr ""
+
+msgid "[degC] CCD temperature setpoint"
+msgstr ""
+
+msgid "Sensor gain"
+msgstr ""
+
+msgid "X of reference pixel"
+msgstr ""
+
+msgid "Y of reference pixel"
+msgstr ""
+
+msgid "RA of reference pixel (deg)"
+msgstr ""
+
+msgid "DEC of reference pixel (deg)"
+msgstr ""
+
+msgid "X pixel size (deg)"
+msgstr ""
+
+msgid "Y pixel size (deg)"
+msgstr ""
+
+msgid "Image twist X axis (deg)"
+msgstr ""
+
+msgid "Image twist Y axis (deg) E of N if not flipped."
+msgstr ""
+
+msgid "CD matrix to convert (x,y) to (Ra, Dec)"
+msgstr ""
+
+msgid "Binning factor in width"
+msgstr ""
+
+msgid "Binning factor in height"
+msgstr ""
+
+msgid "Pixel width in microns (after stretching)"
+msgstr ""
+
+msgid "Pixel height in microns (after stretching)"
+msgstr ""
+
+msgid "Filter name"
+msgstr ""
+
+msgid "Value added during calibration or stacking"
+msgstr ""
+
+msgid "Light frames combined."
+msgstr ""
+
+msgid "Darks used for luminance."
+msgstr ""
+
+msgid "Flats used for luminance."
+msgstr ""
+
+msgid "Flat-darks used for luminance."
+msgstr ""
+
+msgid "Total exposure time in seconds."
+msgstr ""
+
+msgid "Average relative optical path."
+msgstr ""
+
+msgid "Julian Day of the observation mid-point."
+msgstr ""
+
+msgid "Date and time of the start of the observation."
+msgstr ""
+
+msgid "Date and time of the end of the observation."
+msgstr ""
+
+msgid "Delta HFD between worst and best corner. SNR>30"
+msgstr ""
+
+msgid "TAN (gnomic) projection + SIP distortions"
+msgstr ""
+
+msgid "first parameter RA,    projection TANgential"
+msgstr ""
+
+msgid "second parameter DEC,  projection TANgential"
+msgstr ""
+
+msgid "Unit of coordinates"
+msgstr ""
+
+msgid "Equinox of coordinates"
+msgstr ""
+
+msgid "telescope used to acquire this image"
+msgstr ""
+
+msgid "UTC date that FITS file was created"
+msgstr ""
+
+msgid "YYYY-MM-DDThh:mm:ss observation start,"
+msgstr ""
+
+msgid "Stack frames"
+msgstr ""
+
+msgid "Exposure time [s]"
+msgstr ""
+
+msgid "Exposure time after deadtime correction"
+msgstr ""
+
+msgid "Exposure start time (standard Julian date)"
+msgstr ""
+
+msgid "Exposure end time (standard Julian date)"
+msgstr ""
+
+msgid "X pixel size microns"
+msgstr ""
+
+msgid "Y pixel size microns"
+msgstr ""
+
+msgid "Camera binning mode"
+msgstr ""
+
+msgid "Camera focal length"
+msgstr ""
+
+msgid "CCD temp in C"
+msgstr ""
+
+msgid "Temperature setting in C"
+msgstr ""
+
+msgid "Active filter name"
+msgstr ""
+
+msgid "Type of image"
+msgstr ""
+
+msgid "Name of the object of interest"
+msgstr ""
+
+msgid "Camera gain"
+msgstr ""
+
+msgid "Camera offset"
+msgstr ""
+
+msgid "[deg] Observation site latitude"
+msgstr ""
+
+msgid "[deg] Observation site longitude"
+msgstr ""
+
+msgid "[m] Observation site elevation"
+msgstr ""
+
+msgid "Software that created this HDU"
+msgstr ""
+
+msgid "Coordinate type for the first axis"
+msgstr ""
+
+msgid "Coordinate type for the second axis"
+msgstr ""
+
+msgid "Equatorial equinox"
+msgstr ""
+
+msgid "Image center Right Ascension (hms)"
+msgstr ""
+
+msgid "Image center Declination (dms)"
+msgstr ""
+
+msgid "Image center Right Ascension (deg)"
+msgstr ""
+
+msgid "Image center Declination (deg)"
+msgstr ""
+
+msgid "mean stacking with winsorized sigma clipping rejection (low=3.000 high=3"
+msgstr ""
+
+msgid ".000), additive+scaling normalized input, normalized output, no image we"
+msgstr ""
+
+msgid "ighting, equalized RGB"
+msgstr ""
+
+msgid "TOP-DOWN mirror"
+msgstr ""
+
+msgid "ighting, equalized RGB, filter all"
+msgstr ""
+
+msgid "FITS:SIMPLE"
+msgstr ""
+
+msgid "FITS:BITPIX"
+msgstr ""
+
+msgid "FITS:NAXIS"
+msgstr ""
+
+msgid "FITS:NAXIS1"
+msgstr ""
+
+msgid "FITS:NAXIS2"
+msgstr ""
+
+msgid "FITS:NAXIS3"
+msgstr ""
+
+msgid "FITS:EXTEND"
+msgstr ""
+
+msgid "FITS:BZERO"
+msgstr ""
+
+msgid "FITS:BSCALE"
+msgstr ""
+
+msgid "FITS:MIPS-FLO"
+msgstr ""
+
+msgid "FITS:PROGRAM"
+msgstr ""
+
+msgid "FITS:DATE"
+msgstr ""
+
+msgid "FITS:DATE-OBS"
+msgstr ""
+
+msgid "FITS:IMAGETYP"
+msgstr ""
+
+msgid "FITS:ROWORDER"
+msgstr ""
+
+msgid "FITS:EXPTIME"
+msgstr ""
+
+msgid "FITS:TELESCOP"
+msgstr ""
+
+msgid "FITS:FILTER"
+msgstr ""
+
+msgid "FITS:FOCALLEN"
+msgstr ""
+
+msgid "FITS:CENTALT"
+msgstr ""
+
+msgid "FITS:CENTAZ"
+msgstr ""
+
+msgid "FITS:XBINNING"
+msgstr ""
+
+msgid "FITS:YBINNING"
+msgstr ""
+
+msgid "FITS:XPIXSZ"
+msgstr ""
+
+msgid "FITS:YPIXSZ"
+msgstr ""
+
+msgid "FITS:INSTRUME"
+msgstr ""
+
+msgid "FITS:CCD-TEMP"
+msgstr ""
+
+msgid "FITS:SET-TEMP"
+msgstr ""
+
+msgid "FITS:GAIN"
+msgstr ""
+
+msgid "FITS:OFFSET"
+msgstr ""
+
+msgid "FITS:FOCNAME"
+msgstr ""
+
+msgid "FITS:FOCPOS"
+msgstr ""
+
+msgid "FITS:FOCTEMP"
+msgstr ""
+
+msgid "FITS:STACKCNT"
+msgstr ""
+
+msgid "FITS:LIVETIME"
+msgstr ""
+
+msgid "FITS:EXPSTART"
+msgstr ""
+
+msgid "FITS:EXPEND"
+msgstr ""
+
+msgid "FITS:OBJECT"
+msgstr ""
+
+msgid "FITS:AIRMASS"
+msgstr ""
+
+msgid "FITS:SITELAT"
+msgstr ""
+
+msgid "FITS:SITELONG"
+msgstr ""
+
+msgid "FITS:SITEELEV"
+msgstr ""
+
+msgid "FITS:OBJCTRA"
+msgstr ""
+
+msgid "FITS:OBJCTDEC"
+msgstr ""
+
+msgid "FITS:RA"
+msgstr ""
+
+msgid "FITS:DEC"
+msgstr ""
+
+msgid "FITS:DATE-LOC"
+msgstr ""
+
+msgid "FITS:DATE-AVG"
+msgstr ""
+
+msgid "FITS:CAMERAID"
+msgstr ""
+
+msgid "FITS:READOUTM"
+msgstr ""
+
+msgid "FITS:USBLIMIT"
+msgstr ""
+
+msgid "FITS:FOCRATIO"
+msgstr ""
+
+msgid "FITS:PIERSIDE"
+msgstr ""
+
+msgid "FITS:FWHEEL"
+msgstr ""
+
+msgid "FITS:OBJCTROT"
+msgstr ""
+
+msgid "FITS:ROTNAME"
+msgstr ""
+
+msgid "FITS:ROTATOR"
+msgstr ""
+
+msgid "FITS:ROTATANG"
+msgstr ""
+
+msgid "FITS:ROTSTPSZ"
+msgstr ""
+
+msgid "centered"
+msgstr ""
+
+msgid "Local standard deviation or star values"
+msgstr ""
+
+msgid "X, Y = [pixel value(s)]"
+msgstr ""
+
+msgid "RGB values screen"
+msgstr ""
+
+msgid "w x h  angular_distance  angle"
+msgstr ""
+
+msgid "zoom factor"
+msgstr ""

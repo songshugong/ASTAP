@@ -69,11 +69,13 @@ jobs:
         shell: pwsh
         run: |
           $packageRoot = "dist\ASTAP-zh-windows-x64"
-          New-Item -ItemType Directory -Force "$packageRoot\languages\zh_CN" | Out-Null
+          if (Test-Path $packageRoot) {
+            Remove-Item $packageRoot -Recurse -Force
+          }
+          New-Item -ItemType Directory -Force $packageRoot | Out-Null
 
           Copy-Item "astap.exe" "$packageRoot\astap.exe"
-          Copy-Item "languages\astap.pot" "$packageRoot\languages\astap.pot"
-          Copy-Item "languages\zh_CN\astap.po" "$packageRoot\languages\zh_CN\astap.po"
+          Copy-Item "languages" "$packageRoot\languages" -Recurse
 
           $optionalFiles = @(
             "deep_sky.csv",
@@ -87,15 +89,22 @@ jobs:
           }
 
           Compress-Archive -Path "$packageRoot\*" -DestinationPath "dist\ASTAP-zh-windows-x64.zip" -Force
+          Get-FileHash "dist\ASTAP-zh-windows-x64.zip" -Algorithm SHA256 |
+            ForEach-Object { "$($_.Hash.ToLower())  ASTAP-zh-windows-x64.zip" } |
+            Set-Content "dist\ASTAP-zh-windows-x64.zip.sha256"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ASTAP-zh-windows-x64
-          path: dist/ASTAP-zh-windows-x64.zip
+          path: |
+            dist/ASTAP-zh-windows-x64.zip
+            dist/ASTAP-zh-windows-x64.zip.sha256
 
       - name: Attach zip to release
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/ASTAP-zh-windows-x64.zip
+          files: |
+            dist/ASTAP-zh-windows-x64.zip
+            dist/ASTAP-zh-windows-x64.zip.sha256

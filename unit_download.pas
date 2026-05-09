@@ -13,14 +13,14 @@ function get_http(url: string): string;//get webpage in string
 
 implementation
 
-uses unit_stack;
+uses unit_stack, unit_language;
 
 function get_http(url:string): string;
 var
   Client: TFPHttpClient;
 begin
   result:=''; //for early exit
-  if InitSSLInterface=false then begin application.messagebox(pchar('Install additonally OpenSSL. Required for https conections. See webpage for more information'), pchar('Missing libraries'),0);exit;end;
+  if InitSSLInterface=false then begin application.messagebox(pchar(TranslateText('Install additonally OpenSSL. Required for https conections. See webpage for more information')), pchar(TranslateText('Missing libraries')),0);exit;end;
   Client := TFPHttpClient.Create(nil);
   try
     try
@@ -64,4 +64,3 @@ begin
 end;
 
 end.
-

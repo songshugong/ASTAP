@@ -111,8 +111,12 @@ begin
 end;
 
 function NormalizeTranslationKey(const S: string): string;
+var
+  Text: string;
 begin
-  Result := LowerCase(TrimRight(NormalizeCaption(S)));
+  Text := StringReplace(S, #13#10, #10, [rfReplaceAll]);
+  Text := StringReplace(Text, #13, #10, [rfReplaceAll]);
+  Result := LowerCase(TrimRight(NormalizeCaption(Text)));
 end;
 
 function DecodePOString(const S: string): string;
@@ -157,22 +161,17 @@ end;
 
 procedure AddTranslation(const AKey, AValue: string);
 var
-  KeyText: string;
+  KeyText, ValueText: string;
 begin
   if (AKey = '') or (AValue = '') then Exit;
 
-  KeyText := LowerCase(AKey);
+  ValueText := StringReplace(AValue, #10, LineEnding, [rfReplaceAll]);
+
+  KeyText := NormalizeTranslationKey(AKey);
   if POKeys.IndexOf(KeyText) < 0 then
   begin
     POKeys.Add(KeyText);
-    POValues.Add(AValue);
-  end;
-
-  KeyText := NormalizeTranslationKey(AKey);
-  if (KeyText <> '') and (POKeys.IndexOf(KeyText) < 0) then
-  begin
-    POKeys.Add(KeyText);
-    POValues.Add(AValue);
+    POValues.Add(ValueText);
   end;
 end;
 
@@ -306,9 +305,7 @@ var
   Index: Integer;
 begin
   EnsurePOTranslations;
-  Index := POKeys.IndexOf(LowerCase(AKey));
-  if Index < 0 then
-    Index := POKeys.IndexOf(NormalizeTranslationKey(AKey));
+  Index := POKeys.IndexOf(NormalizeTranslationKey(AKey));
 
   Result := Index >= 0;
   if Result then

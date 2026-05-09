@@ -2732,7 +2732,7 @@ var
 
 begin
   if head.naxis = 0 then application.messagebox(
-      PChar('First load an image in the viewer!'), PChar('No action'), MB_OK)
+      PChar(TranslateText('First load an image in the viewer!')), PChar(TranslateText('No action')), MB_OK)
   else
   begin
     Screen.Cursor:=crHourglass;{$IfDef Darwin}{$else}application.processmessages;{$endif}// Show hourglass cursor, processmessages is for Linux. Note in MacOS processmessages disturbs events keypress for lv_left, lv_right key
@@ -3388,7 +3388,7 @@ begin
           if idx >= 3 then //with norm factor
           begin
             if idx=3 then
-               value:=InputBox('Scaled dark application','Enter the scale factor:',value );
+               value:=InputBox(TranslateText('Scaled dark application'),TranslateText('Enter the scale factor:'),value );
 
             flat_norm_value:=0;
             for fitsY:=-14 to 15 do {do even times, 30x30}
@@ -3871,7 +3871,7 @@ begin
         end;
         if success = False then
         begin
-          ShowMessage('Write error !!' + filename2);
+          ShowMessage(TranslateText('Write error !!') + filename2);
           break;
         end;
 
@@ -5233,15 +5233,15 @@ begin
   if Sender = changekeyword8 then lv:=listview8;{from popup menu}
   if Sender = changekeyword9 then lv:=listview9;{from popup menu}
 
-  keyw:=InputBox('All selected files will be updated!! Hit cancel to abort. Type keyword:',
+  keyw:=InputBox(TranslateText('All selected files will be updated!! Hit cancel to abort. Type keyword:'),
     '', '');
   if length(keyw) < 2 then exit;
 
   keyw:=uppercase(keyw);
   if keyw='DATE-OBS' then
-    Value:=InputBox('Shift in hours:', '', '')
+    Value:=InputBox(TranslateText('Shift in hours:'), '', '')
   else
-    Value:=InputBox('New value header keyword (Type DELETE to remove keyword):', '', '');
+    Value:=InputBox(TranslateText('New value header keyword (Type DELETE to remove keyword):'), '', '');
 
   if length(Value) <= 0 then exit;
   listview_update_keyword(lv, keyw, Value);{update key word}
@@ -6300,7 +6300,7 @@ procedure Tstackmenu1.aavso_button1Click(Sender: TObject);
 begin
   if ((measuring_method1.itemindex=0) and (length(mainform1.fshapes)<1)) then
   begin
-    application.messagebox('No star(s) selected. Display the first image in the viewer by double click on it and then select stars in the image by clicking on them.'+#10+#13+#10+#13+'Or select mode "Measure all annotated" and select later. Then press on the ▶| (play) button to measure.','Can not proceed!',0);
+    application.messagebox(pchar(TranslateText('No star(s) selected. Display the first image in the viewer by double click on it and then select stars in the image by clicking on them.')+#10+#13+#10+#13+TranslateText('Or select mode "Measure all annotated" and select later. Then press on the ▶| (play) button to measure.')),pchar(TranslateText('Can not proceed!')),0);
     exit;
   end;
 
@@ -8091,7 +8091,7 @@ begin
 
     if ((measuring_method=0) and (length(mainform1.fshapes)<1)) then
     begin
-      application.messagebox('No star(s) selected. Display the first image in the viewer by double click on it and then select stars in the image by clicking on them.'+#10+#13+#10+#13+'Or select mode "Measure all annotated" and select later. Then press on the ▶| (play) button to measure.','Can not proceed!',0);
+      application.messagebox(pchar(TranslateText('No star(s) selected. Display the first image in the viewer by double click on it and then select stars in the image by clicking on them.')+#10+#13+#10+#13+TranslateText('Or select mode "Measure all annotated" and select later. Then press on the ▶| (play) button to measure.')),pchar(TranslateText('Can not proceed!')),0);
       exit;
     end;
 
@@ -8174,7 +8174,7 @@ begin
           begin{match between loaded image and star database}
             if save_fits_tiff_secure(img_temp,memox,filename1,headx.bitpix)=false then
             begin
-              ShowMessage('Write error !!' + filename2);
+              ShowMessage(TranslateText('Write error !!') + filename2);
               exit;//go to finally at the end
             end;
             listview7.Items.item[c].subitems.Strings[P_astrometric]:='✓';
@@ -9168,8 +9168,8 @@ end;
 
 procedure Tstackmenu1.speedButton_location1Click(Sender: TObject);
 begin
-  lat_default:=InputBox('Default observer location:','Enter the default observer latitude in degrees [DD.DDD or DD MM]', lat_default);
-  long_default:=InputBox('Default observer location:','Enter the default observer longitude in degrees. East is positive, West is negative [DDD.DDD or DD MM]',long_default);
+  lat_default:=InputBox(TranslateText('Default observer location:'),TranslateText('Enter the default observer latitude in degrees [DD.DDD or DD MM]'), lat_default);
+  long_default:=InputBox(TranslateText('Default observer location:'),TranslateText('Enter the default observer longitude in degrees. East is positive, West is negative [DDD.DDD or DD MM]'),long_default);
   if length(long_default) > 0 then save_settings2;
 end;
 
@@ -9187,9 +9187,9 @@ begin
 //    exit;
 //  end;
 
-  groupsizeStr:=InputBox('Stack all file in groups, mode average',
+  groupsizeStr:=InputBox(TranslateText('Stack all file in groups, mode average'),
 //  'The selected files should be sorted on date.'+#10+#10+
-  'How many images per stack?:',groupsizeStr);
+  TranslateText('How many images per stack?:'),groupsizeStr);
   if groupsizeStr=''  then exit; {cancel used}
   groupsize:=strtoint2(groupsizeStr,0);
   if groupsize=0 then exit;
@@ -9627,7 +9627,7 @@ begin
 
         if save_fits_tiff_secure(img_loaded,mainform1.memo1.lines, filename2,head.bitpix)=false then {guarantee no file is lost}
         begin
-          ShowMessage('Write error !!' + filename2);
+          ShowMessage(TranslateText('Write error !!') + filename2);
           break;
         end;
       end;
@@ -10135,14 +10135,14 @@ begin
   end;
 
   if not Found then
-    ShowMessage('Text "' + SearchText + '" not found');
+    ShowMessage(TranslateText('Text "') + SearchText + TranslateText('" not found'));
 end;
 
 
 
 procedure Tstackmenu1.find_listview_text7Click(Sender: TObject);
 begin
-  PatternToFind:=uppercase(inputbox('Find','Text to find in listview:' ,PatternToFind));
+  PatternToFind:=uppercase(inputbox(TranslateText('Find'),TranslateText('Text to find in listview:') ,PatternToFind));
   FindAndScrollInListView(ListView7, PatternToFind);
 end;
 
@@ -10249,18 +10249,18 @@ begin
   oldstr:=stackmenu1.flux_aperture1.text;
 
   if (IDYES = Application.MessageBox(
-    'This routine will test aperture radii from 0.7 to 2.2 HFD in steps of 0.1 to find the value that gives the lowest standard deviation for the comparison stars.' +
-    ' In manual mode, you should select comparison stars first.' + #10#10 +
-    ' Use this with images that have FAINT comparison stars taken with a SINGLE filter. Preferable from a rich cluster like M67. Set measure all minimum SNR at 10.' + #10#10 +
-    ' This process may take a long time.' + #10#10 +
-    'Continue?',
-    'Find Best Aperture?',
+    pchar(TranslateText('This routine will test aperture radii from 0.7 to 2.2 HFD in steps of 0.1 to find the value that gives the lowest standard deviation for the comparison stars.') +
+    TranslateText(' In manual mode, you should select comparison stars first.') + #10#10 +
+    TranslateText(' Use this with images that have FAINT comparison stars taken with a SINGLE filter. Preferable from a rich cluster like M67. Set measure all minimum SNR at 10.') + #10#10 +
+    TranslateText(' This process may take a long time.') + #10#10 +
+    TranslateText('Continue?')),
+    pchar(TranslateText('Find Best Aperture?')),
     MB_ICONQUESTION + MB_YESNO
   )) then
   begin
     if ((mainform1.Fshapes=nil) and (stackmenu1.measuring_method1.itemindex=0)) then
     begin
-      application.messagebox(PChar('Abort!'+#10+#10+ 'No comparison stars selected with an AUID (000-...) selected!'), PChar('Missing comparison stars'), MB_OK);
+      application.messagebox(PChar(TranslateText('Abort!')+#10+#10+ TranslateText('No comparison stars selected with an AUID (000-...) selected!')), PChar(TranslateText('Missing comparison stars')), MB_OK);
       Screen.Cursor:=crDefault;{back to normal }
       exit;
     end;
@@ -10363,9 +10363,9 @@ begin
          if ((count100=0) and (count15_40=0) and (count40_100=0)) then
          begin
            if stackmenu1.measuring_method1.itemindex=0 then
-             application.messagebox(PChar('Abort!'+#10+#10+ 'Select one or more comparison stars starting with 000- !'), PChar('Missing comparison stars'), MB_OK)
+             application.messagebox(PChar(TranslateText('Abort!')+#10+#10+ TranslateText('Select one or more comparison stars starting with 000- !')), PChar(TranslateText('Missing comparison stars')), MB_OK)
            else
-              application.messagebox(PChar('Abort!'+#10+#10+ 'No suitable comparison star(s) starting with 000- found! '), PChar('Missing comparison stars'), MB_OK);
+              application.messagebox(PChar(TranslateText('Abort!')+#10+#10+ TranslateText('No suitable comparison star(s) starting with 000- found! ')), PChar(TranslateText('Missing comparison stars')), MB_OK);
            stackmenu1.flux_aperture1.text:=oldstr;
            memo2_message('Abort, no suitable comparison star(s) selected or found');
            break;
@@ -10413,18 +10413,18 @@ begin
   results:='';
 
   if (IDYES = Application.MessageBox(
-    'This routine will test aperture radii from 0.7 to 2.2 HFD in steps of 0.1 to find the value that gives the lowest standard deviation for the comparison stars.' +
-    ' In manual mode, you should select comparison stars first.' + #10#10 +
-    ' Use this with images that have FAINT comparison stars taken with a SINGLE filter. Preferable from a rich cluster like M67. Set measure all minimum SNR at 10.' + #10#10 +
-    ' This process may take a long time.' + #10#10 +
-    'Continue?',
-    'Find Best Aperture?',
+    pchar(TranslateText('This routine will test aperture radii from 0.7 to 2.2 HFD in steps of 0.1 to find the value that gives the lowest standard deviation for the comparison stars.') +
+    TranslateText(' In manual mode, you should select comparison stars first.') + #10#10 +
+    TranslateText(' Use this with images that have FAINT comparison stars taken with a SINGLE filter. Preferable from a rich cluster like M67. Set measure all minimum SNR at 10.') + #10#10 +
+    TranslateText(' This process may take a long time.') + #10#10 +
+    TranslateText('Continue?')),
+    pchar(TranslateText('Find Best Aperture?')),
     MB_ICONQUESTION + MB_YESNO
   )) then
   begin
     if ((mainform1.Fshapes=nil) and (stackmenu1.measuring_method1.itemindex=0)) then
     begin
-      application.messagebox(PChar('Abort!'+#10+#10+ 'No comparison stars selected with an AUID (000-...) selected!'), PChar('Missing comparison stars'), MB_OK);
+      application.messagebox(PChar(TranslateText('Abort!')+#10+#10+ TranslateText('No comparison stars selected with an AUID (000-...) selected!')), PChar(TranslateText('Missing comparison stars')), MB_OK);
       Screen.Cursor:=crDefault;{back to normal }
       exit;
     end;
@@ -10494,9 +10494,9 @@ begin
  {        if ((count=0) and (count30=0) and (count90=0)) then
          begin
            if stackmenu1.measuring_method1.itemindex=0 then
-             application.messagebox(PChar('Abort!'+#10+#10+ 'Select one or more comparison stars starting with 000- !'), PChar('Missing comparison stars'), MB_OK)
+             application.messagebox(PChar(TranslateText('Abort!')+#10+#10+ TranslateText('Select one or more comparison stars starting with 000- !')), PChar(TranslateText('Missing comparison stars')), MB_OK)
            else
-              application.messagebox(PChar('Abort!'+#10+#10+ 'No suitable comparison star(s) starting with 000- found! '), PChar('Missing comparison stars'), MB_OK);
+              application.messagebox(PChar(TranslateText('Abort!')+#10+#10+ TranslateText('No suitable comparison star(s) starting with 000- found! ')), PChar(TranslateText('Missing comparison stars')), MB_OK);
            flux_aperture1.text:=oldstr;
            memo2_message('Abort, no suitable comparison star(s) selected or found');
            break;
@@ -10589,7 +10589,7 @@ var
         function save_fits_tiff : boolean;
         begin
           result:=save_fits_tiff_secure(img_temp,memox, filename1,headx.bitpix); {guarantee no file is lost}
-          if result=false then ShowMessage('Write error !!' + filename1);
+          if result=false then ShowMessage(TranslateText('Write error !!') + filename1);
         end;
 
         function save_fits_tiff_updated_image(newend: string) : boolean;
@@ -10875,7 +10875,7 @@ begin
     begin
       filename2:=listview5.items[index].Caption;
       thepath:=extractfilepath(filename2);
-      newfilen:=thepath + InputBox('New name:', '', extractfilename(filename2));
+      newfilen:=thepath + InputBox(TranslateText('New name:'), '', extractfilename(filename2));
       if ((newfilen = '') or (newfilen = filename2)) then exit;
       if RenameFile(filename2, newfilen) then
         listview5.items[index].Caption:=newfilen
@@ -11273,7 +11273,7 @@ end;
 
 procedure Tstackmenu1.keywordchangelast1Click(Sender: TObject);
 begin
-  sqm_key:=uppercase(InputBox('Type header keyword to display in the last column:',
+  sqm_key:=uppercase(InputBox(TranslateText('Type header keyword to display in the last column:'),
     '', sqm_key));
   new_analyse_required:=True;
   stackmenu1.listview1.columns.Items[l_sqm + 1].Caption:=sqm_key;
@@ -12536,7 +12536,7 @@ begin
      result:=save_tiff_new(img,filename2, memo.text,hd.bitpix,false {flip H},false {flip V}, true{overwrite}, 1 {compression}); //save to TIFF file
     //  Result:=save_tiff16(img,memo, filename2, False {flip H}, False {flip V},16);
 
-    if Result = False then ShowMessage('Write error !!' + filename2);
+    if Result = False then ShowMessage(TranslateText('Write error !!') + filename2);
   end
   else
     Result:=False;
@@ -13211,7 +13211,7 @@ begin
 
           if save_fits_tiff_secure(img_loaded,mainform1.memo1.lines, filename2,head.bitpix)= False then
           begin
-            ShowMessage('Write error !!' + filename2);
+            ShowMessage(TranslateText('Write error !!') + filename2);
             Screen.Cursor:=crDefault;
             exit;
           end;
@@ -14209,24 +14209,24 @@ var
   nrframes, c : integer;
 begin
   crop:=False;
-  case QuestionDlg('Crop', 'Crop of full size video?', mtCustom, [20, 'Crop', 21, 'Cancel', 22, 'Full size', 'IsDefault'], '') of
+  case QuestionDlg(TranslateText('Crop'), TranslateText('Crop of full size video?'), mtCustom, [20, TranslateText('Crop'), 21, TranslateText('Cancel'), 22, TranslateText('Full size'), 'IsDefault'], '') of
     20:
       begin
         crop:=True;
         if areaX1 = areaX2 then
         begin
-          application.messagebox(PChar('Abort!'+#10+#10+ 'Set first the area with the mouse and mouse popup menu "Set area" !'), PChar('Missing crop area'), MB_OK);
+          application.messagebox(PChar(TranslateText('Abort!')+#10+#10+ TranslateText('Set first the area with the mouse and mouse popup menu "Set area" !')), PChar(TranslateText('Missing crop area')), MB_OK);
           exit;
         end;
       end;
     21: exit;
   end;
 
-  if InputQuery('Set video frame rate menu',
-    'Video can be saved as uncompressed in Y4M or AVI container.' + #10 +
-    'For monochrome images Y4M video files will be smaller.' + #10 +
-    'To crop set the area first with the right mouse button.' + #10 +
-    #10 + #10 + 'Enter video frame rate in [frames/second]:',
+  if InputQuery(TranslateText('Set video frame rate menu'),
+    TranslateText('Video can be saved as uncompressed in Y4M or AVI container.') + #10 +
+    TranslateText('For monochrome images Y4M video files will be smaller.') + #10 +
+    TranslateText('To crop set the area first with the right mouse button.') + #10 +
+    #10 + #10 + TranslateText('Enter video frame rate in [frames/second]:'),
     frame_rate) = False then exit;
 
   mainform1.savedialog1.initialdir:=ExtractFilePath(filename2);

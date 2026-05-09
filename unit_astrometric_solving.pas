@@ -1100,10 +1100,10 @@ begin
                 {$IFDEF linux}
                  //keep till 2026
                  if ((name_database='d50') and (dec_database>pi*(90-15)/180)) then //Files 3502,3503 and 3601.1476 had permission error. Star database fixed on 2023-11-27
-                   application.messagebox(pchar('Star database file permission error near pole. Update the D50 database to correct !!'), pchar('ASTAP error:'),0)
+                   application.messagebox(pchar(TranslateText('Star database file permission error near pole. Update the D50 database to correct !!')), pchar(TranslateText('ASTAP error:')),0)
                  else
                 {$ENDIF}
-                application.messagebox( PChar('No star database found at ' + database_path + ' !' + #13 + 'Download and install one star database.'), PChar('ASTAP error:'), 0);
+                application.messagebox( PChar(TranslateText('No star database found at ') + database_path + TranslateText(' !') + #13 + TranslateText('Download and install one star database.')), PChar(TranslateText('ASTAP error:')), 0);
                 errorlevel := 33;{read error star database}
                 exit; {no stars}
               end;

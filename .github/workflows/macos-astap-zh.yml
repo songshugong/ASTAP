@@ -1,0 +1,132 @@
+name: Build macOS ASTAP-zh
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+      - astap-zh-windows
+    paths:
+      - ".github/workflows/macos-astap-zh.yml"
+      - "**/*.pas"
+      - "**/*.lfm"
+      - "**/*.lpi"
+      - "languages/**"
+  release:
+    types:
+      - published
+
+jobs:
+  macos:
+    name: macOS
+    runs-on: macos-14
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install Lazarus
+        run: |
+          brew update
+          if [ "$(uname -m)" = "arm64" ]; then
+            softwareupdate --install-rosetta --agree-to-license || true
+          fi
+          brew install --cask lazarus
+
+      - name: Build ASTAP
+        run: |
+          set -euo pipefail
+
+          LAZBUILD="$(find /Applications /opt/homebrew /usr/local -name lazbuild -type f 2>/dev/null | head -n 1)"
+          if [ -z "$LAZBUILD" ]; then
+            echo "lazbuild was not found after installing Lazarus." >&2
+            exit 1
+          fi
+
+          "$LAZBUILD" --version
+          if [ "$(uname -m)" = "arm64" ]; then
+            "$LAZBUILD" -B astap_mac_m1.lpi
+          else
+            "$LAZBUILD" -B astap_mac.lpi
+          fi
+
+          test -x astap
+
+      - name: Package macOS app
+        run: |
+          set -euo pipefail
+
+          ARCH="$(uname -m)"
+          DIST="dist"
+          APP="$DIST/ASTAP-zh.app"
+          VERSION="2026.05.09.${GITHUB_RUN_NUMBER}"
+
+          rm -rf "$DIST"
+          mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources/languages"
+
+          install -m 755 astap "$APP/Contents/MacOS/astap"
+          cp -R languages/. "$APP/Contents/Resources/languages/"
+
+          for helper in dcraw fpack funpack unprocessed_raw; do
+            if [ -x "$helper" ]; then
+              install -m 755 "$helper" "$APP/Contents/MacOS/$helper"
+            fi
+          done
+
+          cat > "$APP/Contents/Info.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+            "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>CFBundleDevelopmentRegion</key>
+            <string>zh_CN</string>
+            <key>CFBundleExecutable</key>
+            <string>astap</string>
+            <key>CFBundleIdentifier</key>
+            <string>org.hnsky.astap.zh</string>
+            <key>CFBundleInfoDictionaryVersion</key>
+            <string>6.0</string>
+            <key>CFBundleName</key>
+            <string>ASTAP-zh</string>
+            <key>CFBundlePackageType</key>
+            <string>APPL</string>
+            <key>CFBundleShortVersionString</key>
+            <string>${VERSION}</string>
+            <key>CFBundleSignature</key>
+            <string>asta</string>
+            <key>CFBundleVersion</key>
+            <string>${GITHUB_RUN_NUMBER}</string>
+            <key>LSMinimumSystemVersion</key>
+            <string>11.0</string>
+            <key>NSHighResolutionCapable</key>
+            <true/>
+          </dict>
+          </plist>
+          PLIST
+
+          codesign --force --deep --sign - "$APP"
+
+          ditto -c -k --keepParent "$APP" "$DIST/ASTAP-zh-macos-${ARCH}.zip"
+          pkgbuild --install-location /Applications --component "$APP" "$DIST/ASTAP-zh-macos-${ARCH}.pkg"
+
+          shasum -a 256 "$DIST/ASTAP-zh-macos-${ARCH}.zip" "$DIST/ASTAP-zh-macos-${ARCH}.pkg" > "$DIST/ASTAP-zh-macos-${ARCH}.sha256"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ASTAP-zh-macos
+          path: |
+            dist/ASTAP-zh-macos-*.zip
+            dist/ASTAP-zh-macos-*.pkg
+            dist/ASTAP-zh-macos-*.sha256
+
+      - name: Attach packages to release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/ASTAP-zh-macos-*.zip
+            dist/ASTAP-zh-macos-*.pkg
+            dist/ASTAP-zh-macos-*.sha256

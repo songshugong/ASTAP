@@ -54,7 +54,7 @@ var
 implementation
 
 uses
-  unit_star_database, unit_stack, unit_star_align, unit_online_gaia, unit_astrometric_solving;
+  unit_star_database, unit_stack, unit_star_align, unit_online_gaia, unit_astrometric_solving, unit_language;
 
 const font_5x9 : packed array[33..126,0..8,0..4] of byte=  {ASTAP native font for part of code page 437}
 ((
@@ -1054,7 +1054,7 @@ begin
        except;
          clear;
          beep;
-         application.messagebox(pchar('The deep sky database was not found. Download and unpack in program directory'),'',0);
+         application.messagebox(pchar(TranslateText('The deep sky database was not found. Download and unpack in program directory')),'',0);
        end;
     end;
   end;
@@ -1081,11 +1081,11 @@ begin
        database_nr:=nr;{1 is deepsky, 2 is hyperleda, 7=simbad,  8 is variable magn 8 loaded, 11 is variable magn 11 loaded, 13 is variable magn 13 loaded, , 15 is variable magn 15 loaded, 80,110,130,150 for Sloan databases}
 
        if ((copy(strings[0],1,4)<>'V006') and (all_filters.SG=true)) then //Sloan missing
-           application.messagebox(pchar('Please download and install a new version of the "Variable_stars" database!'),'',0{MB_OK});
+           application.messagebox(pchar(TranslateText('Please download and install a new version of the "Variable_stars" database!')),'',0{MB_OK});
        except;
          clear;
          beep;
-         application.messagebox(pchar('The variable star database not found!'),'',0);
+         application.messagebox(pchar(TranslateText('The variable star database not found!')),'',0);
          esc_pressed:=true;
 
        end;
@@ -1108,7 +1108,7 @@ begin
        except;
          clear;
          beep;
-         application.messagebox(pchar('HyperLeda database not found! Download from the ASTAP webpage and install.'),'',0);
+         application.messagebox(pchar(TranslateText('HyperLeda database not found! Download from the ASTAP webpage and install.')),'',0);
        end;
     end;
   end;
