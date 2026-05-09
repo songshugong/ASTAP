@@ -91,7 +91,8 @@ jobs:
           /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${VERSION}" "$APP/Contents/Info.plist" || true
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${GITHUB_RUN_NUMBER}" "$APP/Contents/Info.plist" || true
 
-          codesign --force --deep --sign - "$APP"
+          xattr -cr "$APP"
+          codesign --force --sign - "$APP"
 
           ditto -c -k --keepParent "$APP" "$DIST/ASTAP-zh-macos-${ARCH}.zip"
           pkgbuild --install-location /Applications --component "$APP" "$DIST/ASTAP-zh-macos-${ARCH}.pkg"
