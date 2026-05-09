@@ -61,50 +61,35 @@ jobs:
           DIST="dist"
           APP="$DIST/ASTAP-zh.app"
           VERSION="2026.05.09.${GITHUB_RUN_NUMBER}"
+          if [ "$ARCH" = "arm64" ]; then
+            OFFICIAL_PKG_URL="https://sourceforge.net/projects/astap-program/files/macOS%20installer/astap_M1.pkg/download"
+          else
+            OFFICIAL_PKG_URL="https://sourceforge.net/projects/astap-program/files/macOS%20installer/astap.pkg/download"
+          fi
 
-          rm -rf "$DIST"
-          mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources/languages"
+          rm -rf "$DIST" official-astap.pkg official-astap-pkg
+          mkdir -p "$DIST"
 
+          curl --fail --location --retry 3 --output official-astap.pkg "$OFFICIAL_PKG_URL"
+          pkgutil --expand-full official-astap.pkg official-astap-pkg
+
+          OFFICIAL_APP="$(find official-astap-pkg -name ASTAP.app -type d | head -n 1)"
+          if [ -z "$OFFICIAL_APP" ]; then
+            echo "Official ASTAP.app was not found in downloaded package." >&2
+            find official-astap-pkg -maxdepth 5 -type d >&2
+            exit 1
+          fi
+
+          cp -R "$OFFICIAL_APP" "$APP"
           install -m 755 astap "$APP/Contents/MacOS/astap"
+          mkdir -p "$APP/Contents/Resources/languages"
           cp -R languages/. "$APP/Contents/Resources/languages/"
 
-          for helper in dcraw fpack funpack unprocessed_raw; do
-            if [ -x "$helper" ]; then
-              install -m 755 "$helper" "$APP/Contents/MacOS/$helper"
-            fi
-          done
-
-          cat > "$APP/Contents/Info.plist" <<PLIST
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-            "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>CFBundleDevelopmentRegion</key>
-            <string>zh_CN</string>
-            <key>CFBundleExecutable</key>
-            <string>astap</string>
-            <key>CFBundleIdentifier</key>
-            <string>org.hnsky.astap.zh</string>
-            <key>CFBundleInfoDictionaryVersion</key>
-            <string>6.0</string>
-            <key>CFBundleName</key>
-            <string>ASTAP-zh</string>
-            <key>CFBundlePackageType</key>
-            <string>APPL</string>
-            <key>CFBundleShortVersionString</key>
-            <string>${VERSION}</string>
-            <key>CFBundleSignature</key>
-            <string>asta</string>
-            <key>CFBundleVersion</key>
-            <string>${GITHUB_RUN_NUMBER}</string>
-            <key>LSMinimumSystemVersion</key>
-            <string>11.0</string>
-            <key>NSHighResolutionCapable</key>
-            <true/>
-          </dict>
-          </plist>
-          PLIST
+          /usr/libexec/PlistBuddy -c "Set :CFBundleName ASTAP-zh" "$APP/Contents/Info.plist" || true
+          /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier org.hnsky.astap.zh" "$APP/Contents/Info.plist" || true
+          /usr/libexec/PlistBuddy -c "Set :CFBundleDevelopmentRegion zh_CN" "$APP/Contents/Info.plist" || true
+          /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${VERSION}" "$APP/Contents/Info.plist" || true
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${GITHUB_RUN_NUMBER}" "$APP/Contents/Info.plist" || true
 
           codesign --force --deep --sign - "$APP"
 

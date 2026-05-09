@@ -40,3 +40,16 @@ For more informations, follow the author's website: https://www.hnsky.org/astap
 ### Installation
 
 Follow the author's instructions [Here](https://www.hnsky.org/astap#installation).
+
+## ASTAP-zh Fork Builds
+
+This fork contains an experimental Simplified Chinese localization based on
+Lazarus `.po` resources. The localized builds are produced from the
+`astap-zh-windows` branch by GitHub Actions:
+
+- Windows x64: `.github/workflows/windows-astap-zh.yml`
+- macOS: `.github/workflows/macos-astap-zh.yml`
+
+The macOS workflow starts from the official ASTAP macOS package, keeps the
+official helper tools and bundle resources, then replaces the main executable
+and adds `languages/zh_CN/astap.po`.
