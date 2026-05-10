@@ -73,40 +73,35 @@ jobs:
           $official = "official"
           $packageRoot = Join-Path $dist "astap_zh"
           $officialSetup = Join-Path $official "astap_setup.exe"
-          $officialExtract = Join-Path $official "setup"
+          $officialInstall = Join-Path $official "installed"
 
           Remove-Item $dist, $official -Recurse -Force -ErrorAction SilentlyContinue
-          New-Item -ItemType Directory -Force $dist, $official, $packageRoot | Out-Null
+          New-Item -ItemType Directory -Force $dist, $official, $packageRoot, $officialInstall | Out-Null
           Start-Transcript -Path (Join-Path $dist "package-debug.txt") -Force
 
           curl.exe --location --fail --retry 3 --output $officialSetup `
             "https://sourceforge.net/projects/astap-program/files/windows_installer/astap_setup.exe/download"
 
-          $sevenZipCandidates = @(
-            "C:\Program Files\7-Zip\7z.exe",
-            "C:\Program Files (x86)\7-Zip\7z.exe",
-            "C:\ProgramData\chocolatey\bin\7z.exe"
-          )
-          $sevenZip = $sevenZipCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
-          if (-not $sevenZip) {
-            $command = Get-Command 7z.exe -ErrorAction SilentlyContinue
-            if ($command) {
-              $sevenZip = $command.Source
-            }
-          }
-          if (-not $sevenZip) {
-            throw "7z.exe was not found."
+          $setupProcess = Start-Process `
+            -FilePath (Resolve-Path $officialSetup).Path `
+            -ArgumentList @(
+              "/VERYSILENT",
+              "/SUPPRESSMSGBOXES",
+              "/NORESTART",
+              "/DIR=$((Resolve-Path $officialInstall).Path)"
+            ) `
+            -Wait `
+            -PassThru
+          if ($setupProcess.ExitCode -ne 0) {
+            throw "Official ASTAP installer failed with exit code $($setupProcess.ExitCode)."
           }
 
-          & $sevenZip x $officialSetup "-o$officialExtract" -y
-          $officialAstap = Get-ChildItem $officialExtract -Filter "astap.exe" -Recurse |
-            Sort-Object FullName |
-            Select-Object -First 1
-          if (-not $officialAstap) {
-            throw "Official astap.exe was not found after extracting astap_setup.exe."
+          $officialAstapPath = Join-Path $officialInstall "astap.exe"
+          if (-not (Test-Path $officialAstapPath)) {
+            throw "Official astap.exe was not found after silent installation."
           }
 
-          Copy-Item (Join-Path $officialAstap.DirectoryName "*") $packageRoot -Recurse -Force
+          Copy-Item (Join-Path $officialInstall "*") $packageRoot -Recurse -Force
           Copy-Item "astap.exe" (Join-Path $packageRoot "astap.exe") -Force
           Copy-Item "languages" (Join-Path $packageRoot "languages") -Recurse -Force
           Copy-Item "copyright.txt" $packageRoot -ErrorAction SilentlyContinue
