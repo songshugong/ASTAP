@@ -77,6 +77,7 @@ jobs:
 
           Remove-Item $dist, $official -Recurse -Force -ErrorAction SilentlyContinue
           New-Item -ItemType Directory -Force $dist, $official, $packageRoot | Out-Null
+          Start-Transcript -Path (Join-Path $dist "package-debug.txt") -Force
 
           curl.exe --location --fail --retry 3 --output $officialSetup `
             "https://sourceforge.net/projects/astap-program/files/windows_installer/astap_setup.exe/download"
@@ -180,12 +181,24 @@ jobs:
           }
 
           & $iscc $issPath
+          if ($LASTEXITCODE -ne 0) {
+            throw "Inno Setup compiler failed with exit code $LASTEXITCODE."
+          }
 
           Get-ChildItem $dist -File | Where-Object { $_.Name -in @("astap_zh_setup.exe", "astap_zh.zip") } |
             ForEach-Object {
               $hash = Get-FileHash $_.FullName -Algorithm SHA256
               "$($hash.Hash.ToLower())  $($_.Name)"
             } | Set-Content (Join-Path $dist "astap_zh_windows.sha256")
+          Stop-Transcript
+
+      - name: Upload Windows packaging debug log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ASTAP-zh-windows-debug
+          path: |
+            dist/package-debug.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
