@@ -26,10 +26,11 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
 
-      - name: Install Lazarus
+      - name: Install Lazarus and packaging tools
         shell: pwsh
         run: |
           choco install lazarus -y --no-progress
+          choco install innosetup -y --no-progress
 
       - name: Build ASTAP
         shell: pwsh
@@ -65,46 +66,127 @@ jobs:
             throw "Build finished but astap.exe was not created."
           }
 
-      - name: Package Windows zip
+      - name: Package official-style Windows installer and zip
         shell: pwsh
         run: |
-          $packageRoot = "dist\ASTAP-zh-windows-x64"
-          if (Test-Path $packageRoot) {
-            Remove-Item $packageRoot -Recurse -Force
+          $dist = "dist"
+          $official = "official"
+          $packageRoot = Join-Path $dist "astap_zh"
+          $officialSetup = Join-Path $official "astap_setup.exe"
+          $officialExtract = Join-Path $official "setup"
+
+          Remove-Item $dist, $official -Recurse -Force -ErrorAction SilentlyContinue
+          New-Item -ItemType Directory -Force $dist, $official, $packageRoot | Out-Null
+
+          Invoke-WebRequest `
+            -Uri "https://sourceforge.net/projects/astap-program/files/windows_installer/astap_setup.exe/download" `
+            -OutFile $officialSetup
+
+          7z x $officialSetup "-o$officialExtract" -y
+          $officialAstap = Get-ChildItem $officialExtract -Filter "astap.exe" -Recurse |
+            Sort-Object FullName |
+            Select-Object -First 1
+          if (-not $officialAstap) {
+            throw "Official astap.exe was not found after extracting astap_setup.exe."
           }
-          New-Item -ItemType Directory -Force $packageRoot | Out-Null
 
-          Copy-Item "astap.exe" "$packageRoot\astap.exe"
-          Copy-Item "languages" "$packageRoot\languages" -Recurse
+          Copy-Item (Join-Path $officialAstap.DirectoryName "*") $packageRoot -Recurse -Force
+          Copy-Item "astap.exe" (Join-Path $packageRoot "astap.exe") -Force
+          Copy-Item "languages" (Join-Path $packageRoot "languages") -Recurse -Force
+          Copy-Item "copyright.txt" $packageRoot -ErrorAction SilentlyContinue
+          Copy-Item "acknowledgement of databases.txt" $packageRoot -ErrorAction SilentlyContinue
 
-          $optionalFiles = @(
-            "deep_sky.csv",
-            "variable_stars.csv",
-            "unprocessed_raw.exe"
+          @"
+          ASTAP-zh is an unofficial Simplified Chinese localization build of ASTAP.
+
+          This package is based on the official ASTAP Windows installer contents.
+          The main astap.exe is replaced by the localized build, and Lazarus .po
+          language resources are added under languages\zh_CN.
+
+          Original ASTAP project: https://www.hnsky.org/astap.htm
+          Source code for this fork: https://github.com/songshugong/ASTAP
+          License: MPL-2.0
+          "@ | Set-Content (Join-Path $packageRoot "ASTAP-zh_README.txt") -Encoding UTF8
+
+          Compress-Archive -Path "$packageRoot\*" -DestinationPath (Join-Path $dist "astap_zh.zip") -Force
+
+          $issPath = Join-Path $dist "astap_zh_setup.iss"
+          $packageRootForInno = (Resolve-Path $packageRoot).Path
+          @"
+          [Setup]
+          AppName=ASTAP-zh, the Astrometric STAcking Program
+          AppVerName=ASTAP-zh 2026.04.21
+          AppId={{F1A6D1AB-EE2A-4E06-B25B-A57A20260421}
+          AppPublisher=Han Kleijn and ASTAP-zh contributors
+          AppPublisherURL=https://www.hnsky.org
+          AppSupportURL=https://github.com/songshugong/ASTAP
+          AppUpdatesURL=https://github.com/songshugong/ASTAP
+          DefaultDirName={pf}\astap
+          UsePreviousAppDir=yes
+          DefaultGroupName=ASTAP-zh
+          AllowNoIcons=yes
+          OutputDir=$((Resolve-Path $dist).Path)
+          OutputBaseFilename=astap_zh_setup
+          Compression=lzma2
+          SolidCompression=yes
+          ArchitecturesAllowed=x64compatible
+          ArchitecturesInstallIn64BitMode=x64compatible
+          InfoAfterFile=$packageRootForInno\ASTAP-zh_README.txt
+
+          [Tasks]
+          Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4
+
+          [Files]
+          Source: "$packageRootForInno\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+
+          [Icons]
+          Name: "{group}\ASTAP-zh"; Filename: "{app}\astap.exe"; WorkingDir: "{app}"
+          Name: "{userdesktop}\ASTAP-zh"; Filename: "{app}\astap.exe"; MinVersion: 4,4; Tasks: desktopicon; WorkingDir: "{app}"
+
+          [Run]
+          Filename: "{app}\astap.exe"; Description: "Launch ASTAP-zh"; Flags: nowait postinstall skipifsilent
+          "@ | Set-Content $issPath -Encoding UTF8
+
+          $isccCandidates = @(
+            "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe",
+            "${env:ProgramFiles}\Inno Setup 6\ISCC.exe",
+            "${env:ProgramFiles(x86)}\Inno Setup 5\ISCC.exe",
+            "${env:ProgramFiles}\Inno Setup 5\ISCC.exe",
+            "C:\ProgramData\chocolatey\bin\iscc.exe"
           )
-          foreach ($file in $optionalFiles) {
-            if (Test-Path $file) {
-              Copy-Item $file $packageRoot
+          $iscc = $isccCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (-not $iscc) {
+            $command = Get-Command iscc.exe -ErrorAction SilentlyContinue
+            if ($command) {
+              $iscc = $command.Source
             }
           }
+          if (-not $iscc) {
+            throw "ISCC.exe was not found after installing Inno Setup."
+          }
 
-          Compress-Archive -Path "$packageRoot\*" -DestinationPath "dist\ASTAP-zh-windows-x64.zip" -Force
-          Get-FileHash "dist\ASTAP-zh-windows-x64.zip" -Algorithm SHA256 |
-            ForEach-Object { "$($_.Hash.ToLower())  ASTAP-zh-windows-x64.zip" } |
-            Set-Content "dist\ASTAP-zh-windows-x64.zip.sha256"
+          & $iscc $issPath
+
+          Get-ChildItem $dist -File | Where-Object { $_.Name -in @("astap_zh_setup.exe", "astap_zh.zip") } |
+            ForEach-Object {
+              $hash = Get-FileHash $_.FullName -Algorithm SHA256
+              "$($hash.Hash.ToLower())  $($_.Name)"
+            } | Set-Content (Join-Path $dist "astap_zh_windows.sha256")
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ASTAP-zh-windows-x64
+          name: ASTAP-zh-windows
           path: |
-            dist/ASTAP-zh-windows-x64.zip
-            dist/ASTAP-zh-windows-x64.zip.sha256
+            dist/astap_zh_setup.exe
+            dist/astap_zh.zip
+            dist/astap_zh_windows.sha256
 
-      - name: Attach zip to release
+      - name: Attach packages to release
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/ASTAP-zh-windows-x64.zip
-            dist/ASTAP-zh-windows-x64.zip.sha256
+            dist/astap_zh_setup.exe
+            dist/astap_zh.zip
+            dist/astap_zh_windows.sha256
