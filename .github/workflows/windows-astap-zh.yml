@@ -78,11 +78,26 @@ jobs:
           Remove-Item $dist, $official -Recurse -Force -ErrorAction SilentlyContinue
           New-Item -ItemType Directory -Force $dist, $official, $packageRoot | Out-Null
 
-          Invoke-WebRequest `
-            -Uri "https://sourceforge.net/projects/astap-program/files/windows_installer/astap_setup.exe/download" `
-            -OutFile $officialSetup
+          curl.exe --location --fail --retry 3 --output $officialSetup `
+            "https://sourceforge.net/projects/astap-program/files/windows_installer/astap_setup.exe/download"
 
-          7z x $officialSetup "-o$officialExtract" -y
+          $sevenZipCandidates = @(
+            "C:\Program Files\7-Zip\7z.exe",
+            "C:\Program Files (x86)\7-Zip\7z.exe",
+            "C:\ProgramData\chocolatey\bin\7z.exe"
+          )
+          $sevenZip = $sevenZipCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (-not $sevenZip) {
+            $command = Get-Command 7z.exe -ErrorAction SilentlyContinue
+            if ($command) {
+              $sevenZip = $command.Source
+            }
+          }
+          if (-not $sevenZip) {
+            throw "7z.exe was not found."
+          }
+
+          & $sevenZip x $officialSetup "-o$officialExtract" -y
           $officialAstap = Get-ChildItem $officialExtract -Filter "astap.exe" -Recurse |
             Sort-Object FullName |
             Select-Object -First 1
@@ -116,7 +131,7 @@ jobs:
           [Setup]
           AppName=ASTAP-zh, the Astrometric STAcking Program
           AppVerName=ASTAP-zh 2026.04.21
-          AppId={{F1A6D1AB-EE2A-4E06-B25B-A57A20260421}
+          AppId=ASTAP-zh
           AppPublisher=Han Kleijn and ASTAP-zh contributors
           AppPublisherURL=https://www.hnsky.org
           AppSupportURL=https://github.com/songshugong/ASTAP
@@ -129,8 +144,7 @@ jobs:
           OutputBaseFilename=astap_zh_setup
           Compression=lzma2
           SolidCompression=yes
-          ArchitecturesAllowed=x64compatible
-          ArchitecturesInstallIn64BitMode=x64compatible
+          ArchitecturesInstallIn64BitMode=x64
           InfoAfterFile=$packageRootForInno\ASTAP-zh_README.txt
 
           [Tasks]
