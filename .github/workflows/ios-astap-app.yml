@@ -106,13 +106,14 @@ jobs:
           cp "$W08_DATABASE" "$APP/Databases/w08_0101.001"
           install -m 755 command-line_version/astap_cli "$APP/Engine/astap_cli"
 
-          xcrun --sdk iphoneos swiftc \
+          xcrun --sdk iphoneos clang \
             -target arm64-apple-ios15.0 \
-            -sdk "$SDK" \
-            -O \
+            -isysroot "$SDK" \
+            -fobjc-arc \
+            -fmodules \
+            -mios-version-min=15.0 \
             -framework UIKit \
-            -framework UniformTypeIdentifiers \
-            ios_app/ASTAPiOS/Sources/ASTAPiOSApp.swift \
+            ios_app/ASTAPiOS/Sources/main.m \
             -o "$APP/ASTAP-zh"
 
           /usr/bin/codesign --force --sign - --timestamp=none "$APP"
