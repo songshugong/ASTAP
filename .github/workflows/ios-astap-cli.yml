@@ -1,0 +1,126 @@
+name: Build iOS ASTAP CLI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+      - astap-zh-windows
+    paths:
+      - ".github/workflows/ios-astap-cli.yml"
+      - "command-line_version/**"
+
+jobs:
+  ios-cli:
+    name: iOS aarch64 CLI
+    runs-on: macos-14
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install Free Pascal
+        run: |
+          brew update
+          brew install fpc
+
+      - name: Extract FPC source without sudo
+        run: |
+          set -euo pipefail
+
+          brew fetch --cask fpc-src-laz
+          DMG="$(brew --cache --cask fpc-src-laz)"
+          MOUNT_OUTPUT="$(hdiutil attach -nobrowse -readonly "$DMG")"
+          VOLUME="$(printf '%s\n' "$MOUNT_OUTPUT" | awk '/\/Volumes\// {sub(/^.*\/Volumes\\//, "/Volumes/"); print; exit}')"
+          if [ -z "$VOLUME" ]; then
+            echo "Failed to mount FPC source DMG." >&2
+            printf '%s\n' "$MOUNT_OUTPUT" >&2
+            exit 1
+          fi
+
+          PKG="$(find "$VOLUME" -name 'fpcsrc*.pkg' -type d | head -n 1)"
+          if [ -z "$PKG" ]; then
+            echo "FPC source package was not found in $VOLUME." >&2
+            find "$VOLUME" -maxdepth 3 -print >&2
+            exit 1
+          fi
+
+          rm -rf "$RUNNER_TEMP/fpcsrc-extract"
+          mkdir -p "$RUNNER_TEMP/fpcsrc-extract"
+          (cd "$RUNNER_TEMP/fpcsrc-extract" && pax -rzf "$PKG/Contents/Archive.pax.gz")
+          hdiutil detach "$VOLUME"
+
+          FPC_SRC="$RUNNER_TEMP/fpcsrc-extract/usr/local/share/fpcsrc"
+          test -d "$FPC_SRC"
+          echo "FPC_SRC=$FPC_SRC" >> "$GITHUB_ENV"
+
+      - name: Build iOS FPC units
+        run: |
+          set -euo pipefail
+
+          SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
+          CROSSOPT="-Fl${SDK}/usr/lib -XR${SDK}"
+
+          make -C "$FPC_SRC" rtl_all OS_TARGET=ios CPU_TARGET=aarch64 FPC="$(command -v fpc)" CROSSOPT="$CROSSOPT"
+          make -C "$FPC_SRC" packages_all OS_TARGET=ios CPU_TARGET=aarch64 FPC="$(command -v fpc)" CROSSOPT="-Fu${FPC_SRC}/rtl/units/aarch64-ios ${CROSSOPT}"
+
+      - name: Build ASTAP iOS CLI
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
+          mapfile -t UNIT_DIRS < <(find "$FPC_SRC" -path '*/units/aarch64-ios' -type d | sort)
+          UNIT_FLAGS=()
+          for dir in "${UNIT_DIRS[@]}"; do
+            UNIT_FLAGS+=("-Fu${dir}")
+          done
+
+          cd command-line_version
+          rm -rf lib/aarch64-ios astap_cli
+          mkdir -p lib/aarch64-ios
+
+          fpc \
+            -MObjFPC \
+            -Sh \
+            -Tios \
+            -Paarch64 \
+            -FUlib/aarch64-ios \
+            "${UNIT_FLAGS[@]}" \
+            -Fl"${SDK}/usr/lib" \
+            -XR"${SDK}" \
+            -Cg- \
+            astap_command_line.lpr
+
+          test -f astap_cli
+          file astap_cli
+
+      - name: Package iOS CLI
+        run: |
+          set -euo pipefail
+
+          mkdir -p dist/astap_command-line_version_iOS_aarch64
+          install -m 755 command-line_version/astap_cli dist/astap_command-line_version_iOS_aarch64/astap_cli
+          cat > dist/astap_command-line_version_iOS_aarch64/README.txt <<'EOF'
+          ASTAP command-line solver for iOS aarch64.
+
+          This is an experimental command-line build, not a graphical iPhone app.
+          It is not code-signed for App Store distribution and is intended for
+          developers or embedded use where a signed wrapper/app/automation layer is provided separately.
+
+          Original ASTAP project: https://www.hnsky.org/astap.htm
+          Source code for this fork: https://github.com/songshugong/ASTAP
+          License: MPL-2.0
+          EOF
+
+          (cd dist/astap_command-line_version_iOS_aarch64 && zip -9 -r ../astap_command-line_version_iOS_aarch64.zip .)
+          shasum -a 256 dist/astap_command-line_version_iOS_aarch64.zip > dist/astap_command-line_version_iOS_aarch64.sha256
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ASTAP-zh-iOS-cli
+          path: |
+            dist/astap_command-line_version_iOS_aarch64.zip
+            dist/astap_command-line_version_iOS_aarch64.sha256
