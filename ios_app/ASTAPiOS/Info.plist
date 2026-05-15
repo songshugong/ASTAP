@@ -9,7 +9,7 @@
   <key>CFBundleExecutable</key>
   <string>ASTAP-zh</string>
   <key>CFBundleIdentifier</key>
-  <string>org.hnsky.astapzh.prototype</string>
+  <string>org.hnsky.astapzh.coremvp</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundleName</key>
@@ -17,7 +17,7 @@
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleShortVersionString</key>
-  <string>2026.04.21-prototype</string>
+  <string>2026.04.21-core-mvp</string>
   <key>CFBundleVersion</key>
   <string>1</string>
   <key>LSRequiresIPhoneOS</key>

@@ -1,4 +1,4 @@
-name: Build iOS ASTAP Prototype IPA
+name: Build iOS ASTAP Core MVP IPA
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
 
 jobs:
   ios-ipa:
-    name: iOS prototype IPA
+    name: iOS core MVP IPA
     runs-on: macos-14
 
     steps:
@@ -50,7 +50,7 @@ jobs:
           make -C "$FPC_SRC" rtl_all OS_TARGET=ios CPU_TARGET=aarch64 FPC="$(command -v fpc)" CROSSOPT="$CROSSOPT"
           make -C "$FPC_SRC" packages_all OS_TARGET=ios CPU_TARGET=aarch64 FPC="$(command -v fpc)" CROSSOPT="-Fu${FPC_SRC}/rtl/units/aarch64-ios ${CROSSOPT}"
 
-      - name: Build ASTAP iOS CLI engine
+      - name: Build ASTAP iOS core bridge
         shell: bash
         run: |
           set -euo pipefail
@@ -61,50 +61,67 @@ jobs:
             UNIT_FLAGS+=("-Fu${dir}")
           done < <(find "$FPC_SRC" -path '*/units/aarch64-ios' -type d | sort)
 
-          cd command-line_version
-          rm -rf lib/aarch64-ios astap_cli
-          mkdir -p lib/aarch64-ios
+          rm -rf build/core-ios
+          mkdir -p build/core-ios
 
-          fpc \
-            -MObjFPC \
-            -Sh \
-            -Tios \
-            -Paarch64 \
-            -FUlib/aarch64-ios \
-            "${UNIT_FLAGS[@]}" \
-            -Fl"${SDK}/usr/lib" \
-            -XR"${SDK}" \
-            -Cg- \
-            -oastap_cli \
-            astap_command_line.lpr
+          (
+            cd command-line_version
+            fpc \
+              -MObjFPC \
+              -Sh \
+              -Tios \
+              -Paarch64 \
+              -FU../build/core-ios \
+              "${UNIT_FLAGS[@]}" \
+              -Fl"${SDK}/usr/lib" \
+              -XR"${SDK}" \
+              -Cg- \
+              -k-install_name \
+              -k@rpath/libastap_ios_core.dylib \
+              -o../build/core-ios/libastap_ios_core.dylib \
+              ../ios_app/ASTAPiOS/Core/astap_ios_core.pas
+          )
 
-          test -f astap_cli
-          file astap_cli
+          install_name_tool -id @rpath/libastap_ios_core.dylib build/core-ios/libastap_ios_core.dylib
+          test -f build/core-ios/libastap_ios_core.dylib
+          nm -g build/core-ios/libastap_ios_core.dylib | grep astap_parse_file_json
+          nm -g build/core-ios/libastap_ios_core.dylib | grep astap_solve_file_json
+          file build/core-ios/libastap_ios_core.dylib
 
-      - name: Download W08 star database
+      - name: Download D05 and G05 star databases
         run: |
           set -euo pipefail
 
-          mkdir -p "$RUNNER_TEMP/w08"
-          curl --http1.1 -L --fail --retry 5 --retry-delay 5 \
-            -o "$RUNNER_TEMP/w08/w08.zip" \
-            "https://sourceforge.net/projects/astap-program/files/star_databases/w08_star_database_mag08_astap.zip/download"
-          unzip -q "$RUNNER_TEMP/w08/w08.zip" -d "$RUNNER_TEMP/w08"
-          test -f "$RUNNER_TEMP/w08/w08_0101.001"
-          echo "W08_DATABASE=$RUNNER_TEMP/w08/w08_0101.001" >> "$GITHUB_ENV"
+          DB_DIR="$RUNNER_TEMP/astap-databases"
+          rm -rf "$DB_DIR"
+          mkdir -p "$DB_DIR"
 
-      - name: Build prototype iOS app bundle
+          for db in d05 g05; do
+            curl --http1.1 -L --fail --retry 5 --retry-delay 5 \
+              -o "$DB_DIR/${db}.zip" \
+              "https://sourceforge.net/projects/astap-program/files/star_databases/${db}_star_database.zip/download"
+            unzip -q "$DB_DIR/${db}.zip" -d "$DB_DIR"
+            count="$(find "$DB_DIR" -type f -name "${db}_*" | wc -l | tr -d ' ')"
+            if [ "$count" = "0" ]; then
+              echo "No ${db} database files were unpacked." >&2
+              exit 1
+            fi
+          done
+
+          echo "ASTAP_DATABASE_DIR=$DB_DIR" >> "$GITHUB_ENV"
+
+      - name: Build core MVP iOS app bundle
         run: |
           set -euo pipefail
 
           SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
           APP="$PWD/build/Payload/ASTAP-zh.app"
-          rm -rf build
-          mkdir -p "$APP/Databases" "$APP/Engine"
+          rm -rf build/Payload
+          mkdir -p "$APP/Databases" "$APP/Frameworks"
 
           cp ios_app/ASTAPiOS/Info.plist "$APP/Info.plist"
-          cp "$W08_DATABASE" "$APP/Databases/w08_0101.001"
-          install -m 755 command-line_version/astap_cli "$APP/Engine/astap_cli"
+          install -m 755 build/core-ios/libastap_ios_core.dylib "$APP/Frameworks/libastap_ios_core.dylib"
+          find "$ASTAP_DATABASE_DIR" -type f \( -name 'd05_*' -o -name 'g05_*' \) -exec cp {} "$APP/Databases/" \;
 
           xcrun --sdk iphoneos clang \
             -target arm64-apple-ios15.0 \
@@ -113,26 +130,42 @@ jobs:
             -fmodules \
             -mios-version-min=15.0 \
             -framework UIKit \
+            -framework CoreGraphics \
+            -L"$APP/Frameworks" \
+            -lastap_ios_core \
+            -Wl,-rpath,@executable_path/Frameworks \
             ios_app/ASTAPiOS/Sources/main.m \
             -o "$APP/ASTAP-zh"
 
+          /usr/bin/codesign --force --sign - --timestamp=none "$APP/Frameworks/libastap_ios_core.dylib"
           /usr/bin/codesign --force --sign - --timestamp=none "$APP"
           plutil -lint "$APP/Info.plist"
           file "$APP/ASTAP-zh"
-          find "$APP" -maxdepth 3 -type f -print
+          {
+            echo "ASTAP-zh iOS core MVP bundle manifest"
+            echo "Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo
+            find "$APP" -maxdepth 3 -type f -print | sort
+            echo
+            echo "D05 files: $(find "$APP/Databases" -type f -name 'd05_*' | wc -l | tr -d ' ')"
+            echo "G05 files: $(find "$APP/Databases" -type f -name 'g05_*' | wc -l | tr -d ' ')"
+            echo "Core symbols:"
+            nm -g "$APP/Frameworks/libastap_ios_core.dylib" | grep astap_
+          } > build/ASTAP-zh-iOS-core-mvp-manifest.txt
 
       - name: Package IPA
         run: |
           set -euo pipefail
 
           mkdir -p dist
-          (cd build && zip -9 -r ../dist/ASTAP-zh-iOS-prototype.ipa Payload)
-          shasum -a 256 dist/ASTAP-zh-iOS-prototype.ipa > dist/ASTAP-zh-iOS-prototype.ipa.sha256
+          (cd build && zip -9 -r ../dist/ASTAP-zh-iOS-core-mvp.ipa Payload)
+          shasum -a 256 dist/ASTAP-zh-iOS-core-mvp.ipa > dist/ASTAP-zh-iOS-core-mvp.ipa.sha256
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ASTAP-zh-iOS-prototype-ipa
+          name: ASTAP-zh-iOS-core-mvp
           path: |
-            dist/ASTAP-zh-iOS-prototype.ipa
-            dist/ASTAP-zh-iOS-prototype.ipa.sha256
+            dist/ASTAP-zh-iOS-core-mvp.ipa
+            dist/ASTAP-zh-iOS-core-mvp.ipa.sha256
+            build/ASTAP-zh-iOS-core-mvp-manifest.txt
