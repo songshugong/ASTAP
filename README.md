@@ -58,6 +58,9 @@ Follow the author's instructions [Here](https://www.hnsky.org/astap#installation
 - [Windows 官方风格构建产物 ASTAP-zh-windows](https://github.com/songshugong/ASTAP/actions/runs/25626397452/artifacts/6903028400)
   - 包含 `astap_zh_setup.exe`、`astap_zh.zip`、SHA256 校验文件。
   - 基于官方 `astap_setup.exe` 静默安装后的文件结构，替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
+- [iOS 实验性命令行构建产物 ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP/actions/runs/25917201535/artifacts/7016844767)
+  - 包含 `astap_command-line_version_iOS_aarch64.zip` 和 SHA256 校验文件。
+  - 这是 iOS aarch64 命令行 solver，不是图形化 iPhone/iPad App，也未做 App Store 签名。
 
 这些链接是 GitHub Actions artifact 直链，可能需要登录 GitHub，并受 GitHub artifact
 保留期限限制。更适合长期公开分发的方式是后续创建 GitHub Release，并把同一批 `.zip`、
@@ -75,7 +78,7 @@ Follow the author's instructions [Here](https://www.hnsky.org/astap#installation
 - Android：只有命令行 solver，aarch64、armhf、x86、x86_64，约 330-338 kB。
 - iOS：源码里有命令行 `.lpi` 目标，但官网当前没有公开 iOS 下载包。
 
-本 fork 目前仿造并确认成功的下载内容是 Windows 64 位 GUI 安装器/便携 zip 和 macOS Apple Silicon GUI pkg/zip。
+本 fork 目前仿造并确认成功的下载内容是 Windows 64 位 GUI 安装器/便携 zip、macOS Apple Silicon GUI pkg/zip，以及实验性的 iOS aarch64 命令行 solver。
 
 #### 版本和限制
 
@@ -84,6 +87,7 @@ Follow the author's instructions [Here](https://www.hnsky.org/astap#installation
 - macOS：构建流程以官方 macOS 安装包为底包，保留官方辅助工具和资源，再替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
 - macOS 签名：当前使用 ad-hoc 签名，没有 Apple notarization；首次运行可能需要在系统安全设置中手动允许。
 - Windows：当前提供官方风格 x64 汉化安装器和 x64 便携 zip。32 位 GUI、Windows ARM64 命令行版暂未提供。
+- iOS：当前只提供实验性 aarch64 命令行二进制，需要自行嵌入已签名的 iOS App、开发者工具链或自动化环境；不提供图形界面。
 - 汉化范围：主要覆盖静态界面、菜单、提示、常见弹窗和部分动态文本。少量专业术语、日志、第三方/标准 FITS 内容可能仍保留英文。
 - 功能限制：星表数据库、索引文件、OpenSSL 依赖等外部数据/组件仍按 ASTAP 官方说明单独安装或配置。
 
@@ -104,6 +108,9 @@ The current localized builds are based on ASTAP `2026.04.21`.
 - [Windows official-style artifact ASTAP-zh-windows](https://github.com/songshugong/ASTAP/actions/runs/25626397452/artifacts/6903028400)
   - Includes `astap_zh_setup.exe`, `astap_zh.zip`, and a SHA256 checksum file.
   - Based on the file layout produced by the official `astap_setup.exe`; the main executable is replaced with the localized build and `languages/zh_CN/astap.po` is added.
+- [iOS experimental CLI artifact ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP/actions/runs/25917201535/artifacts/7016844767)
+  - Includes `astap_command-line_version_iOS_aarch64.zip` and a SHA256 checksum file.
+  - This is an iOS aarch64 command-line solver, not a graphical iPhone/iPad app, and it is not signed for App Store distribution.
 
 These are direct GitHub Actions artifact links. They may require a GitHub login
 and are subject to GitHub's artifact retention policy. For public long-term
@@ -122,7 +129,7 @@ The current official SourceForge package layout is:
 - Android: command-line solver only, for aarch64, armhf, x86, and x86_64, about 330-338 kB.
 - iOS: command-line `.lpi` targets exist in source, but there is no current public iOS download package.
 
-This fork currently mirrors the Windows 64-bit GUI installer/portable zip and the macOS Apple Silicon GUI pkg/zip.
+This fork currently mirrors the Windows 64-bit GUI installer/portable zip, the macOS Apple Silicon GUI pkg/zip, and an experimental iOS aarch64 command-line solver.
 
 #### Version and Limitations
 
@@ -131,6 +138,7 @@ This fork currently mirrors the Windows 64-bit GUI installer/portable zip and th
 - macOS: the workflow starts from the official ASTAP macOS package, keeps the official helper tools and bundle resources, then replaces the main executable and adds `languages/zh_CN/astap.po`.
 - macOS signing: builds are ad-hoc signed and not Apple-notarized; macOS may require manual approval on first launch.
 - Windows: the current build provides an official-style localized x64 installer and x64 portable zip. 32-bit GUI and Windows ARM64 CLI packages are not provided yet.
+- iOS: the current build is only an experimental aarch64 command-line binary. It must be embedded into a signed iOS app, developer workflow, or automation environment; no graphical UI is provided.
 - Localization scope: static UI, menus, hints, common dialogs, and part of the dynamic UI text are localized. Some technical terms, logs, third-party strings, and standard FITS content may remain in English.
 - Functional dependencies: star databases, index files, OpenSSL libraries, and other external data/components still follow the official ASTAP installation instructions.
 
