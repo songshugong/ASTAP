@@ -25,33 +25,17 @@ jobs:
           brew update
           brew install fpc
 
-      - name: Extract FPC source without sudo
+      - name: Download FPC source
         run: |
           set -euo pipefail
 
-          brew fetch --cask fpc-src-laz
-          DMG="$(brew --cache --cask fpc-src-laz)"
-          MOUNT_OUTPUT="$(hdiutil attach -nobrowse -readonly "$DMG")"
-          VOLUME="$(printf '%s\n' "$MOUNT_OUTPUT" | sed -n 's#^.*\(/Volumes/.*\)$#\1#p' | head -n 1)"
-          if [ -z "$VOLUME" ]; then
-            echo "Failed to mount FPC source DMG." >&2
-            printf '%s\n' "$MOUNT_OUTPUT" >&2
-            exit 1
-          fi
-
-          PKG="$(find "$VOLUME" -maxdepth 2 -name 'fpcsrc*.pkg' -type d 2>/dev/null | head -n 1)"
-          if [ -z "$PKG" ]; then
-            echo "FPC source package was not found in $VOLUME." >&2
-            find "$VOLUME" -maxdepth 3 -print >&2
-            exit 1
-          fi
-
+          SOURCE_URL="https://downloads.sourceforge.net/project/freepascal/Source/3.2.2/fpc-3.2.2.source.tar.gz"
           rm -rf "$RUNNER_TEMP/fpcsrc-extract"
           mkdir -p "$RUNNER_TEMP/fpcsrc-extract"
-          (cd "$RUNNER_TEMP/fpcsrc-extract" && pax -rzf "$PKG/Contents/Archive.pax.gz")
-          hdiutil detach "$VOLUME"
+          curl -L --fail --retry 5 --retry-delay 5 -o "$RUNNER_TEMP/fpc-source.tar.gz" "$SOURCE_URL"
+          tar -xzf "$RUNNER_TEMP/fpc-source.tar.gz" -C "$RUNNER_TEMP/fpcsrc-extract"
 
-          FPC_SRC="$RUNNER_TEMP/fpcsrc-extract/usr/local/share/fpcsrc"
+          FPC_SRC="$RUNNER_TEMP/fpcsrc-extract/fpc-3.2.2"
           test -d "$FPC_SRC"
           echo "FPC_SRC=$FPC_SRC" >> "$GITHUB_ENV"
 
