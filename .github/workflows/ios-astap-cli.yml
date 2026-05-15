@@ -55,11 +55,10 @@ jobs:
           set -euo pipefail
 
           SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
-          mapfile -t UNIT_DIRS < <(find "$FPC_SRC" -path '*/units/aarch64-ios' -type d | sort)
           UNIT_FLAGS=()
-          for dir in "${UNIT_DIRS[@]}"; do
+          while IFS= read -r dir; do
             UNIT_FLAGS+=("-Fu${dir}")
-          done
+          done < <(find "$FPC_SRC" -path '*/units/aarch64-ios' -type d | sort)
 
           cd command-line_version
           rm -rf lib/aarch64-ios astap_cli
