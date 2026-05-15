@@ -32,7 +32,7 @@ jobs:
           brew fetch --cask fpc-src-laz
           DMG="$(brew --cache --cask fpc-src-laz)"
           MOUNT_OUTPUT="$(hdiutil attach -nobrowse -readonly "$DMG")"
-          VOLUME="$(printf '%s\n' "$MOUNT_OUTPUT" | awk '/\/Volumes\// {sub(/^.*\/Volumes\\//, "/Volumes/"); print; exit}')"
+          VOLUME="$(printf '%s\n' "$MOUNT_OUTPUT" | sed -n 's#^.*\(/Volumes/.*\)$#\1#p' | head -n 1)"
           if [ -z "$VOLUME" ]; then
             echo "Failed to mount FPC source DMG." >&2
             printf '%s\n' "$MOUNT_OUTPUT" >&2
