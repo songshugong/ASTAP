@@ -74,6 +74,7 @@ jobs:
             -Fl"${SDK}/usr/lib" \
             -XR"${SDK}" \
             -Cg- \
+            -oastap_cli \
             astap_command_line.lpr
 
           test -f astap_cli
