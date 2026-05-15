@@ -39,7 +39,7 @@ jobs:
             exit 1
           fi
 
-          PKG="$(find "$VOLUME" -name 'fpcsrc*.pkg' -type d | head -n 1)"
+          PKG="$(find "$VOLUME" -maxdepth 2 -name 'fpcsrc*.pkg' -type d 2>/dev/null | head -n 1)"
           if [ -z "$PKG" ]; then
             echo "FPC source package was not found in $VOLUME." >&2
             find "$VOLUME" -maxdepth 3 -print >&2
