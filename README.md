@@ -64,8 +64,8 @@ Follow the author's instructions [Here](https://www.hnsky.org/astap#installation
 - [iOS 图形壳原型 IPA ASTAP-zh-iOS-prototype-ipa](https://github.com/songshugong/ASTAP/actions/runs/25922202510/artifacts/7018905732)
   - 包含 `ASTAP-zh-iOS-prototype.ipa` 和 SHA256 校验文件。
   - 内置 W08 wide-field 星表和 iOS CLI 引擎资源，界面可选择文件、查看内置资源、复制 CLI 参数示例；求解核心仍需后续改造成同进程库接口。
-- [iOS 核心接入 MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP/actions/runs/25931324737/artifacts/7022672069)
-  - 包含 `ASTAP-zh-iOS-core-mvp.ipa`、SHA256 校验文件和解包清单，artifact 约 195 MB。
+- [iOS 核心接入 MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP/actions/runs/25935550796/artifacts/7024333782)
+  - 包含 `ASTAP-zh-iOS-core-mvp.ipa`、SHA256 校验文件和解包清单，artifact 约 195 MB；本版已串行化 ASTAP core 调用，避免重复点击并发求解导致崩溃。
   - 这是核心已接入的 iOS MVP 原型：UIKit 图形界面通过 C ABI 调用 ASTAP Pascal 求解核心，支持文件选择、FITS 解析、图像预览、头信息/表格、求解参数、日志和结果页。
   - 构建流程从官方 SourceForge 下载并内置 D05/G05 星表数据库；仓库不直接保存这些大文件。
 
@@ -124,8 +124,8 @@ The current localized builds are based on ASTAP `2026.04.21`.
 - [iOS graphical prototype IPA ASTAP-zh-iOS-prototype-ipa](https://github.com/songshugong/ASTAP/actions/runs/25922202510/artifacts/7018905732)
   - Includes `ASTAP-zh-iOS-prototype.ipa` and a SHA256 checksum file.
   - Bundles the W08 wide-field star database and the iOS CLI engine resource. The UI can pick files, show bundled resources, and copy a CLI command example; the solver still needs to be converted into an in-process library interface.
-- [iOS core MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP/actions/runs/25931324737/artifacts/7022672069)
-  - Includes `ASTAP-zh-iOS-core-mvp.ipa`, a SHA256 checksum file, and an unpack manifest. The artifact is about 195 MB.
+- [iOS core MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP/actions/runs/25935550796/artifacts/7024333782)
+  - Includes `ASTAP-zh-iOS-core-mvp.ipa`, a SHA256 checksum file, and an unpack manifest. The artifact is about 195 MB. This build serializes ASTAP core calls to avoid crashes caused by concurrent solve requests.
   - This is an iOS MVP prototype with the ASTAP core connected: the UIKit app calls the Pascal solver core through a C ABI bridge and supports file picking, FITS parsing, image preview, header/table views, solve parameters, logs, and result display.
   - The workflow downloads and bundles the D05/G05 star databases from the official SourceForge package source; these large database files are not committed to this repository.
 
