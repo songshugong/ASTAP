@@ -1,0 +1,137 @@
+name: Build iOS ASTAP Prototype IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+      - astap-zh-windows
+    paths:
+      - ".github/workflows/ios-astap-app.yml"
+      - "ios_app/**"
+      - "command-line_version/**"
+
+jobs:
+  ios-ipa:
+    name: iOS prototype IPA
+    runs-on: macos-14
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install Free Pascal
+        run: |
+          brew update
+          brew install fpc
+
+      - name: Download FPC source
+        run: |
+          set -euo pipefail
+
+          SOURCE_URL="https://downloads.sourceforge.net/project/freepascal/Source/3.2.2/fpc-3.2.2.source.tar.gz"
+          rm -rf "$RUNNER_TEMP/fpcsrc-extract"
+          mkdir -p "$RUNNER_TEMP/fpcsrc-extract"
+          curl --http1.1 -L --fail --retry 5 --retry-delay 5 -o "$RUNNER_TEMP/fpc-source.tar.gz" "$SOURCE_URL"
+          tar -xzf "$RUNNER_TEMP/fpc-source.tar.gz" -C "$RUNNER_TEMP/fpcsrc-extract"
+
+          FPC_SRC="$RUNNER_TEMP/fpcsrc-extract/fpc-3.2.2"
+          test -d "$FPC_SRC"
+          echo "FPC_SRC=$FPC_SRC" >> "$GITHUB_ENV"
+
+      - name: Build iOS FPC units
+        run: |
+          set -euo pipefail
+
+          SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
+          CROSSOPT="-Fl${SDK}/usr/lib -XR${SDK}"
+
+          make -C "$FPC_SRC" rtl_all OS_TARGET=ios CPU_TARGET=aarch64 FPC="$(command -v fpc)" CROSSOPT="$CROSSOPT"
+          make -C "$FPC_SRC" packages_all OS_TARGET=ios CPU_TARGET=aarch64 FPC="$(command -v fpc)" CROSSOPT="-Fu${FPC_SRC}/rtl/units/aarch64-ios ${CROSSOPT}"
+
+      - name: Build ASTAP iOS CLI engine
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
+          UNIT_FLAGS=()
+          while IFS= read -r dir; do
+            UNIT_FLAGS+=("-Fu${dir}")
+          done < <(find "$FPC_SRC" -path '*/units/aarch64-ios' -type d | sort)
+
+          cd command-line_version
+          rm -rf lib/aarch64-ios astap_cli
+          mkdir -p lib/aarch64-ios
+
+          fpc \
+            -MObjFPC \
+            -Sh \
+            -Tios \
+            -Paarch64 \
+            -FUlib/aarch64-ios \
+            "${UNIT_FLAGS[@]}" \
+            -Fl"${SDK}/usr/lib" \
+            -XR"${SDK}" \
+            -Cg- \
+            -oastap_cli \
+            astap_command_line.lpr
+
+          test -f astap_cli
+          file astap_cli
+
+      - name: Download W08 star database
+        run: |
+          set -euo pipefail
+
+          mkdir -p "$RUNNER_TEMP/w08"
+          curl --http1.1 -L --fail --retry 5 --retry-delay 5 \
+            -o "$RUNNER_TEMP/w08/w08.zip" \
+            "https://sourceforge.net/projects/astap-program/files/star_databases/w08_star_database_mag08_astap.zip/download"
+          unzip -q "$RUNNER_TEMP/w08/w08.zip" -d "$RUNNER_TEMP/w08"
+          test -f "$RUNNER_TEMP/w08/w08_0101.001"
+          echo "W08_DATABASE=$RUNNER_TEMP/w08/w08_0101.001" >> "$GITHUB_ENV"
+
+      - name: Build prototype iOS app bundle
+        run: |
+          set -euo pipefail
+
+          SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
+          APP="$PWD/build/Payload/ASTAP-zh.app"
+          rm -rf build
+          mkdir -p "$APP/Databases" "$APP/Engine"
+
+          cp ios_app/ASTAPiOS/Info.plist "$APP/Info.plist"
+          cp "$W08_DATABASE" "$APP/Databases/w08_0101.001"
+          install -m 755 command-line_version/astap_cli "$APP/Engine/astap_cli"
+
+          xcrun --sdk iphoneos swiftc \
+            -target arm64-apple-ios15.0 \
+            -sdk "$SDK" \
+            -O \
+            -framework UIKit \
+            -framework UniformTypeIdentifiers \
+            ios_app/ASTAPiOS/Sources/ASTAPiOSApp.swift \
+            -o "$APP/ASTAP-zh"
+
+          /usr/bin/codesign --force --sign - --timestamp=none "$APP"
+          plutil -lint "$APP/Info.plist"
+          file "$APP/ASTAP-zh"
+          find "$APP" -maxdepth 3 -type f -print
+
+      - name: Package IPA
+        run: |
+          set -euo pipefail
+
+          mkdir -p dist
+          (cd build && zip -9 -r ../dist/ASTAP-zh-iOS-prototype.ipa Payload)
+          shasum -a 256 dist/ASTAP-zh-iOS-prototype.ipa > dist/ASTAP-zh-iOS-prototype.ipa.sha256
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ASTAP-zh-iOS-prototype-ipa
+          path: |
+            dist/ASTAP-zh-iOS-prototype.ipa
+            dist/ASTAP-zh-iOS-prototype.ipa.sha256
