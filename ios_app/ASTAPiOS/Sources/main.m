@@ -181,6 +181,11 @@ static UIImage *ASTAPRenderFITSPreview(NSURL *url) {
 @property(nonatomic, strong) UITextField *fovField;
 @property(nonatomic, strong) UITextField *radiusField;
 @property(nonatomic, strong) UIActivityIndicatorView *spinner;
+@property(nonatomic, strong) UIButton *openButton;
+@property(nonatomic, strong) UIButton *parseButton;
+@property(nonatomic, strong) UIButton *solveButton;
+@property(nonatomic, strong) dispatch_queue_t coreQueue;
+@property(nonatomic) BOOL coreBusy;
 @end
 
 @implementation MainViewController
@@ -189,6 +194,7 @@ static UIImage *ASTAPRenderFITSPreview(NSURL *url) {
     [super viewDidLoad];
     self.title = @"ASTAP-zh";
     self.view.backgroundColor = UIColor.systemBackgroundColor;
+    self.coreQueue = dispatch_queue_create("org.hnsky.astapzh.core", DISPATCH_QUEUE_SERIAL);
     [self configureView];
     [self refreshDatabaseStatus];
 }
@@ -230,9 +236,12 @@ static UIImage *ASTAPRenderFITSPreview(NSURL *url) {
     buttonRow.axis = UILayoutConstraintAxisHorizontal;
     buttonRow.spacing = 8;
     buttonRow.distribution = UIStackViewDistributionFillEqually;
-    [buttonRow addArrangedSubview:[self button:@"打开" action:@selector(pickFile)]];
-    [buttonRow addArrangedSubview:[self button:@"解析" action:@selector(parseSelectedFile)]];
-    [buttonRow addArrangedSubview:[self button:@"求解" action:@selector(solveSelectedFile)]];
+    self.openButton = [self button:@"打开" action:@selector(pickFile)];
+    self.parseButton = [self button:@"解析" action:@selector(parseSelectedFile)];
+    self.solveButton = [self button:@"求解" action:@selector(solveSelectedFile)];
+    [buttonRow addArrangedSubview:self.openButton];
+    [buttonRow addArrangedSubview:self.parseButton];
+    [buttonRow addArrangedSubview:self.solveButton];
     [topStack addArrangedSubview:buttonRow];
     [root addArrangedSubview:topPanel];
 
@@ -330,6 +339,38 @@ static UIImage *ASTAPRenderFITSPreview(NSURL *url) {
     return field;
 }
 
+- (BOOL)beginCoreTaskWithMessage:(NSString *)message {
+    if (self.coreBusy) {
+        self.detailView.text = @"ASTAP 核心正在处理当前任务，请等待完成后再继续。";
+        return NO;
+    }
+    self.coreBusy = YES;
+    [self setControlsEnabled:NO];
+    if (message.length > 0) {
+        self.detailView.text = message;
+    }
+    [self.spinner startAnimating];
+    return YES;
+}
+
+- (void)finishCoreTaskWithResult:(NSDictionary *)result {
+    self.coreBusy = NO;
+    [self.spinner stopAnimating];
+    [self setControlsEnabled:YES];
+    self.lastResult = result;
+    [self updateHeaderSummary];
+    [self refreshDetailView];
+}
+
+- (void)setControlsEnabled:(BOOL)enabled {
+    self.openButton.enabled = enabled;
+    self.parseButton.enabled = enabled;
+    self.solveButton.enabled = enabled;
+    self.databaseControl.enabled = enabled;
+    self.fovField.enabled = enabled;
+    self.radiusField.enabled = enabled;
+}
+
 - (NSString *)databasePath {
     return [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Databases"];
 }
@@ -381,15 +422,17 @@ static UIImage *ASTAPRenderFITSPreview(NSURL *url) {
         [self showAlert:@"未选择文件" message:@"请先打开 FITS 或图像文件。"];
         return;
     }
-    [self.spinner startAnimating];
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-        char *raw = astap_parse_file_json(self.selectedFileURL.path.UTF8String, self.databasePath.UTF8String);
+    if (![self beginCoreTaskWithMessage:@"正在解析文件..."]) {
+        return;
+    }
+
+    NSString *inputPath = self.selectedFileURL.path;
+    NSString *databasePath = self.databasePath;
+    dispatch_async(self.coreQueue, ^{
+        char *raw = astap_parse_file_json(inputPath.UTF8String, databasePath.UTF8String);
         NSDictionary *result = ASTAPJSONDictionary(ASTAPStringFromCore(raw));
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.spinner stopAnimating];
-            self.lastResult = result;
-            [self updateHeaderSummary];
-            [self refreshDetailView];
+            [self finishCoreTaskWithResult:result];
         });
     });
 }
@@ -412,16 +455,17 @@ static UIImage *ASTAPRenderFITSPreview(NSURL *url) {
     NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] ?: @"{}";
 
     self.tabControl.selectedSegmentIndex = 3;
-    self.detailView.text = @"正在调用 ASTAP 核心求解...";
-    [self.spinner startAnimating];
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-        char *raw = astap_solve_file_json(self.selectedFileURL.path.UTF8String, self.databasePath.UTF8String, json.UTF8String);
+    if (![self beginCoreTaskWithMessage:@"正在调用 ASTAP 核心求解..."]) {
+        return;
+    }
+
+    NSString *inputPath = self.selectedFileURL.path;
+    NSString *databasePath = self.databasePath;
+    dispatch_async(self.coreQueue, ^{
+        char *raw = astap_solve_file_json(inputPath.UTF8String, databasePath.UTF8String, json.UTF8String);
         NSDictionary *result = ASTAPJSONDictionary(ASTAPStringFromCore(raw));
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.spinner stopAnimating];
-            self.lastResult = result;
-            [self updateHeaderSummary];
-            [self refreshDetailView];
+            [self finishCoreTaskWithResult:result];
         });
     });
 }
