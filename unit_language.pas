@@ -29,7 +29,7 @@ procedure ApplyLanguageToOpenForms;
 implementation
 
 uses
-  SysUtils, StrUtils, LCLTranslator, LResources;
+  SysUtils, StrUtils, LResources;
 
 var
   CurrentLanguage: TAppLanguage = alChineseSimplified;
@@ -74,8 +74,22 @@ begin
   if BaseKeys = nil then
   begin
     BaseKeys := TStringList.Create;
+    BaseKeys.CaseSensitive := True;
+    BaseKeys.Sorted := True;
     BaseValues := TStringList.Create;
   end;
+end;
+
+procedure AddAlignedStringPair(AKeys, AValues: TStringList;
+  const AKey, AValue: string);
+var
+  Index: Integer;
+begin
+  if (AKeys = nil) or (AValues = nil) then Exit;
+
+  if AKeys.Find(AKey, Index) then Exit;
+  AKeys.Insert(Index, AKey);
+  AValues.Insert(Index, AValue);
 end;
 
 function NormalizeCaption(const S: string): string;
@@ -168,11 +182,7 @@ begin
   ValueText := StringReplace(AValue, #10, LineEnding, [rfReplaceAll]);
 
   KeyText := NormalizeTranslationKey(AKey);
-  if POKeys.IndexOf(KeyText) < 0 then
-  begin
-    POKeys.Add(KeyText);
-    POValues.Add(ValueText);
-  end;
+  AddAlignedStringPair(POKeys, POValues, KeyText, ValueText);
 end;
 
 function LanguagesDirectory: string;
@@ -220,6 +230,8 @@ begin
   FreeAndNil(POKeys);
   FreeAndNil(POValues);
   POKeys := TStringList.Create;
+  POKeys.CaseSensitive := True;
+  POKeys.Sorted := True;
   POValues := TStringList.Create;
 
   FileName := POFileName;
@@ -266,20 +278,13 @@ begin
   end;
 end;
 
-procedure RefreshLazarusTranslator(ALanguage: TAppLanguage);
+procedure RefreshLazarusTranslator;
 begin
+  { ASTAP-zh applies static and dynamic UI strings through TranslateText below.
+    Loading LCLTranslator here would parse the same PO file a second time during
+    startup while the resulting translator is immediately disabled again. }
   if Assigned(LRSTranslator) then
     FreeAndNil(LRSTranslator);
-
-  if ALanguage = alChineseSimplified then
-  begin
-    { Let Lazarus load resource strings from the same PO family, but keep UI
-      string-property replacement under our control so English can be restored
-      reliably from the captured base text. }
-    SetDefaultLang(LanguageCode(ALanguage), LanguagesDirectory, 'astap', False);
-    if Assigned(LRSTranslator) then
-      FreeAndNil(LRSTranslator);
-  end;
 end;
 
 procedure SetAppLanguage(ALanguage: TAppLanguage);
@@ -287,7 +292,7 @@ begin
   CurrentLanguage := ALanguage;
   if CurrentLanguage = alChineseSimplified then
     EnsurePOTranslations;
-  RefreshLazarusTranslator(CurrentLanguage);
+  RefreshLazarusTranslator;
 end;
 
 procedure SetAppLanguageCode(const ACode: string);
@@ -363,11 +368,7 @@ end;
 procedure RememberBaseText(const Key, Value: string);
 begin
   EnsureBaseStore;
-  if BaseKeys.IndexOf(Key) < 0 then
-  begin
-    BaseKeys.Add(Key);
-    BaseValues.Add(Value);
-  end;
+  AddAlignedStringPair(BaseKeys, BaseValues, Key, Value);
 end;
 
 function GetBaseText(const Key, Fallback: string): string;
