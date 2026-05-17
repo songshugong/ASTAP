@@ -75,9 +75,34 @@ begin
   begin
     BaseKeys := TStringList.Create;
     BaseKeys.CaseSensitive := True;
-    BaseKeys.Sorted := True;
     BaseValues := TStringList.Create;
   end;
+end;
+
+function FindAlignedStringPair(AKeys: TStringList; const AKey: string;
+  out AIndex: Integer): Boolean;
+var
+  L, H, Cmp: Integer;
+begin
+  Result := False;
+  AIndex := 0;
+  if AKeys = nil then Exit;
+
+  L := 0;
+  H := AKeys.Count - 1;
+  while L <= H do
+  begin
+    AIndex := (L + H) div 2;
+    Cmp := CompareStr(AKeys[AIndex], AKey);
+    if Cmp < 0 then
+      L := AIndex + 1
+    else if Cmp > 0 then
+      H := AIndex - 1
+    else
+      Exit(True);
+  end;
+
+  AIndex := L;
 end;
 
 procedure AddAlignedStringPair(AKeys, AValues: TStringList;
@@ -87,7 +112,7 @@ var
 begin
   if (AKeys = nil) or (AValues = nil) then Exit;
 
-  if AKeys.Find(AKey, Index) then Exit;
+  if FindAlignedStringPair(AKeys, AKey, Index) then Exit;
   AKeys.Insert(Index, AKey);
   AValues.Insert(Index, AValue);
 end;
@@ -231,7 +256,6 @@ begin
   FreeAndNil(POValues);
   POKeys := TStringList.Create;
   POKeys.CaseSensitive := True;
-  POKeys.Sorted := True;
   POValues := TStringList.Create;
 
   FileName := POFileName;
@@ -310,9 +334,8 @@ var
   Index: Integer;
 begin
   EnsurePOTranslations;
-  Index := POKeys.IndexOf(NormalizeTranslationKey(AKey));
 
-  Result := Index >= 0;
+  Result := FindAlignedStringPair(POKeys, NormalizeTranslationKey(AKey), Index);
   if Result then
     ATranslation := POValues[Index]
   else
@@ -376,8 +399,7 @@ var
   Index: Integer;
 begin
   EnsureBaseStore;
-  Index := BaseKeys.IndexOf(Key);
-  if Index >= 0 then
+  if FindAlignedStringPair(BaseKeys, Key, Index) then
     Result := BaseValues[Index]
   else
     Result := Fallback;
