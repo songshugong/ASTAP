@@ -125,7 +125,7 @@ jobs:
           @"
           [Setup]
           AppName=ASTAP-zh, the Astrometric STAcking Program
-          AppVerName=ASTAP-zh 2026.04.21
+          AppVerName=ASTAP-zh 2026.05.31
           AppId=ASTAP-zh
           AppPublisher=Han Kleijn and ASTAP-zh contributors
           AppPublisherURL=https://www.hnsky.org
