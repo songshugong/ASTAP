@@ -225,56 +225,53 @@ begin
 end;
 
 
-procedure find_many_quads(display: boolean; starlist: Tstar_list; out quads: Tstar_list; mode: integer {use either 5 or 6 closest stars});
+procedure find_many_quads(display: boolean; starlist: Tstar_list; out quads: Tstar_list; mode: integer {use 5, 6, 7 closest stars});
 var
-  i, j, k, q, nrstars, nrquads, num_closest, num_quads_per_group, quad_nrvalues: integer;
+  i, j, k, q, nrstars, nrquads, num_closest, num_quads_per_group, insert_pos: integer;
   distance, temp, xt, yt, dist1, dist2, dist3, dist4, dist5, dist6, dx, dy: double;
   identical_quad: boolean;
-  closest_indices: array of integer; // Dynamic array to hold closest star indices
-  closest_distances: array of double; // Store distances to avoid recalculation
-  quad_indices: array[0..3] of integer; // Indices for the current quad
-  x1, y1, x2, y2, x3, y3, x4, y4: double; // Star positions
-  // Direct pointers for faster array access
-  StarsX, StarsY: PDouble;
-  QuadsX, QuadsY: PDouble;
+  closest_indices: array of integer;
+  closest_distances: array of double;
+  quad_indices: array[0..3] of integer;
+  x1, y1, x2, y2, x3, y3, x4, y4: double;
+  StarsX, StarsY: PDouble;// Direct pointers for faster array access
+  QuadsX, QuadsY: PDouble;// Direct pointers for faster array access
 begin
   nrstars := Length(starlist[0]);
-
   // Initialize direct pointers
-  StarsX := @starlist[0, 0];//this give a tiny improvement in speed
+  StarsX := @starlist[0, 0]; //this give a tiny improvement in speed
   StarsY := @starlist[1, 0];
 
-  // Configure based on mode
-  case mode of
-    5:
-      begin
-        num_closest := 5; //collect 5 closest stars
-        num_quads_per_group := 5; // create 5 quads from the 5 stars
-      end;
-    6:
-      begin
-        num_closest := 6; //collect 6 closest stars
-        num_quads_per_group := 15; // create 15 quads from the 6 stars
-      end;
+  case mode of // Configure based on mode
+    5: begin
+      num_closest := 5; //collect 5 close stars
+      num_quads_per_group := 5; // create 5 quads from the 5 stars
+       end;
+    6: begin
+         num_closest := 6;//collect 6 close stars
+         num_quads_per_group := 15;  // C(6,4) = 15
+       end;
+    7: begin
+         num_closest := 7; //collect 7 close stars
+         num_quads_per_group := 35;  // C(7,4) = 35
+       end;
   end;
 
-  if display = false then quad_nrvalues := 8 else quad_nrvalues := 10;
-  if nrstars < num_closest then
-  begin // Not enough stars
-    SetLength(quads, quad_nrvalues, 0);
-    exit;
-  end;
+  if display = false then
+    SetLength(quads, 8, nrstars * num_quads_per_group)
+  else
+    SetLength(quads, 10, nrstars * num_quads_per_group);
+  SetLength(closest_indices, num_closest);
+  SetLength(closest_distances, num_closest);
 
   nrquads := 0;
-  SetLength(quads, quad_nrvalues, nrstars * num_quads_per_group); // Pre-allocate space
-
-  SetLength(closest_indices, num_closest); // Store closest star indices
-  SetLength(closest_distances, num_closest); // Store distances to avoid recalculation
 
   for i := 0 to nrstars - 1 do
   begin
-    // Initialize closest distances to a very large value
-    for j := 0 to num_closest - 1 do
+    closest_distances[0] := 0; // Reference star distance is zero
+    closest_indices[0] := i;// Reference star
+    for j := 1 to num_closest - 1 do // Initialize closest distances to a very large value
+
     begin
       closest_indices[j] := -1;
       closest_distances[j] := 1E99;
@@ -283,133 +280,122 @@ begin
     x1 := StarsX[i]; // Reference star
     y1 := StarsY[i];
 
-    // OPTIMIZATION: Split loop to avoid j <> i check every iteration
-    // Search before i
-    for j := 0 to i - 1 do
+    for j := 0 to nrstars - 1 do
     begin
-      dx := StarsX[j] - x1;
-      dy := StarsY[j] - y1;
-      distance := dx * dx + dy * dy;
-      if distance > 1 then // Skip identical stars (distance=0)
+      if i <> j then
       begin
-        // Insert into the closest list if closer than current farthest
-        for k := num_closest - 1 downto 0 do
+        dx := StarsX[j] - x1;
+        dy := StarsY[j] - y1;
+        distance := dx * dx + dy * dy;
+        if distance > 1 then
         begin
-          if distance < closest_distances[k] then
+          // Fixed insertion sort: find position, then shift
+          insert_pos := -1;
+          for k := num_closest - 1 downto 1 do
           begin
-            if k < num_closest - 1 then
+            if distance < closest_distances[k] then
+              insert_pos := k
+            else
+              break;
+          end;
+          if insert_pos >= 0 then
+          begin
+            for k := num_closest - 1 downto insert_pos + 1 do
             begin
-              closest_distances[k + 1] := closest_distances[k];
-              closest_indices[k + 1] := closest_indices[k];
+              closest_distances[k] := closest_distances[k - 1];
+              closest_indices[k] := closest_indices[k - 1];
             end;
-            closest_distances[k] := distance;
-            closest_indices[k] := j;
-          end
-          else
-            break;
+            closest_distances[insert_pos] := distance;
+            closest_indices[insert_pos] := j;
+          end;
         end;
       end;
     end;
 
-    // Search after i
-    for j := i + 1 to nrstars - 1 do
-    begin
-      dx := StarsX[j] - x1;
-      dy := StarsY[j] - y1;
-      distance := dx * dx + dy * dy;
-      if distance > 1 then // Skip identical stars (distance=0)
-      begin
-        // Insert into the closest list if closer than current farthest
-        for k := num_closest - 1 downto 0 do
-        begin
-          if distance < closest_distances[k] then
-          begin
-            if k < num_closest - 1 then
-            begin
-              closest_distances[k + 1] := closest_distances[k];
-              closest_indices[k + 1] := closest_indices[k];
-            end;
-            closest_distances[k] := distance;
-            closest_indices[k] := j;
-          end
-          else
-            break;
-        end;
-      end;
-    end;
-
-    // Proceed only if we found enough stars
     if closest_indices[num_closest - 1] <> -1 then
     begin
-      // Generate all quads for this group
+      // Move pointer assignment outside the quad loop
+      QuadsX := @quads[6, 0];
+      QuadsY := @quads[7, 0];
+
       for q := 0 to num_quads_per_group - 1 do
       begin
-        // Select quad indices based on mode
         case mode of
           5: //5 quads from 5 closest stars
-            begin // Original behavior: Rotate which star is excluded
-              if q = 0 then
-              begin // Stars: i, closest[0], closest[1], closest[2]
-                x2 := StarsX[closest_indices[0]];
-                y2 := StarsY[closest_indices[0]];
-                x3 := StarsX[closest_indices[1]];
-                y3 := StarsY[closest_indices[1]];
-                x4 := StarsX[closest_indices[2]];
-                y4 := StarsY[closest_indices[2]];
-              end
-              else if q = 1 then
-              begin // Stars: closest[3], closest[0], closest[1], closest[2]
-                x1 := StarsX[closest_indices[3]];
-                y1 := StarsY[closest_indices[3]];
-              end
-              else if q = 2 then
-              begin // Stars: closest[3], i, closest[1], closest[2]
-                x2 := StarsX[i];
-                y2 := StarsY[i];
-              end
-              else if q = 3 then
-              begin // Stars: closest[3], i, closest[0], closest[2]
-                x3 := StarsX[closest_indices[0]];
-                y3 := StarsY[closest_indices[0]];
-              end
-              else if q = 4 then
-              begin // Stars: closest[3], i, closest[0], closest[1]
-                x4 := StarsX[closest_indices[1]];
-                y4 := StarsY[closest_indices[1]];
+            case q of
+                 0:  begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=2; quad_indices[3]:=3; end;//exclude 4
+                 1:  begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=2; quad_indices[3]:=4; end;//exclude 3
+                 2:  begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=3; quad_indices[3]:=4; end;//exclude 2
+                 3:  begin quad_indices[0]:=0; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=4; end;//exclude 1
+                 4:  begin quad_indices[0]:=1; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=4; end;//exclude 0
+            end;//case
+          6: //15 quads from 6 closest stars, all C(6,4)=15 combinations of 4 from indices 0..5
+              case q of
+                0:  begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=2; quad_indices[3]:=3; end;//exclude 4,5
+                1:  begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=2; quad_indices[3]:=4; end;//exclude 3,5
+                2:  begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=2; quad_indices[3]:=5; end;//exclude 3,4
+                3:  begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=3; quad_indices[3]:=4; end;//exclude 2,5
+                4:  begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=3; quad_indices[3]:=5; end;//exclude 2,4
+                5:  begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=4; quad_indices[3]:=5; end;//exclude 2,3
+                6:  begin quad_indices[0]:=0; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=4; end;//exclude 1,5
+                7:  begin quad_indices[0]:=0; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=5; end;//exclude 1,4
+                8:  begin quad_indices[0]:=0; quad_indices[1]:=2; quad_indices[2]:=4; quad_indices[3]:=5; end;//exclude 1,3
+                9:  begin quad_indices[0]:=0; quad_indices[1]:=3; quad_indices[2]:=4; quad_indices[3]:=5; end;//exclude 1,2
+                10: begin quad_indices[0]:=1; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=4; end;//exclude 0,5
+                11: begin quad_indices[0]:=1; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=5; end;//exclude 0,4
+                12: begin quad_indices[0]:=1; quad_indices[1]:=2; quad_indices[2]:=4; quad_indices[3]:=5; end;//exclude 0,3
+                13: begin quad_indices[0]:=1; quad_indices[1]:=3; quad_indices[2]:=4; quad_indices[3]:=5; end;//exclude 0,2
+                14: begin quad_indices[0]:=2; quad_indices[1]:=3; quad_indices[2]:=4; quad_indices[3]:=5; end;//exclude 0,1
               end;
+          7: // //35 quads from 7 closest stars, C(7,4)=35 combinations of 4 from indices 0..6
+            case q of
+               0: begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=2; quad_indices[3]:=3; end; //exclude 4,5,6
+               1: begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=2; quad_indices[3]:=4; end; //exclude 3,5,6
+               2: begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=2; quad_indices[3]:=5; end; //exclude 3,4,6
+               3: begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=2; quad_indices[3]:=6; end; //exclude 3,4,5
+               4: begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=3; quad_indices[3]:=4; end; //exclude 2,5,6
+               5: begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=3; quad_indices[3]:=5; end; //exclude 2,4,6
+               6: begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=3; quad_indices[3]:=6; end; //exclude 2,4,5
+               7: begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=4; quad_indices[3]:=5; end; //exclude 2,3,6
+               8: begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=4; quad_indices[3]:=6; end; //exclude 2,3,5
+               9: begin quad_indices[0]:=0; quad_indices[1]:=1; quad_indices[2]:=5; quad_indices[3]:=6; end; //exclude 2,3,4
+              10: begin quad_indices[0]:=0; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=4; end; //exclude 1,5,6
+              11: begin quad_indices[0]:=0; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=5; end; //exclude 1,4,6
+              12: begin quad_indices[0]:=0; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=6; end; //exclude 1,4,5
+              13: begin quad_indices[0]:=0; quad_indices[1]:=2; quad_indices[2]:=4; quad_indices[3]:=5; end; //exclude 1,3,6
+              14: begin quad_indices[0]:=0; quad_indices[1]:=2; quad_indices[2]:=4; quad_indices[3]:=6; end; //exclude 1,3,5
+              15: begin quad_indices[0]:=0; quad_indices[1]:=2; quad_indices[2]:=5; quad_indices[3]:=6; end; //exclude 1,3,4
+              16: begin quad_indices[0]:=0; quad_indices[1]:=3; quad_indices[2]:=4; quad_indices[3]:=5; end; //exclude 1,2,6
+              17: begin quad_indices[0]:=0; quad_indices[1]:=3; quad_indices[2]:=4; quad_indices[3]:=6; end; //exclude 1,2,5
+              18: begin quad_indices[0]:=0; quad_indices[1]:=3; quad_indices[2]:=5; quad_indices[3]:=6; end; //exclude 1,2,4
+              19: begin quad_indices[0]:=0; quad_indices[1]:=4; quad_indices[2]:=5; quad_indices[3]:=6; end; //exclude 1,2,3
+              20: begin quad_indices[0]:=1; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=4; end; //exclude 0,5,6
+              21: begin quad_indices[0]:=1; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=5; end; //exclude 0,4,6
+              22: begin quad_indices[0]:=1; quad_indices[1]:=2; quad_indices[2]:=3; quad_indices[3]:=6; end; //exclude 0,4,5
+              23: begin quad_indices[0]:=1; quad_indices[1]:=2; quad_indices[2]:=4; quad_indices[3]:=5; end; //exclude 0,3,6
+              24: begin quad_indices[0]:=1; quad_indices[1]:=2; quad_indices[2]:=4; quad_indices[3]:=6; end; //exclude 0,3,5
+              25: begin quad_indices[0]:=1; quad_indices[1]:=2; quad_indices[2]:=5; quad_indices[3]:=6; end; //exclude 0,3,4
+              26: begin quad_indices[0]:=1; quad_indices[1]:=3; quad_indices[2]:=4; quad_indices[3]:=5; end; //exclude 0,2,6
+              27: begin quad_indices[0]:=1; quad_indices[1]:=3; quad_indices[2]:=4; quad_indices[3]:=6; end; //exclude 0,2,5
+              28: begin quad_indices[0]:=1; quad_indices[1]:=3; quad_indices[2]:=5; quad_indices[3]:=6; end; //exclude 0,2,4
+              29: begin quad_indices[0]:=1; quad_indices[1]:=4; quad_indices[2]:=5; quad_indices[3]:=6; end; //exclude 0,2,3
+              30: begin quad_indices[0]:=2; quad_indices[1]:=3; quad_indices[2]:=4; quad_indices[3]:=5; end; //exclude 0,1,6
+              31: begin quad_indices[0]:=2; quad_indices[1]:=3; quad_indices[2]:=4; quad_indices[3]:=6; end; //exclude 0,1,5
+              32: begin quad_indices[0]:=2; quad_indices[1]:=3; quad_indices[2]:=5; quad_indices[3]:=6; end; //exclude 0,1,4
+              33: begin quad_indices[0]:=2; quad_indices[1]:=4; quad_indices[2]:=5; quad_indices[3]:=6; end; //exclude 0,1,3
+              34: begin quad_indices[0]:=3; quad_indices[1]:=4; quad_indices[2]:=5; quad_indices[3]:=6; end; //exclude 0,1,2
             end;
+        end; // case mode
 
-          6: //15 quads from 6 closest stars
-            begin // New behavior: All combinations of 4 from 6
-              case q of // Maps q to 4 distinct indices (0..5)
-                0: begin quad_indices[0] := 0; quad_indices[1] := 1; quad_indices[2] := 2; quad_indices[3] := 3; end;
-                1: begin quad_indices[0] := 0; quad_indices[1] := 1; quad_indices[2] := 2; quad_indices[3] := 4; end;
-                2: begin quad_indices[0] := 0; quad_indices[1] := 1; quad_indices[2] := 2; quad_indices[3] := 5; end;
-                3: begin quad_indices[0] := 0; quad_indices[1] := 1; quad_indices[2] := 3; quad_indices[3] := 4; end;
-                4: begin quad_indices[0] := 0; quad_indices[1] := 1; quad_indices[2] := 3; quad_indices[3] := 5; end;
-                5: begin quad_indices[0] := 0; quad_indices[1] := 2; quad_indices[2] := 3; quad_indices[3] := 4; end;
-                6: begin quad_indices[0] := 0; quad_indices[1] := 2; quad_indices[2] := 3; quad_indices[3] := 5; end;
-                7: begin quad_indices[0] := 0; quad_indices[1] := 2; quad_indices[2] := 4; quad_indices[3] := 5; end;
-                8: begin quad_indices[0] := 0; quad_indices[1] := 3; quad_indices[2] := 4; quad_indices[3] := 5; end;
-                9: begin quad_indices[0] := 1; quad_indices[1] := 2; quad_indices[2] := 3; quad_indices[3] := 4; end;
-                10: begin quad_indices[0] := 1; quad_indices[1] := 2; quad_indices[2] := 3; quad_indices[3] := 5; end;
-                11: begin quad_indices[0] := 1; quad_indices[1] := 2; quad_indices[2] := 4; quad_indices[3] := 5; end;
-                12: begin quad_indices[0] := 1; quad_indices[1] := 3; quad_indices[2] := 4; quad_indices[3] := 5; end;
-                13: begin quad_indices[0] := 2; quad_indices[1] := 3; quad_indices[2] := 4; quad_indices[3] := 5; end;
-                14: begin quad_indices[0] := 2; quad_indices[1] := 3; quad_indices[2] := 4; quad_indices[3] := 5; end;
-              end;
-
-              // Get star positions for the quad
-              x1 := StarsX[i]; // Reference star is always included
-              y1 := StarsY[i];
-              x2 := StarsX[closest_indices[quad_indices[0]]];
-              y2 := StarsY[closest_indices[quad_indices[0]]];
-              x3 := StarsX[closest_indices[quad_indices[1]]];
-              y3 := StarsY[closest_indices[quad_indices[1]]];
-              x4 := StarsX[closest_indices[quad_indices[2]]];
-              y4 := StarsY[closest_indices[quad_indices[2]]];
-            end;
-        end;
+        // Get star positions for the quad
+        x1 := StarsX[closest_indices[quad_indices[0]]];
+        y1 := StarsY[closest_indices[quad_indices[0]]];
+        x2 := StarsX[closest_indices[quad_indices[1]]];
+        y2 := StarsY[closest_indices[quad_indices[1]]];
+        x3 := StarsX[closest_indices[quad_indices[2]]];
+        y3 := StarsY[closest_indices[quad_indices[2]]];
+        x4 := StarsX[closest_indices[quad_indices[3]]];
+        y4 := StarsY[closest_indices[quad_indices[3]]];
 
         // Calculate quad center
         xt := (x1 + x2 + x3 + x4) * 0.25;
@@ -417,11 +403,9 @@ begin
 
         // Check for duplicates
         identical_quad := false;
-        QuadsX := @quads[6, 0];
-        QuadsY := @quads[7, 0];
         for k := 0 to nrquads - 1 do
         begin
-          if (abs(xt - QuadsX[k]) < 1) and (abs(yt - QuadsY[k]) < 1) then
+          if (abs(xt - QuadsX[k]) < 1) and (abs(yt - QuadsY[k]) < 6) then
           begin
             identical_quad := true;
             break;
@@ -429,48 +413,37 @@ begin
         end;
 
         if not identical_quad then
-        begin
-          // Calculate pairwise distances (OPTIMIZATION: use dx, dy and multiply instead of sqr)
-          dx := x1 - x2; dy := y1 - y2;
-          dist1 := sqrt(dx * dx + dy * dy);
-          dx := x1 - x3; dy := y1 - y3;
-          dist2 := sqrt(dx * dx + dy * dy);
-          dx := x1 - x4; dy := y1 - y4;
-          dist3 := sqrt(dx * dx + dy * dy);
-          dx := x2 - x3; dy := y2 - y3;
-          dist4 := sqrt(dx * dx + dy * dy);
-          dx := x2 - x4; dy := y2 - y4;
-          dist5 := sqrt(dx * dx + dy * dy);
-          dx := x3 - x4; dy := y3 - y4;
-          dist6 := sqrt(dx * dx + dy * dy);
+        begin // Calculate pairwise distances
+          dx := x1-x2; dy := y1-y2; dist1 := sqrt(dx*dx + dy*dy);
+          dx := x1-x3; dy := y1-y3; dist2 := sqrt(dx*dx + dy*dy);
+          dx := x1-x4; dy := y1-y4; dist3 := sqrt(dx*dx + dy*dy);
+          dx := x2-x3; dy := y2-y3; dist4 := sqrt(dx*dx + dy*dy);
+          dx := x2-x4; dy := y2-y4; dist5 := sqrt(dx*dx + dy*dy);
+          dx := x3-x4; dy := y3-y4; dist6 := sqrt(dx*dx + dy*dy);
 
-          // Optimized bubble sort for 6 elements (5 passes max)
-          if dist2 > dist1 then begin temp := dist1; dist1 := dist2; dist2 := temp; end;
-          if dist3 > dist2 then begin temp := dist2; dist2 := dist3; dist3 := temp; end;
-          if dist4 > dist3 then begin temp := dist3; dist3 := dist4; dist4 := temp; end;
-          if dist5 > dist4 then begin temp := dist4; dist4 := dist5; dist5 := temp; end;
-          if dist6 > dist5 then begin temp := dist5; dist5 := dist6; dist6 := temp; end;
-
-          if dist2 > dist1 then begin temp := dist1; dist1 := dist2; dist2 := temp; end;
-          if dist3 > dist2 then begin temp := dist2; dist2 := dist3; dist3 := temp; end;
-          if dist4 > dist3 then begin temp := dist3; dist3 := dist4; dist4 := temp; end;
-          if dist5 > dist4 then begin temp := dist4; dist4 := dist5; dist5 := temp; end;
-
-          if dist2 > dist1 then begin temp := dist1; dist1 := dist2; dist2 := temp; end;
-          if dist3 > dist2 then begin temp := dist2; dist2 := dist3; dist3 := temp; end;
-          if dist4 > dist3 then begin temp := dist3; dist3 := dist4; dist4 := temp; end;
-
-          if dist2 > dist1 then begin temp := dist1; dist1 := dist2; dist2 := temp; end;
-          if dist3 > dist2 then begin temp := dist2; dist2 := dist3; dist3 := temp; end;
-
-          if dist2 > dist1 then begin temp := dist1; dist1 := dist2; dist2 := temp; end;
+          // Optimized bubble sort for 6 elements
+          if dist2 > dist1 then begin temp:=dist1; dist1:=dist2; dist2:=temp; end;
+          if dist3 > dist2 then begin temp:=dist2; dist2:=dist3; dist3:=temp; end;
+          if dist4 > dist3 then begin temp:=dist3; dist3:=dist4; dist4:=temp; end;
+          if dist5 > dist4 then begin temp:=dist4; dist4:=dist5; dist5:=temp; end;
+          if dist6 > dist5 then begin temp:=dist5; dist5:=dist6; dist6:=temp; end;
+          if dist2 > dist1 then begin temp:=dist1; dist1:=dist2; dist2:=temp; end;
+          if dist3 > dist2 then begin temp:=dist2; dist2:=dist3; dist3:=temp; end;
+          if dist4 > dist3 then begin temp:=dist3; dist3:=dist4; dist4:=temp; end;
+          if dist5 > dist4 then begin temp:=dist4; dist4:=dist5; dist5:=temp; end;
+          if dist2 > dist1 then begin temp:=dist1; dist1:=dist2; dist2:=temp; end;
+          if dist3 > dist2 then begin temp:=dist2; dist2:=dist3; dist3:=temp; end;
+          if dist4 > dist3 then begin temp:=dist3; dist3:=dist4; dist4:=temp; end;
+          if dist2 > dist1 then begin temp:=dist1; dist1:=dist2; dist2:=temp; end;
+          if dist3 > dist2 then begin temp:=dist2; dist2:=dist3; dist3:=temp; end;
+          if dist2 > dist1 then begin temp:=dist1; dist1:=dist2; dist2:=temp; end;
           //end optimized bubble sort
 
           // Store the quad
           if display = false then
           begin
-            quads[0, nrquads] := dist1; //largest distance
-            quads[1, nrquads] := dist2 / dist1; //scale to largest distance
+            quads[0, nrquads] := dist1;
+            quads[1, nrquads] := dist2 / dist1;
             quads[2, nrquads] := dist3 / dist1;
             quads[3, nrquads] := dist4 / dist1;
             quads[4, nrquads] := dist5 / dist1;
@@ -486,18 +459,19 @@ begin
             quads[3, nrquads] := y2;
             quads[4, nrquads] := x3;
             quads[5, nrquads] := y3;
-            quads[6, nrquads] := xt; {store mean x position}
-            quads[7, nrquads] := yt; {store mean y position}
-            quads[8, nrquads] := x4;
-            quads[9, nrquads] := y4;
+            quads[6, nrquads] := x4;
+            quads[7, nrquads] := y4;
           end;
           inc(nrquads);
         end;
-      end; // End of quad generation loop
-    end; // End of "found enough stars" check
-  end; // End of star loop
+      end; // quad loop
+    end; // enough stars
+  end; // star loop
 
-  SetLength(quads, quad_nrvalues, nrquads); // Trim to actual number of quads
+  if display = false then
+    SetLength(quads, 8, nrquads)
+  else
+    SetLength(quads, 10, nrquads);
 end;
 
 
@@ -522,13 +496,19 @@ var
 begin
   nrstars := Length(starlist[0]); //number of quads will lower
 
-  if nrstars_image<30 then //base the quad groups size selection on the number of stars in the image and not on the number of database stars since the database field could be larger
-   begin
-     find_many_quads(display,starlist, {out} quads,6 {group size});//Find fifteen times more quads by using closest groups of six stars.
-     exit;
-   end
-   else
-   if nrstars_image<60 then
+  if ((nrstars_image<15) and (nrstars>6)) then //base the quad groups size selection on the number of stars in the image and not on the number of database stars since the database field could be larger
+  begin
+    find_many_quads(display,starlist, {out} quads,7 {group size});//Find more quads by using closest groups of seven stars.
+    exit;
+  end
+  else
+  if ((nrstars_image<30) and (nrstars>5)) then
+  begin
+    find_many_quads(display,starlist, {out} quads,6 {group size});//Find fifteen times more quads by using closest groups of six stars.
+    exit;
+  end
+  else
+  if ((nrstars_image<60) and (nrstars>4)) then
    begin
      find_many_quads(display,starlist, {out} quads,5 {group size});//Find five times more quads by using closest groups of five stars.
      exit;
