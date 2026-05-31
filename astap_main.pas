@@ -1100,8 +1100,8 @@ begin
 
   solve_diag_add_kv('CLI_FOV_OPTION', stackmenu1.search_fov1.Text);
   solve_diag_add_kv('CLI_RADIUS_OPTION', stackmenu1.radius_search1.Text);
-  if hasoption('ra') then solve_diag_add_kv('CLI_RA_OPTION', GetOptionValue('ra'));
-  if hasoption('spd') then solve_diag_add_kv('CLI_SPD_OPTION', GetOptionValue('spd'));
+  if application.hasoption('ra') then solve_diag_add_kv('CLI_RA_OPTION', application.GetOptionValue('ra'));
+  if application.hasoption('spd') then solve_diag_add_kv('CLI_SPD_OPTION', application.GetOptionValue('spd'));
   solve_diag_add_kv('TARGET_RA_TEXT', mainform1.ra1.Text);
   solve_diag_add_kv('TARGET_DEC_TEXT', mainform1.dec1.Text);
   solve_diag_add_kv('TARGET_RA_DEG', floattostr8(ra_radians * 180 / pi));
@@ -8571,7 +8571,8 @@ begin
       font_name:=Sett.ReadString('main', 'font_name2',font_name);
       dum:=Sett.ReadString('main','font_style','');if dum<>'' then font_style:= strtostyle(dum);
       font_charset:=sett.ReadInteger('main','font_charset',font_charset);
-      SetAppLanguageCode(Sett.ReadString('main','language',LanguageCode(GetAppLanguage)));
+      if commandline_execution=false then
+        SetAppLanguageCode(Sett.ReadString('main','language',LanguageCode(GetAppLanguage)));
       pedestal_m:=sett.ReadInteger('main','pedestal',pedestal_m);
 
 
@@ -14037,6 +14038,11 @@ var
   binning,focus_count,report  : integer;
   filename_output             : string;
 begin
+  {Command-line solving must not pay for full GUI translation on every NINA call.}
+  commandline_execution:=((paramcount>0) and
+                          ((application.hasoption('f')) or (application.hasoption('debug')) or
+                           (application.hasoption('focus1'))));
+
   user_path:=GetAppConfigDir(false);{get user path for app config}
 
   if load_settings(user_path+'astap.cfg')=false then
@@ -14045,7 +14051,8 @@ begin
                    Force directories will make also .config if missing. Using createdir doesn't work if both a directory and subdirectory are to be made in Linux and Mac}
   end;
 
-  ApplyCurrentLanguage;
+  if commandline_execution=false then
+    ApplyCurrentLanguage;
 
   fov_specified:=false;{assume no FOV specification in commandline}
   screen.Cursor:=0;
@@ -14239,7 +14246,6 @@ begin
             filename_output:=filename2; //use same filename for .ini and .wcs files
 
           prepare_commandline_diagnostic(filename_output, file_loaded);
-
 
           if ((file_loaded) and (solve_image(img_loaded,head,mainform1.memo1.lines,true {get hist},checkfilter) )) then {find plate solution, filename2 extension will change to .fit}
           begin

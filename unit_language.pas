@@ -74,6 +74,8 @@ begin
   if BaseKeys = nil then
   begin
     BaseKeys := TStringList.Create;
+    BaseKeys.Sorted := True;
+    BaseKeys.Duplicates := dupIgnore;
     BaseValues := TStringList.Create;
   end;
 end;
@@ -162,16 +164,17 @@ end;
 procedure AddTranslation(const AKey, AValue: string);
 var
   KeyText, ValueText: string;
+  Index: Integer;
 begin
   if (AKey = '') or (AValue = '') then Exit;
 
   ValueText := StringReplace(AValue, #10, LineEnding, [rfReplaceAll]);
 
   KeyText := NormalizeTranslationKey(AKey);
-  if POKeys.IndexOf(KeyText) < 0 then
+  if not POKeys.Find(KeyText, Index) then
   begin
-    POKeys.Add(KeyText);
-    POValues.Add(ValueText);
+    Index := POKeys.Add(KeyText);
+    POValues.Insert(Index, ValueText);
   end;
 end;
 
@@ -220,6 +223,8 @@ begin
   FreeAndNil(POKeys);
   FreeAndNil(POValues);
   POKeys := TStringList.Create;
+  POKeys.Sorted := True;
+  POKeys.Duplicates := dupIgnore;
   POValues := TStringList.Create;
 
   FileName := POFileName;
@@ -305,9 +310,8 @@ var
   Index: Integer;
 begin
   EnsurePOTranslations;
-  Index := POKeys.IndexOf(NormalizeTranslationKey(AKey));
+  Result := POKeys.Find(NormalizeTranslationKey(AKey), Index);
 
-  Result := Index >= 0;
   if Result then
     ATranslation := POValues[Index]
   else
@@ -361,12 +365,14 @@ begin
 end;
 
 procedure RememberBaseText(const Key, Value: string);
+var
+  Index: Integer;
 begin
   EnsureBaseStore;
-  if BaseKeys.IndexOf(Key) < 0 then
+  if not BaseKeys.Find(Key, Index) then
   begin
-    BaseKeys.Add(Key);
-    BaseValues.Add(Value);
+    Index := BaseKeys.Add(Key);
+    BaseValues.Insert(Index, Value);
   end;
 end;
 
@@ -375,8 +381,7 @@ var
   Index: Integer;
 begin
   EnsureBaseStore;
-  Index := BaseKeys.IndexOf(Key);
-  if Index >= 0 then
+  if BaseKeys.Find(Key, Index) then
     Result := BaseValues[Index]
   else
     Result := Fallback;
