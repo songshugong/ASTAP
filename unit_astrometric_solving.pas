@@ -776,6 +776,11 @@ begin
   warning_str := '';{for header}
   startTick := GetTickCount64;
   popup_warningG05 := '';
+  if commandline_execution then
+  begin
+    solve_diag_add_kv('SOLVE_START_TICK', UIntToStr(startTick));
+    solve_diag_add_kv('CHECK_PATTERNFILTER', solve_diag_yesno(check_patternfilter));
+  end;
 
   if check_patternfilter then {for OSC images with low dimensions only}
   begin
@@ -794,17 +799,32 @@ begin
     fov_org := apply_arctan(hd.Height * abs(hd.cdelt2))  {calculate FOV. PI can give negative hd.cdelt2}
   else
     fov_org := min(180, strtofloat2(stackmenu1.search_fov1.Text)); {use specfied FOV in stackmenu. 180 max to prevent runtime errors later}
+  if commandline_execution then
+  begin
+    solve_diag_add_kv('FOV_SPECIFIED', solve_diag_yesno(fov_specified));
+    solve_diag_add_kv('FOV_ORG_DEG', floattostr8(fov_org));
+  end;
 
 
   if select_star_database(stackmenu1.star_database1.Text, fov_org) = False then  {select database prior to cropping selection}
   begin
     Result := False;
     errorlevel := 32;{no star database}
+    if commandline_execution then
+    begin
+      solve_diag_add_kv('FAIL_STAGE', 'SELECT_DATABASE');
+      solve_diag_add_kv('FAIL_REASON', 'No star database selected for requested field of view');
+    end;
     exit;
   end
   else
   begin
     memo2_message('Using star database ' + uppercase(name_database));
+    if commandline_execution then
+    begin
+      solve_diag_add_kv('DATABASE_NAME', uppercase(name_database));
+      solve_diag_add_kv('DATABASE_TYPE', IntToStr(database_type));
+    end;
 
     if ((fov_org > 30) and (database_type <> 001)) then
       warning_str := warning_str + 'Very large FOV, use W08 database! '
@@ -835,6 +855,7 @@ begin
 
   min_star_size_arcsec := strtofloat2(stackmenu1.min_star_size1.Text);  {arc sec};
   autoFOV := (fov_org = 0);{specified auto FOV}
+  if commandline_execution then solve_diag_add_kv('AUTO_FOV', solve_diag_yesno(autoFOV));
 
   repeat {autoFOV loop}
     if autoFOV then
@@ -867,6 +888,12 @@ begin
       fov2 := fov_org;
     end;
     ;
+    if commandline_execution then
+    begin
+      solve_diag_add_kv('AUTO_FOV_CURRENT_DEG', floattostr8(fov_org));
+      solve_diag_add_kv('CROPPING_FACTOR', floattostr8(cropping));
+      solve_diag_add_kv('FOV_EFFECTIVE_DEG', floattostr8(fov2));
+    end;
 
     limit := round(database_density * sqr(fov2) * hd.Width / hd.Height); //limit in stars per square degree. limit=density*surface_full_image
     if limit < max_stars then
@@ -883,6 +910,16 @@ begin
     bin_and_find_stars(img, hd, binning, cropping, hfd_min, max_stars, get_hist{update hist},  starlist2, mean_hfd, warning_downsample);  {bin, measure background, find stars. Do this every repeat since hfd_min is adapted}
 
     nrstars_image := Length(starlist2[0]);
+    if commandline_execution then
+    begin
+      solve_diag_add_kv('BINNING', IntToStr(binning));
+      solve_diag_add_kv('ARCSEC_PER_PIXEL', floattostr8(arcsec_per_px));
+      solve_diag_add_kv('HFD_MIN', floattostr8(hfd_min));
+      solve_diag_add_kv('MAX_STARS_USED', IntToStr(max_stars));
+      solve_diag_add_kv('MEAN_HFD', floattostr8(mean_hfd));
+      solve_diag_add_kv('IMAGE_STARS', IntToStr(nrstars_image));
+      if warning_downsample<>'' then solve_diag_add_kv('DOWNSAMPLE_WARNING', warning_downsample);
+    end;
 
     if ((hd.xpixsz <> 0) and (hd.ypixsz <> 0) and (abs(hd.xpixsz - hd.ypixsz) > 0.1)) then //non-square pixels, correct. Remove in future?
     begin //very very rare. Example QHY6 camera
@@ -919,6 +956,11 @@ begin
 
     solution := False; {assume no match is found}
     go_ahead := (nrstars_image >= 5); {bare minimum. Should be more but let's try}
+    if commandline_execution then
+    begin
+      solve_diag_add_kv('NRSTARS_REQUIRED', IntToStr(nrstars_required));
+      solve_diag_add_kv('GO_AHEAD_AFTER_STARS', solve_diag_yesno(go_ahead));
+    end;
 
 
     if go_ahead then {enough stars, lets find quads}
@@ -936,6 +978,11 @@ begin
 
       nr_quads := Length(quad_star_distances2[0]);
       go_ahead := nr_quads >= 3; {enough quads?}
+      if commandline_execution then
+      begin
+        solve_diag_add_kv('IMAGE_QUADS', IntToStr(nr_quads));
+        solve_diag_add_kv('GO_AHEAD_AFTER_QUADS', solve_diag_yesno(go_ahead));
+      end;
 
       {The step size is fixed. If a low amount of stars are detected, the search window (so the database read area) is increased up to 200% guaranteeing that all quads of the image are compared with the database quads while stepping through the sky}
       if nrstars_image < 35 then oversize := 2 {make dimensions of square search window twice then the image height}
@@ -950,12 +997,23 @@ begin
       radius := strtofloat2(stackmenu1.radius_search1.Text);{radius search field}
 
       minimum_quads := 3 + nrstars_image div 140 {prevent false detections for star rich images, 3 quads give the 3 center quad references and is the bare minimum. It possible to use one quad and four star positions but it in not reliable}
+      if commandline_execution then
+      begin
+        solve_diag_add_kv('OVERSIZE', floattostr8(oversize));
+        solve_diag_add_kv('RADIUS_DEG', floattostr8(radius));
+        solve_diag_add_kv('MINIMUM_QUADS', IntToStr(minimum_quads));
+      end;
 
     end
     else
     begin
       memo2_message('Only ' + IntToStr(nrstars_image) + ' stars found in image. Abort');
       errorlevel := 2;
+      if commandline_execution then
+      begin
+        solve_diag_add_kv('FAIL_STAGE', 'STAR_DETECTION');
+        solve_diag_add_kv('FAIL_REASON', 'Not enough stars detected in image');
+      end;
     end;
 
     if go_ahead then
@@ -971,6 +1029,11 @@ begin
       end
       else
         max_distance := round(radius / (fov2 + 0.00001));{expressed in steps}
+      if commandline_execution then
+      begin
+        solve_diag_add_kv('STEP_SIZE_DEG', floattostr8(step_size));
+        solve_diag_add_kv('MAX_DISTANCE_STEPS', IntToStr(max_distance));
+      end;
 
       memo2_message(IntToStr(nrstars_image) + ' stars, ' + IntToStr(nr_quads) +  quads_str + ' selected in the image. ' + IntToStr(round(nrstars_required * sqr(oversize))) +
         ' database stars, ' + IntToStr(round(nr_quads * nrstars_required * sqr(oversize) / nrstars_image)) +
@@ -1087,6 +1150,13 @@ begin
                 {$ENDIF}
                 application.messagebox( PChar(TranslateText('No star database found at ') + database_path + TranslateText(' !') + #13 + TranslateText('Download and install one star database.')), PChar(TranslateText('ASTAP error:')), 0);
                 errorlevel := 33;{read error star database}
+                if commandline_execution then
+                begin
+                  solve_diag_add_kv('FAIL_STAGE', 'READ_DATABASE');
+                  solve_diag_add_kv('FAIL_REASON', 'Failed to read star database tile');
+                  solve_diag_add_kv('LAST_SEARCH_RA', prepare_ra8(ra_database, ': '));
+                  solve_diag_add_kv('LAST_SEARCH_DEC', prepare_dec2(dec_database, ' '));
+                end;
                 exit; {no stars}
               end;
 
@@ -1124,6 +1194,17 @@ begin
                              #9 + ' Down to magn ' + floattostrF(mag2 / 10, ffFixed, 0, 1) +
                              #9 + ' ' + IntToStr(length(starlist1[0])) + ' database stars' +
                              #9 + ' ' + IntToStr(length(quad_star_distances1[0])) + ' database quads to compare.' + mess);
+              if commandline_execution then
+              begin
+                solve_diag_add_kv('LAST_SEARCH_INDEX', IntToStr(Count));
+                solve_diag_add_kv('LAST_SPIRAL_X', IntToStr(spiral_x));
+                solve_diag_add_kv('LAST_SPIRAL_Y', IntToStr(spiral_y));
+                solve_diag_add_kv('LAST_SEARCH_RA', prepare_ra8(ra_database, ': '));
+                solve_diag_add_kv('LAST_SEARCH_DEC', prepare_dec2(dec_database, ' '));
+                solve_diag_add_kv('LAST_SEPARATION_DEG', floattostr8(seperation * 180 / pi));
+                solve_diag_add_kv('LAST_DATABASE_STARS', IntToStr(length(starlist1[0])));
+                solve_diag_add_kv('LAST_DATABASE_QUADS', IntToStr(length(quad_star_distances1[0])));
+              end;
 
               //profiler_start;
 
@@ -1135,6 +1216,12 @@ begin
               //profiler_start(true);
               solution := find_offset_and_rotation(minimum_quads {>=3}, quad_tolerance);
               {find an solution}
+              if commandline_execution and solution then
+              begin
+                solve_diag_add_kv('MATCH_FOUND_AT_SEARCH_INDEX', IntToStr(Count));
+                solve_diag_add_kv('MATCH_FOUND_RA', prepare_ra8(ra_database, ': '));
+                solve_diag_add_kv('MATCH_FOUND_DEC', prepare_dec2(dec_database, ' '));
+              end;
               //profiler_log('Find_offset and rotation');
 
               // for testing purpose
@@ -1336,6 +1423,11 @@ begin
     mainform1.Caption := TranslateText('No solution found!  :(');
     update_text(memo, 'PLTSOLVD=', '                   F / No plate solution found.   ');
     remove_key(memo, 'COMMENT 7', False{all});
+    if commandline_execution then
+    begin
+      if errorlevel = 0 then solve_diag_add_kv('FAIL_STAGE', 'SEARCH_EXHAUSTED');
+      if errorlevel = 0 then solve_diag_add_kv('FAIL_REASON', 'Search radius exhausted without a valid quad match');
+    end;
   end;
 
   warning_str := warning_str + warning_downsample; {add the last warning from loop autoFOV}
@@ -1344,6 +1436,19 @@ begin
     update_longstr(memo, 'WARNING =', warning_str);
     {update or insert long str including single quotes}
     memo2_message(warning_str);
+  end;
+  if commandline_execution then
+  begin
+    solve_diag_add_kv('RESULT', solve_diag_yesno(solution));
+    solve_diag_add_kv('WARNING_STR', warning_str);
+    solve_diag_add_kv('ELAPSED_MS', UIntToStr(GetTickCount64 - startTick));
+    if solution then
+    begin
+      solve_diag_add_kv('SOLVED_RA', prepare_ra8(hd.ra0, ': '));
+      solve_diag_add_kv('SOLVED_DEC', prepare_dec2(hd.dec0, ' '));
+      solve_diag_add_kv('SOLVED_SCALE_ARCSEC', floattostr8(hd.cdelt2 * 3600));
+      solve_diag_add_kv('SOLVED_CROTA2_DEG', floattostr8(hd.crota2));
+    end;
   end;
 
   Screen.Cursor := crDefault;    { back to normal }

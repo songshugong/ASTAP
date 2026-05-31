@@ -846,6 +846,11 @@ procedure find_star_center(img: Timage_array;box, x1,y1: integer; out xc,yc:doub
 procedure backup_img;
 procedure restore_img;
 function load_image(filename2: string; out img: Timage_array; out head: theader; memo: tstrings; re_center,plot: boolean): boolean; {load fits or PNG, BMP, TIF}
+function solve_diag_yesno(v: boolean): string;
+procedure solve_diag_reset;
+procedure solve_diag_add(const line: string);
+procedure solve_diag_add_kv(const key, value: string);
+procedure solve_diag_write(const filen: string);
 
 procedure demosaic_bayer(var img: Timage_array); {convert OSC image to colour}
 
@@ -1036,6 +1041,96 @@ var
   recent_files : tstringlist;
   export_index                                 : integer;
   object_xc,object_yc, object_raM,object_decM,object_hfd  : double; {near mouse auto centered object position}
+  solve_diagnostic_lines                       : TStringList=nil;
+  solve_diagnostic_enabled                     : boolean=false;
+
+function solve_diag_yesno(v: boolean): string;
+begin
+  if v then Result := 'T' else Result := 'F';
+end;
+
+function solve_diag_clean(const s: string): string;
+begin
+  Result := StringReplace(s, #13, ' ', [rfReplaceAll]);
+  Result := StringReplace(Result, #10, ' ', [rfReplaceAll]);
+end;
+
+procedure solve_diag_reset;
+begin
+  if solve_diagnostic_lines = nil then
+    solve_diagnostic_lines := TStringList.Create
+  else
+    solve_diagnostic_lines.Clear;
+  solve_diagnostic_enabled := True;
+end;
+
+procedure solve_diag_add(const line: string);
+begin
+  if solve_diagnostic_enabled = False then exit;
+  if solve_diagnostic_lines = nil then
+    solve_diagnostic_lines := TStringList.Create;
+  solve_diagnostic_lines.Add(solve_diag_clean(line));
+end;
+
+procedure solve_diag_add_kv(const key, value: string);
+begin
+  solve_diag_add(key + '=' + solve_diag_clean(value));
+end;
+
+procedure solve_diag_write(const filen: string);
+begin
+  if ((solve_diagnostic_enabled = False) or (trim(filen) = '') or (solve_diagnostic_lines = nil)) then exit;
+  try
+    solve_diagnostic_lines.SaveToFile(ChangeFileExt(filen, '.diag.txt'));
+  except
+  end;
+end;
+
+procedure prepare_commandline_diagnostic(const filename_output: string; file_loaded: boolean);
+var
+  wcs_present: boolean;
+begin
+  solve_diag_reset;
+  solve_diag_add_kv('DIAG_VERSION', '1');
+  solve_diag_add_kv('ASTAP_VERSION', astap_version);
+  solve_diag_add_kv('INPUT_FILE', filename2);
+  solve_diag_add_kv('OUTPUT_BASE', filename_output);
+  solve_diag_add_kv('CMDLINE', cmdline);
+  solve_diag_add_kv('FILE_LOADED', solve_diag_yesno(file_loaded));
+
+  solve_diag_add_kv('CLI_FOV_OPTION', stackmenu1.search_fov1.Text);
+  solve_diag_add_kv('CLI_RADIUS_OPTION', stackmenu1.radius_search1.Text);
+  if hasoption('ra') then solve_diag_add_kv('CLI_RA_OPTION', GetOptionValue('ra'));
+  if hasoption('spd') then solve_diag_add_kv('CLI_SPD_OPTION', GetOptionValue('spd'));
+  solve_diag_add_kv('TARGET_RA_TEXT', mainform1.ra1.Text);
+  solve_diag_add_kv('TARGET_DEC_TEXT', mainform1.dec1.Text);
+  solve_diag_add_kv('TARGET_RA_DEG', floattostr8(ra_radians * 180 / pi));
+  solve_diag_add_kv('TARGET_DEC_DEG', floattostr8(dec_radians * 180 / pi));
+  solve_diag_add_kv('CFG_MAX_STARS', stackmenu1.max_stars1.Text);
+  solve_diag_add_kv('CFG_DOWNSAMPLE', stackmenu1.downsample_for_solving1.Text);
+  solve_diag_add_kv('CFG_QUAD_TOLERANCE', stackmenu1.quad_tolerance1.Text);
+  solve_diag_add_kv('CFG_MIN_STAR_SIZE', stackmenu1.min_star_size1.Text);
+  solve_diag_add_kv('CFG_FORCE_OVERSIZE', solve_diag_yesno(stackmenu1.force_oversize1.Checked));
+  solve_diag_add_kv('CFG_DATABASE', stackmenu1.star_database1.Text);
+  solve_diag_add_kv('CFG_DATABASE_PATH', database_path);
+
+  if file_loaded then
+  begin
+    wcs_present := ((head.cd1_1 <> 0) or (head.cd1_2 <> 0) or (head.cd2_1 <> 0) or (head.cd2_2 <> 0) or (head.cdelt2 <> 0));
+    solve_diag_add_kv('HEADER_DIMENSIONS', IntToStr(head.Width) + 'x' + IntToStr(head.Height));
+    solve_diag_add_kv('HEADER_RA_DEG', floattostr8(head.ra0 * 180 / pi));
+    solve_diag_add_kv('HEADER_DEC_DEG', floattostr8(head.dec0 * 180 / pi));
+    solve_diag_add_kv('HEADER_RA_TEXT', prepare_ra8(head.ra0, ': '));
+    solve_diag_add_kv('HEADER_DEC_TEXT', prepare_dec2(head.dec0, ' '));
+    if head.cdelt2 <> 0 then solve_diag_add_kv('HEADER_FOV_DEG', floattostr8(abs(head.Height * head.cdelt2)));
+    solve_diag_add_kv('HEADER_XPIXSZ_UM', floattostr8(head.xpixsz));
+    solve_diag_add_kv('HEADER_YPIXSZ_UM', floattostr8(head.ypixsz));
+    solve_diag_add_kv('HEADER_FOCALLEN_MM', floattostr8(focallen));
+    solve_diag_add_kv('HEADER_DATE_OBS', head.date_obs);
+    solve_diag_add_kv('HEADER_FILTER', head.filter_name);
+    solve_diag_add_kv('HEADER_WCS_PRESENT', solve_diag_yesno(wcs_present));
+  end;
+end;
 
 var {################# initialised variables #########################}
   SaveasJPGPNGBMP1filterindex : integer=4;
@@ -14143,6 +14238,8 @@ begin
           else
             filename_output:=filename2; //use same filename for .ini and .wcs files
 
+          prepare_commandline_diagnostic(filename_output, file_loaded);
+
 
           if ((file_loaded) and (solve_image(img_loaded,head,mainform1.memo1.lines,true {get hist},checkfilter) )) then {find plate solution, filename2 extension will change to .fit}
           begin
@@ -14162,6 +14259,7 @@ begin
             end;
 
             write_ini(filename_output,true);{write solution to ini file}
+            solve_diag_add_kv('FINAL_STATUS', 'SOLVED');
 
             add_long_comment(mainform1.memo1.lines,'cmdline:'+cmdline);{log command line in wcs file}
 
@@ -14220,6 +14318,7 @@ begin
           begin {no solution}
             //if hasoption('o') then filename2:=GetOptionValue('o'); {change file name for .ini file}
             write_ini(filename_output,false);{write solution to ini file}
+            solve_diag_add_kv('FINAL_STATUS', 'FAILED');
             if errorlevel=0 then errorlevel:=1;{no solution}
           end;
 
@@ -14234,6 +14333,9 @@ begin
 
           esc_pressed:=true;{kill any running activity. This for APT}
           if commandline_log then stackmenu1.Memo2.Lines.SavetoFile(ChangeFileExt(filename_output,'.log'));{save Memo2 log to log file}
+          solve_diag_add_kv('FINAL_ERRORLEVEL', IntToStr(errorlevel));
+          if warning_str<>'' then solve_diag_add_kv('FINAL_WARNING', warning_str);
+          solve_diag_write(filename_output);
 
           halt(errorlevel); {don't save only, do mainform1.destroy. Note  mainform1.close causes a window flash briefly, so don't use}
 
