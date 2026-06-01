@@ -3,8 +3,6 @@ run-name: Mirroring Mercury repo of ASTAP
 on:
   #push:
   #  branches: [ tmp ]
-  schedule:
-    - cron: '0 12 * * *'
   workflow_dispatch:
 jobs:
   mirror:
