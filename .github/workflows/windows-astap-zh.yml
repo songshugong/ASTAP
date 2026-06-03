@@ -177,6 +177,18 @@ jobs:
             throw "ISCC.exe was not found after installing Inno Setup."
           }
 
+          $isccDir = Split-Path $iscc -Parent
+          $languageDir = Join-Path $isccDir "Languages"
+          $chineseLanguageFile = Join-Path $languageDir "ChineseSimplified.isl"
+          if (-not (Test-Path $chineseLanguageFile)) {
+            New-Item -ItemType Directory -Force $languageDir | Out-Null
+            curl.exe --location --fail --retry 3 --output $chineseLanguageFile `
+              "https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages/Unofficial/ChineseSimplified.isl"
+          }
+          if (-not (Test-Path $chineseLanguageFile)) {
+            throw "ChineseSimplified.isl was not found or downloaded."
+          }
+
           & $iscc $issPath
           if ($LASTEXITCODE -ne 0) {
             throw "Inno Setup compiler failed with exit code $LASTEXITCODE."
