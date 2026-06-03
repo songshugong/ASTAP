@@ -52,26 +52,27 @@ Follow the author's instructions [Here](https://www.hnsky.org/astap#installation
 
 #### 下载
 
-- [macOS 官方风格构建产物 ASTAP-zh-macos](https://github.com/songshugong/ASTAP/actions/runs/25625623510/artifacts/6902817503)
+- [macOS 官方风格构建产物 ASTAP-zh-macos](https://github.com/songshugong/ASTAP-zh/actions/runs/26894924289/artifacts/7389257102)
   - 包含 `astap_zh_M1.pkg`、`astap_zh_macOS_M1.zip`、SHA256 校验文件。
   - 基于官方 `astap_M1.pkg`，替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
-- [Windows 官方风格构建产物 ASTAP-zh-windows](https://github.com/songshugong/ASTAP/actions/runs/25626397452/artifacts/6903028400)
-  - 包含 `astap_zh_setup.exe`、`astap_zh.zip`、SHA256 校验文件。
+- Windows 官方风格构建产物 ASTAP-zh-windows：
+  - [astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh_setup.exe)
+  - [astap_zh.zip](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh.zip)
+  - [astap_zh_windows.sha256](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh_windows.sha256)
   - 基于官方 `astap_setup.exe` 静默安装后的文件结构，替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
-- [iOS 实验性命令行构建产物 ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP/actions/runs/25917201535/artifacts/7016844767)
+- [iOS 实验性命令行构建产物 ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP-zh/actions/runs/25917201535/artifacts/7016844767)
   - 包含 `astap_command-line_version_iOS_aarch64.zip` 和 SHA256 校验文件。
   - 这是 iOS aarch64 命令行 solver，不是图形化 iPhone/iPad App，也未做 App Store 签名。
-- [iOS 图形壳原型 IPA ASTAP-zh-iOS-prototype-ipa](https://github.com/songshugong/ASTAP/actions/runs/25922202510/artifacts/7018905732)
+- [iOS 图形壳原型 IPA ASTAP-zh-iOS-prototype-ipa](https://github.com/songshugong/ASTAP-zh/actions/runs/25922202510/artifacts/7018905732)
   - 包含 `ASTAP-zh-iOS-prototype.ipa` 和 SHA256 校验文件。
   - 内置 W08 wide-field 星表和 iOS CLI 引擎资源，界面可选择文件、查看内置资源、复制 CLI 参数示例；求解核心仍需后续改造成同进程库接口。
-- [iOS 核心接入 MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP/actions/runs/25935550796/artifacts/7024333782)
+- [iOS 核心接入 MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP-zh/actions/runs/25935550796/artifacts/7024333782)
   - 包含 `ASTAP-zh-iOS-core-mvp.ipa`、SHA256 校验文件和解包清单，artifact 约 195 MB；本版已串行化 ASTAP core 调用，避免重复点击并发求解导致崩溃。
   - 这是核心已接入的 iOS MVP 原型：UIKit 图形界面通过 C ABI 调用 ASTAP Pascal 求解核心，支持文件选择、FITS 解析、图像预览、头信息/表格、求解参数、日志和结果页。
   - 构建流程从官方 SourceForge 下载并内置 D05/G05 星表数据库；仓库不直接保存这些大文件。
 
-这些链接是 GitHub Actions artifact 直链，可能需要登录 GitHub，并受 GitHub artifact
-保留期限限制。更适合长期公开分发的方式是后续创建 GitHub Release，并把同一批 `.zip`、
-`.pkg`、`.exe`/Windows zip 上传为 Release assets。
+Windows 链接是 GitHub Release asset 直链，适合长期公开分发。macOS 和 iOS 链接仍是
+GitHub Actions artifact 直链，可能需要登录 GitHub，并受 GitHub artifact 保留期限限制。
 
 #### 官网包结构对照
 
@@ -112,27 +113,29 @@ The current localized builds are based on ASTAP `2026.04.21`.
 
 #### Downloads
 
-- [macOS official-style artifact ASTAP-zh-macos](https://github.com/songshugong/ASTAP/actions/runs/25625623510/artifacts/6902817503)
+- [macOS official-style artifact ASTAP-zh-macos](https://github.com/songshugong/ASTAP-zh/actions/runs/26894924289/artifacts/7389257102)
   - Includes `astap_zh_M1.pkg`, `astap_zh_macOS_M1.zip`, and a SHA256 checksum file.
   - Based on the official `astap_M1.pkg`; the main executable is replaced with the localized build and `languages/zh_CN/astap.po` is added.
-- [Windows official-style artifact ASTAP-zh-windows](https://github.com/songshugong/ASTAP/actions/runs/25626397452/artifacts/6903028400)
-  - Includes `astap_zh_setup.exe`, `astap_zh.zip`, and a SHA256 checksum file.
+- Windows official-style artifact ASTAP-zh-windows:
+  - [astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh_setup.exe)
+  - [astap_zh.zip](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh.zip)
+  - [astap_zh_windows.sha256](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh_windows.sha256)
   - Based on the file layout produced by the official `astap_setup.exe`; the main executable is replaced with the localized build and `languages/zh_CN/astap.po` is added.
-- [iOS experimental CLI artifact ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP/actions/runs/25917201535/artifacts/7016844767)
+- [iOS experimental CLI artifact ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP-zh/actions/runs/25917201535/artifacts/7016844767)
   - Includes `astap_command-line_version_iOS_aarch64.zip` and a SHA256 checksum file.
   - This is an iOS aarch64 command-line solver, not a graphical iPhone/iPad app, and it is not signed for App Store distribution.
-- [iOS graphical prototype IPA ASTAP-zh-iOS-prototype-ipa](https://github.com/songshugong/ASTAP/actions/runs/25922202510/artifacts/7018905732)
+- [iOS graphical prototype IPA ASTAP-zh-iOS-prototype-ipa](https://github.com/songshugong/ASTAP-zh/actions/runs/25922202510/artifacts/7018905732)
   - Includes `ASTAP-zh-iOS-prototype.ipa` and a SHA256 checksum file.
   - Bundles the W08 wide-field star database and the iOS CLI engine resource. The UI can pick files, show bundled resources, and copy a CLI command example; the solver still needs to be converted into an in-process library interface.
-- [iOS core MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP/actions/runs/25935550796/artifacts/7024333782)
+- [iOS core MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP-zh/actions/runs/25935550796/artifacts/7024333782)
   - Includes `ASTAP-zh-iOS-core-mvp.ipa`, a SHA256 checksum file, and an unpack manifest. The artifact is about 195 MB. This build serializes ASTAP core calls to avoid crashes caused by concurrent solve requests.
   - This is an iOS MVP prototype with the ASTAP core connected: the UIKit app calls the Pascal solver core through a C ABI bridge and supports file picking, FITS parsing, image preview, header/table views, solve parameters, logs, and result display.
   - The workflow downloads and bundles the D05/G05 star databases from the official SourceForge package source; these large database files are not committed to this repository.
 
-These are direct GitHub Actions artifact links. They may require a GitHub login
-and are subject to GitHub's artifact retention policy. For public long-term
-distribution, GitHub Releases are recommended; the same `.zip`, `.pkg`, and
-Windows zip assets can then be attached to a release.
+Windows links are GitHub Release asset links and are suitable for long-term
+public distribution. The macOS and iOS links are still direct GitHub Actions
+artifact links; they may require a GitHub login and are subject to GitHub's
+artifact retention policy.
 
 #### Official Package Layout Reference
 
