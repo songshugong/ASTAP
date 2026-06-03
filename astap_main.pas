@@ -13795,6 +13795,49 @@ begin
 end;
 
 
+function CliBilingualText(const english_text, chinese_text: string): string;
+begin
+  if chinese_text='' then
+    result:=english_text
+  else
+  if pos(chinese_text,english_text)>0 then
+    result:=english_text
+  else
+    result:=english_text+' / '+chinese_text;
+end;
+
+
+function CliErrorText(error_code: integer): string;
+begin
+  case error_code of
+     2: result:=CliBilingualText('Not enough stars.','检测到的星点不足。');
+    16: result:=CliBilingualText('Error reading image file.','读取图像文件出错。');
+    32: result:=CliBilingualText('No star database found.','未找到星表数据库。');
+    33: result:=CliBilingualText('Error reading star database.','读取星表数据库出错。');
+  else
+    result:='';
+  end;
+end;
+
+
+function CliWarningText(const warning_text: string): string;
+begin
+  result:=warning_text;
+  result:=StringReplace(result,'Not enough memory for binning!',
+                        CliBilingualText('Not enough memory for binning!','内存不足，无法进行像素合并。'),[rfReplaceAll]);
+  result:=StringReplace(result,'Not enough memory!',
+                        CliBilingualText('Not enough memory!','内存不足。'),[rfReplaceAll]);
+  result:=StringReplace(result,'Very large FOV, use W08 database!',
+                        CliBilingualText('Very large FOV, use W08 database!','视场非常大，请使用 W08 星表数据库。'),[rfReplaceAll]);
+  result:=StringReplace(result,'Large FOV, use G05 (or V05) database!',
+                        CliBilingualText('Large FOV, use G05 (or V05) database!','视场较大，请使用 G05（或 V05）星表数据库。'),[rfReplaceAll]);
+  result:=StringReplace(result,'Warning inexact scale!',
+                        CliBilingualText('Warning inexact scale!','警告：图像比例不准确，请参考后续 FOV/scale/FL 数值。'),[rfReplaceAll]);
+  result:=StringReplace(result,'Warning, increase downsampling!!',
+                        CliBilingualText('Warning, increase downsampling!!','警告：请增大降采样。'),[rfReplaceAll]);
+end;
+
+
 procedure write_ini(filen:string; solution:boolean);{write solution to ini file}
 var
    f: text;
@@ -13828,14 +13871,8 @@ begin
   end;
   writeln(f,'CMDLINE='+cmdline);{write the original commmand line}
   writeln(f,'DIMENSIONS='+inttostr(head.width)+' x '+inttostr(head.height));//write image dimensions
-
-  Case errorlevel of
-             2: writeln(f,'ERROR=Not enough stars.');
-            16: writeln(f,'ERROR=Error reading image file.');
-            32: writeln(f,'ERROR=No star database found.');
-            33: writeln(f,'ERROR=Error reading star database.');
-  end;
-  if warning_str<>'' then writeln(f,'WARNING='+warning_str);
+  if CliErrorText(errorlevel)<>'' then writeln(f,'ERROR='+CliErrorText(errorlevel));
+  if warning_str<>'' then writeln(f,'WARNING='+CliWarningText(warning_str));
   closefile(f);
 end;
 
