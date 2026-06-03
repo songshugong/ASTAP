@@ -107,15 +107,15 @@ jobs:
           Copy-Item "acknowledgement of databases.txt" $packageRoot -ErrorAction SilentlyContinue
 
           @"
-          ASTAP-zh is an unofficial Simplified Chinese localization build of ASTAP.
+          ASTAP 简体中文本地化构建
 
-          This package is based on the official ASTAP Windows installer contents.
-          The main astap.exe is replaced by the localized build, and Lazarus .po
-          language resources are added under languages\zh_CN.
+          此安装包基于官方 ASTAP Windows 安装内容制作，保留官方目录结构和文件名。
+          主程序 astap.exe 已替换为简体中文本地化构建，并加入
+          languages\zh_CN\astap.po 语言资源。
 
-          Original ASTAP project: https://www.hnsky.org/astap.htm
-          Source code for this fork: https://github.com/songshugong/ASTAP
-          License: MPL-2.0
+          原始 ASTAP 项目：https://www.hnsky.org/astap.htm
+          本地化源码：https://github.com/songshugong/ASTAP-zh
+          许可证：MPL-2.0
           "@ | Set-Content (Join-Path $packageRoot "ASTAP-zh_README.txt") -Encoding UTF8
 
           Compress-Archive -Path "$packageRoot\*" -DestinationPath (Join-Path $dist "astap_zh.zip") -Force
@@ -124,16 +124,16 @@ jobs:
           $packageRootForInno = (Resolve-Path $packageRoot).Path
           @"
           [Setup]
-          AppName=ASTAP-zh, the Astrometric STAcking Program
-          AppVerName=ASTAP-zh 2026.05.31
+          AppName=ASTAP
+          AppVerName=ASTAP 2026.05.31
           AppId=ASTAP-zh
-          AppPublisher=Han Kleijn and ASTAP-zh contributors
+          AppPublisher=Han Kleijn 与 ASTAP-zh 贡献者
           AppPublisherURL=https://www.hnsky.org
-          AppSupportURL=https://github.com/songshugong/ASTAP
-          AppUpdatesURL=https://github.com/songshugong/ASTAP
+          AppSupportURL=https://github.com/songshugong/ASTAP-zh
+          AppUpdatesURL=https://github.com/songshugong/ASTAP-zh
           DefaultDirName={pf}\astap
           UsePreviousAppDir=yes
-          DefaultGroupName=ASTAP-zh
+          DefaultGroupName=ASTAP
           AllowNoIcons=yes
           OutputDir=$((Resolve-Path $dist).Path)
           OutputBaseFilename=astap_zh_setup
@@ -142,18 +142,21 @@ jobs:
           ArchitecturesInstallIn64BitMode=x64
           InfoAfterFile=$packageRootForInno\ASTAP-zh_README.txt
 
+          [Languages]
+          Name: "chinesesimplified"; MessagesFile: "compiler:Languages\ChineseSimplified.isl"
+
           [Tasks]
-          Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4
+          Name: "desktopicon"; Description: "创建桌面快捷方式"; GroupDescription: "附加图标："; MinVersion: 4,4
 
           [Files]
           Source: "$packageRootForInno\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
           [Icons]
-          Name: "{group}\ASTAP-zh"; Filename: "{app}\astap.exe"; WorkingDir: "{app}"
-          Name: "{userdesktop}\ASTAP-zh"; Filename: "{app}\astap.exe"; MinVersion: 4,4; Tasks: desktopicon; WorkingDir: "{app}"
+          Name: "{group}\ASTAP"; Filename: "{app}\astap.exe"; WorkingDir: "{app}"
+          Name: "{userdesktop}\ASTAP"; Filename: "{app}\astap.exe"; MinVersion: 4,4; Tasks: desktopicon; WorkingDir: "{app}"
 
           [Run]
-          Filename: "{app}\astap.exe"; Description: "Launch ASTAP-zh"; Flags: nowait postinstall skipifsilent
+          Filename: "{app}\astap.exe"; Description: "启动 ASTAP"; Flags: nowait postinstall skipifsilent
           "@ | Set-Content $issPath -Encoding UTF8
 
           $isccCandidates = @(
