@@ -55,8 +55,10 @@ Follow the author's instructions [Here](https://www.hnsky.org/astap#installation
 - [macOS 官方风格构建产物 ASTAP-zh-macos](https://github.com/songshugong/ASTAP-zh/actions/runs/26894924289/artifacts/7389257102)
   - 包含 `astap_zh_M1.pkg`、`astap_zh_macOS_M1.zip`、SHA256 校验文件。
   - 基于官方 `astap_M1.pkg`，替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
-- [Windows 官方风格构建产物 ASTAP-zh-windows](https://github.com/songshugong/ASTAP-zh/actions/runs/26900409603/artifacts/7391484705)
-  - 包含 `astap_zh_setup.exe`、`astap_zh.zip`、SHA256 校验文件。
+- Windows 官方风格构建产物 ASTAP-zh-windows：
+  - [astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh_setup.exe)
+  - [astap_zh.zip](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh.zip)
+  - [astap_zh_windows.sha256](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh_windows.sha256)
   - 基于官方 `astap_setup.exe` 静默安装后的文件结构，替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
 - [iOS 实验性命令行构建产物 ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP-zh/actions/runs/25917201535/artifacts/7016844767)
   - 包含 `astap_command-line_version_iOS_aarch64.zip` 和 SHA256 校验文件。
@@ -115,8 +117,10 @@ The current localized builds are based on ASTAP `2026.04.21`.
 - [macOS official-style artifact ASTAP-zh-macos](https://github.com/songshugong/ASTAP-zh/actions/runs/26894924289/artifacts/7389257102)
   - Includes `astap_zh_M1.pkg`, `astap_zh_macOS_M1.zip`, and a SHA256 checksum file.
   - Based on the official `astap_M1.pkg`; the main executable is replaced with the localized build and `languages/zh_CN/astap.po` is added.
-- [Windows official-style artifact ASTAP-zh-windows](https://github.com/songshugong/ASTAP-zh/actions/runs/26900409603/artifacts/7391484705)
-  - Includes `astap_zh_setup.exe`, `astap_zh.zip`, and a SHA256 checksum file.
+- Windows official-style artifact ASTAP-zh-windows:
+  - [astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh_setup.exe)
+  - [astap_zh.zip](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh.zip)
+  - [astap_zh_windows.sha256](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.1/astap_zh_windows.sha256)
   - Based on the file layout produced by the official `astap_setup.exe`; the main executable is replaced with the localized build and `languages/zh_CN/astap.po` is added.
 - [iOS experimental CLI artifact ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP-zh/actions/runs/25917201535/artifacts/7016844767)
   - Includes `astap_command-line_version_iOS_aarch64.zip` and a SHA256 checksum file.
