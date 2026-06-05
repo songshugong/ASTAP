@@ -131,8 +131,9 @@ jobs:
           AppPublisherURL=https://www.hnsky.org
           AppSupportURL=https://github.com/songshugong/ASTAP-zh
           AppUpdatesURL=https://github.com/songshugong/ASTAP-zh
-          DefaultDirName={pf}\astap
-          UsePreviousAppDir=yes
+          DefaultDirName={autopf}\astap
+          UsePreviousAppDir=no
+          PrivilegesRequired=admin
           DefaultGroupName=ASTAP
           AllowNoIcons=yes
           OutputDir=$((Resolve-Path $dist).Path)
