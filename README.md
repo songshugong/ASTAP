@@ -60,6 +60,7 @@ Follow the author's instructions [Here](https://www.hnsky.org/astap#installation
   - [astap_zh.zip](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh.zip)
   - [astap_zh_windows.sha256](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_windows.sha256)
   - 基于官方 `astap_setup.exe` 静默安装后的文件结构，替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
+  - 安装器保持官方目录和 `astap.exe` 文件名；安装到已有官方目录时只强制更新主程序、语言资源和说明文件，其他官方运行文件仅在缺失时补齐。
 - [iOS 实验性命令行构建产物 ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP-zh/actions/runs/25917201535/artifacts/7016844767)
   - 包含 `astap_command-line_version_iOS_aarch64.zip` 和 SHA256 校验文件。
   - 这是 iOS aarch64 命令行 solver，不是图形化 iPhone/iPad App，也未做 App Store 签名。
@@ -122,6 +123,7 @@ The current localized builds are based on ASTAP `2026.04.21`.
   - [astap_zh.zip](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh.zip)
   - [astap_zh_windows.sha256](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_windows.sha256)
   - Based on the file layout produced by the official `astap_setup.exe`; the main executable is replaced with the localized build and `languages/zh_CN/astap.po` is added.
+  - The installer keeps the official directory layout and `astap.exe` filename. When installed into an existing official directory, it forcibly updates only the main executable, language resources, and README; other official runtime files are copied only when missing.
 - [iOS experimental CLI artifact ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP-zh/actions/runs/25917201535/artifacts/7016844767)
   - Includes `astap_command-line_version_iOS_aarch64.zip` and a SHA256 checksum file.
   - This is an iOS aarch64 command-line solver, not a graphical iPhone/iPad app, and it is not signed for App Store distribution.

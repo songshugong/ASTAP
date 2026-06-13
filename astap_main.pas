@@ -13831,10 +13831,18 @@ begin
                         CliBilingualText('Very large FOV, use W08 database!','视场非常大，请使用 W08 星表数据库。'),[rfReplaceAll]);
   result:=StringReplace(result,'Large FOV, use G05 (or V05) database!',
                         CliBilingualText('Large FOV, use G05 (or V05) database!','视场较大，请使用 G05（或 V05）星表数据库。'),[rfReplaceAll]);
+  result:=StringReplace(result,'Warning scale was inaccurate!',
+                        CliBilingualText('Warning scale was inaccurate!','警告：图像比例不准确，请参考后续 FOV/scale/FL 数值。'),[rfReplaceAll]);
   result:=StringReplace(result,'Warning inexact scale!',
                         CliBilingualText('Warning inexact scale!','警告：图像比例不准确，请参考后续 FOV/scale/FL 数值。'),[rfReplaceAll]);
+  result:=StringReplace(result,'Warning, remaining image dimensions too low!',
+                        CliBilingualText('Warning, remaining image dimensions too low!','警告：剩余图像尺寸过低，请降低或取消降采样。'),[rfReplaceAll]);
   result:=StringReplace(result,'Warning, increase downsampling!!',
                         CliBilingualText('Warning, increase downsampling!!','警告：请增大降采样。'),[rfReplaceAll]);
+  result:=StringReplace(result,'Warning, small image dimensions!',
+                        CliBilingualText('Warning, small image dimensions!','警告：图像尺寸较小。'),[rfReplaceAll]);
+  result:=StringReplace(result,'Old database!',
+                        CliBilingualText('Old database!','星表数据库版本较旧。'),[rfReplaceAll]);
 end;
 
 

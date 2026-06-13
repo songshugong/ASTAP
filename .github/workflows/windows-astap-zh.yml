@@ -101,6 +101,8 @@ jobs:
           }
 
           Copy-Item (Join-Path $officialInstall "*") $packageRoot -Recurse -Force
+          Get-ChildItem $packageRoot -Filter "unins*.*" -File -ErrorAction SilentlyContinue |
+            Remove-Item -Force
           Copy-Item "astap.exe" (Join-Path $packageRoot "astap.exe") -Force
           Copy-Item "languages" (Join-Path $packageRoot "languages") -Recurse -Force
           Copy-Item "copyright.txt" $packageRoot -ErrorAction SilentlyContinue
@@ -109,9 +111,15 @@ jobs:
           @"
           ASTAP 简体中文本地化构建
 
-          此安装包基于官方 ASTAP Windows 安装内容制作，保留官方目录结构和文件名。
-          主程序 astap.exe 已替换为简体中文本地化构建，并加入
-          languages\zh_CN\astap.po 语言资源。
+          此安装包基于官方 ASTAP Windows 安装内容制作，保留官方目录结构、主程序文件名
+          astap.exe 和常见联动方式。
+
+          如果安装到已有官方 ASTAP 目录，本安装包会优先作为最小替换包使用：
+          更新 astap.exe、languages\zh_CN\astap.po 和本说明文件，其他官方运行文件仅在缺失
+          时补齐，避免覆盖用户已有的官方辅助程序、数据文件和卸载记录。
+
+          如果系统中尚未安装 ASTAP，本安装包会补齐官方 Windows 运行文件，作为完整汉化版
+          安装使用。
 
           原始 ASTAP 项目：https://www.hnsky.org/astap.htm
           本地化源码：https://github.com/songshugong/ASTAP-zh
@@ -132,6 +140,7 @@ jobs:
           AppSupportURL=https://github.com/songshugong/ASTAP-zh
           AppUpdatesURL=https://github.com/songshugong/ASTAP-zh
           DefaultDirName={autopf}\astap
+          UninstallFilesDir={commonappdata}\ASTAP-zh\uninstall
           UsePreviousAppDir=no
           PrivilegesRequired=admin
           DefaultGroupName=ASTAP
@@ -150,7 +159,10 @@ jobs:
           Name: "desktopicon"; Description: "创建桌面快捷方式"; GroupDescription: "附加图标："; MinVersion: 4,4
 
           [Files]
-          Source: "$packageRootForInno\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+          Source: "$packageRootForInno\astap.exe"; DestDir: "{app}"; Flags: ignoreversion
+          Source: "$packageRootForInno\ASTAP-zh_README.txt"; DestDir: "{app}"; Flags: ignoreversion
+          Source: "$packageRootForInno\languages\*"; DestDir: "{app}\languages"; Flags: ignoreversion recursesubdirs createallsubdirs
+          Source: "$packageRootForInno\*"; DestDir: "{app}"; Excludes: "astap.exe,ASTAP-zh_README.txt,languages\*,unins*.*"; Flags: ignoreversion recursesubdirs createallsubdirs onlyifdoesntexist
 
           [Icons]
           Name: "{group}\ASTAP"; Filename: "{app}\astap.exe"; WorkingDir: "{app}"
@@ -158,6 +170,55 @@ jobs:
 
           [Run]
           Filename: "{app}\astap.exe"; Description: "启动 ASTAP"; Flags: nowait postinstall skipifsilent
+
+          [Code]
+          function LooksLikeAstapDir(Dir: String): Boolean;
+          begin
+            Result := FileExists(AddBackslash(Dir) + 'astap.exe');
+          end;
+
+          procedure UseDirIfAstap(Dir: String; var Found: Boolean);
+          begin
+            if (not Found) and (Dir <> '') and LooksLikeAstapDir(Dir) then
+            begin
+              WizardForm.DirEdit.Text := Dir;
+              Found := True;
+            end;
+          end;
+
+          procedure FindAstapInUninstallRoot(RootKey: Integer; var Found: Boolean);
+          var
+            Names: TArrayOfString;
+            I: Integer;
+            DisplayName: String;
+            InstallLocation: String;
+            Key: String;
+          begin
+            if Found then Exit;
+            if not RegGetSubkeyNames(RootKey, 'Software\Microsoft\Windows\CurrentVersion\Uninstall', Names) then Exit;
+
+            for I := 0 to GetArrayLength(Names) - 1 do
+            begin
+              if Found then Exit;
+              Key := 'Software\Microsoft\Windows\CurrentVersion\Uninstall\' + Names[I];
+              if RegQueryStringValue(RootKey, Key, 'DisplayName', DisplayName) and
+                 (Pos('ASTAP', UpperCase(DisplayName)) > 0) and
+                 RegQueryStringValue(RootKey, Key, 'InstallLocation', InstallLocation) then
+                UseDirIfAstap(InstallLocation, Found);
+            end;
+          end;
+
+          procedure InitializeWizard();
+          var
+            Found: Boolean;
+          begin
+            Found := False;
+            FindAstapInUninstallRoot(HKLM32, Found);
+            FindAstapInUninstallRoot(HKLM64, Found);
+            FindAstapInUninstallRoot(HKLM, Found);
+            FindAstapInUninstallRoot(HKCU, Found);
+            UseDirIfAstap(ExpandConstant('{autopf}\astap'), Found);
+          end;
           "@ | Set-Content $issPath -Encoding UTF8
 
           $isccCandidates = @(

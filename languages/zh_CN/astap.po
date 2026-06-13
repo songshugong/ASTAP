@@ -433,7 +433,7 @@ msgid "Remove green and purple filter"
 msgstr "移除绿色和紫色偏色"
 
 msgid "Balances RGB to remove green and purple."
-msgstr "B平衡RGB去除绿色和紫色。"
+msgstr "平衡 RGB，去除绿色和紫色偏色。"
 
 msgid "Inverse image"
 msgstr "反相图像"
@@ -457,7 +457,7 @@ msgid "Bin 2x2"
 msgstr "2x2 合并像素"
 
 msgid "Bin the image 2x2"
-msgstr "B在图像 2x2 中"
+msgstr "将图像进行 2x2 像素合并"
 
 msgid "Bin 3x3"
 msgstr "3x3 合并像素"
@@ -811,13 +811,13 @@ msgid "Browser query (▭) (Simbad)"
 msgstr "浏览器查询 (▭) (Simbad)"
 
 msgid "Retrieve online info of the select area in the default browser.  To select an area, first hold the right mouse down and pull a rectangle."
-msgstr "R在默认浏览器中获取所选区域的在线信息。 要选择一个区域，首先按住鼠标右键并拉出一个矩形。"
+msgstr "在默认浏览器中获取所选区域的在线信息。要选择一个区域，请先按住鼠标右键并拉出一个矩形。"
 
 msgid "Browser query (▭) (HyperLeda)"
 msgstr "浏览器查询 (▭) (HyperLeda)"
 
 msgid "Retrieve online info of the select area in the default browser. To select an area, first hold the right mouse down and pull a rectangle."
-msgstr "R在默认浏览器中获取所选区域的在线信息。要选择一个区域，首先按住鼠标右键并拉出一个矩形。"
+msgstr "在默认浏览器中获取所选区域的在线信息。要选择一个区域，请先按住鼠标右键并拉出一个矩形。"
 
 msgid "Browser query (▭) (Ned)"
 msgstr "浏览器查询 (▭) (Ned)"
@@ -832,7 +832,7 @@ msgid "AAVSO, browser chart request (▭)"
 msgstr "AAVSO 浏览器星图请求 (▭)"
 
 msgid "Retrieve an AAVSO chart"
-msgstr "R获取AAVSO图表"
+msgstr "获取 AAVSO 星图"
 
 msgid "Local adjustments"
 msgstr "局部调整"
@@ -856,7 +856,7 @@ msgid "Gradient removal tool (▭)"
 msgstr "渐变去除工具 (▭)"
 
 msgid "Remove the light pollution gradient in whole image based on two positions. The greater the distance the better it works."
-msgstr "R基于两个位置去除整个图像的光污染梯度。距离越远，效果越好。"
+msgstr "根据两个位置去除整幅图像的光污染梯度。距离越远，效果越好。"
 
 msgid "Dark dust spot removal (▭)"
 msgstr "暗尘斑去除 (▭)"
@@ -1724,7 +1724,7 @@ msgid "G_out"
 msgstr "G_out"
 
 msgid "Blue signal"
-msgstr "B蓝色信号"
+msgstr "蓝色信号"
 
 msgid "B_out"
 msgstr "B_out"
@@ -2044,7 +2044,7 @@ msgid "Refresh existing asteroid annotations"
 msgstr "刷新现有小行星标注"
 
 msgid "Blinking tool for astronomical images."
-msgstr "B天文图像链接工具。"
+msgstr "天文图像闪烁检查工具。"
 
 msgid "Blink"
 msgstr "闪烁对比"
@@ -2059,7 +2059,7 @@ msgid "Clear image list"
 msgstr "清空图像列表"
 
 msgid "Blink check-marked images once. For single step blink use CTRL+UP/DOWN arrows."
-msgstr "B链接一次选中的图像。对于单步闪烁，请使用 CTRL+UP/DOWN 箭头。"
+msgstr "将勾选的图像闪烁显示一次。单步闪烁请使用 CTRL+UP/DOWN 箭头。"
 
 msgid "Stop blinking"
 msgstr "停止闪烁比对"
@@ -2490,10 +2490,10 @@ msgid "Set target"
 msgstr "设置目标"
 
 msgid "Right ascension correction required to reach target."
-msgstr "R达到目标所需的飞行高度校正。"
+msgstr "到达目标所需的赤经修正。"
 
 msgid "Declination correction required to reach target."
-msgstr "需要进行磁偏角修正才能达到目标。"
+msgstr "到达目标所需的赤纬修正。"
 
 msgid "Target distance"
 msgstr "目标距离"
@@ -2547,7 +2547,7 @@ msgid "Levels for neutral background and white stars"
 msgstr "中性背景和白色恒星的级别"
 
 msgid "Reset the add and multiply factors"
-msgstr "R设置加法和乘法因子"
+msgstr "重置加法和乘法因子"
 
 msgid "Reset"
 msgstr "重置"
@@ -2778,7 +2778,7 @@ msgid "Amount:"
 msgstr "数量:"
 
 msgid "Radius of the Gaussian blur"
-msgstr "R高斯模糊半径"
+msgstr "高斯模糊半径"
 
 msgid "Radius:"
 msgstr "半径:"
@@ -2846,7 +2846,7 @@ msgid "Typical value 500"
 msgstr "典型值 500"
 
 msgid "Background value"
-msgstr "B背景值"
+msgstr "背景值"
 
 msgid "Typical value 5 to 20."
 msgstr "典型值 5 至 20。"
@@ -3374,7 +3374,7 @@ msgid "Change directory"
 msgstr "更改目录"
 
 msgid "Browse to a different location"
-msgstr "B行至不同位置"
+msgstr "浏览到其他位置"
 
 msgid "ASTAP transformation"
 msgstr "ASTAP 转换"
