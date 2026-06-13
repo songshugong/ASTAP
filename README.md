@@ -158,36 +158,49 @@ Windows workflow 会下载官方 Windows installer，静默安装到临时目录
 
 ASTAP is licensed under MPL-2.0. This fork keeps the original license and copyright notices. Source modifications are published in this repository under the same license.
 
-## English Summary
+## 上游官方 README
 
-ASTAP-zh is an unofficial Simplified Chinese localization fork of ASTAP. It preserves the upstream ASTAP source layout, file names, command-line protocol, and external integration behavior while adding Chinese UI resources and official-style packaging workflows.
+以下内容保留自上游 ASTAP README，方便对照官方项目定位、功能和安装入口。
 
-The Windows build keeps the official `astap.exe` name so programs such as NINA, APT, Voyager, CCDCiel, and SGP can continue using the same solver path. Machine-readable result keys such as `PLTSOLVD`, `ERROR`, `WARNING`, `CRPIX`, `CRVAL`, and `CD*` are intentionally kept in English. User-visible `ERROR=` and `WARNING=` values may include bilingual explanations for better readability in external program dialogs.
+# ASTAP - A Free Stacking and Astrometric Solver
 
-Current builds are based on ASTAP `2026.04.21`.
+[![License](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](https://opensource.org/licenses/MPL-2.0)
+[![Mirror](https://img.shields.io/badge/Mirror-SourceForge-blue?color=red)](https://sourceforge.net/p/astap-program/code/)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/CanardConfit/ASTAP)
 
-### Downloads
+> **Important Note** : This repository is a mirror of the original SourceForge project. Visit the SourceForge project page [here](https://sourceforge.net/p/astap-program/code/).
 
-Downloads are split into GitHub Actions artifacts and Release assets. Actions artifacts are useful for recent builds, but may require a GitHub login and expire. Release assets are better for long-term public downloads.
+**ASTAP** is a free stacking and astrometric solver program for deep sky images. It is written in Object Pascal and compiled with the Free Pascal Compiler using Lazarus, the open-source cross-platform IDE.
 
-- [macOS official-style artifact ASTAP-zh-macos](https://github.com/songshugong/ASTAP-zh/actions/runs/27018664085/artifacts/7438297186)
-  - Includes `astap_zh_M1.pkg`, `astap_zh_macOS_M1.zip`, and a SHA256 checksum file.
-  - Based on the official `astap_M1.pkg`; the main executable is replaced with the localized build and `languages/zh_CN/astap.po` is added.
-- [Latest Windows Actions artifact ASTAP-zh-windows](https://github.com/songshugong/ASTAP-zh/actions/runs/27456855333/artifacts/7607467470)
-  - Includes `astap_zh_setup.exe`, `astap_zh.zip`, and `astap_zh_windows.sha256`.
-  - Includes bilingual ASTAP `.ini` error/warning text for NINA and external program dialogs, plus the optimized official-directory overlay behavior.
-- Windows Release assets:
-  - [astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_setup.exe)
-  - [astap_zh.zip](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh.zip)
-  - [astap_zh_windows.sha256](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_windows.sha256)
-  - These are the current stable assets on the Release page for users who do not want to use Actions artifacts.
-- [iOS experimental CLI artifact ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP-zh/actions/runs/25917201535/artifacts/7016844767)
-  - Includes `astap_command-line_version_iOS_aarch64.zip` and a SHA256 checksum file.
-  - This is an iOS aarch64 command-line solver, not a graphical iPhone/iPad app, and it is not signed for App Store distribution.
-- [iOS graphical prototype IPA ASTAP-zh-iOS-prototype-ipa](https://github.com/songshugong/ASTAP-zh/actions/runs/25922202510/artifacts/7018905732)
-  - Includes `ASTAP-zh-iOS-prototype.ipa` and a SHA256 checksum file.
-  - Bundles the W08 wide-field star database and the iOS CLI engine resource. The UI can pick files, show bundled resources, and copy a CLI command example; the solver still needs to be converted into an in-process library interface.
-- [iOS core MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP-zh/actions/runs/25935550796/artifacts/7024333782)
-  - Includes `ASTAP-zh-iOS-core-mvp.ipa`, a SHA256 checksum file, and an unpack manifest. The artifact is about 195 MB. This build serializes ASTAP core calls to avoid crashes caused by concurrent solve requests.
-  - This is an iOS MVP prototype with the ASTAP core connected: the UIKit app calls the Pascal solver core through a C ABI bridge and supports file picking, FITS parsing, image preview, header/table views, solve parameters, logs, and result display.
-  - The workflow downloads and bundles the D05/G05 star databases from the official SourceForge package source; these large database files are not committed to this repository.
+## ASTAP Introduction
+
+ASTAP is designed to work with astronomical images in the FITS format but can also import RAW DSLR images, XISF, PGM, PPM, TIF, PNG, and JPG images. Its native astrometric solver can be integrated with imaging programs like CCDCiel, NINA, APT, Voyager, or SGP for mount synchronization.
+
+### Features
+
+- Native astrometric solver, command-line compatible with PlateSolve2.
+- Stacking astronomical images with dark frame and flat field correction.
+- Filtering of deep sky images based on HFD value and average value.
+- Alignment using an internal star match routine and internal astrometric solver.
+- Mosaic building covering large areas using the astrometric linear solution WCS or WCS+SIP polynomial.
+- Background equalizing.
+- FITS viewer with swipe functionality, deep sky, and star annotation, photometry, and CCD inspector.
+- FITS thumbnail viewer.
+- Export to JPEG, PNG, TIFF (ASTRO-TIFF), PFM, PPM, PGM files.
+- FITS header edit.
+- FITS crop function.
+- Automatic photometry calibration against Gaia database, Johnson -V, or Gaia Bm.
+- CCD inspector.
+- Deepsky and Hyperleda annotation.
+- Solar object annotation using MPC ephemerides.
+- Read/writes FITS binary and reads ASCII tables.
+- Pixel math functions and digital development process.
+- Display images and tables from a multi-extension FITS.
+- Blink routine.
+- Photometry routine.
+
+For more informations, follow the author's website: https://www.hnsky.org/astap
+
+### Installation
+
+Follow the author's instructions [Here](https://www.hnsky.org/astap#installation).
