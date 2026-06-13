@@ -1,3 +1,167 @@
+# ASTAP-zh
+
+[![License](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](https://opensource.org/licenses/MPL-2.0)
+[![Mirror](https://img.shields.io/badge/Mirror-SourceForge-blue?color=red)](https://sourceforge.net/p/astap-program/code/)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/CanardConfit/ASTAP)
+
+ASTAP-zh 是 ASTAP 的非官方简体中文本地化 fork。项目保留上游 ASTAP 的源码结构、主程序文件名、命令行协议和外部软件调用方式，在此基础上补充中文界面资源、Windows/macOS 打包流程，以及少量面向外部程序集成的双语提示。
+
+本仓库基于公开的 ASTAP 源码镜像。ASTAP 原项目和官方发布仍由 Han Kleijn 维护：
+
+- 原始 SourceForge 项目：https://sourceforge.net/p/astap-program/code/
+- ASTAP 官方网站：https://www.hnsky.org/astap
+- 官方安装说明：https://www.hnsky.org/astap#installation
+
+当前汉化构建基于 ASTAP `2026.04.21`。
+
+## 项目概览
+
+ASTAP 是一个面向天文图像的免费叠加、测光、FITS 浏览和天文解析程序。它使用 Object Pascal 编写，通过 Free Pascal Compiler 和 Lazarus 构建。ASTAP 的内置 plate solver 可以被 NINA、APT、Voyager、CCDCiel、SGP 等拍摄软件调用，用于解析图像、同步赤道仪或辅助构图。
+
+ASTAP-zh 的目标不是重做 ASTAP，也不是改动其天文算法。这个 fork 主要做三件事：
+
+- 提供简体中文界面资源，覆盖菜单、按钮、提示、常见弹窗和部分动态文本。
+- 保留官方目录结构、主程序文件名和外部软件调用方式，尽量避免用户重新配置 NINA 等软件。
+- 生成接近官方安装习惯的 Windows/macOS 构建产物，同时保留若干 iOS 实验性验证分支。
+
+## 汉化范围
+
+目前汉化主要来自 Lazarus `.po` 语言资源，以及少量运行时文本映射。已经覆盖的内容包括：
+
+- 主界面菜单、工具栏、右键菜单和常见对话框。
+- 多数静态提示文本和部分长提示语。
+- Windows 构建中的 `languages/zh_CN/astap.po`。
+- NINA 等外部程序可能显示的 ASTAP 命令行 `.ini` 错误和警告说明。
+
+仍然会保留英文的内容包括：
+
+- FITS 标准关键字，例如 `NAXIS`、`BITPIX`、`BAYERPAT`、`CRPIX`、`CRVAL`。
+- 外部程序集成用字段，例如 `PLTSOLVD`、`ERROR`、`WARNING`。
+- 数据库名、滤镜名、通道名、坐标缩写和部分专业术语。
+- 上游日志、第三方字符串、星表字段和用户常按英文教程识别的内容。
+
+保留这些英文不是遗漏，而是为了避免破坏 FITS、命令行输出、外部软件解析和教程对应关系。
+
+## NINA 和外部软件兼容性
+
+NINA 调用 ASTAP 时主要运行 `astap.exe`，然后读取同名 `.ini` 结果文件。NINA 解析的是固定键名，例如：
+
+- `PLTSOLVD=T/F`
+- `ERROR=...`
+- `WARNING=...`
+- `CRPIX1`、`CRPIX2`、`CRVAL1`、`CRVAL2`
+- `CD1_1`、`CD1_2`、`CD2_1`、`CD2_2`
+
+因此 ASTAP-zh 不翻译这些键名，只在 `ERROR=` 和 `WARNING=` 后面的用户可见内容中保留英文原文并追加中文说明。例如：
+
+- `ERROR=No star database found. / 未找到星表数据库。`
+- `WARNING=Warning scale was inaccurate! / 警告：图像比例不准确，请参考后续 FOV/scale/FL 数值。`
+
+这样 NINA 的解析逻辑仍按官方 ASTAP 的格式工作，弹窗里也能看到中文原因说明。
+
+## Windows 构建逻辑
+
+Windows 版本的目标是同时具备“补丁”和“独立安装包”两种特性：
+
+- 如果用户已经安装官方 ASTAP，安装器会尽量复用官方目录和 `astap.exe` 文件名。
+- 安装到已有官方目录时，强制更新主程序、语言资源和说明文件。
+- 其他官方运行文件只在缺失时补齐，避免覆盖用户已有的辅助文件、数据文件和官方卸载记录。
+- 如果系统里没有 ASTAP，安装包也可以作为完整汉化版安装使用。
+- 便携 zip 保留官方运行所需文件，适合解压后直接运行。
+
+这套逻辑是为了减少 NINA、APT、Voyager 等软件重新指定 solver 路径的需求。
+
+## 下载
+
+当前可用下载分为两类：Actions artifact 适合获取最近构建，可能需要登录 GitHub 且会过期；Release asset 更适合长期下载。
+
+- [macOS 官方风格构建产物 ASTAP-zh-macos](https://github.com/songshugong/ASTAP-zh/actions/runs/27018664085/artifacts/7438297186)
+  - 包含 `astap_zh_M1.pkg`、`astap_zh_macOS_M1.zip`、SHA256 校验文件。
+  - 基于官方 `astap_M1.pkg`，替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
+- [Windows 最新 Actions 构建产物 ASTAP-zh-windows](https://github.com/songshugong/ASTAP-zh/actions/runs/27456855333/artifacts/7607467470)
+  - 包含 `astap_zh_setup.exe`、`astap_zh.zip`、`astap_zh_windows.sha256`。
+  - 包含 NINA/外部程序 `.ini` 错误和警告说明的双语处理，以及优化后的官方目录覆盖逻辑。
+- Windows Release 长期下载：
+  - [astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_setup.exe)
+  - [astap_zh.zip](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh.zip)
+  - [astap_zh_windows.sha256](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_windows.sha256)
+  - 这是当前 Release 页面中的稳定资产，适合不想使用 Actions artifact 的用户。
+- [iOS 实验性命令行构建产物 ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP-zh/actions/runs/25917201535/artifacts/7016844767)
+  - 包含 `astap_command-line_version_iOS_aarch64.zip` 和 SHA256 校验文件。
+  - 这是 iOS aarch64 命令行 solver，不是图形化 iPhone/iPad App，也未做 App Store 签名。
+- [iOS 图形壳原型 IPA ASTAP-zh-iOS-prototype-ipa](https://github.com/songshugong/ASTAP-zh/actions/runs/25922202510/artifacts/7018905732)
+  - 包含 `ASTAP-zh-iOS-prototype.ipa` 和 SHA256 校验文件。
+  - 内置 W08 wide-field 星表和 iOS CLI 引擎资源，界面可选择文件、查看内置资源、复制 CLI 参数示例；求解核心仍需后续改造成同进程库接口。
+- [iOS 核心接入 MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP-zh/actions/runs/25935550796/artifacts/7024333782)
+  - 包含 `ASTAP-zh-iOS-core-mvp.ipa`、SHA256 校验文件和解包清单，artifact 约 195 MB；本版已串行化 ASTAP core 调用，避免重复点击并发求解导致崩溃。
+  - 这是核心已接入的 iOS MVP 原型：UIKit 图形界面通过 C ABI 调用 ASTAP Pascal 求解核心，支持文件选择、FITS 解析、图像预览、头信息/表格、求解参数、日志和结果页。
+  - 构建流程从官方 SourceForge 下载并内置 D05/G05 星表数据库；仓库不直接保存这些大文件。
+
+GitHub Actions artifact 链接可能需要登录 GitHub，并受 artifact 保留期限限制。长期公开分发建议使用 GitHub Releases。
+
+## 安装和使用
+
+Windows 用户通常可以直接使用 `astap_zh_setup.exe`。如果已经安装官方 ASTAP，可以选择官方安装目录进行覆盖式安装；安装器会保留 `astap.exe` 文件名，以便外部软件继续通过原路径调用。
+
+便携版 `astap_zh.zip` 适合不想写入安装记录的场景。解压后运行 `astap.exe` 即可。星表数据库、OpenSSL 组件和其他外部依赖仍按官方 ASTAP 说明配置。
+
+macOS 构建基于官方包结构，当前使用 ad-hoc 签名，没有 Apple notarization。首次运行可能需要在系统安全设置中手动允许。
+
+iOS 相关产物属于实验性验证，不是正式移动版 ASTAP，也不是 App Store 或 TestFlight 分发包。
+
+## 官方包结构参考
+
+官方当前公开包结构核对自 SourceForge：
+
+- Windows GUI：`astap_setup.exe` 64 位安装器，约 6.3 MB；`astapwin32.zip` 32 位便携包，约 5.7 MB。
+- Windows 命令行：`astap_command-line_version_win64.zip`、`win32.zip`、`win11_aarch64.zip`，约 275-331 kB。
+- macOS GUI：`astap_M1.pkg` Apple Silicon，约 4.0 MB；`astap.pkg` Intel x86_64，约 4.5 MB。
+- macOS 命令行：`astap_command-line_version_macOS_M1.zip`、`macOS_x86_64.zip`，约 1.3-1.4 MB。
+- Linux GUI：amd64、i386、aarch64、armhf，并按 deb、tar.gz、rpm、pkg.tar.zst、GTK/QT 变体分发，约 4.0-8.9 MB。
+- Android：只有命令行 solver，aarch64、armhf、x86、x86_64，约 330-338 kB。
+- iOS：源码里有命令行 `.lpi` 目标，但官网当前没有公开 iOS 下载包。
+
+本 fork 目前仿造并确认成功的下载内容是 Windows 64 位 GUI 安装器/便携 zip、macOS Apple Silicon GUI pkg/zip、实验性的 iOS aarch64 命令行 solver、iOS 图形壳原型 IPA，以及核心已接入的 iOS MVP IPA。
+
+## 构建工作流
+
+本地化构建主要由 GitHub Actions 生成：
+
+- Windows x64：`.github/workflows/windows-astap-zh.yml`
+- macOS：`.github/workflows/macos-astap-zh.yml`
+- iOS core MVP：`.github/workflows/ios-astap-app.yml`
+
+Windows workflow 会下载官方 Windows installer，静默安装到临时目录，然后以官方目录为底包替换本 fork 编译出的 `astap.exe` 和语言资源。macOS workflow 采用类似思路，从官方 macOS package 出发，保留官方 bundle 结构后替换主程序和语言资源。
+
+本机如果要完整构建 Windows 安装包，需要 Windows 环境、Lazarus/lazbuild 和 Inno Setup。只有 Free Pascal Compiler 时，可以编译部分命令行目标，但不能生成完整 Windows GUI 安装包。
+
+## 仓库结构
+
+主要目录和文件：
+
+- `astap_main.pas`、`*.lfm`、`*.lpi`：ASTAP GUI 主程序和 Lazarus 工程文件。
+- `languages/zh_CN/astap.po`：简体中文语言资源。
+- `command-line_version/`：ASTAP CLI 版本源码和工程文件。
+- `.github/workflows/`：Windows、macOS、iOS 构建工作流。
+- `ios_app/`：iOS 原型壳和核心接入 MVP 相关代码。
+- `WINDOWS_ZH_OPTIMIZATION.md`：Windows 汉化安装、覆盖逻辑和 NINA 兼容处理记录。
+
+## 限制
+
+- 这是非官方 fork，不代表 ASTAP 原作者或官方发布渠道。
+- 汉化仍在整理中，部分专业内容会保留英文。
+- 外部程序依赖的字段、文件名和命令行协议不会为了中文显示而改名。
+- iOS 产物为实验性原型，不保证可直接安装到普通设备。
+- 星表数据库等大文件通常不提交到仓库，仍从官方来源下载或由 workflow 获取。
+
+## License
+
+ASTAP is licensed under MPL-2.0. This fork keeps the original license and copyright notices. Source modifications are published in this repository under the same license.
+
+## 上游官方 README
+
+以下内容保留自上游 ASTAP README，方便对照官方项目定位、功能和安装入口。
+
 # ASTAP - A Free Stacking and Astrometric Solver
 
 [![License](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](https://opensource.org/licenses/MPL-2.0)
@@ -40,141 +204,3 @@ For more informations, follow the author's website: https://www.hnsky.org/astap
 ### Installation
 
 Follow the author's instructions [Here](https://www.hnsky.org/astap#installation).
-
-## ASTAP-zh Fork Builds
-
-### 简体中文
-
-这是 ASTAP 的非官方简体中文本地化 fork。汉化基于 Lazarus `.po`
-资源和少量运行时界面文本映射，目标是在尽量保留官方功能和包结构的前提下提供中文界面。
-
-当前汉化构建基于 ASTAP `2026.04.21`。
-
-#### 下载
-
-- [macOS 官方风格构建产物 ASTAP-zh-macos](https://github.com/songshugong/ASTAP-zh/actions/runs/26894924289/artifacts/7389257102)
-  - 包含 `astap_zh_M1.pkg`、`astap_zh_macOS_M1.zip`、SHA256 校验文件。
-  - 基于官方 `astap_M1.pkg`，替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
-- Windows 官方风格构建产物 ASTAP-zh-windows：
-  - [astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_setup.exe)
-  - [astap_zh.zip](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh.zip)
-  - [astap_zh_windows.sha256](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_windows.sha256)
-  - 基于官方 `astap_setup.exe` 静默安装后的文件结构，替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
-- [iOS 实验性命令行构建产物 ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP-zh/actions/runs/25917201535/artifacts/7016844767)
-  - 包含 `astap_command-line_version_iOS_aarch64.zip` 和 SHA256 校验文件。
-  - 这是 iOS aarch64 命令行 solver，不是图形化 iPhone/iPad App，也未做 App Store 签名。
-- [iOS 图形壳原型 IPA ASTAP-zh-iOS-prototype-ipa](https://github.com/songshugong/ASTAP-zh/actions/runs/25922202510/artifacts/7018905732)
-  - 包含 `ASTAP-zh-iOS-prototype.ipa` 和 SHA256 校验文件。
-  - 内置 W08 wide-field 星表和 iOS CLI 引擎资源，界面可选择文件、查看内置资源、复制 CLI 参数示例；求解核心仍需后续改造成同进程库接口。
-- [iOS 核心接入 MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP-zh/actions/runs/25935550796/artifacts/7024333782)
-  - 包含 `ASTAP-zh-iOS-core-mvp.ipa`、SHA256 校验文件和解包清单，artifact 约 195 MB；本版已串行化 ASTAP core 调用，避免重复点击并发求解导致崩溃。
-  - 这是核心已接入的 iOS MVP 原型：UIKit 图形界面通过 C ABI 调用 ASTAP Pascal 求解核心，支持文件选择、FITS 解析、图像预览、头信息/表格、求解参数、日志和结果页。
-  - 构建流程从官方 SourceForge 下载并内置 D05/G05 星表数据库；仓库不直接保存这些大文件。
-
-Windows 链接是 GitHub Release asset 直链，适合长期公开分发。macOS 和 iOS 链接仍是
-GitHub Actions artifact 直链，可能需要登录 GitHub，并受 GitHub artifact 保留期限限制。
-
-#### 官网包结构对照
-
-官方当前公开包结构核对自 SourceForge：
-
-- Windows GUI：`astap_setup.exe` 64 位安装器，约 6.3 MB；`astapwin32.zip` 32 位便携包，约 5.7 MB。
-- Windows 命令行：`astap_command-line_version_win64.zip`、`win32.zip`、`win11_aarch64.zip`，约 275-331 kB。
-- macOS GUI：`astap_M1.pkg` Apple Silicon，约 4.0 MB；`astap.pkg` Intel x86_64，约 4.5 MB。
-- macOS 命令行：`astap_command-line_version_macOS_M1.zip`、`macOS_x86_64.zip`，约 1.3-1.4 MB。
-- Linux GUI：amd64、i386、aarch64、armhf，并按 deb、tar.gz、rpm、pkg.tar.zst、GTK/QT 变体分发，约 4.0-8.9 MB。
-- Android：只有命令行 solver，aarch64、armhf、x86、x86_64，约 330-338 kB。
-- iOS：源码里有命令行 `.lpi` 目标，但官网当前没有公开 iOS 下载包。
-
-本 fork 目前仿造并确认成功的下载内容是 Windows 64 位 GUI 安装器/便携 zip、macOS Apple Silicon GUI pkg/zip、实验性的 iOS aarch64 命令行 solver、iOS 图形壳原型 IPA，以及核心已接入的 iOS MVP IPA。
-
-#### 版本和限制
-
-- 非官方版本：本 fork 与 ASTAP 原作者和官方发布无隶属关系。
-- 许可证：ASTAP 使用 MPL-2.0。本 fork 保留原许可证和版权声明，修改源码公开在本仓库。
-- macOS：构建流程以官方 macOS 安装包为底包，保留官方辅助工具和资源，再替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
-- macOS 签名：当前使用 ad-hoc 签名，没有 Apple notarization；首次运行可能需要在系统安全设置中手动允许。
-- Windows：当前提供官方风格 x64 汉化安装器和 x64 便携 zip。32 位 GUI、Windows ARM64 命令行版暂未提供。
-- iOS CLI：实验性 aarch64 命令行二进制仍可单独下载，需要自行嵌入已签名的 iOS App、开发者工具链或自动化环境。
-- iOS IPA：核心接入 MVP 使用 ad-hoc 签名，没有开发者证书和 provisioning profile；普通未越狱设备通常不能直接安装运行。它是原型，不是 App Store/TestFlight 分发包。
-- iOS MVP 范围：第一版只覆盖文件选择、FITS 解析、图像预览、头信息/表格、求解参数、日志和结果页；没有复刻完整桌面 ASTAP。
-- iOS 包体：核心 MVP IPA 内置 D05/G05 星表，所以 artifact 明显大于普通 GUI 或命令行包。
-- 汉化范围：主要覆盖静态界面、菜单、提示、常见弹窗和部分动态文本。少量专业术语、日志、第三方/标准 FITS 内容可能仍保留英文。
-- 功能限制：星表数据库、索引文件、OpenSSL 依赖等外部数据/组件仍按 ASTAP 官方说明单独安装或配置。
-
-### English
-
-This is an unofficial Simplified Chinese localization fork of ASTAP. The
-localization is based on Lazarus `.po` resources plus a small runtime UI text
-mapping layer. The goal is to provide a Chinese UI while keeping the official
-ASTAP behavior and package layout as intact as possible.
-
-The current localized builds are based on ASTAP `2026.04.21`.
-
-#### Downloads
-
-- [macOS official-style artifact ASTAP-zh-macos](https://github.com/songshugong/ASTAP-zh/actions/runs/26894924289/artifacts/7389257102)
-  - Includes `astap_zh_M1.pkg`, `astap_zh_macOS_M1.zip`, and a SHA256 checksum file.
-  - Based on the official `astap_M1.pkg`; the main executable is replaced with the localized build and `languages/zh_CN/astap.po` is added.
-- Windows official-style artifact ASTAP-zh-windows:
-  - [astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_setup.exe)
-  - [astap_zh.zip](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh.zip)
-  - [astap_zh_windows.sha256](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_windows.sha256)
-  - Based on the file layout produced by the official `astap_setup.exe`; the main executable is replaced with the localized build and `languages/zh_CN/astap.po` is added.
-- [iOS experimental CLI artifact ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP-zh/actions/runs/25917201535/artifacts/7016844767)
-  - Includes `astap_command-line_version_iOS_aarch64.zip` and a SHA256 checksum file.
-  - This is an iOS aarch64 command-line solver, not a graphical iPhone/iPad app, and it is not signed for App Store distribution.
-- [iOS graphical prototype IPA ASTAP-zh-iOS-prototype-ipa](https://github.com/songshugong/ASTAP-zh/actions/runs/25922202510/artifacts/7018905732)
-  - Includes `ASTAP-zh-iOS-prototype.ipa` and a SHA256 checksum file.
-  - Bundles the W08 wide-field star database and the iOS CLI engine resource. The UI can pick files, show bundled resources, and copy a CLI command example; the solver still needs to be converted into an in-process library interface.
-- [iOS core MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP-zh/actions/runs/25935550796/artifacts/7024333782)
-  - Includes `ASTAP-zh-iOS-core-mvp.ipa`, a SHA256 checksum file, and an unpack manifest. The artifact is about 195 MB. This build serializes ASTAP core calls to avoid crashes caused by concurrent solve requests.
-  - This is an iOS MVP prototype with the ASTAP core connected: the UIKit app calls the Pascal solver core through a C ABI bridge and supports file picking, FITS parsing, image preview, header/table views, solve parameters, logs, and result display.
-  - The workflow downloads and bundles the D05/G05 star databases from the official SourceForge package source; these large database files are not committed to this repository.
-
-Windows links are GitHub Release asset links and are suitable for long-term
-public distribution. The macOS and iOS links are still direct GitHub Actions
-artifact links; they may require a GitHub login and are subject to GitHub's
-artifact retention policy.
-
-#### Official Package Layout Reference
-
-The current official SourceForge package layout is:
-
-- Windows GUI: `astap_setup.exe` 64-bit installer, about 6.3 MB; `astapwin32.zip` 32-bit portable package, about 5.7 MB.
-- Windows CLI: `astap_command-line_version_win64.zip`, `win32.zip`, and `win11_aarch64.zip`, about 275-331 kB.
-- macOS GUI: `astap_M1.pkg` for Apple Silicon, about 4.0 MB; `astap.pkg` for Intel x86_64, about 4.5 MB.
-- macOS CLI: `astap_command-line_version_macOS_M1.zip` and `macOS_x86_64.zip`, about 1.3-1.4 MB.
-- Linux GUI: amd64, i386, aarch64, and armhf packages across deb, tar.gz, rpm, pkg.tar.zst, GTK, and QT variants, about 4.0-8.9 MB.
-- Android: command-line solver only, for aarch64, armhf, x86, and x86_64, about 330-338 kB.
-- iOS: command-line `.lpi` targets exist in source, but there is no current public iOS download package.
-
-This fork currently mirrors the Windows 64-bit GUI installer/portable zip, the macOS Apple Silicon GUI pkg/zip, an experimental iOS aarch64 command-line solver, an iOS graphical prototype IPA, and an iOS core-connected MVP IPA.
-
-#### Version and Limitations
-
-- Unofficial build: this fork is not affiliated with the original ASTAP author or official distribution.
-- License: ASTAP is licensed under MPL-2.0. This fork keeps the original license and copyright notices, and publishes the modified source in this repository.
-- macOS: the workflow starts from the official ASTAP macOS package, keeps the official helper tools and bundle resources, then replaces the main executable and adds `languages/zh_CN/astap.po`.
-- macOS signing: builds are ad-hoc signed and not Apple-notarized; macOS may require manual approval on first launch.
-- Windows: the current build provides an official-style localized x64 installer and x64 portable zip. 32-bit GUI and Windows ARM64 CLI packages are not provided yet.
-- iOS CLI: the experimental aarch64 command-line binary remains available separately. It must be embedded into a signed iOS app, developer workflow, or automation environment.
-- iOS IPA: the core MVP IPA is ad-hoc signed and does not include a developer certificate or provisioning profile. It usually cannot be installed directly on a normal non-jailbroken device. It is a prototype, not an App Store/TestFlight distribution.
-- iOS MVP scope: the first version covers file picking, FITS parsing, image preview, header/table views, solve parameters, logs, and result display; it does not replicate the full desktop ASTAP application.
-- iOS package size: the core MVP IPA bundles the D05/G05 star databases, so the artifact is much larger than the normal GUI or command-line packages.
-- Localization scope: static UI, menus, hints, common dialogs, and part of the dynamic UI text are localized. Some technical terms, logs, third-party strings, and standard FITS content may remain in English.
-- Functional dependencies: star databases, index files, OpenSSL libraries, and other external data/components still follow the official ASTAP installation instructions.
-
-### Build Workflows
-
-The localized builds are produced from this fork by GitHub Actions:
-
-- Windows x64: `.github/workflows/windows-astap-zh.yml`
-- macOS: `.github/workflows/macos-astap-zh.yml`
-- iOS core MVP: `.github/workflows/ios-astap-app.yml`
-
-The macOS workflow starts from the official ASTAP macOS package, keeps the
-official helper tools and bundle resources, then replaces the main executable
-and adds `languages/zh_CN/astap.po`. The Windows workflow starts from the
-official Windows installer layout, keeps the official helper tools and data
-files, then replaces the main executable and adds the same language resources.
