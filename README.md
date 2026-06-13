@@ -16,8 +16,8 @@ ASTAP-zh 是 ASTAP 的非官方简体中文本地化 fork。项目保留上游 A
 
 ## 下载
 
-- [macOS 安装包 astap_zh_M1.pkg](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_M1.pkg)
-- [Windows 安装包 astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_setup.exe)
+- [macOS 安装包 astap_zh_M1.pkg](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.06.13-zh.1/astap_zh_M1.pkg)
+- [Windows 安装包 astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.06.13-zh.1/astap_zh_setup.exe)
 
 ## 项目概览
 
