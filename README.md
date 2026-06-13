@@ -73,41 +73,14 @@ Windows 版本的目标是同时具备“补丁”和“独立安装包”两种
 
 ## 下载
 
-当前可用下载分为两类：Actions artifact 适合获取最近构建，可能需要登录 GitHub 且会过期；Release asset 更适合长期下载。
-
-- [macOS 官方风格构建产物 ASTAP-zh-macos](https://github.com/songshugong/ASTAP-zh/actions/runs/27018664085/artifacts/7438297186)
-  - 包含 `astap_zh_M1.pkg`、`astap_zh_macOS_M1.zip`、SHA256 校验文件。
-  - 基于官方 `astap_M1.pkg`，替换汉化后的主程序并加入 `languages/zh_CN/astap.po`。
-- [Windows 最新 Actions 构建产物 ASTAP-zh-windows](https://github.com/songshugong/ASTAP-zh/actions/runs/27456855333/artifacts/7607467470)
-  - 包含 `astap_zh_setup.exe`、`astap_zh.zip`、`astap_zh_windows.sha256`。
-  - 包含 NINA/外部程序 `.ini` 错误和警告说明的双语处理，以及优化后的官方目录覆盖逻辑。
-- Windows Release 长期下载：
-  - [astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_setup.exe)
-  - [astap_zh.zip](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh.zip)
-  - [astap_zh_windows.sha256](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_windows.sha256)
-  - 这是当前 Release 页面中的稳定资产，适合不想使用 Actions artifact 的用户。
-- [iOS 实验性命令行构建产物 ASTAP-zh-iOS-cli](https://github.com/songshugong/ASTAP-zh/actions/runs/25917201535/artifacts/7016844767)
-  - 包含 `astap_command-line_version_iOS_aarch64.zip` 和 SHA256 校验文件。
-  - 这是 iOS aarch64 命令行 solver，不是图形化 iPhone/iPad App，也未做 App Store 签名。
-- [iOS 图形壳原型 IPA ASTAP-zh-iOS-prototype-ipa](https://github.com/songshugong/ASTAP-zh/actions/runs/25922202510/artifacts/7018905732)
-  - 包含 `ASTAP-zh-iOS-prototype.ipa` 和 SHA256 校验文件。
-  - 内置 W08 wide-field 星表和 iOS CLI 引擎资源，界面可选择文件、查看内置资源、复制 CLI 参数示例；求解核心仍需后续改造成同进程库接口。
-- [iOS 核心接入 MVP IPA ASTAP-zh-iOS-core-mvp](https://github.com/songshugong/ASTAP-zh/actions/runs/25935550796/artifacts/7024333782)
-  - 包含 `ASTAP-zh-iOS-core-mvp.ipa`、SHA256 校验文件和解包清单，artifact 约 195 MB；本版已串行化 ASTAP core 调用，避免重复点击并发求解导致崩溃。
-  - 这是核心已接入的 iOS MVP 原型：UIKit 图形界面通过 C ABI 调用 ASTAP Pascal 求解核心，支持文件选择、FITS 解析、图像预览、头信息/表格、求解参数、日志和结果页。
-  - 构建流程从官方 SourceForge 下载并内置 D05/G05 星表数据库；仓库不直接保存这些大文件。
-
-GitHub Actions artifact 链接可能需要登录 GitHub，并受 artifact 保留期限限制。长期公开分发建议使用 GitHub Releases。
+- [macOS 安装包 astap_zh_M1.pkg](https://github.com/songshugong/ASTAP-zh/actions/runs/27018664085/artifacts/7438297186)
+- [Windows 安装包 astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_setup.exe)
 
 ## 安装和使用
 
 Windows 用户通常可以直接使用 `astap_zh_setup.exe`。如果已经安装官方 ASTAP，可以选择官方安装目录进行覆盖式安装；安装器会保留 `astap.exe` 文件名，以便外部软件继续通过原路径调用。
 
-便携版 `astap_zh.zip` 适合不想写入安装记录的场景。解压后运行 `astap.exe` 即可。星表数据库、OpenSSL 组件和其他外部依赖仍按官方 ASTAP 说明配置。
-
 macOS 构建基于官方包结构，当前使用 ad-hoc 签名，没有 Apple notarization。首次运行可能需要在系统安全设置中手动允许。
-
-iOS 相关产物属于实验性验证，不是正式移动版 ASTAP，也不是 App Store 或 TestFlight 分发包。
 
 ## 官方包结构参考
 
