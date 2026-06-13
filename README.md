@@ -14,6 +14,11 @@ ASTAP-zh 是 ASTAP 的非官方简体中文本地化 fork。项目保留上游 A
 
 当前汉化构建基于 ASTAP `2026.04.21`。
 
+## 下载
+
+- [macOS 安装包 astap_zh_M1.pkg](https://github.com/songshugong/ASTAP-zh/actions/runs/27018664085/artifacts/7438297186)
+- [Windows 安装包 astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_setup.exe)
+
 ## 项目概览
 
 ASTAP 是一个面向天文图像的免费叠加、测光、FITS 浏览和天文解析程序。它使用 Object Pascal 编写，通过 Free Pascal Compiler 和 Lazarus 构建。ASTAP 的内置 plate solver 可以被 NINA、APT、Voyager、CCDCiel、SGP 等拍摄软件调用，用于解析图像、同步赤道仪或辅助构图。
@@ -70,11 +75,6 @@ Windows 版本的目标是同时具备“补丁”和“独立安装包”两种
 - 便携 zip 保留官方运行所需文件，适合解压后直接运行。
 
 这套逻辑是为了减少 NINA、APT、Voyager 等软件重新指定 solver 路径的需求。
-
-## 下载
-
-- [macOS 安装包 astap_zh_M1.pkg](https://github.com/songshugong/ASTAP-zh/actions/runs/27018664085/artifacts/7438297186)
-- [Windows 安装包 astap_zh_setup.exe](https://github.com/songshugong/ASTAP-zh/releases/download/v2026.05.31-zh.2/astap_zh_setup.exe)
 
 ## 安装和使用
 
